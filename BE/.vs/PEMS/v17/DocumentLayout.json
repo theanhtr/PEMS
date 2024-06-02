@@ -38,8 +38,7 @@
               "RelativeToolTip": "PEMS\\Controllers\\EmployeesController.cs",
               "ViewState": "AQIAAGQAAAAAAAAAAAAIwIcAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T10:18:45.312Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-02T10:18:45.312Z"
             },
             {
               "$type": "Document",
@@ -49,7 +48,7 @@
               "RelativeDocumentMoniker": "PEMS\\Controllers\\TestController.cs",
               "ToolTip": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code PEMS\\BE\\PEMS\\Controllers\\TestController.cs",
               "RelativeToolTip": "PEMS\\Controllers\\TestController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAwAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-02T10:17:33.064Z",
               "EditorCaption": ""
@@ -64,8 +63,7 @@
               "RelativeToolTip": "PEMS\\Controllers\\EmployeeLayoutController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAACMAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T10:09:08.822Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-25T10:09:08.822Z"
             },
             {
               "$type": "Document",
@@ -77,8 +75,7 @@
               "RelativeToolTip": "PEMS.Domain\\Enum\\StatusCode\\StatusErrorCode.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAACQAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-25T09:59:57.816Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-25T09:59:57.816Z"
             }
           ]
         }

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PEMS.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dabb626a6da3e7687d4ed64db7b1cd0865456a34")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+404795384e84406b71bd12ccf69a1b339ac2bf7f")]
 [assembly: System.Reflection.AssemblyProductAttribute("PEMS.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PEMS.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
