@@ -58,7 +58,7 @@
 
 <script>
 import EmployeeService from "@/service/EmployeeService.js";
-import { dataCheckColumnsInfo } from "./DataCheckColumnsInfo.js";
+import { dataCheckColumnsInfo } from "./dataCheckColumnsInfo.js";
 import { CommonErrorHandle } from "@/helper/error-handle";
 
 export default {
