@@ -29,7 +29,7 @@ pipeline{
         dir('FE') {
           script{
             docker.withRegistry('', DOCKER_PASS) {
-              docker_image = docker.build("${IMAGE_NAME}")
+              docker_image = docker.build("${IMAGE_NAME}", "--build-arg ENV_BUILD=${ENV_BUILD} .")
             }
 
             docker.withRegistry('', DOCKER_PASS) {

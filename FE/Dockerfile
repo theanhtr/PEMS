@@ -1,3 +1,6 @@
+# setup biến môi trường
+ARG ENV_BUILD
+
 # Stage 1: Compile and Build angular codebase
 
 # Use official node image as the base image
@@ -12,7 +15,7 @@ RUN npm install
 
 COPY . .
 
-RUN npm run buildtest
+RUN npm run build${ENV_BUILD}
 
 # Stage 2: Serve app with nginx server
 
