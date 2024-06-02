@@ -1,0 +1,48 @@
+pipeline{
+  agent any
+  environment {
+    APP_NAME = "pems_be"
+    DOCKER_USER = "theanh0906"
+    DOCKER_PASS = "dockerhub-credentials"
+    IMAGE_NAME = "${DOCKER_USER}/${APP_NAME}"
+    IMAGE_TAG = "${IMAGE_TAG}"
+    //JENKINS_API_TOKEN = credentials('JENKINS_API_TOKEN')
+  }
+  stages{
+    stage('Cleanup workspace'){
+      steps{
+        cleanWs()
+      }
+    }
+    
+    stage('Checkout'){
+      steps{
+        git branch: "${ENV_BUILD}", credentialsId: 'github-credentials', url: 'https://github.com/theanhtr/PEMS.git'
+      }
+    }
+
+    stage("Build and push docker image"){
+      steps{
+        dir('BE') {
+          script{
+            docker.withRegistry('', DOCKER_PASS) {
+              docker_image = docker.build("${IMAGE_NAME}")
+            }
+
+            docker.withRegistry('', DOCKER_PASS) {
+              docker_image.push("${IMAGE_TAG}")
+            }
+          }
+        }
+      }
+    }
+
+    // stage("Trigger CD pipeline"){
+    //   steps{
+    //     script{
+    //       sh "curl -v -k --user admin:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'http://172.28.73.189:8080/job/discord_update_image_tag/buildWithParameters?token=discord-token'"
+    //     }
+    //   }
+    // }
+  }
+}
