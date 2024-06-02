@@ -5,11 +5,10 @@ pipeline{
   }
   environment {
     APP_NAME = "pems_fe"
-    RELEASE = "1.0.1"
     DOCKER_USER = "theanh0906"
     DOCKER_PASS = "dockerhub-credentials"
     IMAGE_NAME = "${DOCKER_USER}/${APP_NAME}"
-    IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
+    IMAGE_TAG = "${IMAGE_TAG}"
     //JENKINS_API_TOKEN = credentials('JENKINS_API_TOKEN')
   }
   stages{
@@ -21,7 +20,7 @@ pipeline{
     
     stage('Checkout'){
       steps{
-        git branch: 'develop', credentialsId: 'github-credentials', url: 'https://github.com/theanhtr/PEMS.git'
+        git branch: "${ENV_BUILD}", credentialsId: 'github-credentials', url: 'https://github.com/theanhtr/PEMS.git'
       }
     }
 
