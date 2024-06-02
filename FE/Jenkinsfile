@@ -21,7 +21,7 @@ pipeline{
     
     stage('Checkout'){
       steps{
-        git branch: 'test', credentialsId: 'github-credentials', url: 'https://github.com/theanhtr/PEMS.git'
+        git branch: 'develop', credentialsId: 'github-credentials', url: 'https://github.com/theanhtr/PEMS.git'
       }
     }
 
