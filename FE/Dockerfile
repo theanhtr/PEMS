@@ -1,10 +1,10 @@
-# setup biến môi trường
-ARG ENV_BUILD
-
 # Stage 1: Compile and Build angular codebase
 
 # Use official node image as the base image
 FROM node:latest as build
+
+# setup biến môi trường
+ARG BUILD_ENV_ARG
 
 # Set the working directory
 WORKDIR /app
@@ -15,7 +15,7 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build${ENV_BUILD}
+RUN npm run build${BUILD_ENV_ARG}
 
 # Stage 2: Serve app with nginx server
 
