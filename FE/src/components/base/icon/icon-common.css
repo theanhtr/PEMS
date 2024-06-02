@@ -1,0 +1,135 @@
+.ttanh__icon {
+  background: url("../../../assets/img/Sprites.64af8f61.svg") no-repeat;
+}
+
+.suggestion-icon {
+  background-position: -906px -456px;
+  width: 46px;
+  height: 46px;
+}
+
+.file-icon {
+  background-position: -539px -203px;
+  width: 19px;
+  height: 19px;
+}
+
+.download-icon {
+  background-position: -707px -361px;
+  width: 11px;
+  height: 13px;
+}
+
+/* checkbox icon */
+.checkbox-icon {
+  background-position: -899px -316px;
+  width: 11px;
+  height: 8px;
+}
+
+/* common icon */
+.plus--green {
+  background-position: -34px -314px;
+  width: 12px;
+  height: 12px;
+}
+
+.search {
+  background-position: -425px -33px;
+  width: 22px;
+  height: 22px;
+}
+
+.help {
+  background-position: -89px -145px;
+  width: 22px;
+  height: 22px;
+}
+
+.close {
+  background-position: -147px -147px;
+  width: 18px;
+  height: 18px;
+}
+
+.calendar {
+  background-position: -128px -312px;
+  width: 16px;
+  height: 16px;
+}
+
+/* arrow */
+.arrow-left--blue {
+  background-position: -228px -362.5px;
+  width: 7px;
+  height: 12px;
+}
+
+.arrow-left--grey {
+  background-position: -36px -361px;
+  width: 8px;
+  height: 14px;
+}
+
+.arrow-right--grey {
+  background-position: -84px -361px;
+  width: 8px;
+  height: 14px;
+}
+
+.arrow-left--black {
+  background-position: -1085px -361px;
+  width: 8px;
+  height: 14px;
+  rotate: 180deg;
+}
+
+.arrow-right--black {
+  background-position: -1085px -361px;
+  width: 8px;
+  height: 14px;
+}
+
+.arrow-up--black {
+  background-position: -1129px -365px;
+  width: 14px;
+  height: 8px;
+  rotate: 180deg;
+}
+
+.arrow-down--black {
+  background-position: -1129px -365px;
+  width: 14px;
+  height: 8px;
+}
+
+/* dropdown */
+.dropdown--light-black {
+  background-position: -1129px -365px;
+  width: 14px;
+  height: 8px;
+}
+
+.dropdown--solid-grey {
+  background-position: -1756px -317px;
+  width: 8px;
+  height: 5px;
+}
+
+.dropdown--solid-white {
+  background-position: -852px -365px;
+  width: 8px;
+  height: 5px;
+}
+
+.dropdown--solid-blue {
+  background-position: -900px -365px;
+  width: 8px;
+  height: 5px;
+}
+
+.dropdown--solid-black {
+  background-position: -371px -364px;
+  width: 10px;
+  height: 8px;
+}

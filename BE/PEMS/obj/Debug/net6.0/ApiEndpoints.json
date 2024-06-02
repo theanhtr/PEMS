@@ -1,0 +1,563 @@
+[
+  {
+    "ContainingType": "PEMS.Controllers.CodeController\u00604[[PEMS.Domain.Department, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.DepartmentDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.DepartmentCreateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.DepartmentUpdateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "InsertAsync",
+    "RelativePath": "api/v1/Departments",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "entityCreateDto",
+        "Type": "PEMS.Application.DepartmentCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.BaseController\u00604[[PEMS.Domain.Department, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.DepartmentDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.DepartmentCreateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.DepartmentUpdateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "DeleteMultipleAsync",
+    "RelativePath": "api/v1/Departments",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ids",
+        "Type": "System.Collections.Generic.List\u00601[[System.Guid, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.ReadOnlyController\u00602[[PEMS.Domain.Department, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.DepartmentDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetAsync",
+    "RelativePath": "api/v1/Departments",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.CodeController\u00604[[PEMS.Domain.Department, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.DepartmentDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.DepartmentCreateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.DepartmentUpdateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "UpdateAsync",
+    "RelativePath": "api/v1/Departments/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "entityUpdateDto",
+        "Type": "PEMS.Application.DepartmentUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.BaseController\u00604[[PEMS.Domain.Department, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.DepartmentDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.DepartmentCreateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.DepartmentUpdateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "DeleteAsync",
+    "RelativePath": "api/v1/Departments/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.ReadOnlyController\u00602[[PEMS.Domain.Department, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.DepartmentDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetByIdAsync",
+    "RelativePath": "api/v1/Departments/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.CodeController\u00604[[PEMS.Domain.Department, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.DepartmentDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.DepartmentCreateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.DepartmentUpdateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetByCodeAsync",
+    "RelativePath": "api/v1/Departments/code/{code}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "code",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.ReadOnlyController\u00602[[PEMS.Domain.Department, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.DepartmentDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "FiltersAsync",
+    "RelativePath": "api/v1/Departments/filter",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageSize",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageNumber",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "searchText",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.CodeController\u00604[[PEMS.Domain.Department, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.DepartmentDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.DepartmentCreateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.DepartmentUpdateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetNewCodeAsync",
+    "RelativePath": "api/v1/Departments/new-code",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.BaseController\u00604[[PEMS.Domain.EmployeeLayout, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeLayoutDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeLayoutCreateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeLayoutUpdateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "InsertAsync",
+    "RelativePath": "api/v1/EmployeeLayouts",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "entityCreateDto",
+        "Type": "PEMS.Application.EmployeeLayoutCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.BaseController\u00604[[PEMS.Domain.EmployeeLayout, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeLayoutDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeLayoutCreateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeLayoutUpdateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "DeleteMultipleAsync",
+    "RelativePath": "api/v1/EmployeeLayouts",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ids",
+        "Type": "System.Collections.Generic.List\u00601[[System.Guid, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.ReadOnlyController\u00602[[PEMS.Domain.EmployeeLayout, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeLayoutDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetAsync",
+    "RelativePath": "api/v1/EmployeeLayouts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.BaseController\u00604[[PEMS.Domain.EmployeeLayout, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeLayoutDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeLayoutCreateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeLayoutUpdateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "UpdateAsync",
+    "RelativePath": "api/v1/EmployeeLayouts/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "entityUpdateDto",
+        "Type": "PEMS.Application.EmployeeLayoutUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.BaseController\u00604[[PEMS.Domain.EmployeeLayout, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeLayoutDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeLayoutCreateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeLayoutUpdateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "DeleteAsync",
+    "RelativePath": "api/v1/EmployeeLayouts/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.ReadOnlyController\u00602[[PEMS.Domain.EmployeeLayout, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeLayoutDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetByIdAsync",
+    "RelativePath": "api/v1/EmployeeLayouts/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.ReadOnlyController\u00602[[PEMS.Domain.EmployeeLayout, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeLayoutDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "FiltersAsync",
+    "RelativePath": "api/v1/EmployeeLayouts/filter",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageSize",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageNumber",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "searchText",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.EmployeeLayoutsController",
+    "Method": "SetDefault",
+    "RelativePath": "api/v1/EmployeeLayouts/set-default",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.EmployeeLayoutsController",
+    "Method": "UpdateMultipleAsync",
+    "RelativePath": "api/v1/EmployeeLayouts/update-multiple",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "employeeLayoutsUpdate",
+        "Type": "System.Collections.Generic.List\u00601[[PEMS.Application.EmployeeLayoutUpdateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.CodeController\u00604[[PEMS.Domain.Employee, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeCreateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeUpdateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "InsertAsync",
+    "RelativePath": "api/v1/Employees",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "entityCreateDto",
+        "Type": "PEMS.Application.EmployeeCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.BaseController\u00604[[PEMS.Domain.Employee, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeCreateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeUpdateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "DeleteMultipleAsync",
+    "RelativePath": "api/v1/Employees",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ids",
+        "Type": "System.Collections.Generic.List\u00601[[System.Guid, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.ReadOnlyController\u00602[[PEMS.Domain.Employee, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetAsync",
+    "RelativePath": "api/v1/Employees",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.CodeController\u00604[[PEMS.Domain.Employee, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeCreateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeUpdateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "UpdateAsync",
+    "RelativePath": "api/v1/Employees/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "entityUpdateDto",
+        "Type": "PEMS.Application.EmployeeUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.BaseController\u00604[[PEMS.Domain.Employee, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeCreateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeUpdateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "DeleteAsync",
+    "RelativePath": "api/v1/Employees/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.ReadOnlyController\u00602[[PEMS.Domain.Employee, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetByIdAsync",
+    "RelativePath": "api/v1/Employees/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.CodeController\u00604[[PEMS.Domain.Employee, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeCreateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeUpdateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetByCodeAsync",
+    "RelativePath": "api/v1/Employees/code/{code}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "code",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.EmployeesController",
+    "Method": "ExportToExcelAsync",
+    "RelativePath": "api/v1/Employees/excel",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "searchText",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.EmployeesController",
+    "Method": "ImportExcelAsync",
+    "RelativePath": "api/v1/Employees/excel",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "excelFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.EmployeesController",
+    "Method": "AddSettingExcelAsync",
+    "RelativePath": "api/v1/Employees/excel/add-setting",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "importExcelSetting",
+        "Type": "PEMS.Domain.ExcelImportSetting",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.EmployeesController",
+    "Method": "CheckDataFilterAsync",
+    "RelativePath": "api/v1/Employees/excel/check-data-filter",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "filterExcelDataValidateType",
+        "Type": "PEMS.Domain.FilterExcelDataValidateType",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.EmployeesController",
+    "Method": "ConfirmImportExcelFile",
+    "RelativePath": "api/v1/Employees/excel/confirm-import-excel-file",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.EmployeesController",
+    "Method": "HeaderMapColumnAsync",
+    "RelativePath": "api/v1/Employees/excel/header-map-column",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "excelHeadersMapColumns",
+        "Type": "System.Collections.Generic.List\u00601[[PEMS.Domain.ExcelHeaderMapColumn, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.EmployeesController",
+    "Method": "DownloadBasicTemplate",
+    "RelativePath": "api/v1/Employees/excel/template",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.EmployeesController",
+    "Method": "DownloadFullTemplate",
+    "RelativePath": "api/v1/Employees/excel/template-full",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.ReadOnlyController\u00602[[PEMS.Domain.Employee, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "FiltersAsync",
+    "RelativePath": "api/v1/Employees/filter",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageSize",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageNumber",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "searchText",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.CodeController\u00604[[PEMS.Domain.Employee, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeCreateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.EmployeeUpdateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetNewCodeAsync",
+    "RelativePath": "api/v1/Employees/new-code",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

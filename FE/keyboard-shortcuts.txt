@@ -1,0 +1,12 @@
+INSERT: thêm mới
+CTRL + INSERT: Thêm bằng excel
+CTRL + SHIFT + F: tìm kiếm 
+        Theo mã nhân viên, tên nhân viên, mã đơn vị, tên đơn vị, chức danh, số cmnd.
+
+giữ shift để chọn nhiều
+
+//form
+ESC: đóng form
+CTRL + S: cất
+CTRL + SHIFT + S: cất và thêm 
+CTRL + 1, 2, 3: mở các form thông tin thêm

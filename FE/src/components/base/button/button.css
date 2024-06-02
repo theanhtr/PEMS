@@ -1,0 +1,179 @@
+.style-button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  position: relative;
+}
+
+.ttanh-button--container {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  width: 100%;
+  height: 100%;
+}
+
+/* main button */
+.m-button .ttanh-button--container {
+  background-color: var(--primary-btn-background-color);
+  column-gap: 4px;
+}
+
+/* icon button */
+.i-button .ttanh-button--container {
+  min-width: 0;
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+
+/* text button */
+.t-button .ttanh-button--container {
+  background-color: var(--primary-btn-background-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* sub button */
+.s-button .ttanh-button--container {
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* dropdown button */
+.dd-button .ttanh-button--container {
+  background-color: transparent;
+}
+
+/* link button */
+.l-button .ttanh-button--container {
+  width: auto;
+  min-width: 0px;
+  background-color: transparent;
+  border-radius: var(--border-radius-default) !important;
+}
+
+/* combo button */
+.cb-button .ttanh-button--container {
+  background-color: var(--primary-btn-background-color);
+}
+
+.cb-button .button__title {
+  height: 100%;
+  flex: 1;
+  padding: 0px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: var(--btn-border-radius-default);
+  border-bottom-left-radius: var(--btn-border-radius-default);
+}
+
+.cb-button__dropdown--pressed {
+  background-color: var(--primary-btn--active-background-color);
+}
+
+.cb-button .button__title:hover,
+.cb-button .button__dropdown:hover {
+  background-color: var(--primary-btn--hover-background-color);
+}
+
+.data__dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  background-color: white;
+  padding: 2px 0px;
+  white-space: nowrap;
+  width: fit-content;
+  border-radius: var(--border-radius-default);
+  border: 1px solid var(--border-color-default);
+  box-shadow: 0 3px 16px rgba(0, 0, 0, 0.16);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+}
+
+.data__dropdown .data__item {
+  color: #000;
+  cursor: pointer;
+  text-align: start;
+  padding: 0px 8px;
+  height: var(--primary-button-height);
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  min-width: 100px;
+  padding: 5px 10px;
+}
+
+.data__dropdown .data__item:hover {
+  background-color: #e8e9ec;
+  color: var(--primary-btn-background-color);
+}
+
+.data__dropdown .data__item--selected {
+  background-color: var(--primary-btn-background-color);
+  color: #e8e9ec;
+}
+
+/* hover */
+.m-button .ttanh-button--container:hover,
+.t-button .ttanh-button--container:hover {
+  background-color: var(--primary-btn--hover-background-color);
+}
+
+.i-button .ttanh-button--container:hover {
+  outline: var(--border-color-default) solid 2px !important;
+}
+
+.m-button--disable .ttanh-button--container,
+.t-button--disable .ttanh-button--container,
+.cb-button--disable .ttanh-button--container {
+  background-color: var(--primary-btn-background-color-opacity);
+}
+
+.s-button .ttanh-button--container:hover {
+  border: 1px solid var(--primary-btn-background-color) !important;
+  color: var(--primary-btn-background-color) !important;
+}
+
+.s-button--disable .ttanh-button--container {
+  border: 1px solid var(--primary-btn-background-color-opacity);
+  color: var(--primary-btn-background-color-opacity);
+}
+
+.ttanh-button--focus {
+  outline: var(--border-color-default) solid 2px !important;
+}
+
+.i-button .ttanh-button--container:active,
+.t-button .ttanh-button--container:active,
+.s-button .ttanh-button--container:active,
+.dd-button .ttanh-button--container:active {
+  outline: var(--border-color-default) solid 2px;
+  background-color: var(--sub-btn-background-color--active);
+}
+
+.m-button .ttanh-button--container:active {
+  outline: var(--border-color-default) solid 2px;
+  background-color: var(--primary-btn--active-background-color);
+}
+
+.l-button .ttanh-button--container:active {
+  outline: var(--border-color-default) solid 2px;
+}
+
+.cb-button .ttanh-button--container:active {
+  outline: none;
+}
+
+.cb-button .ttanh-button--container .button__title:active,
+.cb-button .ttanh-button--container .button__dropdown:active {
+  outline: var(--border-color-default) solid 2px;
+  background-color: var(--primary-btn--active-background-color);
+}

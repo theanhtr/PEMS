@@ -1,0 +1,117 @@
+.header {
+  height: 48px;
+  width: 100%;
+  float: left;
+  background-color: #fff;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* header left */
+.header__left {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: fit-content;
+  column-gap: 20px;
+  padding: 0px 10px;
+}
+
+.header__branch {
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+  cursor: pointer;
+}
+
+.header__branch-name {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 14px;
+  max-width: 450px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* header right */
+.header__right {
+  height: 100%;
+  padding: 0px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 30px;
+}
+
+.change-language {
+  column-gap: 3px;
+}
+
+.change-language__item--active {
+  outline: var(--primary-btn--active-background-color) solid 3px;
+}
+
+.change-language__item:hover {
+  outline: var(--primary-btn--hover-background-color) solid 3px;
+}
+
+.change-language__item:active {
+  outline: var(--border-color-default) solid 3px;
+}
+
+.header__action-right {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.header__action-icon .ttanh-button--container {
+  padding: 0px 10px !important;
+  position: relative;
+  cursor: pointer;
+  border-radius: 0px !important;
+  border: none !important;
+}
+
+.header__action-icon .ttanh-button--container:hover {
+  background-color: #000 !important;
+}
+
+.header__action-icon .ttanh-button--container:hover:after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-bottom: 8px solid transparent;
+  border-left: 22px solid transparent;
+  border-right: 22px solid transparent;
+  border-top: 8px solid #000;
+  position: absolute;
+  bottom: -16px;
+  left: 0;
+}
+
+.header__account-info {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.account-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--border-color-default);
+}
+
+.account-name {
+  max-width: 400px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 0px 4px 0px 8px;
+}

@@ -1,0 +1,13 @@
+.header__step-4 {
+  align-items: start;
+  column-gap: 6px;
+  font-size: 16px;
+}
+
+.step-4__title--success {
+  color: var(--tab__item--active-text-color);
+}
+
+.step-4__title--fail {
+  color: #ff0404;
+}

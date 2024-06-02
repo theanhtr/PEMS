@@ -1,0 +1,36 @@
+C:\Users\ttanh6\Desktop\khóa luận\Khóa luận - StartDate 13-05-2024\Code PEMS\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\obj\Debug\net6.0\PEMS.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\ttanh6\Desktop\khóa luận\Khóa luận - StartDate 13-05-2024\Code PEMS\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\obj\Debug\net6.0\PEMS.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ttanh6\Desktop\khóa luận\Khóa luận - StartDate 13-05-2024\Code PEMS\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\obj\Debug\net6.0\PEMS.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\ttanh6\Desktop\khóa luận\Khóa luận - StartDate 13-05-2024\Code PEMS\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\obj\Debug\net6.0\PEMS.Infrastructure.AssemblyInfo.cs
+C:\Users\ttanh6\Desktop\khóa luận\Khóa luận - StartDate 13-05-2024\Code PEMS\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\obj\Debug\net6.0\PEMS.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\ttanh6\Desktop\khóa luận\Khóa luận - StartDate 13-05-2024\Code PEMS\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\bin\Debug\net6.0\PEMS.Infrastructure.deps.json
+C:\Users\ttanh6\Desktop\khóa luận\Khóa luận - StartDate 13-05-2024\Code PEMS\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\bin\Debug\net6.0\PEMS.Infrastructure.dll
+C:\Users\ttanh6\Desktop\khóa luận\Khóa luận - StartDate 13-05-2024\Code PEMS\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\bin\Debug\net6.0\PEMS.Infrastructure.pdb
+C:\Users\ttanh6\Desktop\khóa luận\Khóa luận - StartDate 13-05-2024\Code PEMS\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\bin\Debug\net6.0\PEMS.Application.dll
+C:\Users\ttanh6\Desktop\khóa luận\Khóa luận - StartDate 13-05-2024\Code PEMS\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\bin\Debug\net6.0\PEMS.Domain.dll
+C:\Users\ttanh6\Desktop\khóa luận\Khóa luận - StartDate 13-05-2024\Code PEMS\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\bin\Debug\net6.0\PEMS.Application.pdb
+C:\Users\ttanh6\Desktop\khóa luận\Khóa luận - StartDate 13-05-2024\Code PEMS\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\bin\Debug\net6.0\PEMS.Domain.pdb
+C:\Users\ttanh6\Desktop\khóa luận\Khóa luận - StartDate 13-05-2024\Code PEMS\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\bin\Debug\net6.0\vi\PEMS.Domain.resources.dll
+C:\Users\ttanh6\Desktop\khóa luận\Khóa luận - StartDate 13-05-2024\Code PEMS\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\obj\Debug\net6.0\MISA.Web.A38D004E.Up2Date
+C:\Users\ttanh6\Desktop\khóa luận\Khóa luận - StartDate 13-05-2024\Code PEMS\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\obj\Debug\net6.0\PEMS.Infrastructure.dll
+C:\Users\ttanh6\Desktop\khóa luận\Khóa luận - StartDate 13-05-2024\Code PEMS\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\obj\Debug\net6.0\refint\PEMS.Infrastructure.dll
+C:\Users\ttanh6\Desktop\khóa luận\Khóa luận - StartDate 13-05-2024\Code PEMS\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\obj\Debug\net6.0\PEMS.Infrastructure.pdb
+C:\Users\ttanh6\Desktop\khóa luận\Khóa luận - StartDate 13-05-2024\Code PEMS\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\obj\Debug\net6.0\ref\PEMS.Infrastructure.dll
+C:\Users\ttanh6\Desktop\khóa luận\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\bin\Debug\net6.0\PEMS.Infrastructure.deps.json
+C:\Users\ttanh6\Desktop\khóa luận\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\bin\Debug\net6.0\PEMS.Infrastructure.dll
+C:\Users\ttanh6\Desktop\khóa luận\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\bin\Debug\net6.0\PEMS.Infrastructure.pdb
+C:\Users\ttanh6\Desktop\khóa luận\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\bin\Debug\net6.0\PEMS.Application.dll
+C:\Users\ttanh6\Desktop\khóa luận\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\bin\Debug\net6.0\PEMS.Domain.dll
+C:\Users\ttanh6\Desktop\khóa luận\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\bin\Debug\net6.0\PEMS.Application.pdb
+C:\Users\ttanh6\Desktop\khóa luận\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\bin\Debug\net6.0\PEMS.Domain.pdb
+C:\Users\ttanh6\Desktop\khóa luận\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\bin\Debug\net6.0\vi\PEMS.Domain.resources.dll
+C:\Users\ttanh6\Desktop\khóa luận\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\obj\Debug\net6.0\PEMS.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\ttanh6\Desktop\khóa luận\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\obj\Debug\net6.0\PEMS.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ttanh6\Desktop\khóa luận\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\obj\Debug\net6.0\PEMS.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\ttanh6\Desktop\khóa luận\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\obj\Debug\net6.0\PEMS.Infrastructure.AssemblyInfo.cs
+C:\Users\ttanh6\Desktop\khóa luận\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\obj\Debug\net6.0\PEMS.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\ttanh6\Desktop\khóa luận\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\obj\Debug\net6.0\MISA.Web.A38D004E.Up2Date
+C:\Users\ttanh6\Desktop\khóa luận\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\obj\Debug\net6.0\PEMS.Infrastructure.dll
+C:\Users\ttanh6\Desktop\khóa luận\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\obj\Debug\net6.0\refint\PEMS.Infrastructure.dll
+C:\Users\ttanh6\Desktop\khóa luận\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\obj\Debug\net6.0\PEMS.Infrastructure.pdb
+C:\Users\ttanh6\Desktop\khóa luận\codeTTA\code_temp\aspnetcore\PEMS\PEMS.Infrastructure\obj\Debug\net6.0\ref\PEMS.Infrastructure.dll

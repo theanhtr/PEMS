@@ -1,0 +1,23 @@
+/* search input style */
+.search-input-container {
+  height: var(--primary-button-height);
+  border: 2px solid var(--border-color-default);
+  border-radius: var(--border-radius-default);
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  position: relative;
+  font-size: 12px;
+  position: relative;
+  padding: 0px 36px 0px 10px;
+  cursor: text;
+}
+
+.search-input__input {
+  padding: 0px;
+  outline: none;
+  border: none;
+  background-color: inherit;
+  width: 100%;
+}

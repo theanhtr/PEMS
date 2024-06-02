@@ -1,0 +1,67 @@
+/* cờ các nước */
+.flag-vi {
+  background-position: -1648px -262px;
+  width: 24px;
+  height: 18px;
+}
+
+.flag-en {
+  background-position: -1688px -262px;
+  width: 24px;
+  height: 18px;
+}
+
+/* header */
+.header__download {
+  background-position: -648px -145px;
+  width: 24px;
+  height: 23px;
+}
+
+.header__setting--grey {
+  background-position: -676px -29px;
+  width: 23px;
+  height: 26px;
+}
+
+.header__setting--white {
+  background-position: -145px -87px;
+  width: 23px;
+  height: 26px;
+}
+
+.header__message--grey {
+  background-position: -899px -30px;
+  width: 24px;
+  height: 25px;
+}
+
+.header__message--white {
+  background-position: -368px -88px;
+  width: 24px;
+  height: 25px;
+}
+
+.header__question--grey {
+  background-position: -732px -31px;
+  width: 22px;
+  height: 22px;
+}
+
+.header__question--white {
+  background-position: -201px -89px;
+  width: 22px;
+  height: 22px;
+}
+
+.header__noti--grey {
+  background-position: -788px -30px;
+  width: 22px;
+  height: 25px;
+}
+
+.header__noti--white {
+  background-position: -257px -88px;
+  width: 22px;
+  height: 25px;
+}

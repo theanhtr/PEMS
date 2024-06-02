@@ -1,0 +1,11 @@
+.footer__button {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer__button-right {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}

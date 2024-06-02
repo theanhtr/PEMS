@@ -1,0 +1,93 @@
+.loading-skeleton__element {
+  height: 50%;
+  width: 100%;
+  border-radius: var(--border-radius-default);
+  -webkit-animation: loading-bar-skeleton 600ms linear infinite;
+  animation: loading-bar-skeleton 600ms linear infinite;
+}
+
+@-webkit-keyframes loading-bar-skeleton {
+  0% {
+    background: linear-gradient(
+      90deg,
+      rgba(235, 236, 238, 1) 0%,
+      rgba(255, 255, 255, 1) 10%,
+      rgba(235, 236, 238, 1) 100%
+    );
+  }
+  25% {
+    background: linear-gradient(
+      90deg,
+      rgba(235, 236, 238, 1) 0%,
+      rgba(255, 255, 255, 1) 25%,
+      rgba(235, 236, 238, 1) 100%
+    );
+  }
+  50% {
+    background: linear-gradient(
+      90deg,
+      rgba(235, 236, 238, 1) 0%,
+      rgba(255, 255, 255, 1) 50%,
+      rgba(235, 236, 238, 1) 100%
+    );
+  }
+  75% {
+    background: linear-gradient(
+      90deg,
+      rgba(235, 236, 238, 1) 0%,
+      rgba(255, 255, 255, 1) 75%,
+      rgba(235, 236, 238, 1) 100%
+    );
+  }
+  100% {
+    background: linear-gradient(
+      90deg,
+      rgba(235, 236, 238, 1) 0%,
+      rgba(255, 255, 255, 1) 90%,
+      rgba(235, 236, 238, 1) 100%
+    );
+  }
+}
+
+@keyframes loading-bar-skeleton {
+  0% {
+    background: linear-gradient(
+      90deg,
+      rgba(235, 236, 238, 1) 0%,
+      rgba(255, 255, 255, 1) 10%,
+      rgba(235, 236, 238, 1) 100%
+    );
+  }
+  25% {
+    background: linear-gradient(
+      90deg,
+      rgba(235, 236, 238, 1) 0%,
+      rgba(255, 255, 255, 1) 25%,
+      rgba(235, 236, 238, 1) 100%
+    );
+  }
+  50% {
+    background: linear-gradient(
+      90deg,
+      rgba(235, 236, 238, 1) 0%,
+      rgba(255, 255, 255, 1) 50%,
+      rgba(235, 236, 238, 1) 100%
+    );
+  }
+  75% {
+    background: linear-gradient(
+      90deg,
+      rgba(235, 236, 238, 1) 0%,
+      rgba(255, 255, 255, 1) 75%,
+      rgba(235, 236, 238, 1) 100%
+    );
+  }
+  100% {
+    background: linear-gradient(
+      90deg,
+      rgba(235, 236, 238, 1) 0%,
+      rgba(255, 255, 255, 1) 90%,
+      rgba(235, 236, 238, 1) 100%
+    );
+  }
+}

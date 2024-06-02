@@ -1,0 +1,111 @@
+input::placeholder {
+  font-style: italic;
+}
+
+.regular-text {
+  font-weight: 400;
+}
+
+.bold-text {
+  font-weight: 700;
+  color: black;
+}
+
+.label-text {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.m-overlay {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-overflow-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+
+.toast-group {
+  height: auto;
+  width: auto;
+  min-width: 450px;
+  max-width: 650px;
+  position: fixed;
+  right: 14px;
+  top: 14px;
+  z-index: 999999;
+  display: flex;
+  flex-direction: column-reverse;
+  row-gap: 8px;
+}
+
+/** 
+* text align 
+*/
+.text-align--center {
+  text-align: center;
+}
+
+.text-align--left {
+  text-align: left;
+}
+
+.text-align--right {
+  text-align: right;
+}
+
+/* flex item */
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-content--center {
+  justify-content: center;
+}
+
+.flex-row {
+  display: flex;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* padding */
+.p-b-8 {
+  padding-bottom: 8px;
+}
+
+.p-r-12 {
+  padding-right: 12px;
+}
+
+.m-r-13 {
+  margin-right: 13px;
+}
+
+.m-r-8 {
+  margin-right: 8px;
+}
+
+.m-l-13 {
+  margin-left: 13px;
+}

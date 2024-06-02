@@ -1,0 +1,68 @@
+.dropdownlist-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  row-gap: 8px;
+  min-width: 120px;
+}
+
+.dropdownlist__input-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: var(--primary-button-height);
+  width: 100%;
+  border: 1px solid var(--border-color-default);
+  border-radius: var(--border-radius-default);
+  padding-left: 12px;
+  padding-right: 6px;
+}
+
+.dropdownlist__input {
+  border: none;
+  outline: none;
+}
+
+.dropdownlist__data {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  min-height: 72px;
+  max-height: 200px;
+  overflow-y: scroll;
+  background-color: white;
+  border-radius: var(--border-radius-default);
+  border: 1px solid var(--border-color-default);
+  padding: 8px;
+  z-index: 2;
+  box-shadow: rgba(23, 27, 42, 0.24) 0px 4px 16px;
+  display: none;
+}
+
+.dropdownlist__option {
+  height: var(--primary-button-height);
+  border-radius: var(--border-radius-default);
+  display: flex;
+  align-items: center;
+  padding: 0px 8px;
+  cursor: pointer;
+}
+
+.dropdownlist__option:hover {
+  background-color: rgba(80, 184, 60, 0.1);
+}
+
+.dropdownlist__option--selected {
+  color: var(--primary-color);
+  position: relative;
+}
+
+.dropdownlist__option--selected::after {
+  content: "";
+  background: url("../../../assets/img/Sprites.64af8f61.svg") no-repeat -899px -316px;
+  width: 11px;
+  height: 8px;
+  position: absolute;
+  right: 8px;
+}

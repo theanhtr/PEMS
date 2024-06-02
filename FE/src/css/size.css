@@ -1,0 +1,94 @@
+/**
+* kích thước của phần tử theo %
+*/
+
+/*== width ==*/
+.w1 {
+  width: 100% !important;
+}
+
+.w1\/2 {
+  width: 50% !important;
+}
+
+/* chia 5 */
+.w1\/5 {
+  width: 20% !important;
+}
+
+.w2\/5 {
+  width: 40% !important;
+}
+
+.w3\/5 {
+  width: 60% !important;
+}
+
+.w4\/5 {
+  width: 80% !important;
+}
+
+/* chia 3 */
+.w1\/3 {
+  width: calc(100% / 3) !important;
+}
+
+.w2\/3 {
+  width: calc(2 * 100% / 3) !important;
+}
+
+/* chia 4 */
+.w1\/4 {
+  width: 25% !important;
+}
+
+.w3\/4 {
+  width: 75% !important;
+}
+
+/* chia 6 */
+.w1\/6 {
+  width: calc(100% / 6) !important;
+}
+
+.w5\/6 {
+  width: calc(5 * 100% / 6) !important;
+}
+/*== height ==*/
+.h1 {
+  height: 100% !important;
+}
+
+.h1\/2 {
+  height: 50% !important;
+}
+
+/* chia 5 */
+.h1\/5 {
+  height: 20% !important;
+}
+
+.h2\/5 {
+  height: 40% !important;
+}
+
+.h3\/5 {
+  height: 60% !important;
+}
+
+.h4\/5 {
+  height: 80% !important;
+}
+
+/* chia 4 */
+.h1\/4 {
+  height: 25% !important;
+}
+
+.h2\/4 {
+  height: 50% !important;
+}
+
+.h3\/4 {
+  height: 75% !important;
+}

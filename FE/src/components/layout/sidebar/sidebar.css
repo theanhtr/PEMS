@@ -1,0 +1,119 @@
+.sidebar {
+  height: 100%;
+  width: 200px;
+  background-color: var(--slide-bar-background-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar__logo-container {
+  width: 100%;
+  height: 48px;
+  padding-left: 32px;
+  column-gap: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar__logo-container .toggle-icon {
+  background: url("../../../assets/img/Sprites.64af8f61.svg") no-repeat -428px -92px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.sidebar__logo-container .logo-vi {
+  flex: 1;
+  height: 32px;
+  background-size: auto 32px;
+  background-image: url(../../../assets/img/Logo_Module_TiengViet_White.66947422.svg);
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.sidebar__logo-container .logo-en {
+  flex: 1;
+  height: 32px;
+  background-size: auto 32px;
+  background-image: url(../../../assets/img/Logo_Module_TiengAnh_White.6f592bc6.svg);
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.sidebar__quick-add-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  margin-top: 8px;
+  margin-bottom: 13px;
+}
+
+.sidebar__nav {
+  width: 100%;
+  height: calc(100% - 48px);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar__menu-item-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+  overflow-y: auto;
+}
+
+.menu-item {
+  display: flex;
+  column-gap: 8px;
+  height: 38px;
+  width: 100%;
+  align-items: center;
+  padding: 10px 12px;
+  color: white;
+  cursor: pointer;
+  position: relative;
+}
+
+.menu-item:hover {
+  background-color: #353b34;
+}
+
+.menu-item--selected {
+  background-color: #2c332d;
+}
+
+.menu-item--selected::before {
+  content: "";
+  height: 100%;
+  width: 8px;
+  position: absolute;
+  background-color: var(--primary-color);
+  top: 0;
+  left: 0;
+}
+
+.sidebar__text {
+  flex: 1;
+  white-space: nowrap;
+}
+
+/* side bar khi thu gọn */
+.sidebar--collapse {
+  width: 52px;
+}
+
+.sidebar--collapse .sidebar__text {
+  visibility: hidden;
+}
+
+.sidebar--collapse + #main-content {
+  width: calc(100% - 52px) !important;
+}
+
+.sidebar--collapse .sidebar__logo-container {
+  padding-left: 16px;
+}

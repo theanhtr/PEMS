@@ -1,0 +1,52 @@
+.step-3 {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.header__step-3 {
+  justify-content: space-between;
+  height: 58px;
+  width: 100%;
+}
+
+.header__step-3__left {
+  font-size: 16px;
+  justify-content: start;
+  margin-bottom: 16px;
+}
+
+.step-3__title--valid {
+  color: var(--tab__item--active-text-color);
+}
+
+.step-3__title--invalid {
+  color: #ff0404;
+}
+
+.header__step-3__right {
+  width: auto;
+  white-space: nowrap;
+  column-gap: 8px;
+  margin-right: 47px;
+  z-index: 10;
+}
+
+.header__step-3__right--title {
+  font-size: 14px;
+}
+
+.content__step-3 {
+  /* 58px - chiều dài header, 26px - chiều dài footer */
+  height: calc(100% - 58px - 26px);
+  width: 100%;
+  overflow: scroll;
+}
+
+.footer__step-3 {
+  width: 100%;
+  z-index: 2;
+  position: absolute;
+  bottom: -8px;
+  left: 0px;
+}

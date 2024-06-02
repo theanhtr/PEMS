@@ -1,0 +1,61 @@
+/* 1 dấu chấm chỉ trạng thái */
+.dot--success {
+  background-position: -200px -483px;
+  width: 13px;
+  height: 13px;
+}
+
+.dot--warning {
+  background-position: -200px -464px;
+  width: 13px;
+  height: 13px;
+}
+
+.dot--info {
+  background-position: -219px -464px;
+  width: 13px;
+  height: 13px;
+}
+
+.dot--error {
+  background-position: -219px -483px;
+  width: 13px;
+  height: 13px;
+}
+
+/* icon trạng thái */
+.info--large {
+  background-position: -672px -462px;
+  width: 36px;
+  height: 36px;
+}
+
+.error--large {
+  background-position: -752px -462px;
+  width: 36px;
+  height: 36px;
+}
+
+.question--large {
+  background-position: -832px -462px;
+  width: 36px;
+  height: 36px;
+}
+
+.success--large {
+  background-position: -990px -462px;
+  width: 36px;
+  height: 36px;
+}
+
+.warning--large {
+  background-position: -598px -463px;
+  width: 36px;
+  height: 36px;
+}
+
+.error--medium {
+  background-position: -32px -962px;
+  width: 32px;
+  height: 32px;
+}

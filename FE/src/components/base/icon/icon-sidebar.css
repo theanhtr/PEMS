@@ -1,0 +1,138 @@
+/* sidebar icon */
+.sidebar__control--white {
+  background-position: -316px -37px;
+  width: 16px;
+  height: 14px;
+}
+
+.sidebar__control--grey {
+  background-position: -847px -35px;
+  width: 16px;
+  height: 14px;
+}
+
+.sidebar__control--white {
+  background-position: -316px -37px;
+  width: 16px;
+  height: 14px;
+}
+
+.sidebar__overview {
+  background-position: -33px -1630px;
+  width: 18px;
+  height: 20px;
+}
+
+.sidebar__cash {
+  background-position: -78px -1631px;
+  width: 14px;
+  height: 19px;
+}
+
+.sidebar__deposits {
+  background-position: -121px -1633px;
+  width: 16px;
+  height: 16px;
+}
+
+.sidebar__purchase {
+  background-position: -165px -1632px;
+  width: 16px;
+  height: 18px;
+}
+
+.sidebar__sell {
+  background-position: -207px -1631px;
+  width: 19px;
+  height: 18px;
+}
+
+.sidebar__invoice-management {
+  background-position: -254px -1632px;
+  width: 14px;
+  height: 17px;
+}
+
+.sidebar__warehouse {
+  background-position: -294px -1632px;
+  width: 18px;
+  height: 17px;
+}
+
+.sidebar__tool {
+  background-position: -339px -1633px;
+  width: 18px;
+  height: 17px;
+}
+
+.sidebar__fixed-assets {
+  background-position: -382px -1632px;
+  width: 17px;
+  height: 18px;
+}
+
+.sidebar__salary {
+  background-position: -427px -1634px;
+  width: 16px;
+  height: 16px;
+}
+
+.sidebar__tax {
+  background-position: -427px -1634px;
+  width: 16px;
+  height: 16px;
+}
+
+.sidebar__price {
+  background-position: -470px -1633px;
+  width: 18px;
+  height: 17px;
+}
+
+.sidebar__loans {
+  background-position: -470px -1633px;
+  width: 18px;
+  height: 17px;
+}
+
+.sidebar__synthetic {
+  background-position: -514px -1632px;
+  width: 16px;
+  height: 18px;
+}
+
+.sidebar__budget {
+  background-position: -382px -1664px;
+  width: 16px;
+  height: 16px;
+}
+
+.sidebar__report {
+  background-position: -552px -1636px;
+  width: 14px;
+  height: 13px;
+}
+
+.sidebar__financial-analysis {
+  background-position: -207px -1667px;
+  width: 17px;
+  height: 14px;
+}
+
+.sidebar__category {
+  background-position: -207px -1667px;
+  width: 17px;
+  height: 14px;
+}
+
+.sidebar__initial-balance {
+  background-position: -207px -1667px;
+  width: 17px;
+  height: 14px;
+}
+
+.sidebar__knowledge {
+  background-position: -207px -1667px;
+  width: 17px;
+  height: 14px;
+}

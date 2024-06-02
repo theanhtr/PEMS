@@ -1,0 +1,22 @@
+.step-2 {
+  height: 100%;
+  overflow: scroll;
+}
+
+.header__step-2 {
+  width: 100%;
+  height: 42px;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.header__step-2__left {
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+}
+
+.step-2__title {
+  font-size: 16px;
+}

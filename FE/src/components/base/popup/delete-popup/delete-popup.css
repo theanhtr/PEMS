@@ -1,0 +1,13 @@
+.input-container {
+  display: flex;
+  align-items: center;
+  column-gap: 26px;
+  padding-top: 8px;
+  flex-direction: row;
+}
+
+.footer__button {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,0 +1,60 @@
+@import url(./variable.css);
+@import url(./general.css);
+@import url(./key-frames.css);
+@import url(./size.css);
+@import url(../components/base/input/checkbox-input.css);
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  text-transform: none;
+  text-decoration: none;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  text-decoration-thickness: initial;
+  -webkit-text-decoration-style: initial;
+  text-decoration-style: solid;
+  -webkit-text-decoration-color: initial;
+  text-decoration-color: initial;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+body,
+html {
+  font-weight: 400;
+  font-size: 13px;
+  font-family: "NotoSans", sans-serif;
+  overflow: hidden;
+}
+
+body {
+  color: #111;
+  background-color: var(--main-background-color);
+}
+
+/* Embeded Font face */
+@font-face {
+  font-family: "NotoSans";
+  src: url("../assets/fonts/notosans-bold.3ede5aff.woff2");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "NotoSans";
+  src: url("../assets/fonts/notosans-semibold.df3e6dc4.woff2");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "NotoSans";
+  src: url("../assets/fonts/notosans-regular.2cb88a13.woff2");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "NotoSans";
+  src: url("../assets/fonts/notosans-italic.1c1aaac9.woff2");
+  font-style: italic;
+}

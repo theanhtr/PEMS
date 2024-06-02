@@ -1,0 +1,17 @@
+C:\Users\ttanh6\Desktop\khóa luận\Code PEMS\BE\PEMS.Application\bin\Debug\net6.0\PEMS.Application.deps.json
+C:\Users\ttanh6\Desktop\khóa luận\Code PEMS\BE\PEMS.Application\bin\Debug\net6.0\PEMS.Application.dll
+C:\Users\ttanh6\Desktop\khóa luận\Code PEMS\BE\PEMS.Application\bin\Debug\net6.0\PEMS.Application.pdb
+C:\Users\ttanh6\Desktop\khóa luận\Code PEMS\BE\PEMS.Application\bin\Debug\net6.0\PEMS.Domain.dll
+C:\Users\ttanh6\Desktop\khóa luận\Code PEMS\BE\PEMS.Application\bin\Debug\net6.0\PEMS.Domain.pdb
+C:\Users\ttanh6\Desktop\khóa luận\Code PEMS\BE\PEMS.Application\bin\Debug\net6.0\vi\PEMS.Domain.resources.dll
+C:\Users\ttanh6\Desktop\khóa luận\Code PEMS\BE\PEMS.Application\obj\Debug\net6.0\PEMS.Application.csproj.AssemblyReference.cache
+C:\Users\ttanh6\Desktop\khóa luận\Code PEMS\BE\PEMS.Application\obj\Debug\net6.0\PEMS.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ttanh6\Desktop\khóa luận\Code PEMS\BE\PEMS.Application\obj\Debug\net6.0\PEMS.Application.AssemblyInfoInputs.cache
+C:\Users\ttanh6\Desktop\khóa luận\Code PEMS\BE\PEMS.Application\obj\Debug\net6.0\PEMS.Application.AssemblyInfo.cs
+C:\Users\ttanh6\Desktop\khóa luận\Code PEMS\BE\PEMS.Application\obj\Debug\net6.0\PEMS.Application.csproj.CoreCompileInputs.cache
+C:\Users\ttanh6\Desktop\khóa luận\Code PEMS\BE\PEMS.Application\obj\Debug\net6.0\PEMS.Application.sourcelink.json
+C:\Users\ttanh6\Desktop\khóa luận\Code PEMS\BE\PEMS.Application\obj\Debug\net6.0\PEMS.App.48132E79.Up2Date
+C:\Users\ttanh6\Desktop\khóa luận\Code PEMS\BE\PEMS.Application\obj\Debug\net6.0\PEMS.Application.dll
+C:\Users\ttanh6\Desktop\khóa luận\Code PEMS\BE\PEMS.Application\obj\Debug\net6.0\refint\PEMS.Application.dll
+C:\Users\ttanh6\Desktop\khóa luận\Code PEMS\BE\PEMS.Application\obj\Debug\net6.0\PEMS.Application.pdb
+C:\Users\ttanh6\Desktop\khóa luận\Code PEMS\BE\PEMS.Application\obj\Debug\net6.0\ref\PEMS.Application.dll

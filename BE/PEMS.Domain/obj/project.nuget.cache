@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "NWzxifmTALflFqk65SIBruavKAj4WmER2EHeh1Zv7XkhUI8Cw0ysgEPx1wlkkrep+bcAsPwlxBq/vWMVvHAmNA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code PEMS\\BE\\PEMS.Domain\\PEMS.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ttanh6\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
+    "C:\\Users\\ttanh6\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
+    "C:\\Users\\ttanh6\\.nuget\\packages\\microsoft.extensions.primitives\\2.2.0\\microsoft.extensions.primitives.2.2.0.nupkg.sha512",
+    "C:\\Users\\ttanh6\\.nuget\\packages\\system.memory\\4.5.1\\system.memory.4.5.1.nupkg.sha512",
+    "C:\\Users\\ttanh6\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.1\\system.runtime.compilerservices.unsafe.4.5.1.nupkg.sha512",
+    "C:\\Users\\ttanh6\\.nuget\\packages\\system.text.encodings.web\\4.5.0\\system.text.encodings.web.4.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}

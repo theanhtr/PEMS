@@ -1,0 +1,57 @@
+.m-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  height: 18px;
+  width: 18px;
+  background-color: #fff;
+  border-radius: var(--border-radius-default);
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.m-checkbox::before {
+  content: "";
+  border: 1px solid var(--control-border-color--active);
+  height: 130%;
+  width: 130%;
+  background-color: transparent;
+  position: absolute;
+  border-radius: var(--border-radius-default);
+  top: -15%;
+  left: -15%;
+  visibility: hidden;
+}
+
+.m-checkbox:hover:before {
+  visibility: unset;
+}
+
+.animate-checked {
+  animation: animate-checked 0.2s ease forwards;
+}
+
+.animate-unchecked {
+  animation: animate-unchecked 0.2s ease forwards;
+}
+
+@keyframes animate-checked {
+  0% {
+    transform: rotate(-90deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes animate-unchecked {
+  0% {
+    transform: rotate(90deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}

@@ -1,0 +1,28 @@
+.paging {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0px var(--grid-footer-padding-y);
+  justify-content: space-between;
+}
+
+.total-records {
+  font-weight: 400;
+  color: #212121;
+}
+
+.paging-left {
+  padding-left: 10px;
+}
+
+.paging-right {
+  display: flex;
+  align-items: center;
+  column-gap: 24px;
+}
+
+.paging-nav {
+  display: flex;
+  align-items: center;
+}

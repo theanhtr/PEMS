@@ -1,0 +1,73 @@
+:root {
+  --border-color-default: #b1b2b3;
+  --border-radius-default: 2px;
+
+  /* theme green */
+  --primary-color: #50b83c;
+  --main-background-color: #e4e9e7;
+  --control-border-color--active: #2ca01c;
+  --primary-btn-background-color: #2ca01c;
+  --sub-btn-background-color--active: #d2d3d6;
+  --primary-btn-background-color-opacity: rgba(44, 160, 28, 0.2);
+  --primary-btn--hover-background-color: #35bf22;
+  --primary-btn--active-background-color: #248b15;
+  --primary-btn--focus-background-color: #2ca01c;
+  --button__footer-border-color: #6b6c72;
+  --button__footer-background-color--hover: #2f3034;
+  --button__footer-border-color--hover: #6b6c72;
+  --button__footer-background--active: #27282b;
+  --button__footer-border-color--active: #6b6c72;
+  --button__footer-background-color--focus: #27282b;
+  --dropdown__item--hover-text-color: #2ca01c;
+  --dropdown__footer-background-color--hover: #4b4c51;
+  --dropdown__footer-background-color--active: #4b4c51;
+  --upload-border-color: #96a593;
+  --tab__item--active-text-color: #2ca01c;
+  --tab__border-color: #649a5d;
+  --tab__router-background-color: #e4e9e7;
+  --datepicker-selected-day-color: #2ca01c;
+  --datepicker-selected-day-background-color: rgba(44, 160, 28, 0.2);
+  --grid-header-background-color: #bcd4b9;
+  --grid-body__line-hover-background-color: #fff8cb;
+  --grid-body__line-selected-background-color: #f9ecca;
+  --grid-body__line-focus-background-color: #f3d79a;
+  --footer-background-color: #020a01;
+  --slide-bar-background-color: #020a01;
+  --slide-bar--active-border-color: #2ca01c;
+  --grid-header-border-bottom-color: #649a5d;
+  --grid-header-border-left-color: #c7c7c7;
+
+  /* default size */
+  --btn-border-radius-default: 30px;
+  --control-label-bottom-space: 2px;
+  --primary-button-height: 26px;
+  --rounded-button-height: 28px;
+  --get-data-button-height: 26px;
+  --input-height: 26px;
+  --combobox-multi-item-height: 22px;
+  --combobox-dropdown-icon-width: 24px;
+  --combobox-quick-add-width: 24px;
+  --tab__router-height: 31px;
+  --tab__router-pading: 4px 20px;
+  --tab__detail-padding-y: 8px;
+  --grid-header-text-transform: none;
+  --grid-header-height: 28px;
+  --grid-body-line-height: 30px;
+  --grid-summary-height: 24px;
+  --grid-footer-padding-y: 8px;
+  --title-list-padding-top: 12px;
+  --title-list-padding-bottom: 14px;
+  --row-spacing: 8px;
+  --row-spacing--large: 16px;
+  --zone-padding: 12px;
+  --reference-padding-top: 8px;
+  --reference-padding-bottom: 8px;
+  --horizontal-control-padding-y: 8px;
+  --tab-router-margin-top: 10px;
+  --overview-number-size: 18px;
+  --overview-label-size: 12px;
+  --overview-height: 50px;
+  --footer-height: 42px;
+  --suggest-short-key-position-top: -10px;
+  --popup-right__title-padding: 16px 16px 12px 16px;
+}
