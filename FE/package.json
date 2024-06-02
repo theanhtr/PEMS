@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite --mode development",
-    "test": "vite build --mode test",
-    "release": "vite build --mode release",
+    "buildtest": "vite build --mode test",
+    "buildrelease": "vite build --mode release",
     "preview": "vite preview"
   },
   "dependencies": {

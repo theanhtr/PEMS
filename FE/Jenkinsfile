@@ -22,31 +22,20 @@ pipeline{
     stage('Checkout'){
       steps{
         git branch: 'test', credentialsId: 'github-credentials', url: 'https://github.com/theanhtr/PEMS.git'
-        sh 'cd FE'
-      }
-    }
-
-    stage('Install dependencies'){
-      steps{
-        sh 'npm install'
-      }
-    }
-
-    stage('Build'){
-      steps{
-        sh 'npm run test'
       }
     }
 
     stage("Build and push docker image"){
       steps{
-        script{
-          docker.withRegistry('', DOCKER_PASS) {
-            docker_image = docker.build("${IMAGE_NAME}")
-          }
+        dir('FE') {
+          script{
+            docker.withRegistry('', DOCKER_PASS) {
+              docker_image = docker.build("${IMAGE_NAME}")
+            }
 
-          docker.withRegistry('', DOCKER_PASS) {
-            docker_image.push("${IMAGE_TAG}")
+            docker.withRegistry('', DOCKER_PASS) {
+              docker_image.push("${IMAGE_TAG}")
+            }
           }
         }
       }

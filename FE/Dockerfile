@@ -12,7 +12,7 @@ RUN npm install
 
 COPY . .
 
-RUN npm run test
+RUN npm run buildtest
 
 # Stage 2: Serve app with nginx server
 
@@ -20,7 +20,7 @@ RUN npm run test
 FROM nginx:latest
 
 # Copy the build output to replace the default nginx contents.
-COPY --from=build /app/dist/discord-fe/browser /usr/share/nginx/html
+COPY --from=build /app/dist/pems-fe/browser /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 80
