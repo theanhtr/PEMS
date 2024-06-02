@@ -25,5 +25,8 @@ FROM nginx:latest
 # Copy the build output to replace the default nginx contents.
 COPY --from=build /app/dist /usr/share/nginx/html
 
+# Copy NGINX configuration file
+COPY default.conf /etc/nginx/conf.d/default.conf
+
 # Expose port 80
 EXPOSE 80
