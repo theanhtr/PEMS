@@ -33,7 +33,7 @@ pipeline{
               docker_image.push("${IMAGE_TAG}")
             }
 
-            docker.image("${IMAGE_NAME}:${IMAGE_TAG}").remove()
+            sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
           }
         }
       }
