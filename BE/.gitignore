@@ -484,4 +484,4 @@ $RECYCLE.BIN/
 *.swp
 
 # debug
-**/obj/Debug
+**/Debug
