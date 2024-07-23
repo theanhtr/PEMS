@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code PEMS\\BE\\PEMS.Domain.Tests\\PEMS.Domain.Tests.csproj": {}
+    "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.Domain.Tests\\PEMS.Domain.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code PEMS\\BE\\PEMS.Domain.Tests\\PEMS.Domain.Tests.csproj": {
+    "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.Domain.Tests\\PEMS.Domain.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code PEMS\\BE\\PEMS.Domain.Tests\\PEMS.Domain.Tests.csproj",
+        "projectUniqueName": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.Domain.Tests\\PEMS.Domain.Tests.csproj",
         "projectName": "PEMS.Domain.Tests",
-        "projectPath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code PEMS\\BE\\PEMS.Domain.Tests\\PEMS.Domain.Tests.csproj",
+        "projectPath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.Domain.Tests\\PEMS.Domain.Tests.csproj",
         "packagesPath": "C:\\Users\\ttanh6\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code PEMS\\BE\\PEMS.Domain.Tests\\obj\\",
+        "outputPath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.Domain.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ttanh6\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code PEMS\\BE\\PEMS.Domain\\PEMS.Domain.csproj": {
-                "projectPath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code PEMS\\BE\\PEMS.Domain\\PEMS.Domain.csproj"
+              "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.Domain\\PEMS.Domain.csproj": {
+                "projectPath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.Domain\\PEMS.Domain.csproj"
               }
             }
           }
@@ -98,14 +98,14 @@
         }
       }
     },
-    "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code PEMS\\BE\\PEMS.Domain\\PEMS.Domain.csproj": {
+    "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.Domain\\PEMS.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code PEMS\\BE\\PEMS.Domain\\PEMS.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.Domain\\PEMS.Domain.csproj",
         "projectName": "PEMS.Domain",
-        "projectPath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code PEMS\\BE\\PEMS.Domain\\PEMS.Domain.csproj",
+        "projectPath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.Domain\\PEMS.Domain.csproj",
         "packagesPath": "C:\\Users\\ttanh6\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code PEMS\\BE\\PEMS.Domain\\obj\\",
+        "outputPath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ttanh6\\AppData\\Roaming\\NuGet\\NuGet.Config",

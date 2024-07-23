@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code PEMS\\BE\\PEMS.UnitTests\\PEMS.UnitTests.csproj": {}
+    "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.UnitTests\\PEMS.UnitTests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code PEMS\\BE\\PEMS.UnitTests\\PEMS.UnitTests.csproj": {
+    "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.UnitTests\\PEMS.UnitTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code PEMS\\BE\\PEMS.UnitTests\\PEMS.UnitTests.csproj",
+        "projectUniqueName": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.UnitTests\\PEMS.UnitTests.csproj",
         "projectName": "PEMS.UnitTests",
-        "projectPath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code PEMS\\BE\\PEMS.UnitTests\\PEMS.UnitTests.csproj",
+        "projectPath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.UnitTests\\PEMS.UnitTests.csproj",
         "packagesPath": "C:\\Users\\ttanh6\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code PEMS\\BE\\PEMS.UnitTests\\obj\\",
+        "outputPath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.UnitTests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ttanh6\\AppData\\Roaming\\NuGet\\NuGet.Config",

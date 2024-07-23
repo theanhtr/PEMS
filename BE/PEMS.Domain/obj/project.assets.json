@@ -210,11 +210,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code PEMS\\BE\\PEMS.Domain\\PEMS.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.Domain\\PEMS.Domain.csproj",
       "projectName": "PEMS.Domain",
-      "projectPath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code PEMS\\BE\\PEMS.Domain\\PEMS.Domain.csproj",
+      "projectPath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.Domain\\PEMS.Domain.csproj",
       "packagesPath": "C:\\Users\\ttanh6\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code PEMS\\BE\\PEMS.Domain\\obj\\",
+      "outputPath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ttanh6\\AppData\\Roaming\\NuGet\\NuGet.Config",

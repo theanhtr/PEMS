@@ -11,6 +11,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /app
 COPY --from=build-env /app ./
 
-EXPOSE 5000
+EXPOSE 80
+EXPOSE 443
 
 ENTRYPOINT ["dotnet", "PEMS.dll"]

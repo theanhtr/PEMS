@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PEMS.UnitTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a7051f5af21b8ed38cb5542d27a334ab7608c828")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d283141eb4aaae5b78d7f3afb02abe89d8e02fdb")]
 [assembly: System.Reflection.AssemblyProductAttribute("PEMS.UnitTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PEMS.UnitTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

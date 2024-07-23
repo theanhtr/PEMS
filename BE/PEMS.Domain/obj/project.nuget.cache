@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NWzxifmTALflFqk65SIBruavKAj4WmER2EHeh1Zv7XkhUI8Cw0ysgEPx1wlkkrep+bcAsPwlxBq/vWMVvHAmNA==",
+  "dgSpecHash": "rOKdKae3T+vBJ6t89oeoveZDEtvt88LtoL4XL29IoUXuFvLk1fQfgOhN6EnVl2Mkf4jvSgSwReBfoFYxvESfUg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code PEMS\\BE\\PEMS.Domain\\PEMS.Domain.csproj",
+  "projectFilePath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.Domain\\PEMS.Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ttanh6\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\ttanh6\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
