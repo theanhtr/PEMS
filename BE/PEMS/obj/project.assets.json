@@ -6947,11 +6947,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code PEMS\\BE\\PEMS\\PEMS.csproj",
+      "projectUniqueName": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS\\PEMS.csproj",
       "projectName": "PEMS",
-      "projectPath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code PEMS\\BE\\PEMS\\PEMS.csproj",
+      "projectPath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS\\PEMS.csproj",
       "packagesPath": "C:\\Users\\ttanh6\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code PEMS\\BE\\PEMS\\obj\\",
+      "outputPath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ttanh6\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6968,11 +6968,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code PEMS\\BE\\PEMS.Application\\PEMS.Application.csproj": {
-              "projectPath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code PEMS\\BE\\PEMS.Application\\PEMS.Application.csproj"
+            "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.Application\\PEMS.Application.csproj": {
+              "projectPath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.Application\\PEMS.Application.csproj"
             },
-            "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code PEMS\\BE\\PEMS.Infrastructure\\PEMS.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code PEMS\\BE\\PEMS.Infrastructure\\PEMS.Infrastructure.csproj"
+            "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.Infrastructure\\PEMS.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.Infrastructure\\PEMS.Infrastructure.csproj"
             }
           }
         }

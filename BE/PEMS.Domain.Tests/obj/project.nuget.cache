@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "igboqb/FbUNShe5zUf7qdKDQLwasZ0SUCoYQ00c4qfOctcJDBTmiJB+4LnrSX1rR0cSZVP5wGbi/G767UnpBsw==",
+  "dgSpecHash": "EouVnpGx1yCzyv/Y5iAt9j18UMBDcjXsbjJ9p1m6CIPQCR8EjU2TNXkXXbdCStEwEPkxYoOmMt3VU/4WT9Ivow==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code PEMS\\BE\\PEMS.Domain.Tests\\PEMS.Domain.Tests.csproj",
+  "projectFilePath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.Domain.Tests\\PEMS.Domain.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ttanh6\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\ttanh6\\.nuget\\packages\\coverlet.collector\\6.0.2\\coverlet.collector.6.0.2.nupkg.sha512",

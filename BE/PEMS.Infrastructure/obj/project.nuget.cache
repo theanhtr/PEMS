@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wche3Ii5dxv3TSN08F4pch70wIln4FmAqjIjTWEbJeZshbmDRtFk/79AGnnPYUkux+N3/bD6dx6fOTXUJd4Wnw==",
+  "dgSpecHash": "qchdMnzeCJbmSal6GDjpjGExlp6HGHhV9oss4E3Nck6qkD83NCcJewiJLf9PECXPtc+/udn2NCdEbZnjY0rs+w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code PEMS\\BE\\PEMS.Infrastructure\\PEMS.Infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.Infrastructure\\PEMS.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ttanh6\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\ttanh6\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

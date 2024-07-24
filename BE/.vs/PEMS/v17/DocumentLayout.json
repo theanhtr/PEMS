@@ -1,21 +1,21 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code PEMS\\BE\\",
+  "WorkspaceRootPath": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7AA20CF2-9801-4998-B72D-4E2CF8B178A9}|PEMS\\PEMS.csproj|c:\\users\\ttanh6\\desktop\\kh\u00F3a lu\u1EADn\\code pems\\be\\pems\\controllers\\testcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7AA20CF2-9801-4998-B72D-4E2CF8B178A9}|PEMS\\PEMS.csproj|c:\\users\\ttanh6\\desktop\\kh\u00F3a lu\u1EADn\\code\\pems\\be\\pems\\controllers\\testcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7AA20CF2-9801-4998-B72D-4E2CF8B178A9}|PEMS\\PEMS.csproj|solutionrelative:pems\\controllers\\testcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7AA20CF2-9801-4998-B72D-4E2CF8B178A9}|PEMS\\PEMS.csproj|c:\\users\\ttanh6\\desktop\\kh\u00F3a lu\u1EADn\\code pems\\be\\pems\\controllers\\employeelayoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7AA20CF2-9801-4998-B72D-4E2CF8B178A9}|PEMS\\PEMS.csproj|c:\\users\\ttanh6\\desktop\\kh\u00F3a lu\u1EADn\\code\\pems\\be\\pems\\controllers\\employeelayoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7AA20CF2-9801-4998-B72D-4E2CF8B178A9}|PEMS\\PEMS.csproj|solutionrelative:pems\\controllers\\employeelayoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C500AA6C-5E72-4E35-BC2A-B7DF1D0B5B79}|PEMS.Domain\\PEMS.Domain.csproj|c:\\users\\ttanh6\\desktop\\kh\u00F3a lu\u1EADn\\code pems\\be\\pems.domain\\enum\\statuscode\\statuserrorcode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C500AA6C-5E72-4E35-BC2A-B7DF1D0B5B79}|PEMS.Domain\\PEMS.Domain.csproj|c:\\users\\ttanh6\\desktop\\kh\u00F3a lu\u1EADn\\code\\pems\\be\\pems.domain\\enum\\statuscode\\statuserrorcode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C500AA6C-5E72-4E35-BC2A-B7DF1D0B5B79}|PEMS.Domain\\PEMS.Domain.csproj|solutionrelative:pems.domain\\enum\\statuscode\\statuserrorcode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7AA20CF2-9801-4998-B72D-4E2CF8B178A9}|PEMS\\PEMS.csproj|c:\\users\\ttanh6\\desktop\\kh\u00F3a lu\u1EADn\\code pems\\be\\pems\\controllers\\employeescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7AA20CF2-9801-4998-B72D-4E2CF8B178A9}|PEMS\\PEMS.csproj|c:\\users\\ttanh6\\desktop\\kh\u00F3a lu\u1EADn\\code\\pems\\be\\pems\\controllers\\employeescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7AA20CF2-9801-4998-B72D-4E2CF8B178A9}|PEMS\\PEMS.csproj|solutionrelative:pems\\controllers\\employeescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -32,9 +32,9 @@
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "EmployeesController.cs",
-              "DocumentMoniker": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code PEMS\\BE\\PEMS\\Controllers\\EmployeesController.cs",
+              "DocumentMoniker": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS\\Controllers\\EmployeesController.cs",
               "RelativeDocumentMoniker": "PEMS\\Controllers\\EmployeesController.cs",
-              "ToolTip": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code PEMS\\BE\\PEMS\\Controllers\\EmployeesController.cs",
+              "ToolTip": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS\\Controllers\\EmployeesController.cs",
               "RelativeToolTip": "PEMS\\Controllers\\EmployeesController.cs",
               "ViewState": "AQIAAGQAAAAAAAAAAAAIwIcAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -44,11 +44,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "TestController.cs",
-              "DocumentMoniker": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code PEMS\\BE\\PEMS\\Controllers\\TestController.cs",
+              "DocumentMoniker": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS\\Controllers\\TestController.cs",
               "RelativeDocumentMoniker": "PEMS\\Controllers\\TestController.cs",
-              "ToolTip": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code PEMS\\BE\\PEMS\\Controllers\\TestController.cs",
+              "ToolTip": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS\\Controllers\\TestController.cs",
               "RelativeToolTip": "PEMS\\Controllers\\TestController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAAAAAA",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAgwBgAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-02T10:17:33.064Z",
               "EditorCaption": ""
@@ -57,9 +57,9 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "EmployeeLayoutController.cs",
-              "DocumentMoniker": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code PEMS\\BE\\PEMS\\Controllers\\EmployeeLayoutController.cs",
+              "DocumentMoniker": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS\\Controllers\\EmployeeLayoutController.cs",
               "RelativeDocumentMoniker": "PEMS\\Controllers\\EmployeeLayoutController.cs",
-              "ToolTip": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code PEMS\\BE\\PEMS\\Controllers\\EmployeeLayoutController.cs",
+              "ToolTip": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS\\Controllers\\EmployeeLayoutController.cs",
               "RelativeToolTip": "PEMS\\Controllers\\EmployeeLayoutController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAACMAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -69,9 +69,9 @@
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "StatusErrorCode.cs",
-              "DocumentMoniker": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code PEMS\\BE\\PEMS.Domain\\Enum\\StatusCode\\StatusErrorCode.cs",
+              "DocumentMoniker": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS.Domain\\Enum\\StatusCode\\StatusErrorCode.cs",
               "RelativeDocumentMoniker": "PEMS.Domain\\Enum\\StatusCode\\StatusErrorCode.cs",
-              "ToolTip": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code PEMS\\BE\\PEMS.Domain\\Enum\\StatusCode\\StatusErrorCode.cs",
+              "ToolTip": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS.Domain\\Enum\\StatusCode\\StatusErrorCode.cs",
               "RelativeToolTip": "PEMS.Domain\\Enum\\StatusCode\\StatusErrorCode.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAACQAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",

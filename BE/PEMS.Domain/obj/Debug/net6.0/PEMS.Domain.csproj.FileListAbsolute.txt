@@ -16,3 +16,21 @@ C:\Users\ttanh6\Desktop\khóa luận\Code PEMS\BE\PEMS.Domain\obj\Debug\net6.0\P
 C:\Users\ttanh6\Desktop\khóa luận\Code PEMS\BE\PEMS.Domain\obj\Debug\net6.0\refint\PEMS.Domain.dll
 C:\Users\ttanh6\Desktop\khóa luận\Code PEMS\BE\PEMS.Domain\obj\Debug\net6.0\PEMS.Domain.pdb
 C:\Users\ttanh6\Desktop\khóa luận\Code PEMS\BE\PEMS.Domain\obj\Debug\net6.0\ref\PEMS.Domain.dll
+C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS.Domain\bin\Debug\net6.0\PEMS.Domain.deps.json
+C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS.Domain\bin\Debug\net6.0\PEMS.Domain.dll
+C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS.Domain\bin\Debug\net6.0\PEMS.Domain.pdb
+C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS.Domain\bin\Debug\net6.0\vi\PEMS.Domain.resources.dll
+C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS.Domain\obj\Debug\net6.0\PEMS.Domain.csproj.AssemblyReference.cache
+C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS.Domain\obj\Debug\net6.0\PEMS.Domain.Resource.Resource.resources
+C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS.Domain\obj\Debug\net6.0\PEMS.Domain.Resource.Resource.vi.resources
+C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS.Domain\obj\Debug\net6.0\PEMS.Domain.csproj.GenerateResource.cache
+C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS.Domain\obj\Debug\net6.0\PEMS.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS.Domain\obj\Debug\net6.0\PEMS.Domain.AssemblyInfoInputs.cache
+C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS.Domain\obj\Debug\net6.0\PEMS.Domain.AssemblyInfo.cs
+C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS.Domain\obj\Debug\net6.0\PEMS.Domain.csproj.CoreCompileInputs.cache
+C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS.Domain\obj\Debug\net6.0\PEMS.Domain.sourcelink.json
+C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS.Domain\obj\Debug\net6.0\vi\PEMS.Domain.resources.dll
+C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS.Domain\obj\Debug\net6.0\PEMS.Domain.dll
+C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS.Domain\obj\Debug\net6.0\refint\PEMS.Domain.dll
+C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS.Domain\obj\Debug\net6.0\PEMS.Domain.pdb
+C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS.Domain\obj\Debug\net6.0\ref\PEMS.Domain.dll

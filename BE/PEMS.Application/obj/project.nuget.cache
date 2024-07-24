@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZqXlXnoEU7wnZf2pgiwnohS59MA2BkW8Rbii+k2Bk4AGa9Rjk7npQZgU0Yd9KCg3Q5U1Pk9KXKa7RP30dnAmFw==",
+  "dgSpecHash": "v/S8d2ce+Ogd0L4EJQLWCOp5p58p/lDyOE+NpZg0poLDryBoZc7QTr0oPFUiDhmKeCpmOm2Sw4r2+vOw1CdDnw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code PEMS\\BE\\PEMS.Application\\PEMS.Application.csproj",
+  "projectFilePath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.Application\\PEMS.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ttanh6\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\ttanh6\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
