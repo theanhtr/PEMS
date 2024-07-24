@@ -16,7 +16,7 @@ namespace PEMS.Infrastructure
         #region Fields
         protected readonly IUnitOfWork _unitOfWork;
 
-        public virtual string tableName { get; protected set; } = typeof(TEntity).Name;
+        public virtual string tableName { get; protected set; } = typeof(TEntity).Name.ToLower();
         public virtual string tableId { get; protected set; } = typeof(TEntity).Name + "Id";
         #endregion
 
