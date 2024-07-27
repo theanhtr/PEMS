@@ -57,7 +57,7 @@ pipeline{
         script{
           withCredentials([
             usernamePassword(credentialsId: "${ARGO_CREDENTIALS}", usernameVariable: 'USER', passwordVariable: 'PASSWORD'),
-            usernamePassword(credentialsId: "${ARGO_TOKEN}", variable: 'TOKEN'),
+            string(credentialsId: "${ARGO_TOKEN}", variable: 'TOKEN'),
           ]) {
               sh """
                   argocd login ${IP_ARGO} --username ${USER} --password ${PASSWORD} --insecure --auth-token ${TOKEN}
