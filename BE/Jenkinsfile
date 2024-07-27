@@ -2,6 +2,7 @@ pipeline{
   agent any
   environment {
     APP_NAME = "pems_be"
+    DEPLOYMENT_NAME = "pems-be"
     DOCKER_USER = "theanh0906"
     DOCKER_PASS = "dockerhub-credentials"
     IMAGE_NAME = "${DOCKER_USER}/${APP_NAME}"
@@ -46,5 +47,13 @@ pipeline{
     //     }
     //   }
     // }
+
+    stage("Restart Deployment"){
+      steps{
+        script{
+          sh "kubectl rollout restart deployment/${DEPLOYMENT_NAME} -n ${ENV_BUILD}"
+        }
+      }
+    }
   }
 }
