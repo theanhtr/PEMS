@@ -19,7 +19,7 @@ namespace PEMS.Controllers
         [HttpGet()]
         public IActionResult Get()
         {
-            return StatusCode(StatusCodes.Status200OK, "Server running");
+            return StatusCode(StatusCodes.Status200OK, $"Ttanh6 server build at: {DateTime.Now}");
         }
     }
 }
