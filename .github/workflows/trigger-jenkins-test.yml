@@ -6,7 +6,7 @@ on:
 
 jobs:
 
-  build:
+  trigger_jenkins:
 
     runs-on: ubuntu-latest
 
@@ -24,27 +24,28 @@ jobs:
         echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
 
     - name: Check for changes in FE folder
-      id: check_fe
+      id: check_change_fe
       run: |
         git diff --name-only HEAD^ HEAD | grep '^FE/' || echo "No changes in FE folder"
       continue-on-error: true
 
     - name: Check for changes in BE folder
-      id: check_be
+      id: check_change_be
       run: |
         git diff --name-only HEAD^ HEAD | grep '^BE/' || echo "No changes in BE folder"
       continue-on-error: true
 
     - name: Trigger Jenkins job for FE
-      if: steps.check_fe.outputs.stdout != 'No changes in FE folder'
+      if: steps.check_change_fe.outputs.stdout != 'No changes in FE folder'
       run: |
+        echo $steps.check_change_fe.outputs.stdout
         curl -X POST "http://68.183.191.110:8080/job/PEMS_FE/buildWithParameters" \
           -H "Content-Type: application/x-www-form-urlencoded" \
           -d "ENV_BUILD=$BRANCH_NAME&IMAGE_TAG=r1.0.1" \
           -u ${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_API_TOKEN }}
 
     - name: Trigger Jenkins job for BE
-      if: steps.check_be.outputs.stdout != 'No changes in BE folder'
+      if: steps.check_change_be.outputs.stdout != 'No changes in BE folder'
       run: |
         curl -X POST "http://68.183.191.110:8080/job/PEMS_BE/buildWithParameters" \
           -H "Content-Type: application/x-www-form-urlencoded" \
