@@ -23,20 +23,19 @@ jobs:
         echo "Branch: ${GITHUB_REF#refs/heads/}"
         echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
 
-    - name: Check for changes in FE folder
-      id: check_change_fe
+    - name: Get changed files
+      id: get_changes
       run: |
-        git diff --name-only HEAD^ HEAD | grep '^FE/' || echo "No changes in FE folder"
-      continue-on-error: true
-
-    - name: Check for changes in BE folder
-      id: check_change_be
-      run: |
-        git diff --name-only HEAD^ HEAD | grep '^BE/' || echo "No changes in BE folder"
-      continue-on-error: true
+        git diff --name-only HEAD^ HEAD > changed_files.txt
+        if grep -q '^FE/' changed_files.txt; then
+          echo "FE_CHANGED=true" >> $GITHUB_ENV
+        fi
+        if grep -q '^BE/' changed_files.txt; then
+          echo "BE_CHANGED=true" >> $GITHUB_ENV
+        fi
 
     - name: Trigger Jenkins job for FE
-      if: steps.check_change_fe.outputs.stdout != 'No changes in FE folder'
+      if: env.FE_CHANGED == 'true'
       run: |
         echo $steps.check_change_fe.outputs.stdout
         curl -X POST "http://68.183.191.110:8080/job/PEMS_FE/buildWithParameters" \
@@ -45,7 +44,7 @@ jobs:
           -u ${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_API_TOKEN }}
 
     - name: Trigger Jenkins job for BE
-      if: steps.check_change_be.outputs.stdout != 'No changes in BE folder'
+      if: env.BE_CHANGED == 'true'
       run: |
         curl -X POST "http://68.183.191.110:8080/job/PEMS_BE/buildWithParameters" \
           -H "Content-Type: application/x-www-form-urlencoded" \
