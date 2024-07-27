@@ -10,6 +10,10 @@ pipeline{
     DOCKER_PASS = "dockerhub-credentials"
     IMAGE_NAME = "${DOCKER_USER}/${APP_NAME}"
     IMAGE_TAG = "${IMAGE_TAG}"
+    ARGO_CREDENTIALS="argocd-credentials"
+    ARGO_TOKEN="argocd-token"
+    IP_ARGO="128.199.213.91:30241"
+    NAME_PROJECT_TEST_ARGO_RESTART="pems-test"
     //JENKINS_API_TOKEN = credentials('JENKINS_API_TOKEN')
   }
   stages{
@@ -55,7 +59,15 @@ pipeline{
     stage("Restart Deployment"){
       steps{
         script{
-          sh "kubectl rollout restart deployment/${DEPLOYMENT_NAME} -n ${ENV_BUILD}"
+          withCredentials([
+            usernamePassword(credentialsId: "${ARGO_CREDENTIALS}", usernameVariable: 'USER', passwordVariable: 'PASSWORD'),
+            usernamePassword(credentialsId: "${ARGO_TOKEN}", variable: 'TOKEN'),
+          ]) {
+              sh """
+                  argocd login ${IP_ARGO} --username ${USER} --password ${PASSWORD} --insecure --auth-token ${TOKEN}
+                  argocd app actions run ${NAME_PROJECT_TEST_ARGO_RESTART} restart --kind Deployment --resource-name ${DEPLOYMENT_NAME} --auth-token ${TOKEN}
+              """
+          }
         }
       }
     }
