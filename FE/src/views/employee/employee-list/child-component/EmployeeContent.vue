@@ -263,7 +263,7 @@ export default {
   methods: {
     /**
      * Sắp xếp theo ordernumber và isPin để hiển thị đúng
-     * @author: TTANH (04/08/2023)
+     * @author: TTANH (04/08/2024)
      */
     sortEmployeeColumnsInfo(columnsInfoTemp) {
       try {
@@ -288,7 +288,7 @@ export default {
 
     /**
      * Hàm lấy thông tin cột từ server
-     * @author: TTANH (03/08/2023)
+     * @author: TTANH (03/08/2024)
      */
     async getEmployeeColumnsInfo() {
       try {
@@ -313,7 +313,7 @@ export default {
 
     /**
      * Thực hiện cập nhật layout
-     * @author: TTANH (04/08/2023)
+     * @author: TTANH (04/08/2024)
      */
     async UpdateLayout() {
       this.isShowLayoutSetting = false;
@@ -327,7 +327,7 @@ export default {
 
     /**
      * Thực hiện lấy lại mẫu mặc định của layout
-     * @author: TTANH (04/08/2023)
+     * @author: TTANH (04/08/2024)
      */
     async SetDefaultLayout() {
       this.isShowLayoutSetting = false;
@@ -344,7 +344,7 @@ export default {
 
     /**
      * hàm thực hiện mở thêm nhân viên
-     * @author: TTANH (11/07/2023)
+     * @author: TTANH (11/07/2024)
      */
     showAddEmployeePopup() {
       this.isShowAddEmployeePopup = true;
@@ -353,7 +353,7 @@ export default {
 
     /**
      * thực hiện get dữ liệu nhân viên khi component được render
-     * @author: TTANH (30/06/2023)
+     * @author: TTANH (30/06/2024)
      */
     async getEmployees() {
       try {
@@ -388,7 +388,7 @@ export default {
      * sự kiện click vào các item con của "Thực hiện hàng loạt":
      * { id: "delete", title: "Xóa" },
      * { id: "merge", title: "Gộp" },
-     * @author: TTANH (17/07/2023)
+     * @author: TTANH (17/07/2024)
      * @param {string} idItem id của nút được click
      */
     clickItemBatchExecution(idItem) {
@@ -399,7 +399,7 @@ export default {
 
     /**
      * bỏ lệnh xóa nhiều nhân viên
-     * @author: TTANH (31/07/2023)
+     * @author: TTANH (31/07/2024)
      */
     noDeleteMultipleEmployee() {
       this.isShowConfirmDeleteMultiplePopup = false;
@@ -407,7 +407,7 @@ export default {
 
     /**
      * xóa nhiều nhân viên
-     * @author: TTANH (17/07/2023)
+     * @author: TTANH (17/07/2024)
      */
     async yesDeleteMultipleEmployee() {
       var dataSendApi = null;
@@ -443,7 +443,7 @@ export default {
 
     /**
      * cập nhật lại employees mới
-     * @author: TTANH (03/07/2023)
+     * @author: TTANH (03/07/2024)
      */
     reloadData() {
       try {
@@ -462,7 +462,7 @@ export default {
 
     /**
      * bỏ hết dữ liệu đã chọn khi ấn vào nút "Lấy lại dữ liệu"
-     * @author: TTANH (03/07/2023)
+     * @author: TTANH (03/07/2024)
      */
     reloadDataWithSelectedRows() {
       try {
@@ -478,7 +478,7 @@ export default {
 
     /**
      * xuất dữ liệu đang tìm kiếm ra file excel
-     * @author: TTANH (16/07/2023)
+     * @author: TTANH (16/07/2024)
      */
     async exportToExcelWithSearchText() {
       try {
@@ -508,7 +508,7 @@ export default {
 
     /**
      * hàm xử lý việc ấn vào item của dropdown nút "Thêm"
-     * @author: TTANH (19/07/2023)
+     * @author: TTANH (19/07/2024)
      * @param {string} id id của item chọn
      */
     handleDropdownInsertButton(id) {
@@ -519,7 +519,7 @@ export default {
 
     /**
      * thêm một id vào mảng dòng đã chọn
-     * @author: TTANH (11/07/2023)
+     * @author: TTANH (11/07/2024)
      * @param {string} rowId id của dòng được chọn
      */
     addSelectedRow(rowId) {
@@ -532,7 +532,7 @@ export default {
 
     /**
      * xóa một id vào mảng dòng đã chọn
-     * @author: TTANH (11/07/2023)
+     * @author: TTANH (11/07/2024)
      * @param {string} rowId id của dòng được chọn
      */
     deleteSelectedRow(rowId) {
@@ -545,7 +545,7 @@ export default {
 
     /**
      * xử lý khi chọn checkbox ở header
-     * @author: TTANH (27/06/2023)
+     * @author: TTANH (27/06/2024)
      */
     checkedAllRow() {
       try {
@@ -562,7 +562,7 @@ export default {
 
     /**
      * xử lý khi bỏ chọn checkbox ở header
-     * @author: TTANH (27/06/2023)
+     * @author: TTANH (27/06/2024)
      */
     uncheckedAllRow() {
       try {
@@ -579,7 +579,7 @@ export default {
 
     /**
      * xử lý khi chọn checkbox ở 1 row
-     * @author: TTANH (27/06/2023)
+     * @author: TTANH (27/06/2024)
      * @param {string} rowId: id của record được chọn
      */
     checkedRow(rowId) {
@@ -634,7 +634,7 @@ export default {
 
     /**
      * xử lý khi bỏ chọn checkbox ở 1 row
-     * @author: TTANH (27/06/2023)
+     * @author: TTANH (27/06/2024)
      * @param {string} rowId: id của record được bỏ chọn
      */
     uncheckedRow(rowId) {
@@ -711,7 +711,7 @@ export default {
 
     /**
      * mở form xác nhận xóa
-     * @author: TTANH (01/07/2023)
+     * @author: TTANH (01/07/2024)
      * @param {string} id id của bản ghi cần xóa
      */
     openConfirmDeletePopup(id) {
@@ -770,7 +770,7 @@ export default {
 
     /**
      * đóng form xác nhận xóa
-     * @author: TTANH (01/07/2023)
+     * @author: TTANH (01/07/2024)
      */
     closeConfirmDeletePopup() {
       try {
@@ -787,7 +787,7 @@ export default {
 
     /**
      * hủy xóa
-     * @author: TTANH (01/07/2023)
+     * @author: TTANH (01/07/2024)
      */
     noDeleteBtnClick() {
       try {
@@ -802,7 +802,7 @@ export default {
 
     /**
      * xác nhận xóa
-     * @author: TTANH (01/07/2023)
+     * @author: TTANH (01/07/2024)
      */
     yesDeleteBtnClick() {
       try {
@@ -819,7 +819,7 @@ export default {
 
     /**
      * thực hiện xóa 1 bản ghi
-     * @author: TTANH (01/07/2023)
+     * @author: TTANH (01/07/2024)
      */
     async deleteRecord() {
       try {
@@ -858,7 +858,7 @@ export default {
 
     /**
      * thực hiện thay đổi kích thước của cột
-     * @author: TTANH (04/07/2023)
+     * @author: TTANH (04/07/2024)
      */
     resizeEmployeeColumn(index, resizeWidth) {
       try {
@@ -874,7 +874,7 @@ export default {
 
     /**
      * xử lý các phím tắt
-     * @author: TTANH (11/07/2023)
+     * @author: TTANH (11/07/2024)
      */
     handleKeydown(event) {
       if (event.keyCode === this.$_TTANHEnum.KEY_CODE.INSERT && event.ctrlKey) {
@@ -892,7 +892,7 @@ export default {
 
     /**
      * chuyển đổi 1 cột thành dạng ttanh table có thể hiểu
-     * @author: TTANH (03/08/2023)
+     * @author: TTANH (03/08/2024)
      * @param {Object} rawData dữ liệu thông tin cột raw
      * @returns 1 object đã được chuyển đổi
      */
@@ -918,7 +918,7 @@ export default {
 
     /**
      * chuyển đổi mảng cột thành dạng ttanh table có thể hiểu
-     * @author: TTANH (03/08/2023)
+     * @author: TTANH (03/08/2024)
      * @param {Array} rawsData dữ liệu thông tin cột raw
      * @returns 1 mảng object đã được chuyển đổi
      */
@@ -936,7 +936,7 @@ export default {
 
     /**
      * chuyển đổi dữ liệu cập nhật sang dữ liệu truyền cho api để cập nhật
-     * @author: TTANH (03/08/2023)
+     * @author: TTANH (03/08/2024)
      * @param {Object} codeData dữ liệu thông tin cột
      * @returns 1 object đã được chuyển đổi
      */
@@ -967,7 +967,7 @@ export default {
 
     /**
      * chuyển đổi dữ liệu cập nhật sang dữ liệu truyền cho api để cập nhật
-     * @author: TTANH (03/08/2023)
+     * @author: TTANH (03/08/2024)
      * @param {Array} codesData dữ liệu thông tin cột
      * @returns 1 mảng object đã được chuyển đổi
      */

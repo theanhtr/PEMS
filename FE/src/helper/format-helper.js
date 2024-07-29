@@ -3,7 +3,7 @@ import store from "../store";
 
 /**
  * convert string từ: trần thế anh -> Trần Thế Anh
- * @author: TTANH (26/06/2023)
+ * @author: TTANH (26/06/2024)
  * @param {string} rawValue giá trị cần convert
  * @returns giá trị đã convert
  */
@@ -34,10 +34,10 @@ export function capitalizeFirstLetter(rawValue) {
 
 /**
  * chuyển đổi sang date format
- * @author: TTANH (26/06/2023)
+ * @author: TTANH (26/06/2024)
  * @param {string} rawValue string có thể chuyển định dạng sang được date
  * @param {string} formatDate cách định dạng ngày tháng
- * @returns string đã được định dạng theo 30/06/2023
+ * @returns string đã được định dạng theo 30/06/2024
  */
 export function formatToDate(rawValue, formatDate) {
   try {
@@ -81,7 +81,7 @@ export function formatToDate(rawValue, formatDate) {
 
 /**
  * chuyển đổi sang định dạng tiền
- * @author: TTANH (26/06/2023)
+ * @author: TTANH (26/06/2024)
  * @param {int} rawValue dữ liệu có thể chuyển sang kiểu tiền
  * @returns chuyển đổi thành dữ liệu dạng: 1.000.000đ, nếu 0 thì thành ""
  */
@@ -104,7 +104,7 @@ export function formatToCurrency(rawValue) {
 
 /**
  * chuyển đổi sang định dạng tên giới tính
- * @author: TTANH (15/07/2023)
+ * @author: TTANH (15/07/2024)
  * @param {int} rawValue dữ liệu số 0, 1, 2
  * @returns chuyển đổi thành tên giới tính:
  *   0 - Nam,

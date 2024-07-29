@@ -9,6 +9,7 @@ const TTANHAxios = axios.create({
     Accept: "application/json",
     "Content-Type": "application/json",
     ContentLanguage: store.state.langCode,
+    Authorization: `Bearer ${localStorage.getItem("userToken")}`,
   },
   withCredentials: true, // gửi cookie, session lên server
 });

@@ -20,7 +20,7 @@ namespace PEMS.Application
         /// <summary>
         /// Thêm xử lý khi thêm bản ghi
         /// </summary>
-        /// CreatedBy: TTANH (21/07/2023)
+        /// CreatedBy: TTANH (21/07/2024)
         public virtual async Task BaseServiceMoreProcessInsertAsync(TEntityCreateDto entityCreateDto) { }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace PEMS.Application
         /// </summary>
         /// <param name="entityCreateDto">Dữ liệu của bản ghi</param>
         /// <returns>Số hàng bị ảnh hưởng</returns>
-        /// Created by: TTANH (18/07/2023)
+        /// Created by: TTANH (18/07/2024)
         public virtual async Task<int> InsertAsync(TEntityCreateDto entityCreateDto)
         {
             await BaseServiceMoreProcessInsertAsync(entityCreateDto);
@@ -51,7 +51,7 @@ namespace PEMS.Application
         /// <summary>
         /// Thêm xử lý khi cập nhật bản ghi
         /// </summary>
-        /// CreatedBy: TTANH (21/07/2023)
+        /// CreatedBy: TTANH (21/07/2024)
         public virtual async Task BaseServiceMoreProcessUpdateAsync(Guid id, TEntityUpdateDto entityUpdateDto) { }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace PEMS.Application
         /// <param name="id">Id của bản ghi</param>
         /// <param name="entityUpdateDto">Dữ liệu update bản ghi</param>
         /// <returns>Số hàng bị ảnh hưởng</returns>
-        /// Created by: TTANH (18/07/2023)
+        /// Created by: TTANH (18/07/2024)
         public virtual async Task<int> UpdateAsync(Guid id, TEntityUpdateDto entityUpdateDto)
         {
             await BaseServiceMoreProcessUpdateAsync(id, entityUpdateDto);
@@ -101,7 +101,7 @@ namespace PEMS.Application
         /// </summary>
         /// <param name="id">Id của bản ghi</param>
         /// <returns>Số hàng bị ảnh hưởng</returns>
-        /// Created by: TTANH (18/07/2023)
+        /// Created by: TTANH (18/07/2024)
         public virtual async Task<int> DeleteAsync(Guid id)
         {
             var entity = await _baseRepository.GetByIdAsync(id);
@@ -116,7 +116,7 @@ namespace PEMS.Application
         /// </summary>
         /// <param name="ids">List các id của bản ghi</param>
         /// <returns>Số bản ghi đã xóa</returns>
-        /// Created by: TTANH (18/07/2023)
+        /// Created by: TTANH (18/07/2024)
         public virtual async Task<int> DeleteMultipleAsync(List<Guid> ids)
         {
             if (ids.Count() == 0)

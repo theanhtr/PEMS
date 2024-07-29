@@ -89,7 +89,7 @@ export default {
           isShow: true,
           isPin: false,
         },
-     * @author: TTANH (30/06/2023)
+     * @author: TTANH (30/06/2024)
      */
     columnsInfo: {
       default: [],
@@ -180,7 +180,7 @@ export default {
   methods: {
     /**
      * hiển thị combobox data, focus vào input và thêm sự kiện click bên ngoài combobox
-     * @author: TTANH (30/06/2023)
+     * @author: TTANH (30/06/2024)
      */
     showComboboxData() {
       try {
@@ -201,7 +201,7 @@ export default {
 
     /**
      * ẩn combobox data, xóa sự kiện click bên ngoài combobox
-     * @author: TTANH (30/06/2023)
+     * @author: TTANH (30/06/2024)
      */
     hiddenComboboxData() {
       try {
@@ -222,7 +222,7 @@ export default {
 
     /**
      * xử lý khi ấn vào nút dropdown cạnh input
-     * @author: TTANH (30/06/2023)
+     * @author: TTANH (30/06/2024)
      * @param {*} event
      */
     clickDropdownIcon(event) {
@@ -244,7 +244,7 @@ export default {
 
     /**
      * gán value của input bằng tên của row đã được chọn
-     * @author: TTANH (30/06/2023)
+     * @author: TTANH (30/06/2024)
      * @param {string} id
      */
     setValueInput(id = "") {
@@ -271,7 +271,7 @@ export default {
 
     /**
      * xử lý khi chọn 1 dòng trong combobox data
-     * @author: TTANH (30/06/2023)
+     * @author: TTANH (30/06/2024)
      * @param {string} id id của dòng được chọn
      */
     selectValue(id) {
@@ -290,7 +290,7 @@ export default {
 
     /**
      * xử lý khi thay đổi giá trị input
-     * @author: TTANH (30/06/2023)
+     * @author: TTANH (30/06/2024)
      */
     changeInput() {
       try {
@@ -350,7 +350,7 @@ export default {
 
     /**
      * hàm để check sự kiện clickoutside
-     * @author: TTANH (30/06/2023)
+     * @author: TTANH (30/06/2024)
      * @param {*} event
      */
     clickOutSideCombobox(event) {
@@ -371,7 +371,7 @@ export default {
     //các hàm để sử dụng ở component cha bằng refs
     /**
      * lấy ra value hiện tại của input
-     * @author: TTANH (01/07/2023)
+     * @author: TTANH (01/07/2024)
      */
     getCurrentInputValue() {
       try {
@@ -386,7 +386,7 @@ export default {
 
     /**
      * focus vào input chính
-     * @author: TTANH (01/07/2023)
+     * @author: TTANH (01/07/2024)
      */
     focus() {
       try {
@@ -401,7 +401,7 @@ export default {
 
     /**
      * truy cập vào input từ cha
-     * @author: TTANH (01/07/2023)
+     * @author: TTANH (01/07/2024)
      */
     getInputRef() {
       try {
@@ -416,7 +416,7 @@ export default {
 
     /**
      * xử lý sự kiện key down combobox
-     * @author: TTANH (03/07/2023)
+     * @author: TTANH (03/07/2024)
      */
     handleInputKeydown(event) {
       try {
@@ -462,7 +462,7 @@ export default {
 
     /**
      * lấy dữ liệu đang được chọn
-     * @author: TTANH (11/07/2023)
+     * @author: TTANH (11/07/2024)
      */
     getIdSelectedData() {
       return this.selectedRows[0];

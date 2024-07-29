@@ -9,7 +9,7 @@ namespace PEMS.Infrastructure
         /// Xóa những file đã xử lý bên trong folder
         /// </summary>
         /// <param name="folderPath">đường dẫn đến folder muốn xóa</param>
-        /// CreatedBy: TTANH (22/07/2023)
+        /// CreatedBy: TTANH (22/07/2024)
         public void ClearFiles(string folderPath)
         {
             DirectoryInfo d = new DirectoryInfo(folderPath);

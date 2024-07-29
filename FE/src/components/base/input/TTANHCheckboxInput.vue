@@ -31,7 +31,7 @@ export default {
     /**
      * tạo hiệu ứng khi người dùng click vào m-checkbox,
      * đồng thời gửi emit checked và unchecked lên parent component
-     * @author: TTANH (26/06/2023)
+     * @author: TTANH (26/06/2024)
      */
     clickCheckbox(event) {
       try {

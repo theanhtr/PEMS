@@ -1,6 +1,6 @@
 /**
  * hàm thực hiện debounce sau 1 khoản thời gian
- * @author: TTANH (10/07/2023)
+ * @author: TTANH (10/07/2024)
  * @param {*} fn hàm thực hiện hành động
  * @param {int} delay thời gian delay
  */

@@ -1,6 +1,6 @@
 /**
  * cấu hình của app
- * @author: TTANH (29/07/2023)
+ * @author: TTANH (29/07/2024)
  */
 
 const ProjectConfig = {
@@ -10,7 +10,7 @@ const ProjectConfig = {
 
 /**
  * Cấu hình các giá trị kiểm tra
- * @author: TTANH (29/07/2023)
+ * @author: TTANH (29/07/2024)
  */
 const ValidateConfig = {
   MaxSizeFileUpload: 2097152, //2mb

@@ -949,7 +949,7 @@ export default {
   methods: {
     /**
      * thực hiện kiểm tra trước khi đóng form
-     * @author: TTANH (07/08/2023)
+     * @author: TTANH (07/08/2024)
      */
     closeAddForm() {
       if (this.formMode == this.$_TTANHEnum.FORM_MODE.ADD) {
@@ -986,7 +986,7 @@ export default {
 
     /**
      * thực hiện get dữ liệu phòng ban
-     * @author: TTANH (30/06/2023)
+     * @author: TTANH (30/06/2024)
      */
     async getDepartments() {
       try {
@@ -1007,7 +1007,7 @@ export default {
 
     /**
      * cập nhật thông tin cho form: form_mode, data
-     * @author: TTANH (01/07/2023)
+     * @author: TTANH (01/07/2024)
      */
     addInfoForm() {
       this.formMode = this.computedFormMode;
@@ -1027,7 +1027,7 @@ export default {
 
     /**
      * thay đổi form cập nhật thành form thêm mới cho chức năng nhân bản
-     * @author: TTANH (01/07/2023)
+     * @author: TTANH (01/07/2024)
      */
     changeFormModeToAdd() {
       try {
@@ -1042,7 +1042,7 @@ export default {
 
     /**
      * lấy employee code mới
-     * @author: TTANH (01/07/2023)
+     * @author: TTANH (01/07/2024)
      */
     async getNewEmployeeCode() {
       try {
@@ -1067,7 +1067,7 @@ export default {
 
     /**
      * xử lý khi ấn vào nút "Cất"
-     * @author: TTANH (01/07/2023)
+     * @author: TTANH (01/07/2024)
      */
     async storeBtnClick() {
       try {
@@ -1093,7 +1093,7 @@ export default {
 
     /**
      * xử lý khi ấn vào nút "Cất và thêm"
-     * @author: TTANH (01/07/2023)
+     * @author: TTANH (01/07/2024)
      */
     async storeAndAddBtnClick() {
       try {
@@ -1122,7 +1122,7 @@ export default {
 
     /**
      * validate và tạo 1 nhân viên mới hoặc update thông tin nhân viên
-     * @author: TTANH (01/07/2023)
+     * @author: TTANH (01/07/2024)
      */
     async createNewEmployee() {
       if (this.validateData()) {
@@ -1215,7 +1215,7 @@ export default {
      * @param {string} feildCheck:
      *    trường muốn kiểm tra,
      *    để trống nếu muốn kiểm tra tất cả
-     * @author: TTANH (29/07/2023)
+     * @author: TTANH (29/07/2024)
      */
     commonValidate(feildCheck = "") {
       for (let property in this.validateEmployeeData) {
@@ -1326,7 +1326,7 @@ export default {
 
     /**
      * kiểm tra thêm đơn vị
-     * @author: TTANH (29/07/2023)
+     * @author: TTANH (29/07/2024)
      */
     departmentValidate() {
       // không tìm thấy
@@ -1347,7 +1347,7 @@ export default {
 
     /**
      * thực hiện validate dữ liệu
-     * @author: TTANH (01/07/2023)
+     * @author: TTANH (01/07/2024)
      * @returns: true nếu form đã được validate
      */
     validateData() {
@@ -1378,7 +1378,7 @@ export default {
 
     /**
      * làm mới lại thông báo lỗi
-     * @author: TTANH (01/07/2023)
+     * @author: TTANH (01/07/2024)
      */
     resetErrorText() {
       try {
@@ -1395,7 +1395,7 @@ export default {
 
     /**
      * làm mới lại thông tin thêm
-     * @author: TTANH (01/07/2023)
+     * @author: TTANH (01/07/2024)
      */
     resetAddEmployeeData() {
       try {
@@ -1426,7 +1426,7 @@ export default {
 
     /**
      * xử lý khi ấn ẩn dialog thông báo lỗi
-     * @author: TTANH (01/07/2023)
+     * @author: TTANH (01/07/2024)
      */
     closeBtnDialogErrorClick() {
       try {
@@ -1454,7 +1454,7 @@ export default {
 
     /**
      * xử lý các phím tắt
-     * @author: TTANH (11/07/2023)
+     * @author: TTANH (11/07/2024)
      */
     handleKeydown(event) {
       event.stopPropagation();
@@ -1519,7 +1519,7 @@ export default {
     /**
      * hàm cập nhật thông tin department khi department id thay đổi
      * @param {*} departmentId id của department
-     * @author: TTANH (14/07/2023)
+     * @author: TTANH (14/07/2024)
      */
     updateDepartmentInfo(departmentId) {
       this.errorTextEmployeeData.departmentId = "";
@@ -1543,7 +1543,7 @@ export default {
 
     /**
      * ẩn hiện thông tin thêm: là nhà cung cấp
-     * @author: TTANH (14/07/2023)
+     * @author: TTANH (14/07/2024)
      */
     clickIsSupplier() {
       this.isSupplier = !this.isSupplier;
@@ -1551,7 +1551,7 @@ export default {
 
     /**
      * ẩn hiện thông tin thêm: là khách hàng
-     * @author: TTANH (14/07/2023)
+     * @author: TTANH (14/07/2024)
      */
     clickIsCustomer() {
       this.isCustomer = !this.isCustomer;

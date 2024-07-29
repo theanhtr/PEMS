@@ -7,7 +7,7 @@ namespace PEMS.Controllers
     /// <summary>
     /// Controller test
     /// </summary>
-    /// CreatedBy: TTANH (02/06/2023)
+    /// CreatedBy: TTANH (02/06/2024)
     [Route("api/v1/[controller]")]
     [ApiController]
     public class TestController : ControllerBase

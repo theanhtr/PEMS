@@ -7,7 +7,7 @@ namespace PEMS.Infrastructure
     /// <summary>
     /// Triển khai bằng dapper và mysql
     /// </summary>
-    /// Created By: TTANH (02/08/2023)
+    /// Created By: TTANH (02/08/2024)
     public class EmployeeLayoutRepository : CodeRepository<EmployeeLayout>, IEmployeeLayoutRepository
     {
         #region Constructor
@@ -21,7 +21,7 @@ namespace PEMS.Infrastructure
         /// <summary>
         /// Hàm lấy lại dữ liệu mặc định
         /// </summary>
-        /// CreatedBy: TTANH (03/08/2023)
+        /// CreatedBy: TTANH (03/08/2024)
         public async Task SetDefault()
         {
             var procedure = "Proc_EmployeeLayout_SetDefault";
@@ -33,7 +33,7 @@ namespace PEMS.Infrastructure
         /// Hàm cập nhật nhiều bản ghi
         /// </summary>
         /// <param name="employeeLayoutsStrConvert">Dữ liệu lại thành chuỗi để truyền vào truy vấn</param>
-        /// CreatedBy: TTANH (02/08/2023)
+        /// CreatedBy: TTANH (02/08/2024)
         public async Task<int> UpdateMultipleAsync(string employeeLayoutsStrConvert)
         {
             var procedure = "Proc_EmployeeLayout_UpdateList";

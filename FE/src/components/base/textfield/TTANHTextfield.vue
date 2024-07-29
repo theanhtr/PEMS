@@ -145,7 +145,7 @@ export default {
 
     /**
      * xử lý sự kiện khi ấn vào nút icon tăng giá trị
-     * @author: TTANH (27/06/2023)
+     * @author: TTANH (27/06/2024)
      */
     onClickUpIcon() {
       try {
@@ -169,7 +169,7 @@ export default {
 
     /**
      * xử lý sự kiện khi ấn vào nút icon giảm giá trị
-     * @author: TTANH (27/06/2023)
+     * @author: TTANH (27/06/2024)
      */
     onClickDownIcon() {
       try {
@@ -194,7 +194,7 @@ export default {
 
     /**
      * chọn hàm xử lý thay đổi cho từng type
-     * @author: TTANH (28/06/2023)
+     * @author: TTANH (28/06/2024)
      * @param {*} e event
      */
     pickChangeValueInput(e) {
@@ -215,7 +215,7 @@ export default {
 
     /**
      * thực hiện bỏ qua các nút và set lại vị trí focus hiện tại
-     * @author: TTANH (30/06/2023)
+     * @author: TTANH (30/06/2024)
      */
     skipKeypress(selStart) {
       try {
@@ -234,7 +234,7 @@ export default {
 
     /**
      * xử lý thay đổi input đối với type = 'percent'
-     * @author: TTANH (28/06/2023)
+     * @author: TTANH (28/06/2024)
      * @param {*} e event
      */
     onChangeValueInputPercent(e) {
@@ -267,7 +267,7 @@ export default {
 
     /**
      * xử lý thay đổi input đối với type = 'money'
-     * @author: TTANH (28/06/2023)
+     * @author: TTANH (28/06/2024)
      * @param {*} e event
      */
     onChangeValueInputMoney(e) {
@@ -306,7 +306,7 @@ export default {
 
     /**
      * xử lý thay đổi input đối với type = 'number_no_dot'
-     * @author: TTANH (28/06/2023)
+     * @author: TTANH (28/06/2024)
      * @param {*} e event
      */
     onChangeValueInputNumberNoDot(e) {
@@ -339,7 +339,7 @@ export default {
 
     /**
      * xử lý thay đổi input đối với type = 'code'
-     * @author: TTANH (28/06/2023)
+     * @author: TTANH (28/06/2024)
      * @param {*} e event
      */
     onChangeValueInputCode(e) {
@@ -366,7 +366,7 @@ export default {
 
     /**
      * xử lý thay đổi input đối với type = 'text'
-     * @author: TTANH (28/06/2023)
+     * @author: TTANH (28/06/2024)
      * @param {*} e event
      */
     onChangeValueInputText() {
@@ -388,7 +388,7 @@ export default {
 
     /**
      * hàm để thay đổi giá trị của inputMiddle từ cha
-     * @author: TTANH (28/06/2023)
+     * @author: TTANH (28/06/2024)
      * @param {*} newInputMiddle giá trị mới
      */
     onUpdateInputMiddle(newInputMiddle) {
@@ -405,7 +405,7 @@ export default {
     //các hàm để sử dụng ở component cha bằng refs
     /**
      * lấy ra value hiện tại của input
-     * @author: TTANH (01/07/2023)
+     * @author: TTANH (01/07/2024)
      */
     getCurrentInputValue() {
       try {
@@ -420,7 +420,7 @@ export default {
 
     /**
      * focus vào input chính
-     * @author: TTANH (01/07/2023)
+     * @author: TTANH (01/07/2024)
      */
     focus() {
       try {

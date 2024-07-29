@@ -9,12 +9,29 @@ import EmployeeImport from "../views/employee/employee-import/EmployeeImport.vue
 import TTANHPageNotFound from "../components/layout/TTANHPageNotFound.vue";
 
 import HelloScreen from "../views/hello/HelloScreen.vue";
+import LoginScreen from "../views/auth/LoginScreen.vue";
+import store from "../store";
 
 const routes = [
   {
     path: "/",
-    name: "hello",
-    component: HelloScreen,
+    redirect: "/app/employee",
+  },
+  {
+    path: "/login",
+    name: "login-page",
+    component: LoginScreen,
+    meta: {
+      noRequiresAuth: true
+    }
+  },
+  {
+    path: "/forgot-password",
+    name: "forgot-password-page",
+    component: LoginScreen,
+    meta: {
+      noRequiresAuth: true
+    }
   },
   {
     path: "/app",
@@ -29,7 +46,7 @@ const routes = [
       {
         path: "/app/employee",
         name: "employee-app",
-        component: EmployeeList,
+        component: EmployeeList
       },
     ],
   },
@@ -55,6 +72,24 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  store.dispatch('checkSession').then(() => {
+    if (!to.matched.some(record => record.meta.noRequiresAuth)) {
+      if (!store.state.isLoggedIn) {
+        next({ path: '/login' });
+      } else {
+        next();
+      }
+    } else {
+      if (store.state.isLoggedIn && to.path === '/login') {
+        next({ path: '/app/employee' });
+      } else {
+        next();
+      }
+    }
+  });
 });
 
 export default router;

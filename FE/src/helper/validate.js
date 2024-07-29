@@ -9,7 +9,7 @@ import sprintf from "sprintf-js";
  * @param {int?} minLength chiều dài tối thiểu
  * @param {string} nameField tên trường
  * @returns thông báo lỗi
- * @author: TTANH (29/07/2023)
+ * @author: TTANH (29/07/2024)
  */
 function lengthValidate(
   valueCheck,
@@ -43,7 +43,7 @@ function lengthValidate(
  * @param {string} valueCheck đối tượng cần kiểm tra
  * @param {string} nameField tên trường
  * @returns thông báo lỗi
- * @author: TTANH (29/07/2023)
+ * @author: TTANH (29/07/2024)
  */
 function emptyValidate(
   valueCheck,
@@ -67,7 +67,7 @@ function emptyValidate(
  * @param {string} nameField tên trường
  * @param {string} regex regex kiểm tra
  * @returns thông báo lỗi
- * @author: TTANH (29/07/2023)
+ * @author: TTANH (29/07/2024)
  */
 function regexValidate(
   valueCheck,

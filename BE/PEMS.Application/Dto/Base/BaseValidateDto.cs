@@ -5,7 +5,7 @@ namespace PEMS.Application
     /// <summary>
     /// Base để lưu trữ các dto cần kiểm tra bản ghi
     /// </summary>
-    /// CreatedBy: TTANH (20/07/2023)
+    /// CreatedBy: TTANH (20/07/2024)
     public class BaseValidateDto
     {
         /// <summary>

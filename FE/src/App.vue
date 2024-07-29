@@ -20,7 +20,7 @@ export default {
   methods: {
     /**
      * xử lý xóa 1 toast
-     * @author: TTANH (01/07/2023)
+     * @author: TTANH (01/07/2024)
      * @param {string} id id của toast
      */
     closeToast(id) {

@@ -70,7 +70,7 @@ export default {
   methods: {
     /**
      * hàm để lấy file được insert trong input chính
-     * @author: TTANH (23/07/2023)
+     * @author: TTANH (23/07/2024)
      */
     getFile() {
       return this.$refs.input.files[0];
@@ -78,7 +78,7 @@ export default {
 
     /**
      * Xử lý khi file lỗi thì không thêm vào
-     * @author: TTANH (23/07/2023)
+     * @author: TTANH (23/07/2024)
      */
     setInputToEmpty() {
       this.$refs.input.value = "";
@@ -86,7 +86,7 @@ export default {
 
     /**
      * Focus vào input chính
-     * @author: TTANH (23/07/2023)
+     * @author: TTANH (23/07/2024)
      */
     focus() {
       this.$refs.input.focus();

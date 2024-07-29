@@ -6,7 +6,7 @@ namespace PEMS.Application
     /// <summary>
     /// Class triển khai department service được gọi từ controller
     /// </summary>
-    /// Created by: TTANH (12/07/2023)
+    /// Created by: TTANH (12/07/2024)
     public class DepartmentService : CodeService<Department, DepartmentDto, DepartmentCreateDto, DepartmentUpdateDto>, IDepartmentService
     {
         #region Constructor

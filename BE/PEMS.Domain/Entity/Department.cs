@@ -5,7 +5,7 @@ namespace PEMS.Domain
     /// <summary>
     /// Thực thể của Department
     /// </summary>
-    /// Created by: TTANH (12/07/2023)
+    /// Created by: TTANH (12/07/2024)
     public class Department : BaseAuditEntity, IEntityHasKey
     {
         #region Property
@@ -34,7 +34,7 @@ namespace PEMS.Domain
         /// <summary>
         /// Lấy ra key của phần tử
         /// </summary>
-        /// CreatedBy: TTANH (18/07/2023)
+        /// CreatedBy: TTANH (18/07/2024)
         public Guid GetKey()
         {
             return DepartmentId;
@@ -44,7 +44,7 @@ namespace PEMS.Domain
         /// Hàm set key cho phần tử
         /// </summary>
         /// <param name="key">giá trị của key</param>
-        /// CreatedBy: TTANH (18/07/2023)
+        /// CreatedBy: TTANH (18/07/2024)
         public void SetKey(Guid key)
         {
             DepartmentId = key;

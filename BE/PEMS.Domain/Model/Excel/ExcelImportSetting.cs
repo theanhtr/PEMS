@@ -3,7 +3,7 @@
     /// <summary>
     /// Model để thêm setting khi nhập khẩu excel
     /// </summary>
-    /// CreatedBy: TTANH (17/07/2023)
+    /// CreatedBy: TTANH (17/07/2024)
     public class ExcelImportSetting
     {
         #region Property

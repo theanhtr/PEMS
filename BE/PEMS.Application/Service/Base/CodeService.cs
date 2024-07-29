@@ -23,7 +23,7 @@ namespace PEMS.Application
         /// </summary>
         /// <param name="code">Mã code của bản ghi</param>
         /// <returns>Bản ghi</returns>
-        /// Created by: TTANH (15/07/2023)
+        /// Created by: TTANH (15/07/2024)
         public async Task<TEntityDto> GetByCodeAsync(string code)
         {
             var entity = await _codeRepository.GetByCodeAsync(code);
@@ -37,7 +37,7 @@ namespace PEMS.Application
         /// Hàm lấy một mã code mới không trùng
         /// </summary>
         /// <returns>Mã code mới</returns>
-        /// Created by: TTANH (15/07/2023)
+        /// Created by: TTANH (15/07/2024)
         public async Task<string> GetNewCodeAsync()
         {
             var newCode = await _codeRepository.GetNewCodeAsync();
@@ -48,14 +48,14 @@ namespace PEMS.Application
         /// <summary>
         /// Thêm xử lý khi thêm bản ghi ở code base
         /// </summary>
-        /// CreatedBy: TTANH (21/07/2023)
+        /// CreatedBy: TTANH (21/07/2024)
         public virtual async Task CodeServiceMoreProcessInsertAsync(TEntityCreateDto entityCreateDto) { }
 
         /// <summary>
         /// Ghi đè hàm thêm xử lý khi insert
         /// </summary>
         /// <param name="entityCreateDto">Dữ liệu của bản ghi</param>
-        /// Created by: TTANH (21/07/2023)
+        /// Created by: TTANH (21/07/2024)
         public override async Task BaseServiceMoreProcessInsertAsync(TEntityCreateDto entityCreateDto)
         {
             await CodeServiceMoreProcessInsertAsync(entityCreateDto);
@@ -68,7 +68,7 @@ namespace PEMS.Application
         /// <summary>
         /// Thêm xử lý khi cập nhật bản ghi ở code base
         /// </summary>
-        /// CreatedBy: TTANH (21/07/2023)
+        /// CreatedBy: TTANH (21/07/2024)
         public virtual async Task CodeServiceMoreProcessUpdateAsync(Guid id, TEntityUpdateDto entityUpdateDto) { }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace PEMS.Application
         /// <param name="id">Id của bản ghi</param>
         /// <param name="entityUpdateDto">Dữ liệu update bản ghi</param>
         /// <returns>Số hàng bị ảnh hưởng</returns>
-        /// Created by: TTANH (21/07/2023)
+        /// Created by: TTANH (21/07/2024)
         public override async Task BaseServiceMoreProcessUpdateAsync(Guid id, TEntityUpdateDto entityUpdateDto)
         {
             await CodeServiceMoreProcessUpdateAsync(id, entityUpdateDto);

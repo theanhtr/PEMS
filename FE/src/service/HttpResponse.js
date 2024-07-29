@@ -1,6 +1,8 @@
+import store from "../store";
+
 /**
  * hàm để xử lý khi response là file trả về, và download cho người dùng
- * @author: TTANH (16/07/2023)
+ * @author: TTANH (16/07/2024)
  * @param {*} res response
  */
 function downloadFileFromRes(res) {
@@ -44,7 +46,7 @@ function downloadFileFromRes(res) {
  *  - success: trạng thái của response (true)
  *  - statusCode: mã code cho trạng thái (từ 100 -> 399)
  *  - data: dữ liệu trả về từ api
- * @author: TTANH (02/07/2023)
+ * @author: TTANH (02/07/2024)
  * @param {*} res response
  * @returns response đã được format
  */
@@ -67,11 +69,18 @@ export function success(res) {
  *  - userMsg: tin nhắn dành cho người dùng về lỗi
  *  - moreInfo: thông tin thêm về lỗi
  *  - data: dữ liệu về lỗi trả về từ api
- * @author: TTANH (02/07/2023)
+ * @author: TTANH (02/07/2024)
  * @param {*} res response
  * @returns response đã được format
  */
 export function failure(res) {
+  if (res.status == 403) {
+    store._mutations.addToast[0]({
+      type: "error",
+      text: "Bạn không có quyền truy cập vào chức năng này",
+    });
+  }
+
   return {
     success: false,
     statusCode: res.status,

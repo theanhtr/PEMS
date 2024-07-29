@@ -133,3 +133,15 @@
   width: 10px;
   height: 8px;
 }
+
+.eye {
+    background-position: -1607px -410px;
+    width: 19px;
+    height: 12px;
+}
+
+.eye-slash {
+  background-position: -1652px -410px;
+  width: 19px;
+  height: 12px;
+}

@@ -3,7 +3,7 @@
     /// <summary>
     /// Exception đại diện cho lỗi không tìm thấy tài nguyên
     /// </summary>
-    /// Created By: TTANH (12/07/2023)
+    /// Created By: TTANH (12/07/2024)
     public class NotFoundException : Exception
     {
         #region Property

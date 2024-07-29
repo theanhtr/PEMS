@@ -3,7 +3,7 @@
     /// <summary>
     /// Enum của mã lỗi
     /// </summary>
-    /// Created by: TTANH (12/07/2023)
+    /// Created by: TTANH (12/07/2024)
     public enum StatusErrorCode
     {
         /// <summary>
@@ -64,6 +64,8 @@
         /// <summary>
         /// Những trường bắt buộc trong tiêu đề chưa được điền
         /// </summary>
-        ExcelHeaderRequiredNotMap = 1430
+        ExcelHeaderRequiredNotMap = 1430,
+
+        WrongPassword = 1431,
     }
 }

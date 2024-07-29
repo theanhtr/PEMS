@@ -5,7 +5,7 @@ namespace PEMS.Domain
     /// <summary>
     /// Khai báo cấu trúc tổng quan của 1 exception
     /// </summary>
-    /// Created By: TTANH (12/07/2023)
+    /// Created By: TTANH (12/07/2024)
     public class BaseException
     {
         #region Propeties

@@ -29,7 +29,7 @@ namespace PEMS.Infrastructure
         /// <param name="titleExport">Tên tiêu đề và tên sheet của file</param>
         /// <param name="headersInfo">Thông tin của các tiêu đề</param>
         /// <returns>Dữ liệu trong file excel</returns>
-        /// CreatedBy: TTANH (16/07/2023)
+        /// CreatedBy: TTANH (16/07/2024)
         public async Task<byte[]> ExportToExcelAsync(string? searchText, string? titleExport, List<TEntityLayoutDto> headersInfo)
         {
             var entities = await _baseRepository.GetAsync();
@@ -51,7 +51,7 @@ namespace PEMS.Infrastructure
         /// </summary>
         /// <param name="filePath">đường dẫn tới file</param>
         /// <param name="headerFind">cột để xác định headerRowIndex</param>
-        /// CreatedBy: TTANH (17/07/2023)
+        /// CreatedBy: TTANH (17/07/2024)
         public ExcelImportSettingData GetExcelSettingData(string filePath, string headerFind)
         {
             var importExcelSettingData = _excelWorker.GetExcelSettingData(filePath, headerFind);
@@ -66,7 +66,7 @@ namespace PEMS.Infrastructure
         /// <param name="sheetContainsData">sheet tương tác</param>
         /// <param name="headerRowIndex">vị trí của tiêu đề</param>
         /// <returns>thông tin các cột trong sheet</returns>
-        /// CreatedBy: TTANH (17/07/2023)
+        /// CreatedBy: TTANH (17/07/2024)
         public List<ExcelHeadersInfo> GetHeadersInfo(string filePath, string sheetContainsData, int headerRowIndex)
         {
             var headersInfo = _excelWorker.GetHeadersInfo(filePath, sheetContainsData, headerRowIndex);
@@ -106,7 +106,7 @@ namespace PEMS.Infrastructure
         /// <param name="sheetUsed">sheet tương tác</param>
         /// <param name="headerRowIndex">vị trí của tiêu đề</param>
         /// <param name="excelHeadersMapColumns">cột header ứng với dữ liệu</param>
-        /// CreatedBy: TTANH (19/07/2023)
+        /// CreatedBy: TTANH (19/07/2024)
         public async Task<List<TExcelDto>> ReadExcelFile(string fileId, string filePath, string sheetUsed, int headerRowIndex, List<ExcelHeaderMapColumn> excelHeadersMapColumns)
         {
             var entities = _excelWorker.ReadExcelFile(filePath, sheetUsed, headerRowIndex, excelHeadersMapColumns);

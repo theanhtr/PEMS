@@ -5,7 +5,7 @@ namespace PEMS.Domain
     /// <summary>
     /// Đối tượng để lưu trữ thông tin layout của phân hệ nhân viên
     /// </summary>
-    /// CreatedBy: TTANH (02/08/2023)
+    /// CreatedBy: TTANH (02/08/2024)
     public class EmployeeLayout : BaseAuditEntity, IEntityHasKey
     {
         #region Properties
@@ -136,7 +136,7 @@ namespace PEMS.Domain
         /// <summary>
         /// Lấy ra key của phần tử
         /// </summary>
-        /// CreatedBy: TTANH (18/07/2023)
+        /// CreatedBy: TTANH (18/07/2024)
         public Guid GetKey()
         {
             return EmployeeLayoutId;
@@ -146,7 +146,7 @@ namespace PEMS.Domain
         /// Hàm set key cho phần tử
         /// </summary>
         /// <param name="key">giá trị của key</param>
-        /// CreatedBy: TTANH (18/07/2023)
+        /// CreatedBy: TTANH (18/07/2024)
         public void SetKey(Guid key)
         {
             EmployeeLayoutId = key;

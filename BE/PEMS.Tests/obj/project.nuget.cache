@@ -1,11 +1,19 @@
 {
   "version": 2,
-  "dgSpecHash": "Ww34BjJe4KV6MTCD3zQJxaqPi761FnXfxbOb9sEkMgtoGpJfjc/GAXyPd08aKw7x6q77AYGmrB5QKB3StAqnEw==",
+  "dgSpecHash": "kmUjm+RDg9yyGaZfNCiqE4toj+WfOFI9mso+1J8+2GXvdBHHcAE5+OaSEI/NypWI1o7yhiNF1ocr7db4tQuR8g==",
   "success": true,
   "projectFilePath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.Tests\\PEMS.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ttanh6\\.nuget\\packages\\coverlet.collector\\3.2.0\\coverlet.collector.3.2.0.nupkg.sha512",
+    "C:\\Users\\ttanh6\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.32\\microsoft.aspnetcore.authentication.jwtbearer.6.0.32.nupkg.sha512",
     "C:\\Users\\ttanh6\\.nuget\\packages\\microsoft.codecoverage\\17.5.0\\microsoft.codecoverage.17.5.0.nupkg.sha512",
+    "C:\\Users\\ttanh6\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\ttanh6\\.nuget\\packages\\microsoft.identitymodel.abstractions\\6.36.0\\microsoft.identitymodel.abstractions.6.36.0.nupkg.sha512",
+    "C:\\Users\\ttanh6\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\6.36.0\\microsoft.identitymodel.jsonwebtokens.6.36.0.nupkg.sha512",
+    "C:\\Users\\ttanh6\\.nuget\\packages\\microsoft.identitymodel.logging\\6.36.0\\microsoft.identitymodel.logging.6.36.0.nupkg.sha512",
+    "C:\\Users\\ttanh6\\.nuget\\packages\\microsoft.identitymodel.protocols\\6.35.0\\microsoft.identitymodel.protocols.6.35.0.nupkg.sha512",
+    "C:\\Users\\ttanh6\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\6.35.0\\microsoft.identitymodel.protocols.openidconnect.6.35.0.nupkg.sha512",
+    "C:\\Users\\ttanh6\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.36.0\\microsoft.identitymodel.tokens.6.36.0.nupkg.sha512",
     "C:\\Users\\ttanh6\\.nuget\\packages\\microsoft.net.test.sdk\\17.5.0\\microsoft.net.test.sdk.17.5.0.nupkg.sha512",
     "C:\\Users\\ttanh6\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\ttanh6\\.nuget\\packages\\microsoft.testplatform.objectmodel\\17.5.0\\microsoft.testplatform.objectmodel.17.5.0.nupkg.sha512",
@@ -16,7 +24,9 @@
     "C:\\Users\\ttanh6\\.nuget\\packages\\nunit\\3.13.3\\nunit.3.13.3.nupkg.sha512",
     "C:\\Users\\ttanh6\\.nuget\\packages\\nunit.analyzers\\3.6.1\\nunit.analyzers.3.6.1.nupkg.sha512",
     "C:\\Users\\ttanh6\\.nuget\\packages\\nunit3testadapter\\4.4.2\\nunit3testadapter.4.4.2.nupkg.sha512",
-    "C:\\Users\\ttanh6\\.nuget\\packages\\system.reflection.metadata\\1.6.0\\system.reflection.metadata.1.6.0.nupkg.sha512"
+    "C:\\Users\\ttanh6\\.nuget\\packages\\system.identitymodel.tokens.jwt\\6.36.0\\system.identitymodel.tokens.jwt.6.36.0.nupkg.sha512",
+    "C:\\Users\\ttanh6\\.nuget\\packages\\system.reflection.metadata\\1.6.0\\system.reflection.metadata.1.6.0.nupkg.sha512",
+    "C:\\Users\\ttanh6\\.nuget\\packages\\system.security.cryptography.cng\\4.5.0\\system.security.cryptography.cng.4.5.0.nupkg.sha512"
   ],
   "logs": []
 }

@@ -9,7 +9,7 @@
         /// <param name="x">Số nguyên x</param>
         /// <param name="y">Số nguyên y</param>
         /// <returns>Giá trị tổng của 2 số</returns>
-        /// CreatedBy: TTANH (13/07/2023)
+        /// CreatedBy: TTANH (13/07/2024)
         public long Add(int x, int y)
         {
             return x + (long)y;
@@ -22,7 +22,7 @@
         /// <returns>Giá trị tổng của các số trong string</returns>
         /// <exception cref="Exception">Đầu vào không phải là số</exception>
         /// <exception cref="Exception">Không chấp nhận toán tử âm: </exception>
-        /// CreatedBy: TTANH (13/07/2023)
+        /// CreatedBy: TTANH (13/07/2024)
         public long Add(string inputString)
         {
             bool isNegativeInput = false;
@@ -94,7 +94,7 @@
         /// <param name="x">Số nguyên x</param>
         /// <param name="y">Số nguyên y</param>
         /// <returns>Giá trị hiệu của 2 số</returns>
-        /// CreatedBy: TTANH (13/07/2023)
+        /// CreatedBy: TTANH (13/07/2024)
         public long Sub(int x, int y)
         {
             return x - (long)y;
@@ -106,7 +106,7 @@
         /// <param name="x">Số nguyên x</param>
         /// <param name="y">Số nguyên y</param>
         /// <returns>Giá trị tích của 2 số</returns>
-        /// CreatedBy: TTANH (13/07/2023)
+        /// CreatedBy: TTANH (13/07/2024)
         public long Mul(int x, int y)
         {
             return x * (long)y;
@@ -119,7 +119,7 @@
         /// <param name="y">Số nguyên y</param>
         /// <returns>Giá trị thương của 2 số</returns>
         /// <exception cref="Exception">Không chia được cho 0</exception>
-        /// CreatedBy: TTANH (13/07/2023)
+        /// CreatedBy: TTANH (13/07/2024)
         public double Div(int x, int y)
         {
             if (y == 0)

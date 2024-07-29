@@ -6,7 +6,7 @@ namespace PEMS.Controllers
     /// <summary>
     /// Controller base gồm đọc và lọc với đối tượng không có code
     /// </summary>
-    /// CreatedBy: TTANH (18/07/2023)
+    /// CreatedBy: TTANH (18/07/2024)
     [ApiController]
     public class ReadOnlyController<TEntity, TEntityDto> : ControllerBase
     {
@@ -26,7 +26,7 @@ namespace PEMS.Controllers
         /// Hàm lấy dữ liệu bản ghi
         /// </summary>
         /// <returns>Tất cả bản ghi</returns>
-        /// CreatedBy: TTANH (18/07/2023)
+        /// CreatedBy: TTANH (18/07/2024)
         [HttpGet]
         public async Task<IActionResult> GetAsync()
         {
@@ -40,7 +40,7 @@ namespace PEMS.Controllers
         /// </summary>
         /// <param name="id">id của bản ghi</param>
         /// <returns>Bản ghi</returns>
-        /// CreatedBy: TTANH (18/07/2023)
+        /// CreatedBy: TTANH (18/07/2024)
         [HttpGet("{id}")]
         public async Task<IActionResult> GetByIdAsync(Guid id)
         {
@@ -56,7 +56,7 @@ namespace PEMS.Controllers
         /// <param name="pageNumber">Thứ tự bao nhiêu</param>
         /// <param name="searchText">Chuỗi lọc</param>
         /// <returns>Các bản ghi lọc theo các tiêu chí trên</returns>
-        /// Created by: TTANH (18/07/2023) 
+        /// Created by: TTANH (18/07/2024) 
         [HttpGet("filter")]
         public async Task<IActionResult> FiltersAsync([FromQuery] int? pageSize, [FromQuery] int? pageNumber, [FromQuery] string? searchText)
         {

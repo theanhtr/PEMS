@@ -20,7 +20,7 @@ namespace PEMS.Infrastructure
         /// <param name="titleExport">Tên tiêu đề và tên sheet của file</param>
         /// <param name="headersInfo">Thông tin của các tiêu đề</param>
         /// <returns>Dữ liệu excel</returns>
-        /// CreatedBy: TTANH (17/07/2023)
+        /// CreatedBy: TTANH (17/07/2024)
         public byte[] ConvertDataToExcelData(List<TEntityDto> entitiesDto, string? titleExport, List<TEntityLayoutDto> headersInfo)
         {
             using var workbook = new XLWorkbook();
@@ -157,7 +157,7 @@ namespace PEMS.Infrastructure
         /// </summary>
         /// <param name="filePath">đường dẫn tới file</param>
         /// <param name="headerFind">cột để xác định headerRowIndex</param>
-        /// CreatedBy: TTANH (17/07/2023)
+        /// CreatedBy: TTANH (17/07/2024)
         public ExcelImportSettingData GetExcelSettingData(string filePath, string headerFind)
         {
             using var workbook = new XLWorkbook(filePath);
@@ -231,7 +231,7 @@ namespace PEMS.Infrastructure
         /// <param name="sheetContainsData">sheet tương tác</param>
         /// <param name="headerRowIndex">vị trí của tiêu đề</param>
         /// <returns>thông tin các cột trong sheet</returns>
-        /// CreatedBy: TTANH (17/07/2023)
+        /// CreatedBy: TTANH (17/07/2024)
         public List<ExcelHeadersInfo> GetHeadersInfo(string filePath, string sheetContainsData, int headerRowIndex)
         {
             using var workbook = new XLWorkbook(filePath);
@@ -270,7 +270,7 @@ namespace PEMS.Infrastructure
         /// <param name="headerRowIndex">vị trí của tiêu đề</param>
         /// <param name="excelHeadersMapColumns">cột header ứng với dữ liệu</param>
         /// <returns>Trả về list dữ liệu insert, update excel</returns>
-        /// CreatedBy: TTANH (19/07/2023)
+        /// CreatedBy: TTANH (19/07/2024)
         public List<TEntityExcelDto> ReadExcelFile(string filePath, string sheetUsed, int headerRowIndex, List<ExcelHeaderMapColumn> excelHeadersMapColumns)
         {
             using var workbook = new XLWorkbook(filePath);

@@ -102,7 +102,7 @@ export default {
           id: "item",
           title: "Tương tác 1",
         },
-     * @author: TTANH (27/06/2023)
+     * @author: TTANH (27/06/2024)
      */
     dataDropdown: {
       default: [],
@@ -168,7 +168,7 @@ export default {
   methods: {
     /**
      * hàm để check sự kiện clickoutside
-     * @author: TTANH (27/06/2023)
+     * @author: TTANH (27/06/2024)
      * @param {*} event
      */
     clickOutSideButton(event) {
@@ -188,7 +188,7 @@ export default {
 
     /**
      * xử lý hiển thị dataDropdown
-     * @author: TTANH (27/06/2023)
+     * @author: TTANH (27/06/2024)
      */
     showDataDropdown() {
       try {
@@ -204,7 +204,7 @@ export default {
 
     /**
      * xử lý ẩn dataDropdown
-     * @author: TTANH (27/06/2023)
+     * @author: TTANH (27/06/2024)
      */
     hideDataDropdown() {
       try {
@@ -220,7 +220,7 @@ export default {
 
     /**
      * xử lý sự kiện khi nhấn vào button bọc tất cả nội dung
-     * @author: TTANH (27/06/2023)
+     * @author: TTANH (27/06/2024)
      */
     clickButton() {
       try {
@@ -243,7 +243,7 @@ export default {
 
     /**
      * xử lý sự kiện khi nhấn vào button chính
-     * @author: TTANH (10/07/2023)
+     * @author: TTANH (10/07/2024)
      */
     clickBtnContainer() {
       try {
@@ -258,7 +258,7 @@ export default {
 
     /**
      * xử lý sự kiện khi nhấn vào button dropdown đối với Combo button
-     * @author: TTANH (27/06/2023)
+     * @author: TTANH (27/06/2024)
      * @param {*} event
      */
     clickDropdownButton(event) {
@@ -282,7 +282,7 @@ export default {
 
     /**
      * xử lý sự kiện khi nhấn vào dropdown item đối với Combo button và dropdown button
-     * @author: TTANH (27/06/2023)
+     * @author: TTANH (27/06/2024)
      * @param {*} event
      */
     clickDataDropdownItem(event, id) {
@@ -302,7 +302,7 @@ export default {
 
     /**
      * gọi button từ cha
-     * @author: TTANH (03/07/2023)
+     * @author: TTANH (03/07/2024)
      */
     getBtnContainerRef() {
       try {
@@ -317,7 +317,7 @@ export default {
 
     /**
      * focus vào btn chứa tất cả từ cha
-     * @author: TTANH (03/07/2023)
+     * @author: TTANH (03/07/2024)
      */
     focusButtonContainer() {
       try {
@@ -333,7 +333,7 @@ export default {
 
     /**
      * focus vào btn từ cha
-     * @author: TTANH (03/07/2023)
+     * @author: TTANH (03/07/2024)
      */
     focus() {
       try {
@@ -349,7 +349,7 @@ export default {
 
     /**
      * focusout vào btn từ cha
-     * @author: TTANH (03/07/2023)
+     * @author: TTANH (03/07/2024)
      */
     focusout() {
       try {
@@ -366,7 +366,7 @@ export default {
 
     /**
      * xử lý sự kiện khi keydown
-     * @author: TTANH (10/07/2023)
+     * @author: TTANH (10/07/2024)
      * @param {*} event
      */
     onKeyDownButton(event) {
@@ -492,7 +492,7 @@ export default {
 
     /**
      * tính background color tương ứng với: default, hover, disable
-     * @author: TTANH (26/06/2023)
+     * @author: TTANH (26/06/2024)
      */
     backgroundColorEvent() {
       if (this.type === "dropdown") {

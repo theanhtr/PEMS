@@ -3,7 +3,7 @@
     /// <summary>
     /// Class để format dữ liệu trả về khi filter
     /// </summary>
-    /// CreatedBy: TTANH (15/07/2023)
+    /// CreatedBy: TTANH (15/07/2024)
     public class BaseFilterResponse<TEntityDto>
     {
         #region Properties

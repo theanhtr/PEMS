@@ -5,7 +5,7 @@ namespace PEMS.Application
     /// <summary>
     /// Interface để controller gọi đến
     /// </summary>
-    /// Created by: TTANH (12/07/2023)
+    /// Created by: TTANH (12/07/2024)
     public interface IEmployeeService : ICodeService<Employee, EmployeeDto, EmployeeCreateDto, EmployeeUpdateDto>
     {
         /// <summary>
@@ -14,7 +14,7 @@ namespace PEMS.Application
         /// <param name="employeeExcels">Dữ liệu muốn kiểm tra</param>
         /// <param name="importMode">Loại nhập khẩu</param>
         /// <returns>Dữ liệu đã được kiểm tra</returns>
-        /// CreatedBy: TTANH (20/07/2023)
+        /// CreatedBy: TTANH (20/07/2024)
         Task<List<EmployeeExcelDto>> ExcelDataValidCheck(List<EmployeeExcelDto> employeeExcels, ImportMode importMode);
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace PEMS.Application
         /// <param name="pageSize">Số bản ghi trên trang</param>
         /// <param name="pageNumber">Vị trí trang</param>
         /// <returns>Dữ liệu đã được lọc</returns>
-        /// CreatedBy: TTANH (21/07/2023)
+        /// CreatedBy: TTANH (21/07/2024)
         EmployeeExcelFilterResponse FilterExcelData(List<EmployeeExcelDto> employeesExcel, FilterExcelDataValidateType filterExcelDataValidateType, int pageSize, int pageNumber);
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace PEMS.Application
         /// </summary>
         /// <param name="employeesExcel">dữ liệu trong file excel</param>
         /// <returns>số hàng được thêm</returns>
-        /// CreatedBy: TTANH (21/07/2023)
+        /// CreatedBy: TTANH (21/07/2024)
         Task<int> InsertExcelDataAsync(List<EmployeeExcelDto> employeesExcel);
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace PEMS.Application
         /// </summary>
         /// <param name="employeesExcel">dữ liệu trong file excel</param>
         /// <returns>số hàng ảnh hưởng</returns>
-        /// CreatedBy: TTANH (24/07/2023)
+        /// CreatedBy: TTANH (24/07/2024)
         Task<int> UpsertExcelDataAsync(List<EmployeeExcelDto> employeesExcel);
     }
 }

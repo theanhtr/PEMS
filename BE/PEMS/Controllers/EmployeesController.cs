@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PEMS.Application;
 
@@ -9,9 +10,10 @@ namespace PEMS.Controllers
     /// <summary>
     /// Controller của nhân viên
     /// </summary>
-    /// CreatedBy: TTANH (12/07/2023)
+    /// CreatedBy: TTANH (12/07/2024)
     [Route("api/v1/[controller]")]
     [ApiController]
+    
     public class EmployeesController : CodeController<Employee, EmployeeDto, EmployeeCreateDto, EmployeeUpdateDto>
     {
         #region Fields
@@ -43,7 +45,7 @@ namespace PEMS.Controllers
         /// </summary>
         /// <param name="searchText">Nội dung tìm kiếm</param>
         /// <returns>Download file</returns>
-        /// CreatedBy: TTANH (16/07/2023)
+        /// CreatedBy: TTANH (16/07/2024)
         [HttpGet("excel")]
         public async Task<IActionResult> ExportToExcelAsync([FromQuery] string? searchText)
         {
@@ -57,7 +59,7 @@ namespace PEMS.Controllers
         /// <summary>
         /// Tải mẫu cơ bản excel cơ bản của nhân viên
         /// </summary>
-        /// CreatedBy: TTANH (26/07/2023)
+        /// CreatedBy: TTANH (26/07/2024)
         [HttpGet("excel/template")]
         public async Task<IActionResult> DownloadBasicTemplate()
         {
@@ -79,7 +81,7 @@ namespace PEMS.Controllers
         /// <summary>
         /// Tải mẫu excel đầy đủ của nhân viên
         /// </summary>
-        /// CreatedBy: TTANH (26/07/2023)
+        /// CreatedBy: TTANH (26/07/2024)
         [HttpGet("excel/template-full")]
         public async Task<IActionResult> DownloadFullTemplate()
         {
@@ -101,7 +103,7 @@ namespace PEMS.Controllers
         /// <summary>
         /// Hàm import file excel
         /// </summary>
-        /// CreatedBy: TTANH (17/07/2023)
+        /// CreatedBy: TTANH (17/07/2024)
         [HttpPost("excel")]
         public async Task<IActionResult> ImportExcelAsync(IFormFile excelFile)
         {
@@ -147,7 +149,7 @@ namespace PEMS.Controllers
         ///     + Vị trí theo hàng của header (HeaderRowIndex)
         ///     + Phương thức nhập (ImportMode)
         /// </summary>
-        /// CreatedBy: TTANH (17/07/2023)
+        /// CreatedBy: TTANH (17/07/2024)
         [HttpPost("excel/add-setting")]
         public async Task<IActionResult> AddSettingExcelAsync([FromBody] ExcelImportSetting importExcelSetting)
         {
@@ -175,7 +177,7 @@ namespace PEMS.Controllers
         /// Hàm thêm các cài đặt cho việc ánh xạ từ header trong excel 
         /// thành tên cột trong server
         /// </summary>
-        /// CreatedBy: TTANH (19/07/2023)
+        /// CreatedBy: TTANH (19/07/2024)
         [HttpPost("excel/header-map-column")]
         public async Task<IActionResult> HeaderMapColumnAsync([FromBody] List<ExcelHeaderMapColumn> excelHeadersMapColumns)
         {
@@ -211,7 +213,7 @@ namespace PEMS.Controllers
         /// <param name="filterExcelDataValidateType">Loại kiểm tra: hợp lệ, không hợp lệ, tất cả</param>
         /// <param name="pageSize">Số bản ghi trên 1 trang</param>
         /// <param name="pageNumber">Thứ tự bao nhiêu</param>
-        /// CreatedBy: TTANH (24/07/2023)
+        /// CreatedBy: TTANH (24/07/2024)
         [HttpGet("excel/check-data-filter")]
         public async Task<IActionResult> CheckDataFilterAsync([FromQuery] FilterExcelDataValidateType filterExcelDataValidateType, [FromQuery] int pageSize, [FromQuery] int pageNumber)
         {
@@ -237,7 +239,7 @@ namespace PEMS.Controllers
         /// <summary>
         /// Api xác nhận import dữ liệu từ file
         /// </summary>
-        /// CreatedBy: TTANH (24/07/2023)
+        /// CreatedBy: TTANH (24/07/2024)
         [HttpPost("excel/confirm-import-excel-file")]
         public async Task<IActionResult> ConfirmImportExcelFile()
         {

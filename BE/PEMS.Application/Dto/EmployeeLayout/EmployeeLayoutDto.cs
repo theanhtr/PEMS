@@ -129,7 +129,7 @@ namespace PEMS.Application
         /// <summary>
         /// Lấy ra tên cột trong server
         /// </summary>
-        /// CreatedBy: TTANH (02/08/2023)
+        /// CreatedBy: TTANH (02/08/2024)
         public string GetServerColumnName()
         {
             return ServerColumnName;
@@ -138,7 +138,7 @@ namespace PEMS.Application
         /// <summary>
         /// Lấy ra tên cột hiển thị của người dùng bằng tiếng anh
         /// </summary>
-        /// CreatedBy: TTANH (06/08/2023)
+        /// CreatedBy: TTANH (06/08/2024)
         public string GetClientColumnName(string langCode)
         {
             if (langCode.Contains("vi"))

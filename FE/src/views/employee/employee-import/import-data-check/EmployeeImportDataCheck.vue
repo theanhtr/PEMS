@@ -120,7 +120,7 @@ export default {
   methods: {
     /**
      * Đếm số bản ghi hợp lệ và không hợp lệ
-     * @author: TTANH (25/07/2023)
+     * @author: TTANH (25/07/2024)
      */
     async countRecordValidate() {
       const res = await EmployeeService.checkDataExcelFilter({
@@ -154,7 +154,7 @@ export default {
 
     /**
      * thực hiện get dữ liệu trong file excel
-     * @author: TTANH (25/07/2023)
+     * @author: TTANH (25/07/2024)
      */
     async getEmployeesValidate() {
       try {
@@ -198,7 +198,7 @@ export default {
 
     /**
      * cập nhật lại employees mới
-     * @author: TTANH (03/07/2023)
+     * @author: TTANH (03/07/2024)
      */
     reloadData() {
       try {
@@ -214,7 +214,7 @@ export default {
 
     /**
      * Api xác nhận import dữ liệu từ file
-     * @author: TTANH (26/07/2023)
+     * @author: TTANH (26/07/2024)
      */
     async confirmImportExcelFile() {
       try {

@@ -3,7 +3,7 @@
     /// <summary>
     /// Exception đại diện cho lỗi nhập liệu người dùng
     /// </summary>
-    /// Created By: TTANH (12/07/2023)
+    /// Created By: TTANH (12/07/2024)
     public class ValidateException : Exception
     {
         #region Property
