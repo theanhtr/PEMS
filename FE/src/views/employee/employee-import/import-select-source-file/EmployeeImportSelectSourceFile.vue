@@ -219,7 +219,7 @@ export default {
   methods: {
     /**
      * kiểm tra file là đuôi xlsx và size <= 2mb
-     * @author: TTANH (23/07/2023)
+     * @author: TTANH (23/07/2024)
      * @param {File} file file muốn kiểm tra
      */
     fileValidate(file) {
@@ -268,7 +268,7 @@ export default {
 
     /**
      * kiểm tra sheet được chọn và số thứ tự dòng tiêu đề
-     * @author: TTANH (23/07/2023)
+     * @author: TTANH (23/07/2024)
      */
     settingValidate() {
       try {
@@ -300,7 +300,7 @@ export default {
 
     /**
      * hàm xử lý khi người dùng thay đổi file thêm
-     * @author: TTANH (23/07/2023)
+     * @author: TTANH (23/07/2024)
      */
     async onInsertFile() {
       try {
@@ -349,7 +349,7 @@ export default {
 
     /**
      * hàm gọi api để thêm các cài đặt cho file excel
-     * @author: TTANH (23/07/2023)
+     * @author: TTANH (23/07/2024)
      */
     async addExcelSetting() {
       try {
@@ -409,7 +409,7 @@ export default {
 
     /**
      * Tải mẫu cơ bản excel cơ bản của nhân viên
-     * @author: TTANH (26/07/2023)
+     * @author: TTANH (26/07/2024)
      */
     async downloadBasicTemplate() {
       this.isLoading = true;
@@ -421,7 +421,7 @@ export default {
 
     /**
      * Tải mẫu excel đầy đủ của nhân viên
-     * @author: TTANH (26/07/2023)
+     * @author: TTANH (26/07/2024)
      */
     async downloadFullTemplate() {
       this.isLoading = true;
@@ -433,7 +433,7 @@ export default {
 
     /**
      * xử lý khi ấn ẩn dialog thông báo lỗi
-     * @author: TTANH (23/07/2023)
+     * @author: TTANH (23/07/2024)
      */
     closeBtnDialogErrorClick() {
       try {
@@ -472,7 +472,7 @@ export default {
 
     /**
      * format lại sheet để truyền vào combobox
-     * @author: TTANH (23/07/2023)
+     * @author: TTANH (23/07/2024)
      */
     sheetsFormat() {
       let sheetsFormated = [];

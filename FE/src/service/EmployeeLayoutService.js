@@ -7,7 +7,7 @@ class EmployeeLayoutServiceClass extends BaseService {
 
   /**
    * hàm cập nhật nhiều bản ghi layout nhân viên một lúc
-   * @author: TTANH (03/08/2023)
+   * @author: TTANH (03/08/2024)
    * @param {Array} employeeLayoutUpdates mảng chứa những dữ liệu cần update
    */
   async updateMultiple(employeeLayoutUpdates) {
@@ -20,7 +20,7 @@ class EmployeeLayoutServiceClass extends BaseService {
 
   /**
    * Thực hiện lấy lại mẫu mặc định của layout
-   * @author: TTANH (04/08/2023)
+   * @author: TTANH (04/08/2024)
    */
   async setDefaultLayout() {
     const res = await this.baseAxios.post(this.endpoint("/set-default"));

@@ -84,7 +84,7 @@ export default {
   methods: {
     /**
      * xử lý sự kiện khi keydown khi đang focus vào "Hủy"
-     * @author: TTANH (22/07/2023)
+     * @author: TTANH (22/07/2024)
      * @param {*} event
      */
     onKeyDownCancelButton(event) {
@@ -104,7 +104,7 @@ export default {
 
     /**
      * xử lý sự kiện khi keydown khi đang focus vào "Có"
-     * @author: TTANH (22/07/2023)
+     * @author: TTANH (22/07/2024)
      * @param {*} event
      */
     onKeyDownYesButton(event) {

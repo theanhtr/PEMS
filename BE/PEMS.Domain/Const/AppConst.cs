@@ -3,7 +3,7 @@
     /// <summary>
     /// Các hằng số dùng chung cho app
     /// </summary>
-    /// CreatedBy: TTANH (22/07/2023)
+    /// CreatedBy: TTANH (22/07/2024)
     public static class AppConst
     {
         /// <summary>

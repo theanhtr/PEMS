@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     /**
-     * @author: TTANH (11/07/2023)
+     * @author: TTANH (11/07/2024)
      * hàm focus vào input từ cha
      */
     focus() {

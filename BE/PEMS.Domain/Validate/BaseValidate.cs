@@ -5,7 +5,7 @@ namespace PEMS.Domain
     /// <summary>
     /// Class dùng để validate.
     /// </summary>
-    /// CreatedBy: TTANH (14/07/2023)
+    /// CreatedBy: TTANH (14/07/2024)
     public abstract class BaseValidate<TEntity> : IBaseValidate<TEntity>
     {
         #region Fields
@@ -26,7 +26,7 @@ namespace PEMS.Domain
         /// <param name="code">Code muốn validate</param>
         /// <returns>true nếu không có lỗi</returns>
         /// <exception cref="ValidateException">Nếu có lỗi thì sẽ trả exception</exception>
-        /// CreatedBy: TTANH (14/07/2023)
+        /// CreatedBy: TTANH (14/07/2024)
         public async Task<bool> CodeValidate(string code)
         {
             var regexCode = new Regex(Resource.Code_Regex);

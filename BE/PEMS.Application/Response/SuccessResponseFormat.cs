@@ -6,7 +6,7 @@ namespace PEMS.Application
     /// Format lại response thành công trong 1 số th đặc biệt
     ///     + Excel
     /// </summary>
-    /// CreatedBy: TTANH (19/07/2023)
+    /// CreatedBy: TTANH (19/07/2024)
     public class SuccessResponseFormat
     {
         #region Fields

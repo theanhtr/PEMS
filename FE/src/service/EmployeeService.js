@@ -7,7 +7,7 @@ class EmployeeServiceClass extends BaseService {
 
   /**
    * lấy 1 code mới từ server
-   * @author: TTANH (01/07/2023)
+   * @author: TTANH (01/07/2024)
    */
   async getNewCode() {
     const res = await this.baseAxios.get(this.endpoint("/new-code"));
@@ -16,7 +16,7 @@ class EmployeeServiceClass extends BaseService {
 
   /**
    * lấy dữ liệu bằng phân trang và filter
-   * @author: TTANH (03/07/2023)
+   * @author: TTANH (03/07/2024)
    */
   async filter(dataFilter) {
     const res = await this.baseAxios.get(this.endpoint("/filter"), {
@@ -28,7 +28,7 @@ class EmployeeServiceClass extends BaseService {
 
   /**
    * xuất file excel
-   * @author: TTANH (16/07/2023)
+   * @author: TTANH (16/07/2024)
    */
   async getExcel(data) {
     const res = await this.baseAxios.get(this.endpoint("/excel"), {
@@ -41,7 +41,7 @@ class EmployeeServiceClass extends BaseService {
 
   /**
    * Tải mẫu cơ bản excel cơ bản của nhân viên
-   * @author: TTANH (26/07/2023)
+   * @author: TTANH (26/07/2024)
    */
   async downloadBasicTemplate() {
     const res = await this.baseAxios.get(this.endpoint("/excel/template"), {
@@ -53,7 +53,7 @@ class EmployeeServiceClass extends BaseService {
 
   /**
    * Tải mẫu excel đầy đủ của nhân viên
-   * @author: TTANH (26/07/2023)
+   * @author: TTANH (26/07/2024)
    */
   async downloadFullTemplate() {
     const res = await this.baseAxios.get(
@@ -68,7 +68,7 @@ class EmployeeServiceClass extends BaseService {
 
   /**
    * nhập file excel để server xử lý
-   * @author: TTANH (23/07/2023)
+   * @author: TTANH (23/07/2024)
    * @param {File} file file excel gửi lên server
    */
   async postExcel(file) {
@@ -86,7 +86,7 @@ class EmployeeServiceClass extends BaseService {
 
   /**
    * hàm gọi api để thêm các cài đặt cho file excel
-   * @author: TTANH (23/07/2023)
+   * @author: TTANH (23/07/2024)
    * @param {Object} data
    */
   async addSettingExcel(data) {
@@ -100,7 +100,7 @@ class EmployeeServiceClass extends BaseService {
 
   /**
    * Hàm thêm các cài đặt cho việc ánh xạ từ header trong excel
-   * @author: TTANH (24/07/2023)
+   * @author: TTANH (24/07/2024)
    * @param {*} data
    */
   async headerMapColumnExcel(data) {
@@ -115,7 +115,7 @@ class EmployeeServiceClass extends BaseService {
   /**
    * Api kiểm tra dữ liệu trong file excel
    * @param {object} dataFilter lấy dữ liệu bằng phân trang và loại lọc
-   * @author: TTANH (24/07/2023)
+   * @author: TTANH (24/07/2024)
    */
   async checkDataExcelFilter(dataFilter) {
     const res = await this.baseAxios.get(
@@ -130,7 +130,7 @@ class EmployeeServiceClass extends BaseService {
 
   /**
    * Api xác nhận import dữ liệu từ file
-   * @author: TTANH (26/07/2023)
+   * @author: TTANH (26/07/2024)
    */
   async confirmImportExcelFile() {
     const res = await this.baseAxios.post(

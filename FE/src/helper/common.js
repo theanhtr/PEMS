@@ -77,7 +77,7 @@ export const findIndexByAttributeInclude = function (
 
 /**
  * sắp xếp array theo thuộc tính bằng merge sort
- * @author: TTANH (04/07/2023)
+ * @author: TTANH (04/07/2024)
  * @param {*} arrayIn array muốn sắp xếp
  * @param {*} attr thuộc tính muốn so sánh
  * @param {boolean} isFromHighToLow xác định xem có sắp xếp theo chiều từ cao đến thấp không
@@ -93,7 +93,7 @@ export const sortArrayByAttribute = function (
 
 /**
  * thuật toán merge sort, tách array ra làm đôi
- * @author: TTANH (04/07/2023)
+ * @author: TTANH (04/07/2024)
  * @param {*} arr array muốn sắp xếp
  * @param {*} attr thuộc tính muốn so sánh
  * @param {boolean} isFromHighToLow xác định xem có sắp xếp theo chiều từ cao đến thấp không
@@ -124,7 +124,7 @@ const mergeSortByAttribute = function (arr, attr, isFromHighToLow) {
 
 /**
  * merge array left, right vào và sắp xếp
- * @author: TTANH (04/07/2023)
+ * @author: TTANH (04/07/2024)
  * @param {*} left mảng bên trái
  * @param {*} right mảng bên phải
  * @param {*} attr thuộc tính muốn so sánh
@@ -167,7 +167,7 @@ const mergeUnsortedArrsByAttribute = function (
 
 /**
  * hàm tạo ra uuid
- * @author: TTANH (01/07/2023)
+ * @author: TTANH (01/07/2024)
  * @returns 1 uuid mới
  */
 export const generateUuid = function () {
@@ -187,7 +187,7 @@ export const generateUuid = function () {
  * kiểm tra xem một đối tượng có rỗng hay không
  * @param {object} object đối tượng cần kiểm tra
  * @returns true: rỗng, false: không rỗng
- * @author: TTANH (29/07/2023)
+ * @author: TTANH (29/07/2024)
  */
 export const isObjectEmpty = function (object) {
   return Object.keys(object).length === 0;
@@ -195,7 +195,7 @@ export const isObjectEmpty = function (object) {
 
 /**
  * so sánh 2 object
- * @author: TTANH (07/08/2023)
+ * @author: TTANH (07/08/2024)
  * @param {object} object1
  * @param {object} object2
  * @returns true nếu 2 object khác nhau

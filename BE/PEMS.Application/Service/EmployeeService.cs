@@ -9,7 +9,7 @@ namespace PEMS.Application
     /// <summary>
     /// Class triển khai employee service được gọi từ controller
     /// </summary>
-    /// Created by: TTANH (12/07/2023)
+    /// Created by: TTANH (12/07/2024)
     public class EmployeeService : CodeService<Employee, EmployeeDto, EmployeeCreateDto, EmployeeUpdateDto>, IEmployeeService
     {
         #region Fields
@@ -36,7 +36,7 @@ namespace PEMS.Application
         /// <param name="departmentCode">mã code của phòng ban</param>
         /// <returns>phòng ban</returns>
         /// <exception cref="ValidateException">Lỗi validate</exception>
-        /// CreatedBy: TTANH (20/07/2023)
+        /// CreatedBy: TTANH (20/07/2024)
         public async Task<Department> DepartmentValidate(string departmentCode)
         {
             var department = await _departmentRepository.FindByCodeAsync(departmentCode);
@@ -53,7 +53,7 @@ namespace PEMS.Application
         /// <summary>
         /// Ghi đè hàm thêm xử lý khi thêm bản ghi ở code base
         /// </summary>
-        /// CreatedBy: TTANH (21/07/2023)
+        /// CreatedBy: TTANH (21/07/2024)
         public override async Task CodeServiceMoreProcessInsertAsync(EmployeeCreateDto employeeCreateDto)
         {
             var department = await DepartmentValidate(employeeCreateDto.DepartmentCode);
@@ -65,7 +65,7 @@ namespace PEMS.Application
         /// <summary>
         /// Ghi đè hàm thêm xử lý khi cập nhật bản ghi ở code base
         /// </summary>
-        /// CreatedBy: TTANH (21/07/2023)
+        /// CreatedBy: TTANH (21/07/2024)
         public override async Task CodeServiceMoreProcessUpdateAsync(Guid id, EmployeeUpdateDto employeeUpdateDto)
         {
             if (!string.IsNullOrEmpty(employeeUpdateDto.DepartmentCode))
@@ -82,7 +82,7 @@ namespace PEMS.Application
         /// </summary>
         /// <param name="employeeExcel">nhân viên trong file excel cần kiểm tra</param>
         /// <param name="employeeLayouts">mảng lưu trữ thông tin cột</param>
-        /// CreatedBy: TTANH (01/08/2023)
+        /// CreatedBy: TTANH (01/08/2024)
         public void ValidateLengthExcel(EmployeeExcelDto employeeExcel, List<EmployeeLayoutDto> employeeLayouts)
         {
             foreach (var property in employeeExcel.GetType().GetProperties())
@@ -121,7 +121,7 @@ namespace PEMS.Application
         /// <param name="employeeExcels">Dữ liệu muốn kiểm tra</param>
         /// <param name="importMode">Loại nhập khẩu</param>
         /// <returns>Dữ liệu đã được kiểm tra</returns>
-        /// CreatedBy: TTANH (20/07/2023)
+        /// CreatedBy: TTANH (20/07/2024)
         public async Task<List<EmployeeExcelDto>> ExcelDataValidCheck(List<EmployeeExcelDto> employeeExcels, ImportMode importMode)
         {
             var employeeCodeExists = await _employeeRepository.GetAllWithOneColumnAsync<string>("EmployeeCode");
@@ -216,7 +216,7 @@ namespace PEMS.Application
         /// <param name="pageSize">Số bản ghi trên trang</param>
         /// <param name="pageNumber">Vị trí trang</param>
         /// <returns>Dữ liệu đã được lọc</returns>
-        /// CreatedBy: TTANH (24/07/2023)
+        /// CreatedBy: TTANH (24/07/2024)
         public EmployeeExcelFilterResponse FilterExcelData(List<EmployeeExcelDto> employeesExcel, FilterExcelDataValidateType filterExcelDataValidateType, int pageSize, int pageNumber)
         {
             if (pageSize < 0) { pageSize = 999999; }
@@ -256,7 +256,7 @@ namespace PEMS.Application
         /// Thêm thông tin phòng ban cho một chuỗi nhân viên
         /// </summary>
         /// <param name="employees">chuỗi nhân viên</param>
-        /// CreatedBy: TTANH (27/07/2023)
+        /// CreatedBy: TTANH (27/07/2024)
         public async Task AddDepartmentInforToEmployees(List<Employee> employees)
         {
             // dùng để lấy tất cả phòng ban
@@ -279,7 +279,7 @@ namespace PEMS.Application
         /// Thêm thông tin EmployeeId cho một chuỗi nhân viên
         /// </summary>
         /// <param name="employees">chuỗi nhân viên</param>
-        /// CreatedBy: TTANH (27/07/2023)
+        /// CreatedBy: TTANH (27/07/2024)
         public void AddEmployeeIdToEmployees(List<Employee> employees)
         {
             foreach (Employee employee in employees)
@@ -292,7 +292,7 @@ namespace PEMS.Application
         /// Thêm thông tin tạo cho một chuỗi nhân viên
         /// </summary>
         /// <param name="employees">chuỗi nhân viên</param>
-        /// CreatedBy: TTANH (27/07/2023)
+        /// CreatedBy: TTANH (27/07/2024)
         public void AddCreatedInforToEmployees(List<Employee> employees)
         {
             foreach (Employee employee in employees)
@@ -306,7 +306,7 @@ namespace PEMS.Application
         /// Thêm thông tin sửa cho một chuỗi nhân viên
         /// </summary>
         /// <param name="employees">chuỗi nhân viên</param>
-        /// CreatedBy: TTANH (27/07/2023)
+        /// CreatedBy: TTANH (27/07/2024)
         public void AddModifiedInforToEmployees(List<Employee> employees)
         {
             foreach (Employee employee in employees)
@@ -329,7 +329,7 @@ namespace PEMS.Application
         /// </param>
         /// <returns>Đã được chuyển thành chuỗi với phần tử ngăn cách</returns>
         /// <example>IN: { a: 1, b: 2, c: 3} -> "'1','2','3'"</example>
-        /// CreatedBy: TTANH (28/07/2023)
+        /// CreatedBy: TTANH (28/07/2024)
         public string ConvertEmployeeToStringForQuery(Employee employee, ImportMode importMode)
         {
             var strConvert = "";
@@ -400,7 +400,7 @@ namespace PEMS.Application
         /// Mảng phải lớn hơn 0
         /// </summary>
         /// <param name="employees">chuỗi nhân viên</param>
-        /// CreatedBy: TTANH (27/07/2023)
+        /// CreatedBy: TTANH (27/07/2024)
         public string ConvertEmployeesToStringForQuerySQL(List<Employee> employees, ImportMode importMode)
         {
             var employeesStrConvert = "";
@@ -423,7 +423,7 @@ namespace PEMS.Application
         /// </summary>
         /// <param name="employeesCreateValid">Dữ liệu của các bản ghi thêm mới "đã hợp lệ"</param>
         /// <returns>Số hàng bị ảnh hưởng</returns>
-        /// Created by: TTANH (27/07/2023)
+        /// Created by: TTANH (27/07/2024)
         public async Task<int> InsertMultipleValidAsync(List<EmployeeCreateDto> employeesCreateValid)
         {
             if (employeesCreateValid.Count() > 0)
@@ -459,7 +459,7 @@ namespace PEMS.Application
         /// </summary>
         /// <param name="employeesExcel">dữ liệu trong file excel</param>
         /// <returns>số hàng được thêm</returns>
-        /// CreatedBy: TTANH (21/07/2023)
+        /// CreatedBy: TTANH (21/07/2024)
         public async Task<int> InsertExcelDataAsync(List<EmployeeExcelDto> employeesExcel)
         {
             var employeesExcelValid = employeesExcel.Where(x => x.ValidCheck == RecordCheck.Valid);
@@ -476,7 +476,7 @@ namespace PEMS.Application
         /// </summary>
         /// <param name="employeesUpdateValid">Dữ liệu của các bản ghi cập nhật "đã hợp lệ"</param>
         /// <returns>Số hàng bị ảnh hưởng</returns>
-        /// Created by: TTANH (27/07/2023)
+        /// Created by: TTANH (27/07/2024)
         public async Task<int> UpdateMultipleValidAsync(List<EmployeeUpdateDto> employeesUpdateValid)
         {
             if (employeesUpdateValid.Count() > 0)
@@ -509,7 +509,7 @@ namespace PEMS.Application
         /// </summary>
         /// <param name="employeesExcel">dữ liệu trong file excel</param>
         /// <returns>số hàng ảnh hưởng</returns>
-        /// CreatedBy: TTANH (24/07/2023)
+        /// CreatedBy: TTANH (24/07/2024)
         public async Task<int> UpsertExcelDataAsync(List<EmployeeExcelDto> employeesExcel)
         {
             var employeesCreateValid = employeesExcel.Where(x => x.ValidCheck == RecordCheck.Valid && x.ImportMode == ImportMode.Add);

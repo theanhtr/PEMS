@@ -24,7 +24,7 @@ namespace PEMS.Infrastructure
         /// </summary>
         /// <param name="code">Mã code của bản ghi</param>
         /// <returns>Bản ghi, throw exception nếu không tìm thấy</returns>
-        /// Created by: TTANH (18/07/2023)
+        /// Created by: TTANH (18/07/2024)
         public async Task<TEntity> GetByCodeAsync(string code)
         {
             var entity = await FindByCodeAsync(code);
@@ -42,7 +42,7 @@ namespace PEMS.Infrastructure
         /// </summary>
         /// <param name="code">Mã code của bản ghi</param>
         /// <returns>Bản ghi, null nếu không tìm thấy</returns>
-        /// Created by: TTANH (18/07/2023)
+        /// Created by: TTANH (18/07/2024)
         public async Task<TEntity> FindByCodeAsync(string code)
         {
             var procedure = $"Proc_AllTable_GetByCode";
@@ -61,7 +61,7 @@ namespace PEMS.Infrastructure
         /// Hàm lấy các bản ghi theo chuỗi code
         /// </summary>
         /// <param name="codes">chuỗi code</param>
-        /// Created by: TTANH (27/07/2023)
+        /// Created by: TTANH (27/07/2024)
         public async Task<List<TEntity>> GetListByCodesAsync(List<Guid> codes)
         {
             var procedure = "Proc_AllTable_GetListByColumnValues";
@@ -82,7 +82,7 @@ namespace PEMS.Infrastructure
         /// Hàm lấy một mã code mới không trùng
         /// </summary>
         /// <returns>Mã code mới</returns>
-        /// Created by: TTANH (18/07/2023)
+        /// Created by: TTANH (18/07/2024)
         public async Task<string> GetNewCodeAsync()
         {
             var procedure = $"Proc_{tableName}_NewCode";

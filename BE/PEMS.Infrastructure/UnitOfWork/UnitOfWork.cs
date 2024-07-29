@@ -23,19 +23,19 @@ namespace PEMS.Infrastructure
         /// <summary>
         /// Lấy giá trị Connection
         /// </summary>
-        /// CreatedBy: TTANH (18/07/2023)
+        /// CreatedBy: TTANH (18/07/2024)
         public DbConnection Connection => _connection;
 
         /// <summary>
         /// Lấy giá trị Transaction
         /// </summary>
-        /// CreatedBy: TTANH (18/07/2023)
+        /// CreatedBy: TTANH (18/07/2024)
         public DbTransaction? Transaction => _transaction;
 
         /// <summary>
         /// Bắt đầu transaction
         /// </summary>
-        /// CreatedBy: TTANH (18/07/2023)
+        /// CreatedBy: TTANH (18/07/2024)
         public void BeginTransaction()
         {
             if (_connection.State != ConnectionState.Open)
@@ -49,7 +49,7 @@ namespace PEMS.Infrastructure
         /// <summary>
         /// Bắt đầu transaction bất đồng bộ
         /// </summary>
-        /// CreatedBy: TTANH (18/07/2023)
+        /// CreatedBy: TTANH (18/07/2024)
         public async Task BeginTransactionAsync()
         {
             if (_connection.State != ConnectionState.Open)
@@ -63,7 +63,7 @@ namespace PEMS.Infrastructure
         /// <summary>
         /// Xác nhận transaction
         /// </summary>
-        /// CreatedBy: TTANH (18/07/2023)
+        /// CreatedBy: TTANH (18/07/2024)
         public void Commit()
         {
             _transaction?.Commit();
@@ -73,7 +73,7 @@ namespace PEMS.Infrastructure
         /// <summary>
         /// Xác nhận transaction bất đồng bộ
         /// </summary>
-        /// CreatedBy: TTANH (18/07/2023)
+        /// CreatedBy: TTANH (18/07/2024)
         public async Task CommitAsync()
         {
             if (_transaction != null)
@@ -86,7 +86,7 @@ namespace PEMS.Infrastructure
         /// <summary>
         /// Giải phóng transaction và đóng connection
         /// </summary>
-        /// CreatedBy: TTANH (18/07/2023)
+        /// CreatedBy: TTANH (18/07/2024)
         public void Dispose()
         {
             _transaction?.Dispose();
@@ -101,7 +101,7 @@ namespace PEMS.Infrastructure
         /// <summary>
         /// Giải phóng transaction và đóng connection bất đồng bộ
         /// </summary>
-        /// CreatedBy: TTANH (18/07/2023)
+        /// CreatedBy: TTANH (18/07/2024)
         public async ValueTask DisposeAsync()
         {
             if (_transaction != null)
@@ -119,7 +119,7 @@ namespace PEMS.Infrastructure
         /// <summary>
         /// Quay trở lại từ điểm bắt đầu transaction
         /// </summary>
-        /// CreatedBy: TTANH (18/07/2023)
+        /// CreatedBy: TTANH (18/07/2024)
         public void Rollback()
         {
             _transaction?.Rollback();
@@ -129,7 +129,7 @@ namespace PEMS.Infrastructure
         /// <summary>
         /// Quay trở lại từ điểm bắt đầu transaction bất đồng bộ
         /// </summary>
-        /// CreatedBy: TTANH (18/07/2023)
+        /// CreatedBy: TTANH (18/07/2024)
         public async Task RollbackAsync()
         {
             if (_transaction != null )

@@ -10,7 +10,7 @@ namespace PEMS.Infrastructure
     /// <summary>
     /// Base xử lý việc đọc với id và filter
     /// </summary>
-    /// CreatedBy: TTANH (18/07/2023)
+    /// CreatedBy: TTANH (18/07/2024)
     public abstract class ReadOnlyRepository<TEntity> : IReadOnlyRepository<TEntity>
     {
         #region Fields
@@ -32,7 +32,7 @@ namespace PEMS.Infrastructure
         /// Hàm đếm số bản ghi trong db
         /// </summary>
         /// <returns>Số bản ghi trong db</returns>
-        /// Created by: TTANH (18/07/2023)
+        /// Created by: TTANH (18/07/2024)
         public async Task<int> CountAsync()
         {
             var procedure = $"Proc_AllTable_Count";
@@ -49,7 +49,7 @@ namespace PEMS.Infrastructure
         /// Hàm lấy tất cả bản ghi
         /// </summary>
         /// <returns>Mảng chứa các bản ghi</returns>
-        /// Created by: TTANH (18/07/2023)
+        /// Created by: TTANH (18/07/2024)
         public async Task<IEnumerable<TEntity>?> GetAsync()
         {
             var procedure = $"Proc_AllTable_GetAll";
@@ -67,7 +67,7 @@ namespace PEMS.Infrastructure
         /// </summary>
         /// <param name="ids">List id</param>
         /// <returns>Các bản ghi, throw exception nếu không tìm thấy</returns>
-        /// Created by: TTANH (24/07/2023)
+        /// Created by: TTANH (24/07/2024)
         public async Task<List<TEntity>> GetListByIdsAsync(List<Guid> ids)
         {
             var procedure = "Proc_AllTable_GetListByColumnValues";
@@ -89,7 +89,7 @@ namespace PEMS.Infrastructure
         /// </summary>
         /// <param name="columnName">Tên cột muốn lấy</param>
         /// <returns>Mảng chứa các bản ghi</returns>
-        /// Created by: TTANH (21/07/2023)
+        /// Created by: TTANH (21/07/2024)
         public async Task<IEnumerable<DataType>?> GetAllWithOneColumnAsync<DataType>(string columnName)
         {
             var procedure = $"Proc_AllTable_GetAllByColumnName";
@@ -108,7 +108,7 @@ namespace PEMS.Infrastructure
         /// </summary>
         /// <param name="id">Id của bản ghi</param>
         /// <returns>Bản ghi, throw exception nếu không tìm thấy</returns>
-        /// Created by: TTANH (18/07/2023)
+        /// Created by: TTANH (18/07/2024)
         public async Task<TEntity> GetByIdAsync(Guid id)
         {
             var entity = await FindAsync(id);
@@ -126,7 +126,7 @@ namespace PEMS.Infrastructure
         /// </summary>
         /// <param name="id">Id của bản ghi</param>
         /// <returns>Bản ghi, null nếu không tìm thấy</returns>
-        /// Created by: TTANH (18/07/2023)
+        /// Created by: TTANH (18/07/2024)
         public async Task<TEntity?> FindAsync(Guid id)
         {
             var procedure = $"Proc_AllTable_GetById";
@@ -148,7 +148,7 @@ namespace PEMS.Infrastructure
         /// <param name="pageNumber">Thứ tự trang bao nhiêu</param>
         /// <param name="searchText">Chuỗi tìm kiếm</param>
         /// <returns>Các bản lọc theo các tiêu chí</returns>
-        /// Created by: TTANH (18/07/2023)
+        /// Created by: TTANH (18/07/2024)
         public async Task<IEnumerable<TEntity>> FilterAsync(int? pageSize, int? pageNumber, string? searchText)
         {
             var procedure = $"Proc_{tableName}_Filter";

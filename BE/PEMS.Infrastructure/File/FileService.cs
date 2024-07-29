@@ -11,7 +11,7 @@ namespace PEMS.Infrastructure
         /// <param name="folderPath">đường dẫn tới folder</param>
         /// <param name="fileName">tên file</param>
         /// <returns>Đường dẫn tới file</returns>
-        /// CreatedBy: TTANH (19/07/2023)
+        /// CreatedBy: TTANH (19/07/2024)
         public string GetFilePath(string folderPath, string fileName)
         {
             var filePath = Path.Combine(folderPath, fileName);
@@ -31,7 +31,7 @@ namespace PEMS.Infrastructure
         /// <param name="fileName">tên của file</param>
         /// <param name="fileName">dữ liệu của file</param>
         /// <returns>Trả ra đường dẫn đến file</returns>
-        /// CreatedBy: TTANH (19/07/2023)
+        /// CreatedBy: TTANH (19/07/2024)
         public string CreateFile(string folderPath, string fileName, IFormFile file)
         {
             var filePath = GetFilePath(folderPath, fileName);
@@ -49,7 +49,7 @@ namespace PEMS.Infrastructure
         /// Hàm xóa file
         /// </summary>
         /// <param name="filePath">đường dẫn tới file</param>
-        /// CreatedBy: TTANH (19/07/2023)
+        /// CreatedBy: TTANH (19/07/2024)
         public void DeleteFile(string filePath)
         {
             if (File.Exists(filePath))

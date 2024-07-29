@@ -35,7 +35,7 @@ export default {
   methods: {
     /**
      * Hàm để xử lý khi ấn "Đóng"
-     * @author: TTANH (23/07/2023)
+     * @author: TTANH (23/07/2024)
      */
     closeImport() {
       this.$router.push("/");

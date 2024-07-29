@@ -9,6 +9,9 @@ using Hangfire.MySql;
 using System.Reflection;
 using Microsoft.Extensions.Hosting;
 using System.Globalization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -102,6 +105,30 @@ var supportedCultures = new[]
     new CultureInfo("vi"),
 };
 
+
+// thêm xác thực bằng jwt
+var jwtKey = builder.Configuration.GetSection("Jwt:Key").Get<string>();
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = builder.Configuration.GetSection("Jwt:Issuer").Get<string>(),
+        ValidAudience = builder.Configuration.GetSection("Jwt:Audience").Get<string>(),
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
+    };
+});
+
+
 localizationOptions.SupportedCultures = supportedCultures;
 localizationOptions.SupportedUICultures = supportedCultures;
 localizationOptions.SetDefaultCulture("en");
@@ -128,9 +155,17 @@ builder.Services.AddScoped<IEmployeeLayoutService, EmployeeLayoutService>();
 builder.Services.AddScoped<IEmployeeLayoutValidate, EmployeeLayoutValidate>();
 builder.Services.AddScoped<IEmployeeLayoutRepository, EmployeeLayoutRepository>();
 
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+
 builder.Services.AddScoped<IExcelWorker<EmployeeDto, EmployeeExcelDto, EmployeeLayoutDto>, EmployeeExcelWorker>();
 
 builder.Services.AddScoped<IFileService, FileService>();
+
+builder.Services.AddScoped<IAuthService, AuthService>();
+
+builder.Services.AddSingleton<ITokenService, TokenService>();
 
 var app = builder.Build();
 
@@ -143,6 +178,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseSession();

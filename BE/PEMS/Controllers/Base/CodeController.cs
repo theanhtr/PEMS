@@ -6,7 +6,7 @@ namespace PEMS.Controllers
     /// <summary>
     /// Controller base gồm CRUD có code
     /// </summary>
-    /// CreatedBy: TTANH (18/07/2023)
+    /// CreatedBy: TTANH (18/07/2024)
     [ApiController]
     public class CodeController<TEntity, TEntityDto, TEntityCreateDto, TEntityUpdateDto> : BaseController<TEntity, TEntityDto, TEntityCreateDto, TEntityUpdateDto>
     {
@@ -27,7 +27,7 @@ namespace PEMS.Controllers
         /// </summary>
         /// <param name="code">mã code bản ghi</param>
         /// <returns>Bản ghi</returns>
-        /// CreatedBy: TTANH (18/07/2023)
+        /// CreatedBy: TTANH (18/07/2024)
         [HttpGet("code/{code}")]
         public async Task<IActionResult> GetByCodeAsync(string code)
         {
@@ -40,7 +40,7 @@ namespace PEMS.Controllers
         /// Hàm lấy một entity code mới không trùng
         /// </summary>
         /// <returns>Entity code mới</returns>
-        /// Created by: TTANH (18/07/2023)
+        /// Created by: TTANH (18/07/2024)
         [HttpGet("new-code")]
         public async Task<IActionResult> GetNewCodeAsync()
         {
@@ -54,7 +54,7 @@ namespace PEMS.Controllers
         /// </summary>
         /// <param name="entityCreateDto">dữ liệu bản ghi được thêm</param>
         /// <returns>Số hàng bị ảnh hưởng</returns>
-        /// CreatedBy: TTANH (18/07/2023)
+        /// CreatedBy: TTANH (18/07/2024)
         [HttpPost]
         public override async Task<IActionResult> InsertAsync([FromBody] TEntityCreateDto entityCreateDto)
         {
@@ -69,7 +69,7 @@ namespace PEMS.Controllers
         /// <param name="id">id của bản ghi</param>
         /// <param name="entityUpdateDto">dữ liệu update</param>
         /// <returns>Số hàng bị ảnh hưởng</returns>
-        /// CreatedBy: TTANH (18/07/2023)
+        /// CreatedBy: TTANH (18/07/2024)
         [HttpPut("{id}")]
         public override async Task<IActionResult> UpdateAsync(Guid id, [FromBody] TEntityUpdateDto entityUpdateDto)
         {

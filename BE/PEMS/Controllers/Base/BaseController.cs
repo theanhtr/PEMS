@@ -6,7 +6,7 @@ namespace PEMS.Controllers
     /// <summary>
     /// Controller base gồm CRUD với id
     /// </summary>
-    /// CreatedBy: TTANH (18/07/2023)
+    /// CreatedBy: TTANH (18/07/2024)
     [ApiController]
     public class BaseController<TEntity, TEntityDto, TEntityCreateDto, TEntityUpdateDto> : ReadOnlyController<TEntity, TEntityDto>
     {
@@ -27,7 +27,7 @@ namespace PEMS.Controllers
         /// </summary>
         /// <param name="entityCreateDto">dữ liệu bản ghi được thêm</param>
         /// <returns>Số hàng bị ảnh hưởng</returns>
-        /// CreatedBy: TTANH (15/07/2023)
+        /// CreatedBy: TTANH (15/07/2024)
         [HttpPost]
         public virtual async Task<IActionResult> InsertAsync([FromBody] TEntityCreateDto entityCreateDto)
         {
@@ -42,7 +42,7 @@ namespace PEMS.Controllers
         /// <param name="id">id của bản ghi</param>
         /// <param name="entityUpdateDto">dữ liệu update</param>
         /// <returns>Số hàng bị ảnh hưởng</returns>
-        /// CreatedBy: TTANH (15/07/2023)
+        /// CreatedBy: TTANH (15/07/2024)
         [HttpPut("{id}")]
         public virtual async Task<IActionResult> UpdateAsync(Guid id, [FromBody] TEntityUpdateDto entityUpdateDto)
         {
@@ -56,7 +56,7 @@ namespace PEMS.Controllers
         /// </summary>
         /// <param name="id">Id của bản ghi</param>
         /// <returns>Số hàng bị ảnh hưởng</returns>
-        /// Created by: TTANH (15/07/2023)
+        /// Created by: TTANH (15/07/2024)
         [HttpDelete("{id}")]
         public virtual async Task<IActionResult> DeleteAsync(Guid id)
         {
@@ -70,7 +70,7 @@ namespace PEMS.Controllers
         /// </summary>
         /// <param name="ids">List các id của bản ghi</param>
         /// <returns>Số bản ghi đã xóa</returns>
-        /// Created by: TTANH (17/07/2023)
+        /// Created by: TTANH (17/07/2024)
         [HttpDelete]
         public virtual async Task<IActionResult> DeleteMultipleAsync([FromBody] List<Guid> ids)
         {

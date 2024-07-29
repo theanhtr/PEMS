@@ -76,7 +76,7 @@ export default {
   methods: {
     /**
      * Hàm validate các trường bắt buộc phải ánh xạ
-     * @author: TTANH (24/07/2023)
+     * @author: TTANH (24/07/2024)
      */
     headerIndexValidate() {
       for (var employeeHeaderInfo of this.employeeHeadersInfo) {
@@ -100,7 +100,7 @@ export default {
 
     /**
      * Đóng thông báo lỗi
-     * @author: TTANH (24/07/2023)
+     * @author: TTANH (24/07/2024)
      */
     closeBtnDialogErrorClick() {
       this.isShowDialogError = false;
@@ -109,7 +109,7 @@ export default {
 
     /**
      * Hàm thêm các cài đặt cho việc ánh xạ từ header trong excel
-     * @author: TTANH (24/07/2023)
+     * @author: TTANH (24/07/2024)
      */
     async headerMapColumnExcel() {
       try {

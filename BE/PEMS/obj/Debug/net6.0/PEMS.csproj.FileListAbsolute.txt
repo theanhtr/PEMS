@@ -105,6 +105,7 @@ C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\Irony.dl
 C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\MediatR.dll
 C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\MediatR.Contracts.dll
 C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
 C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\Microsoft.Extensions.Caching.StackExchangeRedis.dll
 C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
@@ -112,6 +113,12 @@ C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\Microsof
 C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
 C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\Microsoft.OpenApi.dll
 C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\MySqlConnector.dll
 C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\Newtonsoft.Json.dll
@@ -122,6 +129,7 @@ C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\Swashbuc
 C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\System.IO.Packaging.dll
 C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\System.Security.Permissions.dll
 C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\XLParser.dll

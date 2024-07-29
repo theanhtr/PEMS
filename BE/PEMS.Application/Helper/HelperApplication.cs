@@ -12,7 +12,7 @@ namespace PEMS.Application
         /// </summary>
         /// <param name="messageError">thông tin lỗi</param>
         /// <param name="entity">đối tượng muốn set</param>
-        /// CreatedBy: TTANH (21/07/2023)
+        /// CreatedBy: TTANH (21/07/2024)
         public static void SetValidateError(string messageError, BaseValidateDto entity)
         {
             entity.ValidCheck = RecordCheck.Invalid;
@@ -33,7 +33,7 @@ namespace PEMS.Application
         /// <param name="separatorElement">Phần tử ngăn cách</param>
         /// <returns>Đã được chuyển thành chuỗi với phần tử ngăn cách</returns>
         /// <example>IN: [1, 2, 3] -> "'1','2','3'"</example>
-        /// CreatedBy: TTANH (27/07/2023)
+        /// CreatedBy: TTANH (27/07/2024)
         public static string ConvertArrayToStringWithSeparatorElement<TType>(List<TType> values, string separatorElement)
         {
             var strConvert = "";

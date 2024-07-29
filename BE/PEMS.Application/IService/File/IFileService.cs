@@ -5,7 +5,7 @@ namespace PEMS.Application
     /// <summary>
     /// Interface để tương tác với file trong hệ thống
     /// </summary>
-    /// CreatedBy: TTANH (19/07/2023)
+    /// CreatedBy: TTANH (19/07/2024)
     public interface IFileService
     {
         /// <summary>
@@ -14,7 +14,7 @@ namespace PEMS.Application
         /// <param name="folderPath">đường dẫn tới folder</param>
         /// <param name="fileName">tên file</param>
         /// <returns>Đường dẫn tới file</returns>
-        /// CreatedBy: TTANH (19/07/2023)
+        /// CreatedBy: TTANH (19/07/2024)
         string GetFilePath(string folderPath, string fileName);
 
         /// <summary>
@@ -24,14 +24,14 @@ namespace PEMS.Application
         /// <param name="fileName">tên của file</param>
         /// <param name="fileName">dữ liệu của file</param>
         /// <returns>Trả ra đường dẫn đến file</returns>
-        /// CreatedBy: TTANH (19/07/2023)
+        /// CreatedBy: TTANH (19/07/2024)
         string CreateFile(string folderPath, string fileName, IFormFile file);
 
         /// <summary>
         /// Hàm xóa file
         /// </summary>
         /// <param name="filePath">đường dẫn tới file</param>
-        /// CreatedBy: TTANH (19/07/2023)
+        /// CreatedBy: TTANH (19/07/2024)
         void DeleteFile(string filePath);
     }
 }

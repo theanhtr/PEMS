@@ -61,7 +61,7 @@ export default {
   methods: {
     /**
      * xử lý sự kiện khi keydown khi đang focus vào "Đóng"
-     * @author: TTANH (22/07/2023)
+     * @author: TTANH (22/07/2024)
      * @param {*} event
      */
     onKeyDownCancelButton(event) {

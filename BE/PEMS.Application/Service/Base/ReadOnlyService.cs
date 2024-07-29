@@ -28,7 +28,7 @@ namespace PEMS.Application
         /// Hàm lấy tất cả bản ghi
         /// </summary>
         /// <returns>Mảng chứa các bản ghi</returns>
-        /// Created by: TTANH (18/07/2023)
+        /// Created by: TTANH (18/07/2024)
         public async Task<IEnumerable<TEntityDto>?> GetAsync()
         {
             var entities = await _readOnlyRepository.GetAsync();
@@ -48,7 +48,7 @@ namespace PEMS.Application
         /// </summary>
         /// <param name="id">Id của bản ghi</param>
         /// <returns>Bản ghi, throw exception nếu không tìm thấy</returns>
-        /// Created by: TTANH (18/07/2023)
+        /// Created by: TTANH (18/07/2024)
         public async Task<TEntityDto> GetByIdAsync(Guid id)
         {
             var entity = await _readOnlyRepository.GetByIdAsync(id);
@@ -65,10 +65,10 @@ namespace PEMS.Application
         /// <param name="pageNumber">Thứ tự trang bao nhiêu</param>
         /// <param name="searchText">Chuỗi tìm kiếm</param>
         /// <returns>Các bản lọc theo các tiêu chí</returns>
-        /// Created by: TTANH (18/07/2023)
+        /// Created by: TTANH (18/07/2024)
         public async Task<BaseFilterResponse<TEntityDto>> FilterAsync(int? pageSize, int? pageNumber, string? searchText)
         {
-            if (pageSize == null || pageSize < 0) { pageSize = 999999; }
+            if (pageSize == null || pageSize <= 0) { pageSize = 999999; }
             if (pageNumber == null || pageNumber < 1) { pageNumber = 1; }
 
             var entitiesNotPagging = await _readOnlyRepository.FilterAsync(int.MaxValue, 1, searchText);

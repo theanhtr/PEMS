@@ -67,7 +67,7 @@ export default {
   methods: {
     /**
      * xử lý sự kiện khi keydown khi đang focus vào "Không"
-     * @author: TTANH (31/07/2023)
+     * @author: TTANH (31/07/2024)
      * @param {*} event
      */
     onKeyDownYesButton(event) {
@@ -87,7 +87,7 @@ export default {
 
     /**
      * xử lý sự kiện khi keydown khi đang focus vào "Có"
-     * @author: TTANH (31/07/2023)
+     * @author: TTANH (31/07/2024)
      * @param {*} event
      */
     onKeyDownYesButton(event) {

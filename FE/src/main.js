@@ -34,7 +34,7 @@ const app = createApp(App);
 
 /**
  * sử dụng để chọn bôi đen value khi ấn vào 1 input
- * @author: TTANH (31/07/2023)
+ * @author: TTANH (31/07/2024)
  */
 app.directive("TTANHBlackenOut", {
   created: (el) => {
@@ -80,7 +80,7 @@ app.mount("#app");
 /**
  * Hàm dùng để set thông tin về phân trang nhân viên
  * vào local storage
- * @author: TTANH (01/08/2023)
+ * @author: TTANH (01/08/2024)
  */
 function employeePageInfo() {
   localStorage.setItem("pageNumber", 1);

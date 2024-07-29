@@ -22,7 +22,7 @@ namespace PEMS.Tests
         /// <param name="x">Số nguyên x</param>
         /// <param name="y">Số nguyên y</param>
         /// <param name="expectedResult">Giá trị mong muốn</param>
-        /// CreatedBy: TTANH (13/07/2023)
+        /// CreatedBy: TTANH (13/07/2024)
         [TestCase(1, 2, 3)]
         [TestCase(2, 3, 5)]
         [TestCase(int.MaxValue, 4, int.MaxValue + (long)4)]
@@ -41,7 +41,7 @@ namespace PEMS.Tests
         /// <param name="x">Số nguyên x</param>
         /// <param name="y">Số nguyên y</param>
         /// <param name="expectedResult">Giá trị mong muốn</param>
-        /// CreatedBy: TTANH (13/07/2023)
+        /// CreatedBy: TTANH (13/07/2024)
         [TestCase(1, 2, -1)]
         [TestCase(2, 3, -1)]
         [TestCase(int.MaxValue, int.MinValue, int.MaxValue - (long)int.MinValue)]
@@ -61,7 +61,7 @@ namespace PEMS.Tests
         /// <param name="x">Số nguyên x</param>
         /// <param name="y">Số nguyên y</param>
         /// <param name="expectedResult">Giá trị mong muốn</param>
-        /// CreatedBy: TTANH (13/07/2023)
+        /// CreatedBy: TTANH (13/07/2024)
         [TestCase(1, 2, 2)]
         [TestCase(2, 3, 6)]
         [TestCase(int.MaxValue, int.MinValue, int.MaxValue * (long)int.MinValue)]
@@ -77,7 +77,7 @@ namespace PEMS.Tests
         /// <summary>
         /// Hàm test chia cho 0 cho hàm Div(int x, int y)
         /// </summary>
-        /// CreatedBy: TTANH (13/07/2023)
+        /// CreatedBy: TTANH (13/07/2024)
         [Test]
         public void Div_DividedByZero_ReturnsException()
         {
@@ -100,7 +100,7 @@ namespace PEMS.Tests
         /// <param name="x">Số nguyên x</param>
         /// <param name="y">Số nguyên y</param>
         /// <param name="expectedResult">Giá trị mong muốn</param>
-        /// CreatedBy: TTANH (13/07/2023)
+        /// CreatedBy: TTANH (13/07/2024)
         [TestCase(1, 2, 0.5)]
         [TestCase(2, 3, 0.6666)]
         [TestCase(int.MaxValue, int.MinValue, int.MaxValue / (double)int.MinValue)]
@@ -118,7 +118,7 @@ namespace PEMS.Tests
         /// </summary>
         /// <param name="inputString">Chuỗi đầu vào cách nhau bởi dấu ,</param>
         /// <param name="expectedResult">Giá trị mong muốn</param>
-        /// CreatedBy: TTANH (13/07/2023)
+        /// CreatedBy: TTANH (13/07/2024)
         [TestCase("1, 2, 3", 6)]
         [TestCase("9,                                                                         6,2", 17)]
         [TestCase("2, 123, 10", 135)]
@@ -139,7 +139,7 @@ namespace PEMS.Tests
         /// </summary>
         /// <param name="inputString">Chuỗi đầu vào cách nhau bởi dấu ,</param>
         /// <param name="expectedExceptionMessage">ErrorMessage mong muốn</param>
-        /// CreatedBy: TTANH (13/07/2023)
+        /// CreatedBy: TTANH (13/07/2024)
         [TestCase("1, -2, -3", "Không chấp nhận toán tử âm: -2, -3")]
         [TestCase("-2, -123, -10", "Không chấp nhận toán tử âm: -2, -123, -10")]
         [TestCase("int.MaxValue, int.MaxValue", "Đầu vào không phải là số")]

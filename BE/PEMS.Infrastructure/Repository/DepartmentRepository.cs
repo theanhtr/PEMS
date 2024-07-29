@@ -5,7 +5,7 @@ namespace PEMS.Infrastructure
     /// <summary>
     /// Triển khai bằng dapper và mysql
     /// </summary>
-    /// Created By: TTANH (12/07/2023)
+    /// Created By: TTANH (12/07/2024)
     public class DepartmentRepository : CodeRepository<Department>, IDepartmentRepository
     {
         #region Constructor

@@ -31,7 +31,7 @@ namespace PEMS.Infrastructure
         /// </summary>
         /// <param name="key">key của cache</param>
         /// <returns>dữ liệu ứng với key</returns>
-        /// CreatedBy: TTANH (20/07/2023)
+        /// CreatedBy: TTANH (20/07/2024)
         public TCacheData Get<TCacheData>(string key)
         {
             var value = _cacheDb.StringGet(key);
@@ -51,7 +51,7 @@ namespace PEMS.Infrastructure
         /// </summary>
         /// <param name="key">key của cache</param>
         /// <returns>dữ liệu ứng với key</returns>
-        /// CreatedBy: TTANH (20/07/2023)
+        /// CreatedBy: TTANH (20/07/2024)
         public async Task<TCacheData> GetAsync<TCacheData>(string key)
         {
             var value = await _cacheDb.StringGetAsync(key);
@@ -73,7 +73,7 @@ namespace PEMS.Infrastructure
         /// <param name="value">giá trị muốn gán</param>
         /// <param name="expirationTime">thời gian hết hạn</param>
         /// <returns>true - thành công, false - thất bại</returns>
-        /// CreatedBy: TTANH (20/07/2023)
+        /// CreatedBy: TTANH (20/07/2024)
         public bool Set<TCacheData>(string key, TCacheData value, DateTimeOffset expirationTime)
         {
             var expirtyTime = expirationTime.DateTime.Subtract(DateTime.Now);
@@ -91,7 +91,7 @@ namespace PEMS.Infrastructure
         /// <param name="value">giá trị muốn gán</param>
         /// <param name="expirationTime">thời gian hết hạn</param>
         /// <returns>true - thành công, false - thất bại</returns>
-        /// CreatedBy: TTANH (20/07/2023)
+        /// CreatedBy: TTANH (20/07/2024)
         public async Task<bool> SetAsync<TCacheData>(string key, TCacheData value, DateTimeOffset expirationTime)
         {
             var expirtyTime = expirationTime.DateTime.Subtract(DateTime.Now);
@@ -107,7 +107,7 @@ namespace PEMS.Infrastructure
         /// </summary>
         /// <param name="key">key của cache</param>
         /// <returns></returns>
-        /// CreatedBy: TTANH (20/07/2023)
+        /// CreatedBy: TTANH (20/07/2024)
         public object Remove(string key)
         {
             var exist = _cacheDb.KeyExists(key);
@@ -127,7 +127,7 @@ namespace PEMS.Infrastructure
         /// </summary>
         /// <param name="key">key của cache</param>
         /// <returns></returns>
-        /// CreatedBy: TTANH (20/07/2023)
+        /// CreatedBy: TTANH (20/07/2024)
         public async Task<object> RemoveAsync(string key)
         {
             var exist = await _cacheDb.KeyExistsAsync(key);

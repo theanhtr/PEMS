@@ -287,7 +287,7 @@ export default {
   methods: {
     /**
      * cho dữ liệu ngày đã chọn là trống
-     * @author: TTANH (07/08/2023)
+     * @author: TTANH (07/08/2024)
      */
     resetDatePicked() {
       this.date = "";
@@ -295,7 +295,7 @@ export default {
 
     /**
      * xử lý sự kiện key down
-     * @author: TTANH (29/07/2023)
+     * @author: TTANH (29/07/2024)
      */
     handleInputKeydown(event) {
       try {
@@ -371,7 +371,7 @@ export default {
 
     /**
      * xử lý việc mở phần chọn tháng và năm
-     * @author: TTANH (28/06/2023)
+     * @author: TTANH (28/06/2024)
      */
     openMonthYearSelect() {
       try {
@@ -386,7 +386,7 @@ export default {
 
     /**
      * xử lý đóng phần chọn tháng và năm bằng nút "Hủy bỏ"
-     * @author: TTANH (28/06/2023)
+     * @author: TTANH (28/06/2024)
      */
     closeMonthYearSelect(currentMonth, currentYear) {
       try {
@@ -409,7 +409,7 @@ export default {
 
     /**
      * giảm vùng năm đang focus xuống 11 năm
-     * @author: TTANH (28/06/2023)
+     * @author: TTANH (28/06/2024)
      */
     reduceRangeYear() {
       try {
@@ -427,7 +427,7 @@ export default {
 
     /**
      * tăng vùng năm đang focus lên 12 năm
-     * @author: TTANH (28/06/2023)
+     * @author: TTANH (28/06/2024)
      */
     increaseRangeYear() {
       try {
@@ -445,7 +445,7 @@ export default {
     /**
      * xử lý việc ấn chọn 1 năm
      * @param {int} yearSelect năm được chọn
-     * @author: TTANH (28/06/2023)
+     * @author: TTANH (28/06/2024)
      */
     selectYear(yearSelect) {
       try {
@@ -463,7 +463,7 @@ export default {
      * xử lý việc chọn vào 1 tháng
      * @param {int} monthSelect tháng được chọn
      * @param {function} updateMonthYear hàm thay đổi tháng và năm của thư viện
-     * @author: TTANH (28/06/2023)
+     * @author: TTANH (28/06/2024)
      */
     selectMonth(monthSelect, updateMonthYear) {
       try {
@@ -485,7 +485,7 @@ export default {
 
     /**
      * Giảm năm đi 1 ở phần chọn tháng
-     * @author: TTANH (28/06/2023)
+     * @author: TTANH (28/06/2024)
      */
     reduceYearSelect() {
       try {
@@ -502,7 +502,7 @@ export default {
 
     /**
      * tăng năm lên 1 ở phần chọn tháng
-     * @author: TTANH (28/06/2023)
+     * @author: TTANH (28/06/2024)
      */
     increaseYearSelect() {
       try {
@@ -519,7 +519,7 @@ export default {
 
     /**
      * trở lại với việc chọn năm
-     * @author: TTANH (28/06/2023)
+     * @author: TTANH (28/06/2024)
      */
     backToSelectYear() {
       try {

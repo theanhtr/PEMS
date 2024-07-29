@@ -1,6 +1,6 @@
 /**
  * format sang number và phải là số không âm
- * @author: TTANH (27/06/2023)
+ * @author: TTANH (27/06/2024)
  * @param {*} unformattedNumber giá trị chưa format
  * @returns biến format sang number, không format được sẽ return NaN
  */
@@ -66,7 +66,7 @@ export const formatNumberToMoney = function (numberInt) {
 
 /**
  * format biến int sang dạng number, ví dụ: 1.000.000 -> 1000000
- * @author: TTANH (27/06/2023)
+ * @author: TTANH (27/06/2024)
  * @param {string} numberStr string dạng money muốn chuyển sang int
  * @returns giá trị được chuyển sang money, nếu không chuyển được thì return NaN
  */
@@ -100,7 +100,7 @@ export const formatMoneyToNumber = function (numberStr) {
 
 /**
  * format chuỗi percent thành number 10,6 -> 10.6
- * @author: TTANH (27/06/2023)
+ * @author: TTANH (27/06/2024)
  * @param {string} numberStr chuỗi có định dạng 10,6 hoặc 10
  * @returns giá trị đã được chuyển sang number, nếu không thể chuyển return NaN
  */
@@ -135,7 +135,7 @@ export const formatPercentToNumber = function (numberStr) {
 
 /**
  * format chuỗi number thành percent 10.6 -> 10,6
- * @author: TTANH (27/06/2023)
+ * @author: TTANH (27/06/2024)
  * @param {int} numberInt 1 số để chuyển
  * @returns giá trị đã được chuyển sang dạng percent
  */
@@ -172,7 +172,7 @@ export const formatNumberToPercent = function (numberInt) {
 
 /**
  * tăng chuỗi percent lên 1 giá trị: 10,6 -> 11,6
- * @author: TTANH (27/06/2023)
+ * @author: TTANH (27/06/2024)
  * @param {string} numberPercent chuỗi có định dạng percent 10,6
  * @returns percent tăng thêm 1
  */
@@ -197,7 +197,7 @@ export const plusPercent = function (numberPercent) {
 
 /**
  * giảm chuỗi percent đi 1 giá trị: 10,6 -> 9,6
- * @author: TTANH (27/06/2023)
+ * @author: TTANH (27/06/2024)
  * @param {string} numberPercent chuỗi có định dạng percent 10,6
  * @returns percent giảm đi 1
  */
@@ -226,7 +226,7 @@ export const minusPercent = function (numberPercent) {
 
 /**
  * đếm số chữ số sau dấu phẩy
- * @author: TTANH (27/06/2023)
+ * @author: TTANH (27/06/2024)
  * @param {double} number 1 số
  * @returns số chữ số sau dấu chấm
  */
@@ -252,7 +252,7 @@ export const countDecimalPlaces = function (number) {
 
 /**
  * chuyển định dạng % thành 1 số, ví dụ: 10% -> 10
- * @author: TTANH (27/06/2023)
+ * @author: TTANH (27/06/2024)
  * @param {string} strPercent một chuỗi có định dạng 10%
  * @returns trả về số nguyên bỏ đi %
  */

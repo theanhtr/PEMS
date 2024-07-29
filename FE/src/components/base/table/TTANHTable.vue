@@ -21,7 +21,7 @@
         <div class="m-tbody-viewer">
           <th
             v-for="(column, index) in columnsShow"
-            :key="column.id"
+            :key="index"
             :style="styleTh(column, index)"
           >
             <div class="m-th" :class="`text-align--${column.textAlign}`">
@@ -52,8 +52,8 @@
     </thead>
     <tbody v-if="!noData">
       <tr
-        v-for="row in rowsLoad"
-        :key="row.id"
+        v-for="(row, index) in rowsLoad"
+        :key="index"
         :class="this.selectedRows.includes(row.id) ? 'row--selected' : ''"
         @click="clickRow(row.id)"
         @dblclick="this.$emit('doubleClickRow', row.id)"
@@ -83,7 +83,7 @@
         </td>
         <td
           v-for="(column, index) in columnsShow"
-          :key="column.id"
+          :key="index"
           :class="`text-align--${column.textAlign}`"
           :title="row[column.id]"
           :style="styleTd(column, index, row.id)"
@@ -259,7 +259,7 @@ export default {
           isShow: true,
           isPin: false,
         },
-     * @author: TTANH (26/06/2023)
+     * @author: TTANH (26/06/2024)
      */
     columnsInfo: {
       required: true,
@@ -304,7 +304,7 @@ export default {
     /**
      * xử lý khi checked một dòng
      * @param {string} rowId id của dòng
-     * @author: TTANH (30/07/2023)
+     * @author: TTANH (30/07/2024)
      */
     checkedRow(rowId) {
       this.rowIsFocus = rowId;
@@ -314,7 +314,7 @@ export default {
     /**
      * xử lý khi unchecked một dòng
      * @param {string} rowId id của dòng
-     * @author: TTANH (30/07/2023)
+     * @author: TTANH (30/07/2024)
      */
     uncheckedRow(rowId) {
       this.rowIsFocus = rowId;
@@ -324,7 +324,7 @@ export default {
     /**
      * hàm bỏ hành vi double click mặc định và ngăn ko cho ảnh hưởng lên cha
      * @param {*} event
-     * @author: TTANH (30/07/2023)
+     * @author: TTANH (30/07/2024)
      */
     preventDoubleClick(event) {
       event.preventDefault();
@@ -333,7 +333,7 @@ export default {
 
     /**
      * format dữ liệu tùy theo loại cần format
-     * @author: TTANH (26/06/2023)
+     * @author: TTANH (26/06/2024)
      * @param {*} valueRaw dữ liệu cần format
      * @param {string} type loại format: "currency", "gender", "date", ""
      * @returns trả về dữ liệu đã được format
@@ -367,7 +367,7 @@ export default {
 
     /**
      * mở function context
-     * @author: TTANH (01/07/2023)
+     * @author: TTANH (01/07/2024)
      * @param {*} event
      * @param {string} idFocus id của dòng chứa nút sửa
      */
@@ -402,7 +402,7 @@ export default {
 
     /**
      * đóng function context
-     * @author: TTANH (01/07/2023)
+     * @author: TTANH (01/07/2024)
      */
     closeFunctionContext() {
       try {
@@ -419,7 +419,7 @@ export default {
 
     /**
      * hàm để check sự kiện clickoutside functionContext
-     * @author: TTANH (01/07/2023)
+     * @author: TTANH (01/07/2024)
      * @param {*} event
      */
     clickOutSideFunctionContext(event) {
@@ -447,7 +447,7 @@ export default {
 
     /**
      * xử lý khi ấn vào nút Nhân bản ở function context
-     * @author: TTANH (01/07/2023)
+     * @author: TTANH (01/07/2024)
      */
     clickDuplicateBtn() {
       try {
@@ -463,7 +463,7 @@ export default {
 
     /**
      * xử lý khi ấn vào nút xóa ở function context
-     * @author: TTANH (01/07/2023)
+     * @author: TTANH (01/07/2024)
      */
     clickDeleteBtn() {
       try {
@@ -479,7 +479,7 @@ export default {
 
     /**
      * thực hiện sự kiện mouse down khi resize
-     * @author: TTANH (04/07/2023)
+     * @author: TTANH (04/07/2024)
      * @param {*} event
      */
     mouseDownResizeColumn(event, index) {
@@ -499,7 +499,7 @@ export default {
 
     /**
      * thực hiện sự kiện mouse move khi resize
-     * @author: TTANH (04/07/2023)
+     * @author: TTANH (04/07/2024)
      * @param {*} event
      */
     mouseMoveResizeColumn(event) {
@@ -523,7 +523,7 @@ export default {
 
     /**
      * xử lý sự kiện mouse up
-     * @author: TTANH (04/07/2023)
+     * @author: TTANH (04/07/2024)
      * @param {*} event
      */
     mouseUpResizeColumn() {
@@ -534,7 +534,7 @@ export default {
 
     /**
      * tính toán kích thước, vị trí của cột nếu nó được cố định
-     * @author: TTANH (04/07/2023)
+     * @author: TTANH (04/07/2024)
      * @param {object} column object lưu trữ thông tin của cột
      * @param {int} index vị trí của cột trong mảng lưu thông tin
      * @returns style của cột header
@@ -560,7 +560,7 @@ export default {
 
     /**
      * tính toán kích thước, vị trí của cột nếu nó được cố định
-     * @author: TTANH (04/07/2023)
+     * @author: TTANH (04/07/2024)
      * @param {object} column object lưu trữ thông tin của cột
      * @param {int} index vị trí của cột trong mảng lưu thông tin
      * @param {string} rowId id của dòng
@@ -600,7 +600,7 @@ export default {
     /**
      * tìm tên của hàng đang được chọn
      * với các td có type là input-combobox
-     * @author: TTANH (24/07/2023)
+     * @author: TTANH (24/07/2024)
      * @param {*} selectId
      */
     nameOfSelectValueCombobox(selectId) {

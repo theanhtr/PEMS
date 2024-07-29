@@ -3,7 +3,7 @@
     /// <summary>
     /// Base để xử lý CRUD căn bản và filter
     /// </summary>
-    /// Created by: TTANH (18/07/2023)
+    /// Created by: TTANH (18/07/2024)
     public interface IBaseService<TEntity, TEntityDto, TEntityCreateDto, TEntityUpdateDto> : IReadOnlyService<TEntity, TEntityDto>
     {
         #region Methods
@@ -12,7 +12,7 @@
         /// </summary>
         /// <param name="entityCreateDto">Dữ liệu của bản ghi</param>
         /// <returns>Số hàng bị ảnh hưởng</returns>
-        /// Created by: TTANH (18/07/2023)
+        /// Created by: TTANH (18/07/2024)
         Task<int> InsertAsync(TEntityCreateDto entityCreateDto);
 
         /// <summary>
@@ -21,7 +21,7 @@
         /// <param name="id">Id của bản ghi</param>
         /// <param name="entityUpdateDto">Dữ liệu update bản ghi</param>
         /// <returns>Số hàng bị ảnh hưởng</returns>
-        /// Created by: TTANH (18/07/2023)
+        /// Created by: TTANH (18/07/2024)
         Task<int> UpdateAsync(Guid id, TEntityUpdateDto entityUpdateDto);
 
         /// <summary>
@@ -29,7 +29,7 @@
         /// </summary>
         /// <param name="id">Id của bản ghi</param>
         /// <returns>Số hàng bị ảnh hưởng</returns>
-        /// Created by: TTANH (18/07/2023)
+        /// Created by: TTANH (18/07/2024)
         Task<int> DeleteAsync(Guid id);
 
         /// <summary>
@@ -37,7 +37,7 @@
         /// </summary>
         /// <param name="ids">List các id của bản ghi</param>
         /// <returns>Số bản ghi đã xóa</returns>
-        /// Created by: TTANH (18/07/2023)
+        /// Created by: TTANH (18/07/2024)
         Task<int> DeleteMultipleAsync(List<Guid> ids);
         #endregion
     }

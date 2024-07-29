@@ -5,7 +5,7 @@ namespace PEMS.Application
     /// <summary>
     /// Dto trả về của phòng ban
     /// </summary>
-    /// Created by: TTANH (12/07/2023)
+    /// Created by: TTANH (12/07/2024)
     public class DepartmentDto
     {
         #region Property

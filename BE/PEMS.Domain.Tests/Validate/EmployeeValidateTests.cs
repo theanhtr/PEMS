@@ -26,7 +26,7 @@ namespace PEMS.Domain.Tests
         /// <summary>
         /// Kiểm tra với code sai định dạng
         /// </summary>
-        /// CreatedBy: TTANH (24/07/2023)
+        /// CreatedBy: TTANH (24/07/2024)
         [Test]
         public async Task CodeValidate_CodeRegex_ThrowException()
         {
@@ -43,7 +43,7 @@ namespace PEMS.Domain.Tests
         /// <summary>
         /// Kiểm tra với code đã tồn tại
         /// </summary>
-        /// CreatedBy: TTANH (24/07/2023)
+        /// CreatedBy: TTANH (24/07/2024)
         [Test]
         public async Task CodeValidate_CodeExist_ThrowException()
         {
@@ -66,7 +66,7 @@ namespace PEMS.Domain.Tests
         /// <summary>
         /// Kiểm tra không có lỗi
         /// </summary>
-        /// CreatedBy: TTANH (24/07/2023)
+        /// CreatedBy: TTANH (24/07/2024)
         [Test]
         public async Task CodeValidate_Success()
         {

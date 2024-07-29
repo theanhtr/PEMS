@@ -3,7 +3,7 @@
     /// <summary>
     /// Base xử lý việc đọc với id và filter
     /// </summary>
-    /// CreatedBy: TTANH (18/07/2023)
+    /// CreatedBy: TTANH (18/07/2024)
     public interface IReadOnlyService<TEntity, TEntityDto>
     {
         #region Methods
@@ -11,7 +11,7 @@
         /// Hàm lấy tất cả bản ghi
         /// </summary>
         /// <returns>Mảng chứa các bản ghi</returns>
-        /// Created by: TTANH (18/07/2023)
+        /// Created by: TTANH (18/07/2024)
         Task<IEnumerable<TEntityDto>?> GetAsync();
 
         /// <summary>
@@ -19,7 +19,7 @@
         /// </summary>
         /// <param name="id">Id của bản ghi</param>
         /// <returns>Bản ghi, throw exception nếu không tìm thấy</returns>
-        /// Created by: TTANH (18/07/2023)
+        /// Created by: TTANH (18/07/2024)
         Task<TEntityDto> GetByIdAsync(Guid id);
 
         /// <summary>
@@ -29,7 +29,7 @@
         /// <param name="pageNumber">Thứ tự trang bao nhiêu</param>
         /// <param name="searchText">Chuỗi tìm kiếm</param>
         /// <returns>Các bản lọc theo các tiêu chí</returns>
-        /// Created by: TTANH (18/07/2023)
+        /// Created by: TTANH (18/07/2024)
         Task<BaseFilterResponse<TEntityDto>> FilterAsync(int? pageSize, int? pageNumber, string? searchText);
         #endregion
     }

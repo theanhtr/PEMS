@@ -247,7 +247,7 @@ export default {
   methods: {
     /**
      * Hàm xử lỗi chung
-     * @author: TTANH (24/07/2023)
+     * @author: TTANH (24/07/2024)
      */
     handleErrorCodeApi(errorCode, userMsg) {
       if (errorCode === this.$_TTANHEnum.ERROR_CODE.SESSION_IS_OVER) {
@@ -260,7 +260,7 @@ export default {
 
     /**
      * Xử lý khi ấn "tiếp tục" tại bước 1: Chọn tệp nguồn
-     * @author: TTANH (23/07/2023)
+     * @author: TTANH (23/07/2024)
      */
     async stepOneNext() {
       const res = await this.$refs.selectSourceFile.addExcelSetting();
@@ -275,7 +275,7 @@ export default {
 
     /**
      * Xử lý khi ấn "tiếp tục" tại bước 2: Ghép dữ liệu
-     * @author: TTANH (24/07/2023)
+     * @author: TTANH (24/07/2024)
      */
     async stepTwoNext() {
       const res = await this.$refs.headerMerge.headerMapColumnExcel();
@@ -294,7 +294,7 @@ export default {
 
     /**
      * Xử lý khi ấn "nhập dữ liệu" tại bước 3: Kiểm tra dữ liệu
-     * @author: TTANH (26/07/2023)
+     * @author: TTANH (26/07/2024)
      */
     async stepThreeNext() {
       const res = await this.$refs.dataCheck.confirmImportExcelFile();

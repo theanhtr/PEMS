@@ -5,7 +5,7 @@ namespace PEMS
     /// <summary>
     /// Lớp xử lí lỗi 
     /// </summary>
-    /// Created By: TTANH (12/07/2023)
+    /// Created By: TTANH (12/07/2024)
     public class ExceptionMiddleware
     {
         /// <summary>
@@ -19,7 +19,7 @@ namespace PEMS
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
-        /// Created By: TTANH (12/07/2023)
+        /// Created By: TTANH (12/07/2024)
         public async Task Invoke(HttpContext context)
         {
             try
@@ -38,7 +38,7 @@ namespace PEMS
         /// <param name="context"></param>
         /// <param name="exception"></param>
         /// <returns></returns>
-        /// Created By: TTANH (12/07/2023)
+        /// Created By: TTANH (12/07/2024)
         private async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
             context.Response.ContentType = "application/json";

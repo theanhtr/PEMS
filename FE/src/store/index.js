@@ -16,6 +16,7 @@ function getLangCodeFromLocalStorage() {
 
 export default createStore({
   state: {
+    isLoggedIn: false,
     isExpandSidebar: true,
     langCode: getLangCodeFromLocalStorage(),
 
@@ -38,9 +39,24 @@ export default createStore({
   },
   getters: {},
   mutations: {
+    setUserLogin(state, { token, expirationTime }) {
+      localStorage.setItem("userToken", token);
+      localStorage.setItem("userTokenExpirationTime", expirationTime);
+
+      state.isLoggedIn = true;
+    },
+    logout(state) {
+      localStorage.removeItem("userToken");
+      localStorage.removeItem("userTokenExpirationTime");
+
+      state.isLoggedIn = false;
+    },
+    setLoginStatus(state, status) {
+      state.isLoggedIn = status;
+    },
     /**
      * hàm thay đổi trạng thái ẩn hiện của sidebar
-     * @author: TTANH (02/07/2023)
+     * @author: TTANH (02/07/2024)
      * @param {*} state
      */
     toggleSidebar(state) {
@@ -49,7 +65,7 @@ export default createStore({
 
     /**
      * set ngôn ngữ cho app
-     * @author: TTANH (05/08/2023)
+     * @author: TTANH (05/08/2024)
      * @param {*} state
      * @param {string} newLangCode mã ngôn ngữ: vi, en
      */
@@ -62,7 +78,7 @@ export default createStore({
 
     /**
      * thêm 1 toast mới
-     * @author: TTANH (02/07/2023)
+     * @author: TTANH (02/07/2024)
      * @param {*} state
      * @param {string} type loại toast
      * @param {string} text thông tin trong toast
@@ -91,7 +107,7 @@ export default createStore({
 
     /**
      * xóa 1 toast
-     * @author: TTANH (02/07/2023)
+     * @author: TTANH (02/07/2024)
      * @param {*} state
      * @param {*} id id của toast
      */
@@ -107,6 +123,27 @@ export default createStore({
       }
     },
   },
-  actions: {},
+  actions: {
+    checkSession({ commit }) {
+      let userTokenExpirationTime = localStorage.getItem("userTokenExpirationTime");
+      let userToken = localStorage.getItem("userToken");
+
+      if (userTokenExpirationTime && userToken) {
+        let currentTime = new Date().getTime();
+        let expirationTime = new Date(userTokenExpirationTime).getTime();
+
+        if (currentTime < expirationTime) {
+          commit("setLoginStatus", true);
+        } else {
+          commit("setLoginStatus", false);
+          localStorage.removeItem("userTokenExpirationTime");
+          localStorage.removeItem("userToken");
+        }
+      } else {
+        localStorage.removeItem("userTokenExpirationTime");
+        localStorage.removeItem("userToken");
+      }
+    }
+  },
   modules: {},
 });

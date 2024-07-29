@@ -20,7 +20,7 @@ namespace PEMS
         /// Thay đổi ngôn ngữ
         /// </summary>
         /// <param name="context">HttpContext</param>
-        /// CreatedBy: TTANH (05/08/2023)
+        /// CreatedBy: TTANH (05/08/2024)
         public async Task InvokeAsync(HttpContext context)
         {
             var requestLanguages = context.Request.Headers["ContentLanguage"];

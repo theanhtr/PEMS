@@ -10,9 +10,10 @@
   width: 100%;
   height: 48px;
   padding-left: 32px;
-  column-gap: 10px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  color: var(--primary-color);
 }
 
 .sidebar__logo-container .toggle-icon {
@@ -25,7 +26,8 @@
 .sidebar__logo-container .logo-vi {
   flex: 1;
   height: 32px;
-  background-size: auto 32px;
+  width: 39px;
+  background-size: 39px 32px;
   background-image: url(../../../assets/img/Logo_Module_TiengViet_White.66947422.svg);
   background-repeat: no-repeat;
   cursor: pointer;
@@ -34,7 +36,8 @@
 .sidebar__logo-container .logo-en {
   flex: 1;
   height: 32px;
-  background-size: auto 32px;
+  width: 39px;
+  background-size: 39px 32px;
   background-image: url(../../../assets/img/Logo_Module_TiengAnh_White.6f592bc6.svg);
   background-repeat: no-repeat;
   cursor: pointer;
@@ -64,6 +67,7 @@
   flex-direction: column;
   row-gap: 4px;
   overflow-y: auto;
+  font-size: 14px;
 }
 
 .menu-item {

@@ -6,7 +6,7 @@ namespace PEMS.Application
     /// <summary>
     /// Set ánh xạ dto cho department
     /// </summary>
-    /// Created by: TTANH (12/07/2023)
+    /// Created by: TTANH (12/07/2024)
     public class DepartmentProfile : Profile
     {
         public DepartmentProfile()

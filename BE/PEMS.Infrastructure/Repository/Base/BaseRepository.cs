@@ -9,7 +9,7 @@ namespace PEMS.Infrastructure
     /// <summary>
     /// Base để xử lý CRUD căn bản và filter
     /// </summary>
-    /// Created by: TTANH (18/07/2023)
+    /// Created by: TTANH (18/07/2024)
     public abstract class BaseRepository<TEntity> : ReadOnlyRepository<TEntity>, IBaseRepository<TEntity> where TEntity : IEntityHasKey
     {
         #region Constructor
@@ -24,7 +24,7 @@ namespace PEMS.Infrastructure
         /// </summary>
         /// <param name="entity">Dữ liệu của bản ghi</param>
         /// <returns>Số hàng bị ảnh hưởng</returns>
-        /// Created by: TTANH (18/07/2023)
+        /// Created by: TTANH (18/07/2024)
         public async Task<int> InsertAsync(TEntity entity)
         {
             var procedure = $"Proc_{tableName}_Insert";
@@ -53,7 +53,7 @@ namespace PEMS.Infrastructure
         /// <param name="id">Id của bản ghi</param>
         /// <param name="entity">Dữ liệu update bản ghi</param>
         /// <returns>Số hàng bị ảnh hưởng</returns>
-        /// Created by: TTANH (18/07/2023)
+        /// Created by: TTANH (18/07/2024)
         public async Task<int> UpdateAsync(Guid id, TEntity entity)
         {
             var procedure = $"Proc_{tableName}_Update";
@@ -82,7 +82,7 @@ namespace PEMS.Infrastructure
         /// </summary>
         /// <param name="entity">Thực thể muốn xóa</param>
         /// <returns>Số hàng bị ảnh hưởng</returns>
-        /// Created by: TTANH (18/07/2023)
+        /// Created by: TTANH (18/07/2024)
         public async Task<int> DeleteAsync(TEntity entity)
         {
             var procedure = $"Proc_AllTable_Delete";
@@ -102,7 +102,7 @@ namespace PEMS.Infrastructure
         /// </summary>
         /// <param name="entities">List các thực thể muốn xóa</param>
         /// <returns>Số bản ghi đã xóa</returns>
-        /// Created by: TTANH (18/07/2023)
+        /// Created by: TTANH (18/07/2024)
         public async Task<int> DeleteMultipleAsync(List<TEntity> entities)
         {
             var procedure = "Proc_AllTable_DeleteList";

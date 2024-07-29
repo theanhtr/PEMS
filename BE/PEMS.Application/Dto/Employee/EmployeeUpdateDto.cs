@@ -177,7 +177,7 @@ namespace PEMS.Application
         /// <summary>
         /// Lấy ra code của phần tử
         /// </summary>
-        /// CreatedBy: TTANH (25/07/2023)
+        /// CreatedBy: TTANH (25/07/2024)
         public string GetCode()
         {
             return EmployeeCode;
@@ -187,7 +187,7 @@ namespace PEMS.Application
         /// Hàm set code cho phần tử
         /// </summary>
         /// <param name="code">giá trị của code</param>
-        /// CreatedBy: TTANH (25/07/2023)
+        /// CreatedBy: TTANH (25/07/2024)
         public void SetCode(string code)
         {
             EmployeeCode = code;

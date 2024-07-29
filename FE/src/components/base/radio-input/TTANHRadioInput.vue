@@ -43,7 +43,7 @@ export default {
           id: "gd1",
           name: "Nam",
         },
-     * @author: TTANH (29/06/2023)
+     * @author: TTANH (29/06/2024)
      */
     values: {
       required: true,
@@ -109,7 +109,7 @@ export default {
 
     /**
      * xử lý sự kiện khi keydown
-     * @author: TTANH (10/07/2023)
+     * @author: TTANH (10/07/2024)
      * @param {*} event
      */
     onKeyDownButton(event, valueId) {

@@ -3,7 +3,7 @@
     /// <summary>
     /// Interface để tương tác với DB Department
     /// </summary>
-    /// Created by: TTANH (12/07/2023)
+    /// Created by: TTANH (12/07/2024)
     public interface IDepartmentRepository : ICodeRepository<Department>
     {
     }

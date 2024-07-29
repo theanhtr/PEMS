@@ -1,5 +1,21 @@
 [
   {
+    "ContainingType": "PEMS.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/v1/Auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userLoginParams",
+        "Type": "PEMS.Domain.UserLogin",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "PEMS.Controllers.CodeController\u00604[[PEMS.Domain.Department, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.DepartmentDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.DepartmentCreateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.DepartmentUpdateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
     "Method": "InsertAsync",
     "RelativePath": "api/v1/Departments",
@@ -564,6 +580,16 @@
     "ContainingType": "PEMS.Controllers.TestController",
     "Method": "Get",
     "RelativePath": "api/v1/Test",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.UserController",
+    "Method": "GetUserInfo",
+    "RelativePath": "api/v1/User",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

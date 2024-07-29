@@ -3,7 +3,7 @@
     /// <summary>
     /// Base để xử lý CRUD căn bản và filter
     /// </summary>
-    /// Created by: TTANH (18/07/2023)
+    /// Created by: TTANH (18/07/2024)
     public interface IBaseRepository<TEntity> : IReadOnlyRepository<TEntity>
     {
         #region Methods
@@ -12,7 +12,7 @@
         /// </summary>
         /// <param name="entity">Dữ liệu của bản ghi</param>
         /// <returns>Số hàng bị ảnh hưởng</returns>
-        /// Created by: TTANH (18/07/2023)
+        /// Created by: TTANH (18/07/2024)
         Task<int> InsertAsync(TEntity entity);
 
         /// <summary>
@@ -21,7 +21,7 @@
         /// <param name="id">Id của bản ghi</param>
         /// <param name="entity">Dữ liệu update bản ghi</param>
         /// <returns>Số hàng bị ảnh hưởng</returns>
-        /// Created by: TTANH (18/07/2023)
+        /// Created by: TTANH (18/07/2024)
         Task<int> UpdateAsync(Guid id, TEntity entity);
 
         /// <summary>
@@ -29,7 +29,7 @@
         /// </summary>
         /// <param name="entity">Thực thể muốn xóa</param>
         /// <returns>Số hàng bị ảnh hưởng</returns>
-        /// Created by: TTANH (18/07/2023)
+        /// Created by: TTANH (18/07/2024)
         Task<int> DeleteAsync(TEntity entity);
 
         /// <summary>
@@ -37,7 +37,7 @@
         /// </summary>
         /// <param name="entities">List các thực thể muốn xóa</param>
         /// <returns>Số bản ghi đã xóa</returns>
-        /// Created by: TTANH (18/07/2023)
+        /// Created by: TTANH (18/07/2024)
         Task<int> DeleteMultipleAsync(List<TEntity> entities);
         #endregion
     }

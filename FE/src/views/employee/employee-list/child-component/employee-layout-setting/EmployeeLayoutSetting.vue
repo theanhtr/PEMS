@@ -87,7 +87,7 @@ export default {
           isShow: true,
           isPin: false,
         },
-     * @author: TTANH (26/06/2023)
+     * @author: TTANH (26/06/2024)
      */
     employeeColumnsInfoProp: {
       default: [],
@@ -119,7 +119,7 @@ export default {
   methods: {
     /**
      * xử lý các phím tắt
-     * @author: TTANH (07/08/2023)
+     * @author: TTANH (07/08/2024)
      */
     handleKeydown(event) {
       event.stopPropagation();
@@ -130,7 +130,7 @@ export default {
 
     /**
      * dùng để lấy thông tin trên component cha
-     * @author: TTANH (04/08/2023)
+     * @author: TTANH (04/08/2024)
      */
     getEmployeeColumnsInfoUpdate() {
       return this.employeeColumnsInfo;

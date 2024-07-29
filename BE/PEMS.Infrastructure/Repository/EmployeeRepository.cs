@@ -7,7 +7,7 @@ namespace PEMS.Infrastructure
     /// <summary>
     /// Triển khai bằng dapper và mysql
     /// </summary>
-    /// Created By: TTANH (12/07/2023)
+    /// Created By: TTANH (12/07/2024)
     public class EmployeeRepository : CodeRepository<Employee>, IEmployeeRepository
     {
         #region Constructor
@@ -22,7 +22,7 @@ namespace PEMS.Infrastructure
         /// Hàm thêm nhiều bản ghi
         /// </summary>
         /// <param name="employeesStrConvert">Dữ liệu lại thành chuỗi để truyền vào truy vấn</param>
-        /// CreatedBy: TTANH (27/07/2023)
+        /// CreatedBy: TTANH (27/07/2024)
         public async Task<int> InsertMultipleAsync(string employeesStrConvert)
         {
             var procedure = "Proc_Employee_InsertList";
@@ -39,7 +39,7 @@ namespace PEMS.Infrastructure
         /// Hàm cập nhật nhiều bản ghi
         /// </summary>
         /// <param name="employeesStrConvert">Dữ liệu lại thành chuỗi để truyền vào truy vấn</param>
-        /// CreatedBy: TTANH (28/07/2023)
+        /// CreatedBy: TTANH (28/07/2024)
         public async Task<int> UpdateMultipleAsync(string employeesStrConvert)
         {
             var procedure = "Proc_Employee_UpdateList";

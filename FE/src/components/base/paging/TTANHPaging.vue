@@ -33,7 +33,7 @@
           type="link"
           colorText="#111"
           v-for="(page, index) in pageCalculate"
-          :key="page"
+          :key="index"
           :fontWeight="page === modelValue.pageNumber ? '700' : '400'"
           :border="
             page === modelValue.pageNumber
@@ -147,7 +147,7 @@ export default {
 
     /**
      * chuyển sang page tiếp theo
-     * @author: TTANH (03/07/2023)
+     * @author: TTANH (03/07/2024)
      */
     clickNextPage() {
       try {
@@ -168,7 +168,7 @@ export default {
      * chọn 1 stt page mới
      * @param {int} index vị trí của ptử chọn trong mảng
      * @param {*} newPageNumber giá trị page chọn
-     * @author: TTANH (25/07/2023)
+     * @author: TTANH (25/07/2024)
      */
     selectPage(newPageNumber, index) {
       try {
@@ -195,7 +195,7 @@ export default {
 
     /**
      * trở về page trước đó
-     * @author: TTANH (03/07/2023)
+     * @author: TTANH (03/07/2024)
      */
     clickPreviousPage() {
       try {
@@ -215,7 +215,7 @@ export default {
   computed: {
     /**
      * title cho các item dropdown list
-     * @author: TTANH (25/07/2023)
+     * @author: TTANH (25/07/2024)
      */
     pagingTitle() {
       const index = findIndexByAttribute(
@@ -235,7 +235,7 @@ export default {
 
     /**
      * Tính toán hiển thị trang
-     * @author: TTANH (25/07/2023)
+     * @author: TTANH (25/07/2024)
      */
     pageCalculate() {
       let pages = []; // có cả ...

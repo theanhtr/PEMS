@@ -8,7 +8,7 @@ class BaseService {
 
   /**
    * thực hiện với 1 endpoint riêng
-   * @author: TTANH (10/07/2023)
+   * @author: TTANH (10/07/2024)
    * @param {string} url đường dẫn riêng
    */
   endpoint(url) {
@@ -17,7 +17,7 @@ class BaseService {
 
   /**
    * thực hiện lấy dữ dữ liệu
-   * @author: TTANH (01/07/2023)
+   * @author: TTANH (01/07/2024)
    */
   async get() {
     const res = await this.baseAxios.get(this.baseUrl);
@@ -26,7 +26,7 @@ class BaseService {
 
   /**
    * * thực hiện thêm mới dữ liệu
-   * @author: TTANH (01/07/2023)
+   * @author: TTANH (01/07/2024)
    * @param {Object} dataAdd dữ liệu cần thêm
    */
   async post(dataAdd) {
@@ -36,7 +36,7 @@ class BaseService {
 
   /**
    * * thực hiện cập nhật dữ liệu của bản ghi
-   * @author: TTANH (01/07/2023)
+   * @author: TTANH (01/07/2024)
    * @param {string} id id của bản ghi
    * @param {Object} dataUpdate dữ liệu cần thêm
    */
@@ -47,7 +47,7 @@ class BaseService {
 
   /**
    * xóa 1 bản ghi
-   * @author: TTANH (02/07/2023)
+   * @author: TTANH (02/07/2024)
    * @param {string} id id của bản ghi
    */
   async delete(id) {
@@ -57,7 +57,7 @@ class BaseService {
 
   /**
    * xóa nhiều bản ghi
-   * @author: TTANH (17/07/2023)
+   * @author: TTANH (17/07/2024)
    * @param {Array} ids mảng chứa các id của bản ghi
    */
   async deleteMultiple(ids) {
