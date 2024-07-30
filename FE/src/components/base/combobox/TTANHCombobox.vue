@@ -189,7 +189,7 @@ export default {
         this.isShowComboboxData = true;
         this.indexHover = -1;
         this.$refs.comboboxData.scrollTo(0, 0);
-
+        this.$emit("show-combobox");
         window.addEventListener("click", this.clickOutSideCombobox);
       } catch (error) {
         console.log(
