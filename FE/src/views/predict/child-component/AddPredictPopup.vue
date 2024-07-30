@@ -1642,5 +1642,5 @@ export default {
 </script>
 
 <style scoped>
-@import url(./add-Predict-popup.css);
+@import url(./add-predict-popup.css);
 </style>
