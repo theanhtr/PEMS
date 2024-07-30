@@ -3,12 +3,12 @@ import { createRouter, createWebHistory } from "vue-router";
 import MainLayout from "../components/layout/MainLayout.vue";
 import Dashboard from "../views/dashboard/Dashboard.vue";
 import EmployeeList from "../views/employee/employee-list/EmployeeList.vue";
+import PredictList from "../views/predict/PredictList.vue";
 
 import ImportLayout from "../components/layout/import-layout/ImportLayout.vue";
 import EmployeeImport from "../views/employee/employee-import/EmployeeImport.vue";
 import TTANHPageNotFound from "../components/layout/TTANHPageNotFound.vue";
 
-import HelloScreen from "../views/hello/HelloScreen.vue";
 import LoginScreen from "../views/auth/LoginScreen.vue";
 import store from "../store";
 
@@ -46,6 +46,21 @@ const routes = [
       {
         path: "/app/employee",
         name: "employee-app",
+        component: EmployeeList
+      },
+      {
+        path: "/app/predict-management",
+        name: "predict-management-app",
+        component: PredictList
+      },
+      {
+        path: "/app/report-management",
+        name: "report-management-app",
+        component: EmployeeList
+      },
+      {
+        path: "/app/user-management",
+        name: "user-management-app",
         component: EmployeeList
       },
     ],

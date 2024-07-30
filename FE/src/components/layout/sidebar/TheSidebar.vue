@@ -26,7 +26,7 @@
           <div class="sidebar__text">Quản lý test</div>
         </router-link>
         <router-link
-          to="/app/predict"
+          to="/app/predict-management"
           class="menu-item"
           exact
           activeClass="menu-item--selected"
@@ -34,7 +34,7 @@
           <div class="sidebar__text">Quản lý dự báo</div>
         </router-link>
         <router-link
-          to="/app/report"
+          to="/app/report-management"
           class="menu-item"
           exact
           activeClass="menu-item--selected"
@@ -42,7 +42,7 @@
           <div class="sidebar__text">Quản lý báo cáo</div>
         </router-link>
         <router-link
-          to="/app/user"
+          to="/app/user-management"
           class="menu-item"
           exact
           activeClass="menu-item--selected"
