@@ -536,8 +536,12 @@ export default {
     rowsDataFilter() {
       this.setValueInput(this.modelValue);
     },
-    modelValue() {
+    modelValue(newValue, oldValue) {
       this.selectedRows = [this.modelValue];
+
+      if (newValue !== oldValue) {
+        this.$emit("change-data");
+      }
     },
   },
 };

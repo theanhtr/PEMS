@@ -1,13 +1,14 @@
 import axios from "axios";
 
+const targetLink = 'https://vapi.vnappmob.com/api';
+
 const addressAxios = axios.create({
-  baseURL: "https://vapi.vnappmob.com/api",
+  baseURL: targetLink,
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",
-    'Access-Control-Allow-Credentials': "true",
   },
-  withCredentials: true, // gửi cookie, session lên server
+  withCredentials: false, // gửi cookie, session lên server
 });
 
 
@@ -16,7 +17,7 @@ class AuthServiceClass {
 
   async province() {
     const res = await addressAxios.get(
-      "/province"
+      "/province/"
     );
 
     return res;

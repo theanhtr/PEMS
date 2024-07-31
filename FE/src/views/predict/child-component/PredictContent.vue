@@ -2,7 +2,7 @@
   <div class="Predict-content">
     <div class="page__filter">
       <h1 class="page__filter-title">Bộ lọc</h1>
-      <ttanh-separation-line 
+      <ttanh-separation-line
             style="
               width: 98%;
               border-top: 2px solid var(--border-color-default);
@@ -16,7 +16,7 @@
           labelText="Tỉnh/Thành phố"
           :inputRequired="false"
           @show-combobox="getProvinces"
-          :rowsData="dataAddress.provinces"
+          :rowsData="computedProvinces"
           class="w1/4"
           tabindex="1"
         />
@@ -27,7 +27,7 @@
           labelText="Quận/Huyện"
           :inputRequired="false"
           @show-combobox="getDistricts"
-          :rowsData="dataAddress.districts"
+          :rowsData="computedDistricts"
           class="w1/4"
           tabindex="2"
         />
@@ -37,33 +37,40 @@
           type="single-row"
           labelText="Phường/Xã"
           :inputRequired="false"
-          @show-combobox="dataAddress.getWards"
-          :rowsData="wards"
+          @show-combobox="getWards"
+          :rowsData="computedWards"
           class="w1/4"
           tabindex="3"
         />
       </div>
       <div class="page__filter-group page__filter-group-2">
-        <VueDatePicker
-          v-model="dataFilter.dateRange"
-          :placeholder="$store.state.formatDate"
-          position="right"
-          :clearable="false"
-          :enable-time-picker="false"
-          :format="$store.state.formatDate"
-          text-input
-          auto-apply
-          range
-          timezone="Asia/Novosibirsk"
-          class="w1/4"
-        ></VueDatePicker>
+        <div class="w1/4">
+          <label
+            class="label-input"
+          >
+            Khoảng thời gian cảnh báo
+          </label>
+          <VueDatePicker
+            v-model="dataFilter.dateRange"
+            :placeholder="$store.state.formatDate"
+            position="right"
+            :clearable="false"
+            :enable-time-picker="false"
+            :format="$store.state.formatDate"
+            text-input
+            auto-apply
+            range
+            timezone="Asia/Novosibirsk"
+            class="w1"
+          ></VueDatePicker>
+        </div>
         <ttanh-combobox
           v-model="dataFilter.cropStateId"
           ref="cropStateId"
           type="single-row"
           labelText="Giai đoạn cây trồng"
           :inputRequired="false"
-          :rowsData="[]"
+          :rowsData="cropStates"
           class="w1/4"
           tabindex="2"
         />
@@ -73,7 +80,7 @@
           type="single-row"
           labelText="Mức độ sâu bệnh"
           :inputRequired="false"
-          :rowsData="[]"
+          :rowsData="pestLevels"
           class="w1/4"
           tabindex="3"
         />
@@ -85,7 +92,7 @@
           borderRadius="var(--border-radius-default)"
           :border="batchExecutionDisable ? '' : '2px solid black'"
           :tabindex="-1"
-          @clickItem="clickItemBatchExecution"
+          @clickButton="clickItemBatchExecution"
           >Tìm kiếm</ttanh-button
         >
         <ttanh-button
@@ -94,40 +101,23 @@
           borderRadius="var(--border-radius-default)"
           :border="batchExecutionDisable ? '' : '2px solid black'"
           :tabindex="-1"
-          @clickItem="clickItemBatchExecution"
+          @clickButton="clearFilter"
           >Xóa lọc</ttanh-button
         >
       </div>
     </div>
     <div class="page__action">
       <div class="page__action-left">
-        <ttanh-button
-          type="dropdown"
-          width="180px"
-          borderRadius="var(--border-radius-default)"
-          :dataDropdown="batchExecutionDataDropdown"
-          :border="batchExecutionDisable ? '' : '2px solid black'"
-          :disable="batchExecutionDisable"
-          :tabindex="-1"
-          @clickItem="clickItemBatchExecution"
-          >{{
-            $t("PredictSubsystem.PredictContent.batchExecution")
-          }}</ttanh-button
-        >
+        <div class="season-type-container">
+          <div class="season-type-item" :class="seasonType == 1 ? 'season-type-selected' : ''" @click="selectSeasonType(1)">
+            Đang trong mùa vụ
+          </div>
+          <div class="season-type-item" :class="seasonType == 2 ? 'season-type-selected' : ''" @click="selectSeasonType(2)">
+            Mùa vụ đã kết thúc
+          </div>
+        </div>
       </div>
       <div class="page__action-right">
-        <ttanh-search-input
-          :width="tableSearchFocus ? '200px' : '100px'"
-          @input-focus="tableSearchFocus = true"
-          @input-blur="tableSearchFocus = false"
-          :class="{ animated: tableSearchFocus }"
-          v-model="searchText"
-          ref="searchTextTable"
-          :placeholder="
-            $t('PredictSubsystem.PredictContent.searchPlaceHolder')
-          "
-          :tooltip="$t('PredictSubsystem.PredictContent.searchInputTooltip')"
-        />
         <ttanh-icon
           :icon="
             'page__reload--' +
@@ -138,36 +128,14 @@
           @mouseleave="pageButtonHover['page__reload'] = false"
           @click="reloadDataWithSelectedRows"
         />
-        <ttanh-icon
-          :icon="
-            'page__excel--' +
-            (pageButtonHover['page__excel'] ? 'black' : 'grey')
-          "
-          :tooltip="$t('PredictSubsystem.PredictContent.exportExcelTooltip')"
-          @mouseenter="pageButtonHover['page__excel'] = true"
-          @mouseleave="pageButtonHover['page__excel'] = false"
-          @click="exportToExcelWithSearchText"
-        />
-        <ttanh-icon
-          :icon="
-            'page__setting--' +
-            (pageButtonHover['page__setting'] ? 'black' : 'grey')
-          "
-          :tooltip="
-            $t('PredictSubsystem.PredictContent.layoutSettingTooltip')
-          "
-          @mouseenter="pageButtonHover['page__setting'] = true"
-          @mouseleave="pageButtonHover['page__setting'] = false"
-          @click="isShowLayoutSetting = true"
-        />
         <ttanh-button
-          type="combo"
-          @clickBtnContainer="showAddPredictPopup"
-          :dataDropdown="addDataDropdown"
+          width="85px"
+          type="main"
+          borderRadius="var(--border-radius-default)"
+          :border="batchExecutionDisable ? '' : '2px solid black'"
           :tabindex="-1"
-          :tooltip="$t('PredictSubsystem.PredictContent.insertTooltip')"
-          @clickItem="handleDropdownInsertButton"
-          >{{ $t("common.button.add") }}</ttanh-button
+          @clickButton="showAddPredictPopup"
+          >Tạo mới</ttanh-button
         >
       </div>
     </div>
@@ -178,6 +146,7 @@
         :rowsData="computedPredicts"
         :selectedRows="computedSelectedPredicts"
         :noData="computedNoData"
+        :oneRowSelect="true"
         @checked-all="checkedAllRow"
         @unchecked-all="uncheckedAllRow"
         @checked-row="checkedRow"
@@ -244,6 +213,38 @@ export default {
   data() {
     return {
       Predicts: [],
+      
+      seasonType: 1,
+
+      cropStates: [
+        {
+          id: 1,
+          name: "Giai đoạn 1"
+        },
+        {
+          id: 2,
+          name: "Giai đoạn 2"
+        },
+        {
+          id: 3,
+          name: "Giai đoạn 3"
+        },
+      ],
+
+      pestLevels: [
+        {
+          id: 1,
+          name: "Mức độ 1"
+        },
+        {
+          id: 2,
+          name: "Mức độ 2"
+        },
+        {
+          id: 3,
+          name: "Mức độ 3"
+        },
+      ],
 
       dataAddress: {
         provinces: [],
@@ -254,7 +255,62 @@ export default {
       /* lưu dữ id các nhân viên đã được chọn */
       selectedPredicts: [],
 
-      PredictColumnsInfo: [],
+      PredictColumnsInfo: [
+        {
+          id: "Province",
+          name: "TỈNH/THÀNH PHỐ",
+          size: "150px",
+          textAlign: "left",
+          format: "text",
+          isShow: true,
+          isPin: false,
+        },
+        {
+          id: "District",
+          name: "QUẬN/HUYỆN",
+          size: "150px",
+          textAlign: "left",
+          format: "text",
+          isShow: true,
+          isPin: false,
+        },
+        {
+          id: "Ward",
+          name: "PHƯỜNG/XÃ",
+          size: "150px",
+          textAlign: "left",
+          format: "text",
+          isShow: true,
+          isPin: false,
+        },
+        {
+          id: "DateRange",
+          name: "KHOẢNG THỜI GIAN CẢNH BÁO",
+          size: "150px",
+          textAlign: "center",
+          format: "text",
+          isShow: true,
+          isPin: false,
+        },
+        {
+          id: "LevelWarning",
+          name: "MỨC ĐỘ CẢNH BÁO",
+          size: "150px",
+          textAlign: "center",
+          format: "text",
+          isShow: true,
+          isPin: false,
+        },
+        {
+          id: "Action",
+          name: "HÀNH ĐỘNG",
+          size: "150px",
+          textAlign: "center",
+          format: "text",
+          isShow: true,
+          isPin: false,
+        },
+      ],
 
       /* thông tin cột thuần được gửi từ api đã sắp xếp */
       PredictColumnsInfoRaw: [],
@@ -353,6 +409,26 @@ export default {
   },
 
   methods: {
+    selectSeasonType(type) {
+      this.seasonType = type;
+    },
+
+    clearFilter() {
+      this.dataFilter = {
+        provinceId: -1,
+        districtId: -1,
+        wardId: -1,
+        dateRange: "",
+        cropStateId: -1,
+        pestLevelId: -1
+      };
+
+      this.$refs.provinceId.$refs.inputSearch.value = "";
+      this.$refs.districtId.$refs.inputSearch.value = "";
+      this.$refs.wardId.$refs.inputSearch.value = "";
+      this.$refs.cropStateId.$refs.inputSearch.value = "";
+      this.$refs.pestLevelId.$refs.inputSearch.value = "";
+    },
     /**
      * Sắp xếp theo ordernumber và isPin để hiển thị đúng
      * @author: TTANH (04/08/2024)
@@ -396,7 +472,7 @@ export default {
         const res = await PredictService.filter({
           pageSize: this.pagingData.pageSize,
           pageNumber: this.pagingData.pageNumber,
-          searchText: this.searchText.trim(),
+          searchText: ''
         });
 
         if (res.success) {
@@ -1004,33 +1080,33 @@ export default {
     },
 
     async getProvinces() {
-      AddressService.province().then((res) => {
-        if (res.statusCode === 200) {
-          this.dataAddress.provinces = res.result;
-        } else {
-          this.dataAddress.provinces = [];
-        }
-      });
+      let provinces = await AddressService.province();
+
+      if (provinces.status === 200) {
+        this.dataAddress.provinces = provinces.data.results;
+      } else {
+        this.dataAddress.provinces = [];
+      }
     },
 
     async getDistricts() {
-      AddressService.district(this.dataFilter.provinceId).then((res) => {
-        if (res.statusCode === 200) {
-          this.dataAddress.districts = res.result;
-        } else {
-          this.dataAddress.districts = [];
-        }
-      });
+      let districts = await AddressService.district(this.dataFilter.provinceId);
+
+      if (districts.status === 200) {
+        this.dataAddress.districts = districts.data.results;
+      } else {
+        this.dataAddress.districts = [];
+      }
     },
 
     async getWards() {
-      AddressService.ward(this.dataFilter.districtId).then((res) => {
-        if (res.statusCode === 200) {
-          this.dataAddress.wards = res.result;
-        } else {
-          this.dataAddress.wards = [];
-        }
-      });
+      let wards = await AddressService.ward(this.dataFilter.districtId);
+
+      if (wards.status === 200) {
+        this.dataAddress.wards = wards.data.results;
+      } else {
+        this.dataAddress.wards = [];
+      }
     },
   },
   computed: {
@@ -1051,6 +1127,81 @@ export default {
       } catch (error) {
         console.log(
           "🚀 ~ file: PredictList.vue:457 ~ computedPredicts ~ error:",
+          error
+        );
+      }
+    },
+
+    computedProvinces() {
+      try {
+        let provincesFormat = [];
+
+        this.dataAddress.provinces.forEach((province) => {
+          let id = province.province_id;
+          let name = province.province_name;
+          let code = province.province_name;
+
+          provincesFormat.push({
+            id,
+            name,
+            code
+          });
+        });
+
+        return provincesFormat;
+      } catch (error) {
+        console.log(
+          "🚀 ~ file: EmployeeList.vue:457 ~ computedEmployees ~ error:",
+          error
+        );
+      }
+    },
+
+    computedDistricts() {
+      try {
+        let districtsFormat = [];
+
+        this.dataAddress.districts.forEach((province) => {
+          let id = province.district_id;
+          let name = province.district_name;
+          let code = province.district_name;
+
+          districtsFormat.push({
+            id,
+            name,
+            code
+          });
+        });
+
+        return districtsFormat;
+      } catch (error) {
+        console.log(
+          "🚀 ~ file: EmployeeList.vue:457 ~ computedEmployees ~ error:",
+          error
+        );
+      }
+    },
+
+    computedWards() {
+      try {
+        let wardsFormat = [];
+
+        this.dataAddress.wards.forEach((province) => {
+          let id = province.ward_id;
+          let name = province.ward_name;
+          let code = province.ward_name;
+
+          wardsFormat.push({
+            id,
+            name,
+            code
+          });
+        });
+
+        return wardsFormat;
+      } catch (error) {
+        console.log(
+          "🚀 ~ file: EmployeeList.vue:457 ~ computedEmployees ~ error:",
           error
         );
       }
