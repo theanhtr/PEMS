@@ -115,11 +115,11 @@
             <ttanh-combobox
               v-model="row[column.id]"
               type="single-row"
-              :rowsData="comboboxRowData"
+              :rowsData="column.comboboxRowData"
               v-if="this.rowIsFocus == row.id"
             />
 
-            <div v-else>{{ nameOfSelectValueCombobox(row[column.id]) }}</div>
+            <div v-else>{{ nameOfSelectValueCombobox(row[column.id], column.comboboxRowData) }}</div>
           </template>
           <template v-else-if="column.format === 'input-text'">
             <ttanh-textfield
@@ -254,7 +254,7 @@ export default {
           format: "text", // bao gồm: text, date, currency,
                           // checkbox, input-combobox, input-text, input-number_no_dot, valid-check
                           //  + với checkbox thì "có thể" thêm isCannotChangeChecked để không cho thay đổi checkbox input ở trường đó
-                          //  + với input-combobox thì "phải" có thêm comboboxRowData và chỉ có duy nhất một combobox input??
+                          //  + với input-combobox thì "phải" có thêm comboboxRowData
                           //  + với valid-check chỉ chấp nhận _TTANHEnum.RECORD_CHECK
           isShow: true,
           isPin: false,
@@ -289,15 +289,6 @@ export default {
 
     noData: {
       default: false,
-    },
-
-    /**
-     * sử dụng cho input combobox
-     * tất cả các record trong rowsData đều phải có id, name
-     * và code, nếu không có code thì gán code bằng name
-     */
-    comboboxRowData: {
-      default: [],
     },
   },
   methods: {
@@ -603,11 +594,11 @@ export default {
      * @author: TTANH (24/07/2024)
      * @param {*} selectId
      */
-    nameOfSelectValueCombobox(selectId) {
-      var index = findIndexByAttribute(this.comboboxRowData, "id", selectId);
+    nameOfSelectValueCombobox(selectId, comboboxRowData) {
+      var index = findIndexByAttribute(comboboxRowData, "id", selectId);
 
       if (index !== -1) {
-        return this.comboboxRowData[index].name;
+        return comboboxRowData[index].name;
       } else {
         return "";
       }

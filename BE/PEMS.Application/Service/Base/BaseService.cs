@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using PEMS.Domain;
+using Microsoft.AspNetCore.Http;
 
 namespace PEMS.Application
 {
@@ -10,7 +11,7 @@ namespace PEMS.Application
         #endregion
 
         #region Constructor
-        protected BaseService(IBaseRepository<TEntity> baseRepository, IMapper mapper, IBaseValidate<TEntity> baseValidate) : base(baseRepository, mapper, baseValidate)
+        protected BaseService(IBaseRepository<TEntity> baseRepository, IMapper mapper, IBaseValidate<TEntity> baseValidate, IHttpContextAccessor httpContextAccessor) : base(baseRepository, mapper, baseValidate, httpContextAccessor)
         {
             _baseRepository = baseRepository;
         }
@@ -40,7 +41,7 @@ namespace PEMS.Application
             if (entity is BaseAuditEntity baseAuditEntity)
             {
                 baseAuditEntity.CreatedDate = DateTime.Now;
-                baseAuditEntity.CreatedBy = "USER ADD";
+                baseAuditEntity.CreatedBy = _httpContextAccessor?.HttpContext?.User?.Claims.FirstOrDefault(c => c.Type == "Fullname")?.Value ?? "User create";
             }
 
             var result = await _baseRepository.InsertAsync(entity);

@@ -397,6 +397,20 @@ const vi = {
     },
   },
 
+  predictSubsystem: {
+    addPredictPopup: {
+      nameField: {
+        provinceId: "Tỉnh/Thành phố",
+        districtId: "Quận/Huyện",
+        wardId: "Phường/Xã",
+        address: "Địa chỉ",
+        previousEndDate: "Ngày kết thúc kỳ trước",
+        previousLevelWarning: "Cảnh báo cấp độ kỳ trước",
+        currentStartDate: "Ngày bắt đầu kỳ hiện tại"
+      }
+    }
+  },
+
   employeeSubsystem: {
     pageTitle: "Nhân viên | ttanh | Kế toán",
     title: "Nhân viên",

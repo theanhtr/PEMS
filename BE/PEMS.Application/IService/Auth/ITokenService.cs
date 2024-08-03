@@ -8,6 +8,6 @@ namespace PEMS.Application
     /// Created by: TTANH (12/07/2024)
     public interface ITokenService
     {
-       object GenerateToken(string userId);
+       object GenerateToken(string userId, string fullname);
     }
 }

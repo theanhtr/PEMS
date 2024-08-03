@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using PEMS.Domain;
 
 namespace PEMS.Application
@@ -11,7 +12,7 @@ namespace PEMS.Application
         #endregion
 
         #region Constructor
-        protected CodeService(ICodeRepository<TEntity> codeRepository, IMapper mapper, IBaseValidate<TEntity> baseValidate) : base(codeRepository, mapper, baseValidate)
+        protected CodeService(ICodeRepository<TEntity> codeRepository, IMapper mapper, IBaseValidate<TEntity> baseValidate, IHttpContextAccessor httpContextAccessor) : base(codeRepository, mapper, baseValidate, httpContextAccessor)
         {
             _codeRepository = codeRepository;
         }

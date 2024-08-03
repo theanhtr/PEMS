@@ -59,6 +59,8 @@ builder.Services.AddControllers()
 
 builder.Services.AddDistributedMemoryCache();
 
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddSession(options =>
 {
     //thời gian chờ trước khi bị hủy bỏ
@@ -154,6 +156,10 @@ builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 builder.Services.AddScoped<IEmployeeLayoutService, EmployeeLayoutService>();
 builder.Services.AddScoped<IEmployeeLayoutValidate, EmployeeLayoutValidate>();
 builder.Services.AddScoped<IEmployeeLayoutRepository, EmployeeLayoutRepository>();
+
+builder.Services.AddScoped<IPredictService, PredictService>();
+builder.Services.AddScoped<IPredictValidate, PredictValidate>();
+builder.Services.AddScoped<IPredictRepository, PredictRepository>();
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();

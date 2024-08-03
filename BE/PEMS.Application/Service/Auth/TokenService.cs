@@ -27,7 +27,7 @@ namespace PEMS.Application
         private readonly string _issuer;
         private readonly string _audience;
 
-        public object GenerateToken(string userId)
+        public object GenerateToken(string userId, string fullname)
         {
             var expirationTime = DateTime.Now.AddDays(1);
 
@@ -35,7 +35,8 @@ namespace PEMS.Application
             {
             new Claim(JwtRegisteredClaimNames.Sub, userId),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-            new Claim("UserId", userId)
+            new Claim("UserId", userId),
+            new Claim("Fullname", fullname),
         };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_key));
