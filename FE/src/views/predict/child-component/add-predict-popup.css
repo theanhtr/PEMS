@@ -1,3 +1,10 @@
+.label-add-group {
+  text-transform: uppercase;
+  color: var(--primary-color);
+  font-weight: bold;
+  font-size: 14px;
+}
+
 .add-predict__title-action {
   display: flex;
   align-items: center;

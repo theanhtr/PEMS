@@ -36,13 +36,13 @@ namespace PEMS.Infrastructure
 
             foreach (var property in properties)
             {
-                var propertyName = "@" + property.Name;
+                var propertyName = "@v_" + property.Name;
                 var propertyValue = property.GetValue(entity);
 
                 param.Add(propertyName, propertyValue);
             }
 
-            var result = await _unitOfWork.Connection.ExecuteAsync(procedure, param, commandType: CommandType.StoredProcedure);
+             var result = await _unitOfWork.Connection.ExecuteAsync(procedure, param, commandType: CommandType.StoredProcedure);
 
             return result;
         }

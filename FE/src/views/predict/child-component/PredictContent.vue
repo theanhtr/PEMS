@@ -212,7 +212,7 @@ export default {
   },
   data() {
     return {
-      Predicts: [],
+      predicts: [],
       
       seasonType: 1,
 
@@ -252,12 +252,12 @@ export default {
         wards: [],
       },
 
-      /* lưu dữ id các nhân viên đã được chọn */
+      /* lưu dữ id các dự báo đã được chọn */
       selectedPredicts: [],
 
       PredictColumnsInfo: [
         {
-          id: "Province",
+          id: "ProvinceName",
           name: "TỈNH/THÀNH PHỐ",
           size: "150px",
           textAlign: "left",
@@ -266,7 +266,7 @@ export default {
           isPin: false,
         },
         {
-          id: "District",
+          id: "DistrictName",
           name: "QUẬN/HUYỆN",
           size: "150px",
           textAlign: "left",
@@ -275,7 +275,7 @@ export default {
           isPin: false,
         },
         {
-          id: "Ward",
+          id: "WardName",
           name: "PHƯỜNG/XÃ",
           size: "150px",
           textAlign: "left",
@@ -284,22 +284,36 @@ export default {
           isPin: false,
         },
         {
-          id: "DateRange",
+          id: "CurrentStartDate",
           name: "KHOẢNG THỜI GIAN CẢNH BÁO",
           size: "150px",
           textAlign: "center",
-          format: "text",
+          format: "date",
           isShow: true,
           isPin: false,
         },
         {
-          id: "LevelWarning",
+          id: "LevelWarningId",
           name: "MỨC ĐỘ CẢNH BÁO",
           size: "150px",
           textAlign: "center",
-          format: "text",
+          format: "input-combobox",
           isShow: true,
           isPin: false,
+          comboboxRowData: [
+            {
+              id: 1,
+              name: "Mức độ 1"
+            },
+            {
+              id: 2,
+              name: "Mức độ 2"
+            },
+            {
+              id: 3,
+              name: "Mức độ 3"
+            },
+          ],
         },
         {
           id: "Action",
@@ -389,23 +403,9 @@ export default {
     this.pagingData.pageSize =
       formatToNumber(localStorage.getItem("pageSize")) ?? 10;
 
-    window.addEventListener("keydown", this.handleKeydown);
 
-    //lấy dữ liệu nhân viên
+    //lấy dữ liệu dự báo
     this.getPredicts();
-  },
-
-  updated() {
-    //nếu add popup đang mở thì bỏ sự kiện keydown đi
-    if (this.isShowAddPredictPopup) {
-      window.removeEventListener("keydown", this.handleKeydown);
-    } else {
-      window.addEventListener("keydown", this.handleKeydown);
-    }
-  },
-
-  unmounted() {
-    window.removeEventListener("keydown", this.handleKeydown);
   },
 
   methods: {
@@ -455,7 +455,7 @@ export default {
     },
 
     /**
-     * hàm thực hiện mở thêm nhân viên
+     * hàm thực hiện mở thêm dự báo
      * @author: TTANH (11/07/2024)
      */
     showAddPredictPopup() {
@@ -464,7 +464,7 @@ export default {
     },
 
     /**
-     * thực hiện get dữ liệu nhân viên khi component được render
+     * thực hiện get dữ liệu dự báo khi component được render
      * @author: TTANH (30/06/2024)
      */
     async getPredicts() {
@@ -477,7 +477,7 @@ export default {
 
         if (res.success) {
           if (res.data.Data.length != 0) {
-            this.Predicts = res.data.Data;
+            this.predicts = res.data.Data;
             this.pagingData.totalPage = res.data.TotalPage;
             this.pagingData.totalRecord = res.data.TotalRecord;
             this.pagingData.pageNumber = res.data.CurrentPage;
@@ -510,7 +510,7 @@ export default {
     },
 
     /**
-     * bỏ lệnh xóa nhiều nhân viên
+     * bỏ lệnh xóa nhiều dự báo
      * @author: TTANH (31/07/2024)
      */
     noDeleteMultiplePredict() {
@@ -518,7 +518,7 @@ export default {
     },
 
     /**
-     * xóa nhiều nhân viên
+     * xóa nhiều dự báo
      * @author: TTANH (17/07/2024)
      */
     async yesDeleteMultiplePredict() {
@@ -554,15 +554,13 @@ export default {
     },
 
     /**
-     * cập nhật lại Predicts mới
+     * cập nhật lại predicts mới
      * @author: TTANH (03/07/2024)
      */
     reloadData() {
       try {
-        this.getPredictColumnsInfo();
-
         this.previouslySelectedIndex = -1;
-        this.Predicts = [];
+        this.predicts = [];
         this.getPredicts();
       } catch (error) {
         console.log(
@@ -585,17 +583,6 @@ export default {
           "🚀 ~ file: PredictContent.vue:282 ~ reloadDataWithSelectedRows ~ error:",
           error
         );
-      }
-    },
-
-    /**
-     * hàm xử lý việc ấn vào item của dropdown nút "Thêm"
-     * @author: TTANH (19/07/2024)
-     * @param {string} id id của item chọn
-     */
-    handleDropdownInsertButton(id) {
-      if (id === "excel") {
-        this.$router.push("/app/Predict/import");
       }
     },
 
@@ -631,7 +618,7 @@ export default {
      */
     checkedAllRow() {
       try {
-        this.Predicts.forEach((Predict) => {
+        this.predicts.forEach((Predict) => {
           this.addSelectedRow(Predict.PredictId);
         });
       } catch (error) {
@@ -648,7 +635,7 @@ export default {
      */
     uncheckedAllRow() {
       try {
-        this.Predicts.forEach((Predict) => {
+        this.predicts.forEach((Predict) => {
           this.deleteSelectedRow(Predict.PredictId);
         });
       } catch (error) {
@@ -667,7 +654,7 @@ export default {
     checkedRow(rowId) {
       try {
         let indexNewChecked = findIndexByAttribute(
-          this.Predicts,
+          this.predicts,
           "PredictId",
           rowId
         );
@@ -684,7 +671,7 @@ export default {
                 index <= this.previouslySelectedIndex;
                 index++
               ) {
-                const Predict = this.Predicts[index];
+                const Predict = this.predicts[index];
 
                 this.addSelectedRow(Predict.PredictId);
               }
@@ -694,7 +681,7 @@ export default {
                 index <= indexNewChecked;
                 index++
               ) {
-                const Predict = this.Predicts[index];
+                const Predict = this.predicts[index];
 
                 this.addSelectedRow(Predict.PredictId);
               }
@@ -722,7 +709,7 @@ export default {
     uncheckedRow(rowId) {
       try {
         let indexNewChecked = findIndexByAttribute(
-          this.Predicts,
+          this.predicts,
           "PredictId",
           rowId
         );
@@ -739,7 +726,7 @@ export default {
                 index <= this.previouslySelectedIndex;
                 index++
               ) {
-                const Predict = this.Predicts[index];
+                const Predict = this.predicts[index];
 
                 this.deleteSelectedRow(Predict.PredictId);
               }
@@ -749,7 +736,7 @@ export default {
                 index <= indexNewChecked;
                 index++
               ) {
-                const Predict = this.Predicts[index];
+                const Predict = this.predicts[index];
 
                 this.deleteSelectedRow(Predict.PredictId);
               }
@@ -776,13 +763,13 @@ export default {
     openFormUpdate(rowId) {
       try {
         let indexRow = findIndexByAttribute(
-          this.Predicts,
+          this.predicts,
           "PredictId",
           rowId
         );
 
         this.isShowAddPredictPopup = true;
-        this.dataUpdate = this.Predicts[indexRow];
+        this.dataUpdate = this.predicts[indexRow];
       } catch (error) {
         console.log(
           "🚀 ~ file: PredictContent.vue:529 ~ openFormUpdate ~ error:",
@@ -798,10 +785,10 @@ export default {
      */
     openConfirmDeletePopup(id) {
       try {
-        let index = findIndexByAttribute(this.Predicts, "PredictId", id);
+        let index = findIndexByAttribute(this.predicts, "PredictId", id);
 
         if (index !== -1) {
-          this.PredictCodeDelete = this.Predicts[index].PredictCode;
+          this.PredictCodeDelete = this.predicts[index].PredictCode;
           this.PredictIdDelete = id;
           this.isShowConfirmDeletePopup = true;
         } else {
@@ -827,13 +814,13 @@ export default {
     openFormDuplicate(rowId) {
       try {
         let indexRow = findIndexByAttribute(
-          this.Predicts,
+          this.predicts,
           "PredictId",
           rowId
         );
 
         this.isShowAddPredictPopup = true;
-        this.dataUpdate = this.Predicts[indexRow];
+        this.dataUpdate = this.predicts[indexRow];
 
         this.$nextTick(() => {
           // thay đổi trạng thái form thành thêm mới
@@ -1115,7 +1102,7 @@ export default {
       try {
         let haveIdPredicts = [];
 
-        this.Predicts.forEach((Predict, index) => {
+        this.predicts.forEach((Predict, index) => {
           let id = Predict.PredictId;
           haveIdPredicts.push({
             id,
@@ -1161,10 +1148,10 @@ export default {
       try {
         let districtsFormat = [];
 
-        this.dataAddress.districts.forEach((province) => {
-          let id = province.district_id;
-          let name = province.district_name;
-          let code = province.district_name;
+        this.dataAddress.districts.forEach((district) => {
+          let id = district.district_id;
+          let name = district.district_name;
+          let code = district.district_name;
 
           districtsFormat.push({
             id,
@@ -1186,10 +1173,10 @@ export default {
       try {
         let wardsFormat = [];
 
-        this.dataAddress.wards.forEach((province) => {
-          let id = province.ward_id;
-          let name = province.ward_name;
-          let code = province.ward_name;
+        this.dataAddress.wards.forEach((ward) => {
+          let id = ward.ward_id;
+          let name = ward.ward_name;
+          let code = ward.ward_name;
 
           wardsFormat.push({
             id,

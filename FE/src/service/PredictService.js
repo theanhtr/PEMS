@@ -2,7 +2,7 @@ import BaseService from "./BaseService.js";
 
 class PredictServiceClass extends BaseService {
   constructor() {
-    super("Predict");
+    super("Predicts");
   }
 }
 

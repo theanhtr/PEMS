@@ -1071,7 +1071,6 @@ export default {
      */
     async storeBtnClick() {
       try {
-        debugger;
         this.addEmployeeData.departmentId =
           this.$refs.departmentId.getIdSelectedData();
 

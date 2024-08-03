@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using PEMS.Domain;
 
 namespace PEMS.Application
@@ -10,7 +11,7 @@ namespace PEMS.Application
     public class DepartmentService : CodeService<Department, DepartmentDto, DepartmentCreateDto, DepartmentUpdateDto>, IDepartmentService
     {
         #region Constructor
-        public DepartmentService(IDepartmentRepository departmentRepository, IMapper mapper, IDepartmentValidate departmentValidate) : base(departmentRepository, mapper, departmentValidate)
+        public DepartmentService(IDepartmentRepository departmentRepository, IMapper mapper, IDepartmentValidate departmentValidate, IHttpContextAccessor httpContextAccessor) : base(departmentRepository, mapper, departmentValidate, httpContextAccessor)
         {
         }
         #endregion

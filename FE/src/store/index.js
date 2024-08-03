@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
 import { findIndexByAttribute, generateUuid } from "@/helper/common.js";
 import { ProjectConfig } from "../config/config";
+import TTANHAxios from "@/axios";
 
 function getLangCodeFromLocalStorage() {
   let langCode = localStorage.getItem("langCode");
@@ -39,11 +40,13 @@ export default createStore({
   },
   getters: {},
   mutations: {
-    setUserLogin(state, { token, expirationTime }) {
-      localStorage.setItem("userToken", token);
-      localStorage.setItem("userTokenExpirationTime", expirationTime);
+    async setUserLogin(state, { token, expirationTime }) {
+      await localStorage.setItem("userToken", token);
+      await localStorage.setItem("userTokenExpirationTime", expirationTime);
 
       state.isLoggedIn = true;
+      TTANHAxios.defaults.headers.Authorization = `Bearer ${localStorage.getItem("userToken")}`;
+      TTANHAxios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("userToken")}`;
     },
     logout(state) {
       localStorage.removeItem("userToken");

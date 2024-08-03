@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using PEMS.Domain;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
@@ -20,7 +21,7 @@ namespace PEMS.Application
         #endregion
 
         #region Constructors
-        public EmployeeService(IEmployeeRepository employeeRepository, IMapper mapper, IEmployeeValidate employeeValidate, IDepartmentRepository departmentRepository, IEmployeeLayoutService employeeLayoutService) : base(employeeRepository, mapper, employeeValidate)
+        public EmployeeService(IEmployeeRepository employeeRepository, IMapper mapper, IEmployeeValidate employeeValidate, IDepartmentRepository departmentRepository, IEmployeeLayoutService employeeLayoutService, IHttpContextAccessor httpContextAccessor) : base(employeeRepository, mapper, employeeValidate, httpContextAccessor)
         {
             _employeeRepository = employeeRepository;
             _departmentRepository = departmentRepository;

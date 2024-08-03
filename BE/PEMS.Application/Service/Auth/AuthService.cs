@@ -38,7 +38,7 @@ namespace PEMS.Application
 
             if (user.Password == password)
             {
-                var token = _tokenService.GenerateToken(user.UserId.ToString());
+                var token = _tokenService.GenerateToken(user.UserId.ToString(), user.Fullname);
                 return token;
             }
             else

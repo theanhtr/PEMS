@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using PEMS.Domain;
 
 namespace PEMS.Application
@@ -12,14 +13,17 @@ namespace PEMS.Application
 
         public virtual string tableName { get; protected set; } = typeof(TEntity).Name;
         public virtual string tableId { get; protected set; } = typeof(TEntity).Name + "Id";
+
+        public readonly IHttpContextAccessor _httpContextAccessor;
         #endregion
 
         #region Constructor
-        public ReadOnlyService(IBaseRepository<TEntity> readOnlyRepository, IMapper mapper, IBaseValidate<TEntity> baseValidate)
+        public ReadOnlyService(IBaseRepository<TEntity> readOnlyRepository, IMapper mapper, IBaseValidate<TEntity> baseValidate, IHttpContextAccessor httpContextAccessor)
         {
             _readOnlyRepository = readOnlyRepository;
             _mapper = mapper;
             _baseValidate = baseValidate;
+            _httpContextAccessor = httpContextAccessor;
         }
         #endregion
 

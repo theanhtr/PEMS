@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using PEMS.Domain;
 using System.Reflection;
 
@@ -13,7 +14,7 @@ namespace PEMS.Application
         IEmployeeLayoutRepository _employeeLayoutRepository;
 
         #region Constructor
-        public EmployeeLayoutService(IEmployeeLayoutRepository employeeLayoutRepository, IMapper mapper, IEmployeeLayoutValidate employeeLayoutValidate) : base(employeeLayoutRepository, mapper, employeeLayoutValidate)
+        public EmployeeLayoutService(IEmployeeLayoutRepository employeeLayoutRepository, IMapper mapper, IEmployeeLayoutValidate employeeLayoutValidate, IHttpContextAccessor httpContextAccessor) : base(employeeLayoutRepository, mapper, employeeLayoutValidate, httpContextAccessor)
         {
             _employeeLayoutRepository = employeeLayoutRepository;
         }

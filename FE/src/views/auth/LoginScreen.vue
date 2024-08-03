@@ -76,7 +76,7 @@ export default {
         const res = await AuthService.login(loginParams);
 
         if (res.success) {
-          this.$store.commit("setUserLogin", res.data);
+          await this.$store.commit("setUserLogin", res.data);
           this.$router.push("/");
           this.$store.commit("addToast", {
             type: "success",

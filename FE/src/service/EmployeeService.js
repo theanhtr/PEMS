@@ -15,18 +15,6 @@ class EmployeeServiceClass extends BaseService {
   }
 
   /**
-   * lấy dữ liệu bằng phân trang và filter
-   * @author: TTANH (03/07/2024)
-   */
-  async filter(dataFilter) {
-    const res = await this.baseAxios.get(this.endpoint("/filter"), {
-      params: dataFilter,
-    });
-
-    return res;
-  }
-
-  /**
    * xuất file excel
    * @author: TTANH (16/07/2024)
    */

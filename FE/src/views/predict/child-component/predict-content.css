@@ -18,7 +18,7 @@
   margin-bottom: 10px;
   position: relative;
   row-gap: 4px;
-  z-index: 99999;
+  z-index: 99;
 }
 
 .page__filter-title {

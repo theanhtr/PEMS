@@ -64,6 +64,18 @@ class BaseService {
     const res = await this.baseAxios.delete(this.baseUrl, { data: ids });
     return res;
   }
+
+  /**
+   * lấy dữ liệu bằng phân trang và filter
+   * @author: TTANH (03/07/2024)
+   */
+  async filter(dataFilter) {
+    const res = await this.baseAxios.get(this.endpoint("/filter"), {
+      params: dataFilter,
+    });
+
+    return res;
+  }
 }
 
 export default BaseService;

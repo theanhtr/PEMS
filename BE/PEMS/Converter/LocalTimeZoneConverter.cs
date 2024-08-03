@@ -8,17 +8,16 @@ namespace PEMS
         public override DateTime Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             var valueStr = reader.GetString();
-            var valueStrArray = valueStr.Split("/");
+            var valueStrArray = valueStr?.Split("/");
             
-            if (valueStrArray.Length != 3 )
-            {
-                return DateTime.Parse(valueStr);
-
-            }
-            else
+            if (valueStrArray?.Length == 3 && valueStr?.Length <= 12)
             {
                 var readerStr = valueStrArray[1] + "/" + valueStrArray[0] + "/" + valueStrArray[2];
                 return DateTime.Parse(readerStr);
+            }
+            else
+            {
+                return DateTime.Parse(valueStr);
             }
         }
 
