@@ -672,6 +672,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "PEMS.Controllers.PredictsController",
+    "Method": "FiltersPredictAsync",
+    "RelativePath": "api/v1/Predicts/filter",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "predictFilterParam",
+        "Type": "PEMS.Domain.PredictFilterParam",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "PEMS.Controllers.ReadOnlyController\u00602[[PEMS.Domain.Predict, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.PredictDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
     "Method": "FiltersAsync",
     "RelativePath": "api/v1/Predicts/filter",

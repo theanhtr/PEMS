@@ -29,6 +29,7 @@
       :enable-time-picker="false"
       :format="$store.state.formatDate"
       :day-names="dayNames"
+      :max-date="maxDate"
       text-input
       auto-apply
       timezone="Asia/Novosibirsk"
@@ -169,6 +170,9 @@ export default {
     VueDatePicker,
   },
   props: {
+    maxDate: {
+      default: null
+    },
     modelValue: {
       required: true,
     },

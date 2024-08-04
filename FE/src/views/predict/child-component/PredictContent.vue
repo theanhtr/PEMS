@@ -3,11 +3,8 @@
     <div class="page__filter">
       <h1 class="page__filter-title">Bộ lọc</h1>
       <ttanh-separation-line
-            style="
-              width: 98%;
-              border-top: 2px solid var(--border-color-default);
-              margin-bottom: 4px;
-            " />
+        style="width: 98%; border-top: 2px solid var(--border-color-default); margin-bottom: 4px"
+      />
       <div class="page__filter-group page__filter-group-1">
         <ttanh-combobox
           v-model="dataFilter.provinceId"
@@ -45,11 +42,7 @@
       </div>
       <div class="page__filter-group page__filter-group-2">
         <div class="w1/4">
-          <label
-            class="label-input"
-          >
-            Khoảng thời gian cảnh báo
-          </label>
+          <label class="label-input"> Khoảng thời gian cảnh báo </label>
           <VueDatePicker
             v-model="dataFilter.dateRange"
             :placeholder="$store.state.formatDate"
@@ -92,12 +85,12 @@
           borderRadius="var(--border-radius-default)"
           :border="batchExecutionDisable ? '' : '2px solid black'"
           :tabindex="-1"
-          @clickButton="clickItemBatchExecution"
+          @clickButton="getPredicts"
           >Tìm kiếm</ttanh-button
         >
         <ttanh-button
           width="80px"
-          type="main"
+          type="sub"
           borderRadius="var(--border-radius-default)"
           :border="batchExecutionDisable ? '' : '2px solid black'"
           :tabindex="-1"
@@ -109,20 +102,25 @@
     <div class="page__action">
       <div class="page__action-left">
         <div class="season-type-container">
-          <div class="season-type-item" :class="seasonType == 1 ? 'season-type-selected' : ''" @click="selectSeasonType(1)">
+          <div
+            class="season-type-item"
+            :class="seasonType == 1 ? 'season-type-selected' : ''"
+            @click="selectSeasonType(1)"
+          >
             Đang trong mùa vụ
           </div>
-          <div class="season-type-item" :class="seasonType == 2 ? 'season-type-selected' : ''" @click="selectSeasonType(2)">
+          <div
+            class="season-type-item"
+            :class="seasonType == 2 ? 'season-type-selected' : ''"
+            @click="selectSeasonType(2)"
+          >
             Mùa vụ đã kết thúc
           </div>
         </div>
       </div>
       <div class="page__action-right">
         <ttanh-icon
-          :icon="
-            'page__reload--' +
-            (pageButtonHover['page__reload'] ? 'black' : 'grey')
-          "
+          :icon="'page__reload--' + (pageButtonHover['page__reload'] ? 'black' : 'grey')"
           :tooltip="$t('PredictSubsystem.PredictContent.reloadTooltip')"
           @mouseenter="pageButtonHover['page__reload'] = true"
           @mouseleave="pageButtonHover['page__reload'] = false"
@@ -159,11 +157,7 @@
       />
     </div>
     <div class="page__footer">
-      <ttanh-paging
-        v-if="!this.noData"
-        v-model="pagingData"
-        @reloadData="reloadData"
-      />
+      <ttanh-paging v-if="!this.noData" v-model="pagingData" @reloadData="reloadData" />
     </div>
 
     <AddPredictPopup
@@ -177,16 +171,8 @@
     <ttanh-delete-popup
       :titleText="computedDeletePopupText"
       v-if="isShowConfirmDeletePopup || isShowConfirmDeleteMultiplePopup"
-      @no-click="
-        isShowConfirmDeletePopup
-          ? noDeleteBtnClick()
-          : noDeleteMultiplePredict()
-      "
-      @yes-click="
-        isShowConfirmDeletePopup
-          ? yesDeleteBtnClick()
-          : yesDeleteMultiplePredict()
-      "
+      @no-click="isShowConfirmDeletePopup ? noDeleteBtnClick() : noDeleteMultiplePredict()"
+      @yes-click="isShowConfirmDeletePopup ? yesDeleteBtnClick() : yesDeleteMultiplePredict()"
     />
 
     <ttanh-loading-spinner v-if="isLoading" size="large" />
@@ -194,18 +180,21 @@
 </template>
 
 <script>
-import VueDatePicker from "@vuepic/vue-datepicker";
-import PredictService from "@/service/PredictService.js";
-import AddressService from "@/service/AddressService.js";
-import AddPredictPopup from "./AddPredictPopup.vue";
-import { CommonErrorHandle } from "@/helper/error-handle";
-import { findIndexByAttribute, sortArrayByAttribute } from "@/helper/common.js";
-import { formatToNumber } from "@/helper/textfield-format-helper.js";
-import { debounce } from "@/helper/debounce.js";
-import { isProxy, toRaw } from "vue";
+import VueDatePicker from '@vuepic/vue-datepicker'
+import PredictService from '@/service/PredictService.js'
+import AddressService from '@/service/AddressService.js'
+import AddPredictPopup from './AddPredictPopup.vue'
+import { CommonErrorHandle } from '@/helper/error-handle'
+import { findIndexByAttribute, sortArrayByAttribute } from '@/helper/common.js'
+import { formatToNumber } from '@/helper/textfield-format-helper.js'
+import { debounce } from '@/helper/debounce.js'
+import { isProxy, toRaw } from 'vue'
+import { pestLevels } from '../../../data_combobox/PestLevel'
+import { levelWarnings } from '../../../data_combobox/levelWarning'
+import { cropStates } from '../../../data_combobox/cropState'
 
 export default {
-  name: "PredictContent",
+  name: 'PredictContent',
   components: {
     AddPredictPopup,
     VueDatePicker
@@ -213,43 +202,17 @@ export default {
   data() {
     return {
       predicts: [],
-      
+
       seasonType: 1,
 
-      cropStates: [
-        {
-          id: 1,
-          name: "Giai đoạn 1"
-        },
-        {
-          id: 2,
-          name: "Giai đoạn 2"
-        },
-        {
-          id: 3,
-          name: "Giai đoạn 3"
-        },
-      ],
+      cropStates: cropStates,
 
-      pestLevels: [
-        {
-          id: 1,
-          name: "Mức độ 1"
-        },
-        {
-          id: 2,
-          name: "Mức độ 2"
-        },
-        {
-          id: 3,
-          name: "Mức độ 3"
-        },
-      ],
+      pestLevels: pestLevels,
 
       dataAddress: {
         provinces: [],
         districts: [],
-        wards: [],
+        wards: []
       },
 
       /* lưu dữ id các dự báo đã được chọn */
@@ -257,73 +220,60 @@ export default {
 
       PredictColumnsInfo: [
         {
-          id: "ProvinceName",
-          name: "TỈNH/THÀNH PHỐ",
-          size: "150px",
-          textAlign: "left",
-          format: "text",
+          id: 'ProvinceName',
+          name: 'TỈNH/THÀNH PHỐ',
+          size: '150px',
+          textAlign: 'left',
+          format: 'text',
           isShow: true,
-          isPin: false,
+          isPin: false
         },
         {
-          id: "DistrictName",
-          name: "QUẬN/HUYỆN",
-          size: "150px",
-          textAlign: "left",
-          format: "text",
+          id: 'DistrictName',
+          name: 'QUẬN/HUYỆN',
+          size: '150px',
+          textAlign: 'left',
+          format: 'text',
           isShow: true,
-          isPin: false,
+          isPin: false
         },
         {
-          id: "WardName",
-          name: "PHƯỜNG/XÃ",
-          size: "150px",
-          textAlign: "left",
-          format: "text",
+          id: 'WardName',
+          name: 'PHƯỜNG/XÃ',
+          size: '150px',
+          textAlign: 'left',
+          format: 'text',
           isShow: true,
-          isPin: false,
+          isPin: false
         },
         {
-          id: "CurrentStartDate",
-          name: "KHOẢNG THỜI GIAN CẢNH BÁO",
-          size: "150px",
-          textAlign: "center",
-          format: "date",
+          id: 'CurrentStartDate',
+          name: 'KHOẢNG THỜI GIAN CẢNH BÁO',
+          size: '150px',
+          textAlign: 'center',
+          format: 'date',
           isShow: true,
-          isPin: false,
+          isPin: false
         },
         {
-          id: "LevelWarningId",
-          name: "MỨC ĐỘ CẢNH BÁO",
-          size: "150px",
-          textAlign: "center",
-          format: "input-combobox",
+          id: 'LevelWarningId',
+          name: 'MỨC ĐỘ CẢNH BÁO',
+          size: '150px',
+          textAlign: 'center',
+          format: 'input-combobox',
           isShow: true,
           isPin: false,
-          comboboxRowData: [
-            {
-              id: 1,
-              name: "Mức độ 1"
-            },
-            {
-              id: 2,
-              name: "Mức độ 2"
-            },
-            {
-              id: 3,
-              name: "Mức độ 3"
-            },
-          ],
+          comboboxRowData: levelWarnings
         },
         {
-          id: "Action",
-          name: "HÀNH ĐỘNG",
-          size: "150px",
-          textAlign: "center",
-          format: "text",
+          id: 'Action',
+          name: 'HÀNH ĐỘNG',
+          size: '150px',
+          textAlign: 'center',
+          format: 'text',
           isShow: true,
-          isPin: false,
-        },
+          isPin: false
+        }
       ],
 
       /* thông tin cột thuần được gửi từ api đã sắp xếp */
@@ -335,7 +285,7 @@ export default {
       pageButtonHover: {
         page__setting: false,
         page__reload: false,
-        page__reload: false,
+        page__reload: false
       },
 
       /* biến xác định nút "Thực hiện hàng loạt" có disable hay không */
@@ -344,11 +294,9 @@ export default {
       /* các hành động cho nút "Thực hiện hàng loạt" ở page action */
       batchExecutionDataDropdown: [
         {
-          id: "delete",
-          title: this.$t(
-            "PredictSubsystem.PredictContent.batchExecutionData.delete"
-          ),
-        },
+          id: 'delete',
+          title: this.$t('PredictSubsystem.PredictContent.batchExecutionData.delete')
+        }
       ],
 
       /*== các biến sử dụng cho add-Predict-popup ==*/
@@ -358,19 +306,19 @@ export default {
 
       /* biến sử dụng cho việc xác nhận xóa */
       isShowConfirmDeletePopup: false,
-      PredictCodeDelete: "",
-      PredictIdDelete: "",
+      PredictCodeDelete: '',
+      PredictIdDelete: '',
 
       isShowConfirmDeleteMultiplePopup: false,
 
-      searchText: "",
+      searchText: '',
 
       /* biến sử dụng cho phân trang */
       pagingData: {
         pageSize: 10,
         pageNumber: 1,
         totalPage: 0,
-        totalRecord: 0,
+        totalRecord: 0
       },
 
       // xử lý khi không có dữ liệu trả về
@@ -389,28 +337,25 @@ export default {
         provinceId: -1,
         districtId: -1,
         wardId: -1,
-        dateRange: "",
+        dateRange: null,
         cropStateId: -1,
         pestLevelId: -1
-      },
-    };
+      }
+    }
   },
 
   created() {
     // lấy dữ liệu phân trang được lưu trong local storage
-    this.pagingData.pageNumber =
-      formatToNumber(localStorage.getItem("pageNumber")) ?? 1;
-    this.pagingData.pageSize =
-      formatToNumber(localStorage.getItem("pageSize")) ?? 10;
-
+    this.pagingData.pageNumber = formatToNumber(localStorage.getItem('pageNumber')) ?? 1
+    this.pagingData.pageSize = formatToNumber(localStorage.getItem('pageSize')) ?? 10
 
     //lấy dữ liệu dự báo
-    this.getPredicts();
+    this.getPredicts()
   },
 
   methods: {
     selectSeasonType(type) {
-      this.seasonType = type;
+      this.seasonType = type
     },
 
     clearFilter() {
@@ -418,16 +363,18 @@ export default {
         provinceId: -1,
         districtId: -1,
         wardId: -1,
-        dateRange: "",
+        dateRange: null,
         cropStateId: -1,
         pestLevelId: -1
-      };
+      }
 
-      this.$refs.provinceId.$refs.inputSearch.value = "";
-      this.$refs.districtId.$refs.inputSearch.value = "";
-      this.$refs.wardId.$refs.inputSearch.value = "";
-      this.$refs.cropStateId.$refs.inputSearch.value = "";
-      this.$refs.pestLevelId.$refs.inputSearch.value = "";
+      this.$refs.provinceId.$refs.inputSearch.value = ''
+      this.$refs.districtId.$refs.inputSearch.value = ''
+      this.$refs.wardId.$refs.inputSearch.value = ''
+      this.$refs.cropStateId.$refs.inputSearch.value = ''
+      this.$refs.pestLevelId.$refs.inputSearch.value = ''
+
+      this.getPredicts()
     },
     /**
      * Sắp xếp theo ordernumber và isPin để hiển thị đúng
@@ -436,21 +383,14 @@ export default {
     sortPredictColumnsInfo(columnsInfoTemp) {
       try {
         // sắp xếp theo thứ tự
-        columnsInfoTemp = sortArrayByAttribute(
-          columnsInfoTemp,
-          "OrderNumber",
-          false
-        );
+        columnsInfoTemp = sortArrayByAttribute(columnsInfoTemp, 'OrderNumber', false)
 
         //đưa những cột được ghim lên đầu
-        columnsInfoTemp = sortArrayByAttribute(columnsInfoTemp, "ColumnIsPin");
+        columnsInfoTemp = sortArrayByAttribute(columnsInfoTemp, 'ColumnIsPin')
 
-        return columnsInfoTemp;
+        return columnsInfoTemp
       } catch (error) {
-        console.log(
-          "🚀 ~ file: PredictContent.vue:263 ~ sortPredictColumnsInfo ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: PredictContent.vue:263 ~ sortPredictColumnsInfo ~ error:', error)
       }
     },
 
@@ -459,8 +399,8 @@ export default {
      * @author: TTANH (11/07/2024)
      */
     showAddPredictPopup() {
-      this.isShowAddPredictPopup = true;
-      this.dataUpdate = null;
+      this.isShowAddPredictPopup = true
+      this.dataUpdate = null
     },
 
     /**
@@ -469,30 +409,46 @@ export default {
      */
     async getPredicts() {
       try {
-        const res = await PredictService.filter({
-          pageSize: this.pagingData.pageSize,
-          pageNumber: this.pagingData.pageNumber,
-          searchText: ''
-        });
+        let startDate = null
+        let endDate = null
+
+        if (this.dataFilter.dateRange) {
+          startDate = this.dataFilter.dateRange[0]
+          endDate = this.dataFilter.dateRange[1]
+        }
+
+        let dataFilter = {
+          ProvinceId: this.dataFilter.provinceId,
+          DistrictId: this.dataFilter.districtId,
+          WardId: this.dataFilter.wardId,
+          StartDate: startDate,
+          EndDate: endDate,
+          CropStateId: this.dataFilter.cropStateId,
+          PestLevelId: this.dataFilter.pestLevelId,
+          SeasonType: this.seasonType,
+          PageSize: this.pagingData.pageSize,
+          PageNumber: this.pagingData.pageNumber
+        }
+
+        console.log(dataFilter)
+
+        const res = await PredictService.filter(dataFilter)
 
         if (res.success) {
           if (res.data.Data.length != 0) {
-            this.predicts = res.data.Data;
-            this.pagingData.totalPage = res.data.TotalPage;
-            this.pagingData.totalRecord = res.data.TotalRecord;
-            this.pagingData.pageNumber = res.data.CurrentPage;
-            this.noData = false;
+            this.predicts = res.data.Data
+            this.pagingData.totalPage = res.data.TotalPage
+            this.pagingData.totalRecord = res.data.TotalRecord
+            this.pagingData.pageNumber = res.data.CurrentPage
+            this.noData = false
           } else {
-            this.noData = true;
+            this.noData = true
           }
         } else {
-          CommonErrorHandle();
+          CommonErrorHandle()
         }
       } catch (error) {
-        console.log(
-          "🚀 ~ file: PredictList.vue:116 ~ getPredicts ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: PredictList.vue:116 ~ getPredicts ~ error:', error)
       }
     },
 
@@ -504,8 +460,8 @@ export default {
      * @param {string} idItem id của nút được click
      */
     clickItemBatchExecution(idItem) {
-      if (idItem === "delete") {
-        this.isShowConfirmDeleteMultiplePopup = true;
+      if (idItem === 'delete') {
+        this.isShowConfirmDeleteMultiplePopup = true
       }
     },
 
@@ -514,7 +470,7 @@ export default {
      * @author: TTANH (31/07/2024)
      */
     noDeleteMultiplePredict() {
-      this.isShowConfirmDeleteMultiplePopup = false;
+      this.isShowConfirmDeleteMultiplePopup = false
     },
 
     /**
@@ -522,34 +478,34 @@ export default {
      * @author: TTANH (17/07/2024)
      */
     async yesDeleteMultiplePredict() {
-      var dataSendApi = null;
+      var dataSendApi = null
 
       if (isProxy(this.selectedPredicts)) {
-        dataSendApi = toRaw(this.selectedPredicts);
+        dataSendApi = toRaw(this.selectedPredicts)
       } else {
-        dataSendApi = this.selectedPredicts;
+        dataSendApi = this.selectedPredicts
       }
 
-      this.isLoading = true;
+      this.isLoading = true
 
-      const res = await PredictService.deleteMultiple(dataSendApi);
+      const res = await PredictService.deleteMultiple(dataSendApi)
 
-      this.isLoading = false;
+      this.isLoading = false
 
       if (res.success) {
-        this.$store.commit("addToast", {
-          type: "success",
-          text: this.$t("successHandle.PredictSubsystem.deleteMultiple", {
-            count: res.data,
-          }),
-        });
+        this.$store.commit('addToast', {
+          type: 'success',
+          text: this.$t('successHandle.PredictSubsystem.deleteMultiple', {
+            count: res.data
+          })
+        })
 
-        this.selectedPredicts = [];
-        this.isShowConfirmDeleteMultiplePopup = false;
+        this.selectedPredicts = []
+        this.isShowConfirmDeleteMultiplePopup = false
 
-        this.reloadData();
+        this.reloadData()
       } else {
-        CommonErrorHandle();
+        CommonErrorHandle()
       }
     },
 
@@ -559,14 +515,11 @@ export default {
      */
     reloadData() {
       try {
-        this.previouslySelectedIndex = -1;
-        this.predicts = [];
-        this.getPredicts();
+        this.previouslySelectedIndex = -1
+        this.predicts = []
+        this.getPredicts()
       } catch (error) {
-        console.log(
-          "🚀 ~ file: PredictContent.vue:465 ~ reloadData ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: PredictContent.vue:465 ~ reloadData ~ error:', error)
       }
     },
 
@@ -576,13 +529,10 @@ export default {
      */
     reloadDataWithSelectedRows() {
       try {
-        this.selectedPredicts = [];
-        this.reloadData();
+        this.selectedPredicts = []
+        this.reloadData()
       } catch (error) {
-        console.log(
-          "🚀 ~ file: PredictContent.vue:282 ~ reloadDataWithSelectedRows ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: PredictContent.vue:282 ~ reloadDataWithSelectedRows ~ error:', error)
       }
     },
 
@@ -592,10 +542,10 @@ export default {
      * @param {string} rowId id của dòng được chọn
      */
     addSelectedRow(rowId) {
-      let index = findIndexByAttribute(this.selectedPredicts, "", rowId);
+      let index = findIndexByAttribute(this.selectedPredicts, '', rowId)
 
       if (index === -1) {
-        this.selectedPredicts.push(rowId);
+        this.selectedPredicts.push(rowId)
       }
     },
 
@@ -605,10 +555,10 @@ export default {
      * @param {string} rowId id của dòng được chọn
      */
     deleteSelectedRow(rowId) {
-      let index = findIndexByAttribute(this.selectedPredicts, "", rowId);
+      let index = findIndexByAttribute(this.selectedPredicts, '', rowId)
 
       if (index !== -1) {
-        this.selectedPredicts.splice(index, 1);
+        this.selectedPredicts.splice(index, 1)
       }
     },
 
@@ -619,13 +569,10 @@ export default {
     checkedAllRow() {
       try {
         this.predicts.forEach((Predict) => {
-          this.addSelectedRow(Predict.PredictId);
-        });
+          this.addSelectedRow(Predict.PredictId)
+        })
       } catch (error) {
-        console.log(
-          "🚀 ~ file: PredictList.vue:463 ~ checkedAllRow ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: PredictList.vue:463 ~ checkedAllRow ~ error:', error)
       }
     },
 
@@ -636,13 +583,10 @@ export default {
     uncheckedAllRow() {
       try {
         this.predicts.forEach((Predict) => {
-          this.deleteSelectedRow(Predict.PredictId);
-        });
+          this.deleteSelectedRow(Predict.PredictId)
+        })
       } catch (error) {
-        console.log(
-          "🚀 ~ file: PredictList.vue:475 ~ uncheckedAllRow ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: PredictList.vue:475 ~ uncheckedAllRow ~ error:', error)
       }
     },
 
@@ -653,51 +597,36 @@ export default {
      */
     checkedRow(rowId) {
       try {
-        let indexNewChecked = findIndexByAttribute(
-          this.predicts,
-          "PredictId",
-          rowId
-        );
+        let indexNewChecked = findIndexByAttribute(this.predicts, 'PredictId', rowId)
 
         if (event.shiftKey) {
-          event.preventDefault();
+          event.preventDefault()
 
           if (this.previouslySelectedIndex === -1) {
-            this.addSelectedRow(rowId);
+            this.addSelectedRow(rowId)
           } else {
             if (this.previouslySelectedIndex > indexNewChecked) {
-              for (
-                let index = indexNewChecked;
-                index <= this.previouslySelectedIndex;
-                index++
-              ) {
-                const Predict = this.predicts[index];
+              for (let index = indexNewChecked; index <= this.previouslySelectedIndex; index++) {
+                const Predict = this.predicts[index]
 
-                this.addSelectedRow(Predict.PredictId);
+                this.addSelectedRow(Predict.PredictId)
               }
             } else if (this.previouslySelectedIndex < indexNewChecked) {
-              for (
-                let index = this.previouslySelectedIndex;
-                index <= indexNewChecked;
-                index++
-              ) {
-                const Predict = this.predicts[index];
+              for (let index = this.previouslySelectedIndex; index <= indexNewChecked; index++) {
+                const Predict = this.predicts[index]
 
-                this.addSelectedRow(Predict.PredictId);
+                this.addSelectedRow(Predict.PredictId)
               }
             } else {
             }
           }
         } else {
-          this.addSelectedRow(rowId);
+          this.addSelectedRow(rowId)
         }
 
-        this.previouslySelectedIndex = indexNewChecked;
+        this.previouslySelectedIndex = indexNewChecked
       } catch (error) {
-        console.log(
-          "🚀 ~ file: PredictList.vue:492 ~ uncheckedAllRow ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: PredictList.vue:492 ~ uncheckedAllRow ~ error:', error)
       }
     },
 
@@ -708,51 +637,36 @@ export default {
      */
     uncheckedRow(rowId) {
       try {
-        let indexNewChecked = findIndexByAttribute(
-          this.predicts,
-          "PredictId",
-          rowId
-        );
+        let indexNewChecked = findIndexByAttribute(this.predicts, 'PredictId', rowId)
 
         if (event.shiftKey) {
-          event.preventDefault();
+          event.preventDefault()
 
           if (this.previouslySelectedIndex === -1) {
-            this.deleteSelectedRow(rowId);
+            this.deleteSelectedRow(rowId)
           } else {
             if (this.previouslySelectedIndex > indexNewChecked) {
-              for (
-                let index = indexNewChecked;
-                index <= this.previouslySelectedIndex;
-                index++
-              ) {
-                const Predict = this.predicts[index];
+              for (let index = indexNewChecked; index <= this.previouslySelectedIndex; index++) {
+                const Predict = this.predicts[index]
 
-                this.deleteSelectedRow(Predict.PredictId);
+                this.deleteSelectedRow(Predict.PredictId)
               }
             } else if (this.previouslySelectedIndex < indexNewChecked) {
-              for (
-                let index = this.previouslySelectedIndex;
-                index <= indexNewChecked;
-                index++
-              ) {
-                const Predict = this.predicts[index];
+              for (let index = this.previouslySelectedIndex; index <= indexNewChecked; index++) {
+                const Predict = this.predicts[index]
 
-                this.deleteSelectedRow(Predict.PredictId);
+                this.deleteSelectedRow(Predict.PredictId)
               }
             } else {
             }
           }
         } else {
-          this.deleteSelectedRow(rowId);
+          this.deleteSelectedRow(rowId)
         }
 
-        this.previouslySelectedIndex = indexNewChecked;
+        this.previouslySelectedIndex = indexNewChecked
       } catch (error) {
-        console.log(
-          "🚀 ~ file: PredictList.vue:492 ~ uncheckedAllRow ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: PredictList.vue:492 ~ uncheckedAllRow ~ error:', error)
       }
     },
 
@@ -762,19 +676,12 @@ export default {
      */
     openFormUpdate(rowId) {
       try {
-        let indexRow = findIndexByAttribute(
-          this.predicts,
-          "PredictId",
-          rowId
-        );
+        let indexRow = findIndexByAttribute(this.predicts, 'PredictId', rowId)
 
-        this.isShowAddPredictPopup = true;
-        this.dataUpdate = this.predicts[indexRow];
+        this.isShowAddPredictPopup = true
+        this.dataUpdate = this.predicts[indexRow]
       } catch (error) {
-        console.log(
-          "🚀 ~ file: PredictContent.vue:529 ~ openFormUpdate ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: PredictContent.vue:529 ~ openFormUpdate ~ error:', error)
       }
     },
 
@@ -785,25 +692,22 @@ export default {
      */
     openConfirmDeletePopup(id) {
       try {
-        let index = findIndexByAttribute(this.predicts, "PredictId", id);
+        let index = findIndexByAttribute(this.predicts, 'PredictId', id)
 
         if (index !== -1) {
-          this.PredictCodeDelete = this.predicts[index].PredictCode;
-          this.PredictIdDelete = id;
-          this.isShowConfirmDeletePopup = true;
+          this.PredictCodeDelete = this.predicts[index].PredictCode
+          this.PredictIdDelete = id
+          this.isShowConfirmDeletePopup = true
         } else {
-          this.$store.commit("addToast", {
-            type: "error",
-            text: this.$t("errorHandle.PredictSubsystem.notFoundPredict"),
-          });
+          this.$store.commit('addToast', {
+            type: 'error',
+            text: this.$t('errorHandle.PredictSubsystem.notFoundPredict')
+          })
 
-          this.reloadData();
+          this.reloadData()
         }
       } catch (error) {
-        console.log(
-          "🚀 ~ file: PredictContent.vue:351 ~ openConfirmDeletePopup ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: PredictContent.vue:351 ~ openConfirmDeletePopup ~ error:', error)
       }
     },
 
@@ -813,27 +717,20 @@ export default {
      */
     openFormDuplicate(rowId) {
       try {
-        let indexRow = findIndexByAttribute(
-          this.predicts,
-          "PredictId",
-          rowId
-        );
+        let indexRow = findIndexByAttribute(this.predicts, 'PredictId', rowId)
 
-        this.isShowAddPredictPopup = true;
-        this.dataUpdate = this.predicts[indexRow];
+        this.isShowAddPredictPopup = true
+        this.dataUpdate = this.predicts[indexRow]
 
         this.$nextTick(() => {
           // thay đổi trạng thái form thành thêm mới
-          this.$refs.addPredictPopup.changeFormModeToAdd();
+          this.$refs.addPredictPopup.changeFormModeToAdd()
 
           // lấy mã code mới
-          this.$refs.addPredictPopup.getNewPredictCode();
-        });
+          this.$refs.addPredictPopup.getNewPredictCode()
+        })
       } catch (error) {
-        console.log(
-          "🚀 ~ file: PredictContent.vue:529 ~ openFormUpdate ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: PredictContent.vue:529 ~ openFormUpdate ~ error:', error)
       }
     },
 
@@ -843,14 +740,11 @@ export default {
      */
     closeConfirmDeletePopup() {
       try {
-        this.PredictCodeDelete = "";
-        this.PredictIdDelete = "";
-        this.isShowConfirmDeletePopup = false;
+        this.PredictCodeDelete = ''
+        this.PredictIdDelete = ''
+        this.isShowConfirmDeletePopup = false
       } catch (error) {
-        console.log(
-          "🚀 ~ file: PredictContent.vue:386 ~ closeConfirmDeletePopup ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: PredictContent.vue:386 ~ closeConfirmDeletePopup ~ error:', error)
       }
     },
 
@@ -860,12 +754,9 @@ export default {
      */
     noDeleteBtnClick() {
       try {
-        this.closeConfirmDeletePopup();
+        this.closeConfirmDeletePopup()
       } catch (error) {
-        console.log(
-          "🚀 ~ file: PredictContent.vue:401 ~ noDeleteBtnClick ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: PredictContent.vue:401 ~ noDeleteBtnClick ~ error:', error)
       }
     },
 
@@ -875,14 +766,11 @@ export default {
      */
     yesDeleteBtnClick() {
       try {
-        this.deleteSelectedRow(this.PredictIdDelete);
-        this.deleteRecord();
-        this.closeConfirmDeletePopup();
+        this.deleteSelectedRow(this.PredictIdDelete)
+        this.deleteRecord()
+        this.closeConfirmDeletePopup()
       } catch (error) {
-        console.log(
-          "🚀 ~ file: PredictContent.vue:416 ~ yesDeleteBtnClick ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: PredictContent.vue:416 ~ yesDeleteBtnClick ~ error:', error)
       }
     },
 
@@ -892,36 +780,33 @@ export default {
      */
     async deleteRecord() {
       try {
-        this.isLoading = true;
-        const PredictCode = this.PredictCodeDelete;
-        const res = await PredictService.delete(this.PredictIdDelete);
+        this.isLoading = true
+        const PredictCode = this.PredictCodeDelete
+        const res = await PredictService.delete(this.PredictIdDelete)
 
         if (res.success) {
-          this.$store.commit("addToast", {
-            type: "success",
-            text: this.$t("successHandle.PredictSubsystem.delete", {
-              code: PredictCode,
-            }),
-          });
+          this.$store.commit('addToast', {
+            type: 'success',
+            text: this.$t('successHandle.PredictSubsystem.delete', {
+              code: PredictCode
+            })
+          })
 
-          this.reloadData();
+          this.reloadData()
         } else {
           if (res.errorCode === this.$_TTANHEnum.ERROR_CODE.NOT_FOUND_DATA) {
-            this.$store.commit("addToast", {
-              type: "error",
-              text: res.userMsg,
-            });
+            this.$store.commit('addToast', {
+              type: 'error',
+              text: res.userMsg
+            })
           } else {
-            CommonErrorHandle();
+            CommonErrorHandle()
           }
         }
 
-        this.isLoading = false;
+        this.isLoading = false
       } catch (error) {
-        console.log(
-          "🚀 ~ file: PredictContent.vue:582 ~ deleteRecord ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: PredictContent.vue:582 ~ deleteRecord ~ error:', error)
       }
     },
 
@@ -931,13 +816,10 @@ export default {
      */
     resizePredictColumn(index, resizeWidth) {
       try {
-        this.isUpdateColumnsInfo = true;
-        this.PredictColumnsInfo[index].size = resizeWidth;
+        this.isUpdateColumnsInfo = true
+        this.PredictColumnsInfo[index].size = resizeWidth
       } catch (error) {
-        console.log(
-          "🚀 ~ file: PredictContent.vue:524 ~ resizePredictColumn ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: PredictContent.vue:524 ~ resizePredictColumn ~ error:', error)
       }
     },
 
@@ -947,15 +829,11 @@ export default {
      */
     handleKeydown(event) {
       if (event.keyCode === this.$_TTANHEnum.KEY_CODE.INSERT && event.ctrlKey) {
-        this.$router.push("/app/Predict/import");
+        this.$router.push('/app/Predict/import')
       } else if (event.keyCode === this.$_TTANHEnum.KEY_CODE.INSERT) {
-        this.showAddPredictPopup();
-      } else if (
-        event.keyCode === this.$_TTANHEnum.KEY_CODE.F &&
-        event.shiftKey &&
-        event.ctrlKey
-      ) {
-        this.$refs.searchTextTable.focus();
+        this.showAddPredictPopup()
+      } else if (event.keyCode === this.$_TTANHEnum.KEY_CODE.F && event.shiftKey && event.ctrlKey) {
+        this.$refs.searchTextTable.focus()
       }
     },
 
@@ -966,23 +844,22 @@ export default {
      * @returns 1 object đã được chuyển đổi
      */
     mapColumnInfoFromRawToCode(rawData) {
-      let langCode = this.$store.state.langCode;
+      let langCode = this.$store.state.langCode
 
-      let tempMap = {};
+      let tempMap = {}
 
-      tempMap.id = rawData.ServerColumnName;
-      tempMap.name = rawData[`${langCode}ClientColumnName`];
-      tempMap.size = rawData.ColumnWidth;
-      tempMap.textAlign = rawData.ColumnTextAlign;
-      tempMap.format = rawData.ColumnFormat;
-      tempMap.isShow = rawData.ColumnIsShow;
-      tempMap.isPin = rawData.ColumnIsPin;
-      tempMap.tooltip = rawData[`${langCode}Tooltip`];
-      tempMap.clientColumnNameDefault =
-        rawData[`${langCode}ClientColumnNameDefault`];
-      tempMap.orderNumber = rawData.OrderNumber;
+      tempMap.id = rawData.ServerColumnName
+      tempMap.name = rawData[`${langCode}ClientColumnName`]
+      tempMap.size = rawData.ColumnWidth
+      tempMap.textAlign = rawData.ColumnTextAlign
+      tempMap.format = rawData.ColumnFormat
+      tempMap.isShow = rawData.ColumnIsShow
+      tempMap.isPin = rawData.ColumnIsPin
+      tempMap.tooltip = rawData[`${langCode}Tooltip`]
+      tempMap.clientColumnNameDefault = rawData[`${langCode}ClientColumnNameDefault`]
+      tempMap.orderNumber = rawData.OrderNumber
 
-      return tempMap;
+      return tempMap
     },
 
     /**
@@ -992,15 +869,15 @@ export default {
      * @returns 1 mảng object đã được chuyển đổi
      */
     mapColumnsInfoFromRawToCode(rawsData) {
-      let tempMapArray = [];
+      let tempMapArray = []
 
       rawsData.forEach((e) => {
-        let tempMap = this.mapColumnInfoFromRawToCode(e);
+        let tempMap = this.mapColumnInfoFromRawToCode(e)
 
-        tempMapArray.push(tempMap);
-      });
+        tempMapArray.push(tempMap)
+      })
 
-      return tempMapArray;
+      return tempMapArray
     },
 
     /**
@@ -1010,28 +887,24 @@ export default {
      * @returns 1 object đã được chuyển đổi
      */
     mapColumnInfoFromCodeToRawForUpdate(codeData) {
-      let langCode = this.$store.state.langCode;
+      let langCode = this.$store.state.langCode
 
-      let indexInRaw = findIndexByAttribute(
-        this.PredictColumnsInfoRaw,
-        "ServerColumnName",
-        codeData.id
-      );
+      let indexInRaw = findIndexByAttribute(this.PredictColumnsInfoRaw, 'ServerColumnName', codeData.id)
 
-      let PredictColumnInfoRaw = this.PredictColumnsInfoRaw[indexInRaw];
+      let PredictColumnInfoRaw = this.PredictColumnsInfoRaw[indexInRaw]
 
-      let tempMap = {};
+      let tempMap = {}
 
-      tempMap.PredictLayoutId = PredictColumnInfoRaw.PredictLayoutId;
-      tempMap.viClientColumnName = PredictColumnInfoRaw.viClientColumnName;
-      tempMap.enClientColumnName = PredictColumnInfoRaw.enClientColumnName;
-      tempMap.OrderNumber = PredictColumnInfoRaw.OrderNumber;
+      tempMap.PredictLayoutId = PredictColumnInfoRaw.PredictLayoutId
+      tempMap.viClientColumnName = PredictColumnInfoRaw.viClientColumnName
+      tempMap.enClientColumnName = PredictColumnInfoRaw.enClientColumnName
+      tempMap.OrderNumber = PredictColumnInfoRaw.OrderNumber
 
-      tempMap[`${langCode}ClientColumnName`] = codeData.name;
-      tempMap.ColumnWidth = codeData.size;
-      tempMap.ColumnIsShow = codeData.isShow;
-      tempMap.ColumnIsPin = codeData.isPin;
-      return tempMap;
+      tempMap[`${langCode}ClientColumnName`] = codeData.name
+      tempMap.ColumnWidth = codeData.size
+      tempMap.ColumnIsShow = codeData.isShow
+      tempMap.ColumnIsPin = codeData.isPin
+      return tempMap
     },
 
     /**
@@ -1041,224 +914,211 @@ export default {
      * @returns 1 mảng object đã được chuyển đổi
      */
     mapColumnsInfoFromCodeToRawForUpdate(codesData) {
-      let tempMapArray = [];
+      let tempMapArray = []
 
       codesData.forEach((e) => {
-        let tempMap = this.mapColumnInfoFromCodeToRawForUpdate(e);
+        let tempMap = this.mapColumnInfoFromCodeToRawForUpdate(e)
 
-        tempMapArray.push(tempMap);
-      });
+        tempMapArray.push(tempMap)
+      })
 
-      return tempMapArray;
+      return tempMapArray
     },
 
     /**
      * thực hiện cập nhật thông tin cột trên db
      */
     async updateColumnsInfoToDB(newData) {
-      let datasUpdate = this.mapColumnsInfoFromCodeToRawForUpdate(newData);
+      let datasUpdate = this.mapColumnsInfoFromCodeToRawForUpdate(newData)
 
-      const res = await PredictLayoutService.updateMultiple(datasUpdate);
+      const res = await PredictLayoutService.updateMultiple(datasUpdate)
 
       if (res.success) {
       } else {
-        CommonErrorHandle();
+        CommonErrorHandle()
       }
     },
 
     async getProvinces() {
-      let provinces = await AddressService.province();
+      let provinces = await AddressService.province()
 
       if (provinces.status === 200) {
-        this.dataAddress.provinces = provinces.data.results;
+        this.dataAddress.provinces = provinces.data.results
       } else {
-        this.dataAddress.provinces = [];
+        this.dataAddress.provinces = []
       }
     },
 
     async getDistricts() {
-      let districts = await AddressService.district(this.dataFilter.provinceId);
+      let districts = await AddressService.district(this.dataFilter.provinceId)
 
       if (districts.status === 200) {
-        this.dataAddress.districts = districts.data.results;
+        this.dataAddress.districts = districts.data.results
       } else {
-        this.dataAddress.districts = [];
+        this.dataAddress.districts = []
       }
     },
 
     async getWards() {
-      let wards = await AddressService.ward(this.dataFilter.districtId);
+      let wards = await AddressService.ward(this.dataFilter.districtId)
 
       if (wards.status === 200) {
-        this.dataAddress.wards = wards.data.results;
+        this.dataAddress.wards = wards.data.results
       } else {
-        this.dataAddress.wards = [];
+        this.dataAddress.wards = []
       }
-    },
+    }
   },
   computed: {
     /* thêm id để phân biệt các phần tử với nhau */
     computedPredicts() {
       try {
-        let haveIdPredicts = [];
+        let haveIdPredicts = []
 
         this.predicts.forEach((Predict, index) => {
-          let id = Predict.PredictId;
+          let id = Predict.PredictId
           haveIdPredicts.push({
             id,
-            ...Predict,
-          });
-        });
+            ...Predict
+          })
+        })
 
-        return haveIdPredicts;
+        return haveIdPredicts
       } catch (error) {
-        console.log(
-          "🚀 ~ file: PredictList.vue:457 ~ computedPredicts ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: PredictList.vue:457 ~ computedPredicts ~ error:', error)
       }
     },
 
     computedProvinces() {
       try {
-        let provincesFormat = [];
+        let provincesFormat = []
 
         this.dataAddress.provinces.forEach((province) => {
-          let id = province.province_id;
-          let name = province.province_name;
-          let code = province.province_name;
+          let id = province.province_id
+          let name = province.province_name
+          let code = province.province_name
 
           provincesFormat.push({
             id,
             name,
             code
-          });
-        });
+          })
+        })
 
-        return provincesFormat;
+        return provincesFormat
       } catch (error) {
-        console.log(
-          "🚀 ~ file: EmployeeList.vue:457 ~ computedEmployees ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: EmployeeList.vue:457 ~ computedEmployees ~ error:', error)
       }
     },
 
     computedDistricts() {
       try {
-        let districtsFormat = [];
+        let districtsFormat = []
 
         this.dataAddress.districts.forEach((district) => {
-          let id = district.district_id;
-          let name = district.district_name;
-          let code = district.district_name;
+          let id = district.district_id
+          let name = district.district_name
+          let code = district.district_name
 
           districtsFormat.push({
             id,
             name,
             code
-          });
-        });
+          })
+        })
 
-        return districtsFormat;
+        return districtsFormat
       } catch (error) {
-        console.log(
-          "🚀 ~ file: EmployeeList.vue:457 ~ computedEmployees ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: EmployeeList.vue:457 ~ computedEmployees ~ error:', error)
       }
     },
 
     computedWards() {
       try {
-        let wardsFormat = [];
+        let wardsFormat = []
 
         this.dataAddress.wards.forEach((ward) => {
-          let id = ward.ward_id;
-          let name = ward.ward_name;
-          let code = ward.ward_name;
+          let id = ward.ward_id
+          let name = ward.ward_name
+          let code = ward.ward_name
 
           wardsFormat.push({
             id,
             name,
             code
-          });
-        });
+          })
+        })
 
-        return wardsFormat;
+        return wardsFormat
       } catch (error) {
-        console.log(
-          "🚀 ~ file: EmployeeList.vue:457 ~ computedEmployees ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: EmployeeList.vue:457 ~ computedEmployees ~ error:', error)
       }
     },
 
     computedSelectedPredicts() {
       if (this.selectedPredicts.length <= 1) {
-        this.batchExecutionDisable = true;
+        this.batchExecutionDisable = true
       } else {
-        this.batchExecutionDisable = false;
+        this.batchExecutionDisable = false
       }
-      return this.selectedPredicts;
+      return this.selectedPredicts
     },
 
     computedNoData() {
-      return this.noData;
+      return this.noData
     },
 
     computedDeletePopupText() {
       if (this.isShowConfirmDeletePopup) {
-        return this.$t("PredictSubsystem.PredictContent.deletePopupTitle", {
-          code: this.PredictCodeDelete,
-        });
+        return this.$t('PredictSubsystem.PredictContent.deletePopupTitle', {
+          code: this.PredictCodeDelete
+        })
       } else if (this.isShowConfirmDeleteMultiplePopup) {
-        return this.$t(
-          "PredictSubsystem.PredictContent.deleteMultiplePopupTitle",
-          { count: this.selectedPredicts.length }
-        );
+        return this.$t('PredictSubsystem.PredictContent.deleteMultiplePopupTitle', {
+          count: this.selectedPredicts.length
+        })
       } else {
-        return "";
+        return ''
       }
-    },
+    }
   },
   watch: {
     searchText: debounce(function () {
-      this.pagingData.pageNumber = 1;
-      this.reloadData();
+      this.pagingData.pageNumber = 1
+      this.reloadData()
     }, 500),
 
     pagingData: {
       handler: function (newValue) {
-        localStorage.setItem("pageNumber", newValue.pageNumber);
-        localStorage.setItem("pageSize", newValue.pageSize);
+        localStorage.setItem('pageNumber', newValue.pageNumber)
+        localStorage.setItem('pageSize', newValue.pageSize)
       },
 
-      deep: true,
+      deep: true
     },
 
     PredictColumnsInfoRaw(newValue) {
-      let tempMapArray = this.mapColumnsInfoFromRawToCode(newValue);
+      let tempMapArray = this.mapColumnsInfoFromRawToCode(newValue)
       /**
        * do là việc lấy dữ liệu gây ra thay đổi cho PredictColumnsInfo
        * nên không gọi đến hàm cập nhật
        */
-      this.isUpdateColumnsInfo = false;
+      this.isUpdateColumnsInfo = false
 
-      this.PredictColumnsInfo = tempMapArray;
+      this.PredictColumnsInfo = tempMapArray
     },
 
     PredictColumnsInfo: {
       handler: debounce(function () {
         if (this.isUpdateColumnsInfo) {
-          this.updateColumnsInfoToDB(this.PredictColumnsInfo);
+          this.updateColumnsInfoToDB(this.PredictColumnsInfo)
         }
       }, 500),
 
-      deep: true,
-    },
-  },
-};
+      deep: true
+    }
+  }
+}
 </script>
 
 <style scoped>
