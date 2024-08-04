@@ -189,7 +189,7 @@ import { findIndexByAttribute, sortArrayByAttribute } from '@/helper/common.js'
 import { formatToNumber } from '@/helper/textfield-format-helper.js'
 import { debounce } from '@/helper/debounce.js'
 import { isProxy, toRaw } from 'vue'
-import { pestLevels } from '../../../data_combobox/PestLevel'
+import { pestLevels } from '../../../data_combobox/pestLevel'
 import { levelWarnings } from '../../../data_combobox/levelWarning'
 import { cropStates } from '../../../data_combobox/cropState'
 
