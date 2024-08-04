@@ -23,8 +23,18 @@ namespace PEMS.Controllers
             _predictService = predictService;
         }
         #endregion
-         
+
         #region Methods
+        /// <summary>
+        /// <returns>Các bản ghi lọc theo các tiêu chí trên</returns>
+        /// Created by: TTANH (18/07/2024) 
+        [HttpPost("filter")]
+        public async Task<IActionResult> FiltersPredictAsync([FromBody] PredictFilterParam predictFilterParam)
+        {
+            var filterData = await _predictService.FiltersPredictAsync(predictFilterParam);
+
+            return StatusCode(StatusCodes.Status200OK, filterData);
+        }
         #endregion
     }
 }
