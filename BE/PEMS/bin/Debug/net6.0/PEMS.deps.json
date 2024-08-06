@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "PEMS/1.0.0": {
         "dependencies": {
+          "BCrypt.Net-Next": "4.0.3",
           "Hangfire": "1.8.3",
           "Hangfire.Core": "1.8.3",
           "Hangfire.MySqlStorage": "2.0.3",
@@ -42,6 +43,14 @@
           "lib/netstandard2.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {
             "assemblyVersion": "12.0.0.0",
             "fileVersion": "12.0.1.0"
+          }
+        }
+      },
+      "BCrypt.Net-Next/4.0.3": {
+        "runtime": {
+          "lib/net6.0/BCrypt.Net-Next.dll": {
+            "assemblyVersion": "4.0.3.0",
+            "fileVersion": "4.0.3.0"
           }
         }
       },
@@ -1296,6 +1305,7 @@
       "PEMS.Application/1.0.0": {
         "dependencies": {
           "AutoMapper": "12.0.1",
+          "BCrypt.Net-Next": "4.0.3",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.32",
           "PEMS.Domain": "1.0.0",
           "System.IdentityModel.Tokens.Jwt": "6.36.0"
@@ -1306,6 +1316,7 @@
       },
       "PEMS.Domain/1.0.0": {
         "dependencies": {
+          "BCrypt.Net-Next": "4.0.3",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.32",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "System.IdentityModel.Tokens.Jwt": "6.36.0"
@@ -1323,6 +1334,7 @@
         "dependencies": {
           "AutoMapper": "12.0.1",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
+          "BCrypt.Net-Next": "4.0.3",
           "ClosedXML": "0.102.2",
           "Dapper": "2.1.35",
           "MediatR.Extensions.Microsoft.DependencyInjection": "11.1.0",
@@ -1359,6 +1371,13 @@
       "sha512": "sha512-+g/K+Vpe3gGMKGzjslMOdqNlkikScDjWfVvmWTayrDHaG/n2pPmFBMa+jKX1r/h6BDGFdkyRjAuhFE3ykW+r1g==",
       "path": "automapper.extensions.microsoft.dependencyinjection/12.0.1",
       "hashPath": "automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512"
+    },
+    "BCrypt.Net-Next/4.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-W+U9WvmZQgi5cX6FS5GDtDoPzUCV4LkBLkywq/kRZhuDwcbavOzcDAr3LXJFqHUi952Yj3LEYoWW0jbEUQChsA==",
+      "path": "bcrypt.net-next/4.0.3",
+      "hashPath": "bcrypt.net-next.4.0.3.nupkg.sha512"
     },
     "ClosedXML/0.102.2": {
       "type": "package",

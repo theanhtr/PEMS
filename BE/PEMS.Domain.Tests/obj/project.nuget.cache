@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Vdj40mYpsU1UtVo2ixlVo0iI6P3GR+WmMIAWIhgS8xwHF+8q6oykuFfal2WYQJ3qJ9BDpnkIRO44yx9+sDw2Ow==",
+  "dgSpecHash": "8rsrv/MLKgdT2EIIuUGAoIdf6DFnnOK6WjUKuRbjVyYQ+l/6cwGMVRuWRImZxL+8ACJUh/gWFY+MBCGqj/+A5Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.Domain.Tests\\PEMS.Domain.Tests.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\ttanh6\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\ttanh6\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\ttanh6\\.nuget\\packages\\coverlet.collector\\6.0.2\\coverlet.collector.6.0.2.nupkg.sha512",
     "C:\\Users\\ttanh6\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.32\\microsoft.aspnetcore.authentication.jwtbearer.6.0.32.nupkg.sha512",

@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "kWvoEB93HaAQlaZzSfTo3o5Aezpfv21WFJDjivjdsBZg54O4CjzoA3vZT+HUu3oBoJqyGr1JpGlpoZ9OyChd4A==",
+  "dgSpecHash": "SN0m8qdyB+lTGYislJHTZVjaYc6JcF8cYAv4rOJZCVEu/QYpR7B1Aegm0sg9DVIOqIH+SSRACzO+lLXpkYtXrw==",
   "success": true,
   "projectFilePath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.UnitTests\\PEMS.UnitTests.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\ttanh6\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\ttanh6\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.32\\microsoft.aspnetcore.authentication.jwtbearer.6.0.32.nupkg.sha512",
     "C:\\Users\\ttanh6\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\ttanh6\\.nuget\\packages\\microsoft.identitymodel.abstractions\\6.36.0\\microsoft.identitymodel.abstractions.6.36.0.nupkg.sha512",
