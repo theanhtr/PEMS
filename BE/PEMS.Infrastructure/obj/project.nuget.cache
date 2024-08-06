@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "k+aK7feg3FcYCHiGYEMfMb+fZIF899FFvECzE1TPevTI4mbdwvyTXzUp8itt1YcoFv6tuIEvfIhTcEYkmMyFhQ==",
+  "dgSpecHash": "CPLXTAeA3AH2raWZscM4FEKjJlghUegrOxjnANnUJNyz72J9rm3NFvAnIh04ExQ80fE8hw8ovhLfwSHw4BOPLA==",
   "success": true,
   "projectFilePath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.Infrastructure\\PEMS.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ttanh6\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\ttanh6\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
+    "C:\\Users\\ttanh6\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\ttanh6\\.nuget\\packages\\closedxml\\0.102.2\\closedxml.0.102.2.nupkg.sha512",
     "C:\\Users\\ttanh6\\.nuget\\packages\\dapper\\2.1.35\\dapper.2.1.35.nupkg.sha512",
     "C:\\Users\\ttanh6\\.nuget\\packages\\documentformat.openxml\\2.16.0\\documentformat.openxml.2.16.0.nupkg.sha512",

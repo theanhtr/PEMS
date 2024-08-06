@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "C5UENaMytp6bLlntlj9ncfkZsUpbCZtenRzI3tutb9AjPtgjEl76VSBPYXmwIHBNMCfWtL5hatNEmPL2JiiPWQ==",
+  "dgSpecHash": "20VmtSlVi9+5BJ7ahh1C6oYLy12mFfVwc2ztRLFRJDqiU5uyR3N1Pei9zZ43NpqbHr58rsuYCFZgItW1p01REA==",
   "success": true,
   "projectFilePath": "C:\\Users\\ttanh6\\Desktop\\khóa luận\\Code\\PEMS\\BE\\PEMS.Domain\\PEMS.Domain.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\ttanh6\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\ttanh6\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.32\\microsoft.aspnetcore.authentication.jwtbearer.6.0.32.nupkg.sha512",
     "C:\\Users\\ttanh6\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\ttanh6\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",

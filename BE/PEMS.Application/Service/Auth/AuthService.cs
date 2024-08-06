@@ -22,9 +22,15 @@ namespace PEMS.Application
         }
         #endregion
 
-        private readonly string _key;
-        private readonly string _issuer;
-        private readonly string _audience;
+        public string HashPassword(string password)
+        {
+            return BCrypt.Net.BCrypt.HashPassword(password);
+        }
+
+        public bool VerifyPassword(string password, string hashedPassword)
+        {
+            return BCrypt.Net.BCrypt.Verify(password, hashedPassword);
+        }
 
         public async Task<object> Login(string username, string password)
         {
@@ -36,7 +42,7 @@ namespace PEMS.Application
                 throw new ValidateException(StatusErrorCode.NotFoundData, "Không tìm thấy tài khoản", "");
             }
 
-            if (user.Password == password)
+            if (VerifyPassword(password, user.Password))
             {
                 var token = _tokenService.GenerateToken(user.UserId.ToString(), user.Fullname);
                 return token;

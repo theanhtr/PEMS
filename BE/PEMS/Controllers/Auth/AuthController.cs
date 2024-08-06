@@ -26,5 +26,11 @@ namespace PEMS.Controllers
 
             return StatusCode(StatusCodes.Status200OK, result);
         }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] UserRegister userRegisterParams)
+        {
+            return StatusCode(StatusCodes.Status200OK, null);
+        }
     }
 }

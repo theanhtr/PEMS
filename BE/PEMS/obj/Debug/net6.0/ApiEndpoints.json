@@ -16,6 +16,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "PEMS.Controllers.AuthController",
+    "Method": "Register",
+    "RelativePath": "api/v1/Auth/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userRegisterParams",
+        "Type": "PEMS.Domain.UserRegister",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "PEMS.Controllers.CodeController\u00604[[PEMS.Domain.Department, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.DepartmentDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.DepartmentCreateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.DepartmentUpdateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
     "Method": "InsertAsync",
     "RelativePath": "api/v1/Departments",

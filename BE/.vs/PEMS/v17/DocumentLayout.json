@@ -3,28 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7AA20CF2-9801-4998-B72D-4E2CF8B178A9}|PEMS\\PEMS.csproj|c:\\users\\ttanh6\\desktop\\kh\u00F3a lu\u1EADn\\code\\pems\\be\\pems\\controllers\\predict\\predictcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7AA20CF2-9801-4998-B72D-4E2CF8B178A9}|PEMS\\PEMS.csproj|solutionrelative:pems\\controllers\\predict\\predictcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7AA20CF2-9801-4998-B72D-4E2CF8B178A9}|PEMS\\PEMS.csproj|c:\\users\\ttanh6\\desktop\\kh\u00F3a lu\u1EADn\\code\\pems\\be\\pems\\controllers\\auth\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AA20CF2-9801-4998-B72D-4E2CF8B178A9}|PEMS\\PEMS.csproj|solutionrelative:pems\\controllers\\auth\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{60A8D254-A22F-4C49-B35D-1612DC8F5A9C}|PEMS.Infrastructure\\PEMS.Infrastructure.csproj|c:\\users\\ttanh6\\desktop\\kh\u00F3a lu\u1EADn\\code\\pems\\be\\pems.infrastructure\\repository\\predictrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{60A8D254-A22F-4C49-B35D-1612DC8F5A9C}|PEMS.Infrastructure\\PEMS.Infrastructure.csproj|solutionrelative:pems.infrastructure\\repository\\predictrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C500AA6C-5E72-4E35-BC2A-B7DF1D0B5B79}|PEMS.Domain\\PEMS.Domain.csproj|c:\\users\\ttanh6\\desktop\\kh\u00F3a lu\u1EADn\\code\\pems\\be\\pems.domain\\model\\auth\\userregister.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C500AA6C-5E72-4E35-BC2A-B7DF1D0B5B79}|PEMS.Domain\\PEMS.Domain.csproj|solutionrelative:pems.domain\\model\\auth\\userregister.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B259404A-176F-4809-B4E1-85177CA2DFCA}|PEMS.Application\\PEMS.Application.csproj|c:\\users\\ttanh6\\desktop\\kh\u00F3a lu\u1EADn\\code\\pems\\be\\pems.application\\service\\predictservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B259404A-176F-4809-B4E1-85177CA2DFCA}|PEMS.Application\\PEMS.Application.csproj|solutionrelative:pems.application\\service\\predictservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C500AA6C-5E72-4E35-BC2A-B7DF1D0B5B79}|PEMS.Domain\\PEMS.Domain.csproj|c:\\users\\ttanh6\\desktop\\kh\u00F3a lu\u1EADn\\code\\pems\\be\\pems.domain\\model\\auth\\userlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C500AA6C-5E72-4E35-BC2A-B7DF1D0B5B79}|PEMS.Domain\\PEMS.Domain.csproj|solutionrelative:pems.domain\\model\\auth\\userlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B259404A-176F-4809-B4E1-85177CA2DFCA}|PEMS.Application\\PEMS.Application.csproj|c:\\users\\ttanh6\\desktop\\kh\u00F3a lu\u1EADn\\code\\pems\\be\\pems.application\\dto\\predict\\predictcreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B259404A-176F-4809-B4E1-85177CA2DFCA}|PEMS.Application\\PEMS.Application.csproj|solutionrelative:pems.application\\dto\\predict\\predictcreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B259404A-176F-4809-B4E1-85177CA2DFCA}|PEMS.Application\\PEMS.Application.csproj|c:\\users\\ttanh6\\desktop\\kh\u00F3a lu\u1EADn\\code\\pems\\be\\pems.application\\service\\auth\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B259404A-176F-4809-B4E1-85177CA2DFCA}|PEMS.Application\\PEMS.Application.csproj|solutionrelative:pems.application\\service\\auth\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AA20CF2-9801-4998-B72D-4E2CF8B178A9}|PEMS\\PEMS.csproj|c:\\users\\ttanh6\\desktop\\kh\u00F3a lu\u1EADn\\code\\pems\\be\\pems\\controllers\\base\\basecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AA20CF2-9801-4998-B72D-4E2CF8B178A9}|PEMS\\PEMS.csproj|solutionrelative:pems\\controllers\\base\\basecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C500AA6C-5E72-4E35-BC2A-B7DF1D0B5B79}|PEMS.Domain\\PEMS.Domain.csproj|c:\\users\\ttanh6\\desktop\\kh\u00F3a lu\u1EADn\\code\\pems\\be\\pems.domain\\model\\response\\predictfilterresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C500AA6C-5E72-4E35-BC2A-B7DF1D0B5B79}|PEMS.Domain\\PEMS.Domain.csproj|solutionrelative:pems.domain\\model\\response\\predictfilterresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B259404A-176F-4809-B4E1-85177CA2DFCA}|PEMS.Application\\PEMS.Application.csproj|c:\\users\\ttanh6\\desktop\\kh\u00F3a lu\u1EADn\\code\\pems\\be\\pems.application\\iservice\\ipredictservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B259404A-176F-4809-B4E1-85177CA2DFCA}|PEMS.Application\\PEMS.Application.csproj|solutionrelative:pems.application\\iservice\\ipredictservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B259404A-176F-4809-B4E1-85177CA2DFCA}|PEMS.Application\\PEMS.Application.csproj|c:\\users\\ttanh6\\desktop\\kh\u00F3a lu\u1EADn\\code\\pems\\be\\pems.application\\dto\\predict\\predictcreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B259404A-176F-4809-B4E1-85177CA2DFCA}|PEMS.Application\\PEMS.Application.csproj|solutionrelative:pems.application\\dto\\predict\\predictcreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B259404A-176F-4809-B4E1-85177CA2DFCA}|PEMS.Application\\PEMS.Application.csproj|c:\\users\\ttanh6\\desktop\\kh\u00F3a lu\u1EADn\\code\\pems\\be\\pems.application\\service\\user\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B259404A-176F-4809-B4E1-85177CA2DFCA}|PEMS.Application\\PEMS.Application.csproj|solutionrelative:pems.application\\service\\user\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,83 +42,110 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PredictCreateDto.cs",
-              "DocumentMoniker": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS.Application\\Dto\\Predict\\PredictCreateDto.cs",
-              "RelativeDocumentMoniker": "PEMS.Application\\Dto\\Predict\\PredictCreateDto.cs",
-              "ToolTip": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS.Application\\Dto\\Predict\\PredictCreateDto.cs",
-              "RelativeToolTip": "PEMS.Application\\Dto\\Predict\\PredictCreateDto.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAQwDgAAAApAAAA",
+              "DocumentIndex": 2,
+              "Title": "UserLogin.cs",
+              "DocumentMoniker": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS.Domain\\Model\\Auth\\UserLogin.cs",
+              "RelativeDocumentMoniker": "PEMS.Domain\\Model\\Auth\\UserLogin.cs",
+              "ToolTip": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS.Domain\\Model\\Auth\\UserLogin.cs",
+              "RelativeToolTip": "PEMS.Domain\\Model\\Auth\\UserLogin.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-06T13:56:00.55Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "IPredictService.cs",
-              "DocumentMoniker": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS.Application\\IService\\IPredictService.cs",
-              "RelativeDocumentMoniker": "PEMS.Application\\IService\\IPredictService.cs",
-              "ToolTip": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS.Application\\IService\\IPredictService.cs",
-              "RelativeToolTip": "PEMS.Application\\IService\\IPredictService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAsAAAAfAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-04T12:19:49.578Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PredictFilterResult.cs",
-              "DocumentMoniker": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS.Domain\\Model\\Response\\PredictFilterResult.cs",
-              "RelativeDocumentMoniker": "PEMS.Domain\\Model\\Response\\PredictFilterResult.cs",
-              "ToolTip": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS.Domain\\Model\\Response\\PredictFilterResult.cs",
-              "RelativeToolTip": "PEMS.Domain\\Model\\Response\\PredictFilterResult.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAkAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-04T12:13:26.96Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PredictController.cs",
-              "DocumentMoniker": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS\\Controllers\\Predict\\PredictController.cs",
-              "RelativeDocumentMoniker": "PEMS\\Controllers\\Predict\\PredictController.cs",
-              "ToolTip": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS\\Controllers\\Predict\\PredictController.cs",
-              "RelativeToolTip": "PEMS\\Controllers\\Predict\\PredictController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAA0AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-04T11:51:26.724Z",
+              "WhenOpened": "2024-08-06T15:16:26.79Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "PredictRepository.cs",
-              "DocumentMoniker": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS.Infrastructure\\Repository\\PredictRepository.cs",
-              "RelativeDocumentMoniker": "PEMS.Infrastructure\\Repository\\PredictRepository.cs",
-              "ToolTip": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS.Infrastructure\\Repository\\PredictRepository.cs",
-              "RelativeToolTip": "PEMS.Infrastructure\\Repository\\PredictRepository.cs",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAAACgAAAAAAAAA",
+              "Title": "UserRegister.cs",
+              "DocumentMoniker": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS.Domain\\Model\\Auth\\UserRegister.cs",
+              "RelativeDocumentMoniker": "PEMS.Domain\\Model\\Auth\\UserRegister.cs",
+              "ToolTip": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS.Domain\\Model\\Auth\\UserRegister.cs",
+              "RelativeToolTip": "PEMS.Domain\\Model\\Auth\\UserRegister.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-04T03:18:45.581Z",
+              "WhenOpened": "2024-08-06T15:15:34.372Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PredictService.cs",
-              "DocumentMoniker": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS.Application\\Service\\PredictService.cs",
-              "RelativeDocumentMoniker": "PEMS.Application\\Service\\PredictService.cs",
-              "ToolTip": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS.Application\\Service\\PredictService.cs",
-              "RelativeToolTip": "PEMS.Application\\Service\\PredictService.cs",
-              "ViewState": "AQIAABUAAAAAAAAAAAAowCYAAAAMAAAA",
+              "DocumentIndex": 0,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS\\Controllers\\Auth\\AuthController.cs",
+              "RelativeDocumentMoniker": "PEMS\\Controllers\\Auth\\AuthController.cs",
+              "ToolTip": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS\\Controllers\\Auth\\AuthController.cs",
+              "RelativeToolTip": "PEMS\\Controllers\\Auth\\AuthController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-04T03:12:40.091Z",
+              "WhenOpened": "2024-08-06T15:12:35.689Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PredictFilterResult.cs",
+              "DocumentMoniker": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS.Domain\\Model\\Response\\PredictFilterResult.cs",
+              "RelativeDocumentMoniker": "PEMS.Domain\\Model\\Response\\PredictFilterResult.cs",
+              "ToolTip": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS.Domain\\Model\\Response\\PredictFilterResult.cs",
+              "RelativeToolTip": "PEMS.Domain\\Model\\Response\\PredictFilterResult.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-06T15:01:51.249Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS.Application\\Service\\Auth\\AuthService.cs",
+              "RelativeDocumentMoniker": "PEMS.Application\\Service\\Auth\\AuthService.cs",
+              "ToolTip": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS.Application\\Service\\Auth\\AuthService.cs",
+              "RelativeToolTip": "PEMS.Application\\Service\\Auth\\AuthService.cs",
+              "ViewState": "AQIAABcAAAAAAAAAAAAuwC8AAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-06T14:58:11.527Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS.Application\\Service\\User\\UserService.cs",
+              "RelativeDocumentMoniker": "PEMS.Application\\Service\\User\\UserService.cs",
+              "ToolTip": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS.Application\\Service\\User\\UserService.cs",
+              "RelativeToolTip": "PEMS.Application\\Service\\User\\UserService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAA7AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-06T14:57:31.399Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PredictCreateDto.cs",
+              "DocumentMoniker": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS.Application\\Dto\\Predict\\PredictCreateDto.cs",
+              "RelativeDocumentMoniker": "PEMS.Application\\Dto\\Predict\\PredictCreateDto.cs",
+              "ToolTip": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS.Application\\Dto\\Predict\\PredictCreateDto.cs",
+              "RelativeToolTip": "PEMS.Application\\Dto\\Predict\\PredictCreateDto.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAtwDgAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-06T14:26:13.871Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BaseController.cs",
+              "DocumentMoniker": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS\\Controllers\\Base\\BaseController.cs",
+              "RelativeDocumentMoniker": "PEMS\\Controllers\\Base\\BaseController.cs",
+              "ToolTip": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS\\Controllers\\Base\\BaseController.cs",
+              "RelativeToolTip": "PEMS\\Controllers\\Base\\BaseController.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAqwBMAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-06T14:26:12.758Z",
               "EditorCaption": ""
             }
           ]
