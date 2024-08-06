@@ -152,7 +152,6 @@
         @doubleClickRow="openFormUpdate"
         @clickFixBtn="openFormUpdate"
         @clickContextDeleteBtn="openConfirmDeletePopup"
-        @clickContextDuplicateBtn="openFormDuplicate"
         @resizeColumn="resizePredictColumn"
       />
     </div>
@@ -263,16 +262,8 @@ export default {
           format: 'input-combobox',
           isShow: true,
           isPin: false,
-          comboboxRowData: levelWarnings
-        },
-        {
-          id: 'Action',
-          name: 'HÀNH ĐỘNG',
-          size: '150px',
-          textAlign: 'center',
-          format: 'text',
-          isShow: true,
-          isPin: false
+          comboboxRowData: levelWarnings,
+          disableCombobox: true
         }
       ],
 
@@ -290,14 +281,6 @@ export default {
 
       /* biến xác định nút "Thực hiện hàng loạt" có disable hay không */
       batchExecutionDisable: true,
-
-      /* các hành động cho nút "Thực hiện hàng loạt" ở page action */
-      batchExecutionDataDropdown: [
-        {
-          id: 'delete',
-          title: this.$t('PredictSubsystem.PredictContent.batchExecutionData.delete')
-        }
-      ],
 
       /*== các biến sử dụng cho add-Predict-popup ==*/
       isShowAddPredictPopup: false,
@@ -429,8 +412,6 @@ export default {
           PageSize: this.pagingData.pageSize,
           PageNumber: this.pagingData.pageNumber
         }
-
-        console.log(dataFilter)
 
         const res = await PredictService.filter(dataFilter)
 
@@ -787,9 +768,7 @@ export default {
         if (res.success) {
           this.$store.commit('addToast', {
             type: 'success',
-            text: this.$t('successHandle.PredictSubsystem.delete', {
-              code: PredictCode
-            })
+            text: 'Xóa dự báo thành công'
           })
 
           this.reloadData()
@@ -1070,9 +1049,7 @@ export default {
 
     computedDeletePopupText() {
       if (this.isShowConfirmDeletePopup) {
-        return this.$t('PredictSubsystem.PredictContent.deletePopupTitle', {
-          code: this.PredictCodeDelete
-        })
+        return this.$t('Bạn có thực sự muốn xóa dự báo không?')
       } else if (this.isShowConfirmDeleteMultiplePopup) {
         return this.$t('PredictSubsystem.PredictContent.deleteMultiplePopupTitle', {
           count: this.selectedPredicts.length

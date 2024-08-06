@@ -1,110 +1,110 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHistory } from 'vue-router'
 
-import MainLayout from "../components/layout/MainLayout.vue";
-import Dashboard from "../views/dashboard/Dashboard.vue";
-import EmployeeList from "../views/employee/employee-list/EmployeeList.vue";
-import PredictList from "../views/predict/PredictList.vue";
+import MainLayout from '../components/layout/MainLayout.vue'
+import Dashboard from '../views/dashboard/Dashboard.vue'
+import EmployeeList from '../views/employee/employee-list/EmployeeList.vue'
+import PredictList from '../views/predict/PredictList.vue'
 
-import ImportLayout from "../components/layout/import-layout/ImportLayout.vue";
-import EmployeeImport from "../views/employee/employee-import/EmployeeImport.vue";
-import TTANHPageNotFound from "../components/layout/TTANHPageNotFound.vue";
+import ImportLayout from '../components/layout/import-layout/ImportLayout.vue'
+import EmployeeImport from '../views/employee/employee-import/EmployeeImport.vue'
+import TTANHPageNotFound from '../components/layout/TTANHPageNotFound.vue'
 
-import LoginScreen from "../views/auth/LoginScreen.vue";
-import store from "../store";
+import LoginScreen from '../views/auth/LoginScreen.vue'
+import store from '../store'
 
 const routes = [
   {
-    path: "/",
-    redirect: "/app/employee",
+    path: '/',
+    redirect: '/app/predict-management'
   },
   {
-    path: "/login",
-    name: "login-page",
+    path: '/login',
+    name: 'login-page',
     component: LoginScreen,
     meta: {
       noRequiresAuth: true
     }
   },
   {
-    path: "/forgot-password",
-    name: "forgot-password-page",
+    path: '/forgot-password',
+    name: 'forgot-password-page',
     component: LoginScreen,
     meta: {
       noRequiresAuth: true
     }
   },
   {
-    path: "/app",
-    name: "app",
+    path: '/app',
+    name: 'app',
     component: MainLayout,
     children: [
       {
-        path: "/app/dashboard",
-        name: "dashboard-app",
-        component: Dashboard,
+        path: '/app/dashboard',
+        name: 'dashboard-app',
+        component: Dashboard
       },
       {
-        path: "/app/employee",
-        name: "employee-app",
+        path: '/app/employee',
+        name: 'employee-app',
         component: EmployeeList
       },
       {
-        path: "/app/predict-management",
-        name: "predict-management-app",
+        path: '/app/predict-management',
+        name: 'predict-management-app',
         component: PredictList
       },
       {
-        path: "/app/report-management",
-        name: "report-management-app",
+        path: '/app/report-management',
+        name: 'report-management-app',
         component: EmployeeList
       },
       {
-        path: "/app/user-management",
-        name: "user-management-app",
+        path: '/app/user-management',
+        name: 'user-management-app',
         component: EmployeeList
-      },
-    ],
+      }
+    ]
   },
   {
-    path: "/import",
-    name: "import",
+    path: '/import',
+    name: 'import',
     component: ImportLayout,
     children: [
       {
-        path: "/app/employee/import",
-        name: "employee-import",
-        component: EmployeeImport,
-      },
-    ],
+        path: '/app/employee/import',
+        name: 'employee-import',
+        component: EmployeeImport
+      }
+    ]
   },
   {
-    path: "/:pathMatch(.*)*",
-    name: "NotFound",
-    component: TTANHPageNotFound,
-  },
-];
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: TTANHPageNotFound
+  }
+]
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes,
-});
+  routes
+})
 
 router.beforeEach((to, from, next) => {
   store.dispatch('checkSession').then(() => {
-    if (!to.matched.some(record => record.meta.noRequiresAuth)) {
+    if (!to.matched.some((record) => record.meta.noRequiresAuth)) {
       if (!store.state.isLoggedIn) {
-        next({ path: '/login' });
+        next({ path: '/login' })
       } else {
-        next();
+        next()
       }
     } else {
       if (store.state.isLoggedIn && to.path === '/login') {
-        next({ path: '/app/employee' });
+        next({ path: '/app/employee' })
       } else {
-        next();
+        next()
       }
     }
-  });
-});
+  })
+})
 
-export default router;
+export default router

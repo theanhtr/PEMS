@@ -87,9 +87,9 @@
             </div>
             <div class="flex-row p-b-8">
               <ttanh-combobox
-                :errorText="errorTextPredictData.previousLevelWarning"
-                v-model="addPredictData.previousLevelWarning"
-                ref="previousLevelWarning"
+                :errorText="errorTextPredictData.previousLevelWarningId"
+                v-model="addPredictData.previousLevelWarningId"
+                ref="previousLevelWarningId"
                 type="single-row"
                 labelText="Mức độ cảnh báo"
                 :inputRequired="false"
@@ -191,7 +191,7 @@ export default {
 
   async created() {
     //cập nhật thông tin cho form: form_mode, data
-    this.addInfoForm()
+    await this.addInfoForm()
 
     this.copyAddPredictData = JSON.parse(JSON.stringify(this.addPredictData))
   },
@@ -199,6 +199,9 @@ export default {
   mounted() {
     //foucs vào Predict code lần đầu mở form
     this.$refs.province.focus()
+    this.$refs.province.setValueInput(this.addPredictData.provinceId)
+    this.$refs.district.setValueInput(this.addPredictData.districtId)
+    this.$refs.ward.setValueInput(this.addPredictData.wardId)
   },
 
   unmounted() {},
@@ -228,7 +231,7 @@ export default {
         wardName: '',
         address: '',
         previousEndDate: null,
-        previousLevelWarning: -1,
+        previousLevelWarningId: -1,
         currentStartDate: null
       },
 
@@ -255,7 +258,7 @@ export default {
         wardId: 'Empty',
         address: 'MaxLength255',
         previousEndDate: '',
-        previousLevelWarning: '',
+        previousLevelWarningId: '',
         currentStartDate: 'Empty'
       },
 
@@ -265,7 +268,7 @@ export default {
         wardId: '',
         address: '',
         previousEndDate: '',
-        previousLevelWarning: '',
+        previousLevelWarningId: '',
         currentStartDate: ''
       }
     }
@@ -338,7 +341,7 @@ export default {
      * cập nhật thông tin cho form: form_mode, data
      * @author: TTANH (01/07/2024)
      */
-    addInfoForm() {
+    async addInfoForm() {
       this.formMode = this.computedFormMode
 
       if (this.formMode === this.$_TTANHEnum.FORM_MODE.ADD) {
@@ -349,6 +352,10 @@ export default {
 
           this.addPredictData[formatAttr] = this.dataUpdate[attr] !== null ? this.dataUpdate[attr] : ''
         }
+
+        await this.getProvinces()
+        await this.getDistricts(this.addPredictData.provinceId)
+        await this.getWards(this.addPredictData.districtId)
       }
     },
 
