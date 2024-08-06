@@ -1,10 +1,6 @@
 <template>
   <div :style="styleContainer" class="combobox" ref="combobox">
-    <label
-      v-if="labelText !== ''"
-      @click="showComboboxData"
-      class="label-input"
-    >
+    <label v-if="labelText !== ''" @click="showComboboxData" class="label-input">
       {{ labelText }}
       <div v-if="inputRequired" style="color: red; padding-left: 3px">*</div>
     </label>
@@ -25,7 +21,7 @@
         @keydown="handleInputKeydown"
         @focus="focusInput = true"
         :tabindex="tabindex"
-        :disabled="disableInput"
+        :disabled="disableInput || disableCombobox"
         v-TTANHBlackenOut
       />
       <ttanh-icon
@@ -36,16 +32,13 @@
         icon="dropdown--solid-black"
         scale="0.8"
         height="99%"
+        v-if="!disableCombobox"
       />
 
-      <ttanh-tooltip v-if="errorText !== '' && hoverInput">{{
-        errorText
-      }}</ttanh-tooltip>
+      <ttanh-tooltip v-if="errorText !== '' && hoverInput">{{ errorText }}</ttanh-tooltip>
     </div>
     <div v-show="isShowComboboxData" class="combobox__data" ref="comboboxData">
-      <div v-if="rowsData.length === 0" class="item--no-data">
-        Không có dữ liệu để hiển thị.
-      </div>
+      <div v-if="rowsData.length === 0" class="item--no-data">Không có dữ liệu để hiển thị.</div>
       <ttanh-table
         v-else-if="type === 'table'"
         :columnsInfo="columnsInfo"
@@ -59,10 +52,9 @@
           v-for="row in computedRowsDataFilter"
           :key="row.id"
           class="combobox__value"
-          :class="
-            selectedRows.includes(row.id) ? 'combobox__value--selected' : ''
-          "
+          :class="selectedRows.includes(row.id) ? 'combobox__value--selected' : ''"
           @click="selectValue(row.id)"
+          :style="{ textAlign: 'left' }"
         >
           {{ row.name }}
         </div>
@@ -76,7 +68,7 @@
 
 <script>
 export default {
-  name: "TTANHCombobox",
+  name: 'TTANHCombobox',
   props: {
     /**
      * thông tin cột phải theo định dạn
@@ -93,7 +85,7 @@ export default {
      */
     columnsInfo: {
       default: [],
-      type: Array,
+      type: Array
     },
 
     /**
@@ -103,53 +95,56 @@ export default {
     rowsData: {
       default: [],
       required: true,
-      type: Array,
+      type: Array
     },
 
     /* model value là giá trị id của đối tượng mình chọn */
     modelValue: {
-      default: "",
+      default: '',
       required: true,
-      type: String,
+      type: String
     },
 
     /* single row: chỉ có dòng chứ không phải table */
     type: {
-      default: "single-row",
+      default: 'single-row',
       validator: function (val) {
-        return ["single-row", "table", "multi-select"].includes(val);
-      },
+        return ['single-row', 'table', 'multi-select'].includes(val)
+      }
     },
     labelText: {
-      default: "",
+      default: ''
     },
     inputRequired: {
-      default: false,
+      default: false
     },
     placeholder: {
-      default: "",
+      default: ''
     },
     heightInput: {
-      default: "var(--primary-button-height)",
+      default: 'var(--primary-button-height)'
     },
     widthInput: {
-      default: "100%",
+      default: '100%'
     },
     heightContainer: {
-      default: "auto",
+      default: 'auto'
     },
     widthContainer: {
-      default: "100%",
+      default: '100%'
     },
     errorText: {
-      default: "",
+      default: ''
     },
     tabindex: {
-      default: "0",
+      default: '0'
     },
     disableInput: {
-      default: false,
+      default: false
     },
+    disableCombobox: {
+      default: false
+    }
   },
   data() {
     return {
@@ -169,12 +164,12 @@ export default {
        */
       selectedRows: [this.modelValue],
 
-      indexHover: -1,
-    };
+      indexHover: -1
+    }
   },
 
   mounted() {
-    this.rowsDataFilter = this.rowsData;
+    this.rowsDataFilter = this.rowsData
   },
 
   methods: {
@@ -184,18 +179,15 @@ export default {
      */
     showComboboxData() {
       try {
-        this.$refs.inputSearch.focus();
-        this.focusInput = true;
-        this.isShowComboboxData = true;
-        this.indexHover = -1;
-        this.$refs.comboboxData.scrollTo(0, 0);
-        this.$emit("show-combobox");
-        window.addEventListener("click", this.clickOutSideCombobox);
+        this.$refs.inputSearch.focus()
+        this.focusInput = true
+        this.isShowComboboxData = true
+        this.indexHover = -1
+        this.$refs.comboboxData.scrollTo(0, 0)
+        this.$emit('show-combobox')
+        window.addEventListener('click', this.clickOutSideCombobox)
       } catch (error) {
-        console.log(
-          "🚀 ~ file: TTANHCombobox.vue:172 ~ showComboboxData ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: TTANHCombobox.vue:172 ~ showComboboxData ~ error:', error)
       }
     },
 
@@ -205,18 +197,15 @@ export default {
      */
     hiddenComboboxData() {
       try {
-        this.$refs.inputSearch.blur();
-        this.focusInput = false;
-        this.isShowComboboxData = false;
+        this.$refs.inputSearch.blur()
+        this.focusInput = false
+        this.isShowComboboxData = false
 
-        window.removeEventListener("click", this.clickOutSideCombobox);
+        window.removeEventListener('click', this.clickOutSideCombobox)
 
-        this.$emit("blur-input"); //dùng để validate khi blur ra khỏi input
+        this.$emit('blur-input') //dùng để validate khi blur ra khỏi input
       } catch (error) {
-        console.log(
-          "🚀 ~ file: TTANHCombobox.vue:190 ~ hiddenComboboxData ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: TTANHCombobox.vue:190 ~ hiddenComboboxData ~ error:', error)
       }
     },
 
@@ -227,18 +216,15 @@ export default {
      */
     clickDropdownIcon(event) {
       try {
-        event.stopPropagation();
+        event.stopPropagation()
 
         if (this.isShowComboboxData) {
-          this.hiddenComboboxData();
+          this.hiddenComboboxData()
         } else {
-          this.showComboboxData();
+          this.showComboboxData()
         }
       } catch (error) {
-        console.log(
-          "🚀 ~ file: TTANHCombobox.vue:210 ~ clickDropdownIcon ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: TTANHCombobox.vue:210 ~ clickDropdownIcon ~ error:', error)
       }
     },
 
@@ -247,25 +233,22 @@ export default {
      * @author: TTANH (30/06/2024)
      * @param {string} id
      */
-    setValueInput(id = "") {
+    setValueInput(id = '') {
       try {
-        if (id === null || id === "") {
-          return;
+        if (id === null || id === '') {
+          return
         }
 
         for (let i = 0; i < this.rowsData.length; i++) {
-          if (this.rowsData[i].id === id) {
+          if (this.rowsData[i].id == id) {
             if (this.$refs.inputSearch) {
-              this.$refs.inputSearch.value = this.rowsData[i].name;
+              this.$refs.inputSearch.value = this.rowsData[i].name
             }
-            break;
+            break
           }
         }
       } catch (error) {
-        console.log(
-          "🚀 ~ file: TTANHCombobox.vue:229 ~ setValueInput ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: TTANHCombobox.vue:229 ~ setValueInput ~ error:', error)
       }
     },
 
@@ -276,15 +259,12 @@ export default {
      */
     selectValue(id) {
       try {
-        this.setValueInput(id);
-        this.$emit("update:modelValue", id);
+        this.setValueInput(id)
+        this.$emit('update:modelValue', id)
 
-        this.hiddenComboboxData();
+        this.hiddenComboboxData()
       } catch (error) {
-        console.log(
-          "🚀 ~ file: TTANHCombobox.vue:249 ~ selectValue ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: TTANHCombobox.vue:249 ~ selectValue ~ error:', error)
       }
     },
 
@@ -294,57 +274,50 @@ export default {
      */
     changeInput() {
       try {
-        this.$emit("update:modelValue", "");
-        this.$refs.comboboxData.scrollTo(0, 0);
+        this.$emit('update:modelValue', '')
+        this.$refs.comboboxData.scrollTo(0, 0)
 
         // xử lý cho việc được focus input bằng tab
         if (!this.isShowComboboxData) {
-          this.isShowComboboxData = true;
+          this.isShowComboboxData = true
         }
 
-        let valueInputSearch = this.$refs.inputSearch.value.trim();
-        let rowsDataLength = this.rowsData.length;
-        let indexFinded = -1;
-        let selectedRowsLength = this.selectedRows.length;
-        this.indexHover = -1;
+        let valueInputSearch = this.$refs.inputSearch.value.trim()
+        let rowsDataLength = this.rowsData.length
+        let indexFinded = -1
+        let selectedRowsLength = this.selectedRows.length
+        this.indexHover = -1
 
         // so sánh input value với code và name của từng row data
         for (let i = 0; i < rowsDataLength; i++) {
           if (
-            (this.rowsData[i].code
-              .toLowerCase()
-              .includes(valueInputSearch.toLowerCase()) ||
-              this.rowsData[i].name
-                .toLowerCase()
-                .includes(valueInputSearch.toLowerCase())) &&
-            valueInputSearch !== ""
+            (this.rowsData[i].code.toLowerCase().includes(valueInputSearch.toLowerCase()) ||
+              this.rowsData[i].name.toLowerCase().includes(valueInputSearch.toLowerCase())) &&
+            valueInputSearch !== ''
           ) {
-            indexFinded = i;
-            break;
+            indexFinded = i
+            break
           }
         }
 
-        this.selectedRows[selectedRowsLength - 1] = "";
+        this.selectedRows[selectedRowsLength - 1] = ''
         // xử lý việc cho hàng được tìm thấy lên đầu và thay đổi background color
         if (selectedRowsLength > 1) {
-          this.selectedRows.shift();
+          this.selectedRows.shift()
         }
 
         if (indexFinded !== -1) {
           this.rowsDataFilter = [
             ...this.rowsData.slice(0, indexFinded),
-            ...this.rowsData.slice(indexFinded + 1, rowsDataLength),
-          ];
+            ...this.rowsData.slice(indexFinded + 1, rowsDataLength)
+          ]
 
-          this.rowsDataFilter.unshift(this.rowsData[indexFinded]);
+          this.rowsDataFilter.unshift(this.rowsData[indexFinded])
 
-          this.selectedRows.unshift(this.rowsData[indexFinded].id);
+          this.selectedRows.unshift(this.rowsData[indexFinded].id)
         }
       } catch (error) {
-        console.log(
-          "🚀 ~ file: TTANHCombobox.vue:266 ~ changeInput ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: TTANHCombobox.vue:266 ~ changeInput ~ error:', error)
       }
     },
 
@@ -357,14 +330,11 @@ export default {
       try {
         if (this.$refs.combobox) {
           if (!this.$refs.combobox.contains(event.target)) {
-            this.hiddenComboboxData();
+            this.hiddenComboboxData()
           }
         }
       } catch (error) {
-        console.log(
-          "🚀 ~ file: TTANHCombobox.vue:246 ~ clickOutSideCombobox ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: TTANHCombobox.vue:246 ~ clickOutSideCombobox ~ error:', error)
       }
     },
 
@@ -375,12 +345,9 @@ export default {
      */
     getCurrentInputValue() {
       try {
-        return this.$refs.inputSearch.value;
+        return this.$refs.inputSearch.value
       } catch (error) {
-        console.log(
-          "🚀 ~ file: TTANHCombobox.vue:167 ~ getCurrentInputValue ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: TTANHCombobox.vue:167 ~ getCurrentInputValue ~ error:', error)
       }
     },
 
@@ -390,12 +357,9 @@ export default {
      */
     focus() {
       try {
-        this.$refs.inputSearch.focus();
+        this.$refs.inputSearch.focus()
       } catch (error) {
-        console.log(
-          "🚀 ~ file: TTANHTextfield.vue:388 ~ focusInput ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: TTANHTextfield.vue:388 ~ focusInput ~ error:', error)
       }
     },
 
@@ -405,12 +369,9 @@ export default {
      */
     getInputRef() {
       try {
-        return this.$refs.inputSearch;
+        return this.$refs.inputSearch
       } catch (error) {
-        console.log(
-          "🚀 ~ file: TTANHCombobox.vue:373 ~ getInputRef ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: TTANHCombobox.vue:373 ~ getInputRef ~ error:', error)
       }
     },
 
@@ -420,21 +381,18 @@ export default {
      */
     handleInputKeydown(event) {
       try {
-        if (
-          event.keyCode === this.$_TTANHEnum.KEY_CODE.TAB ||
-          event.keyCode === this.$_TTANHEnum.KEY_CODE.ENTER
-        ) {
-          this.setValueInput(this.selectedRows[0]);
-          this.hiddenComboboxData();
+        if (event.keyCode === this.$_TTANHEnum.KEY_CODE.TAB || event.keyCode === this.$_TTANHEnum.KEY_CODE.ENTER) {
+          this.setValueInput(this.selectedRows[0])
+          this.hiddenComboboxData()
 
-          this.$emit("update:modelValue", this.selectedRows[0]);
+          this.$emit('update:modelValue', this.selectedRows[0])
         } else if (event.keyCode === this.$_TTANHEnum.KEY_CODE.ARROW_UP) {
           if (this.indexHover > 0) {
-            this.indexHover--;
+            this.indexHover--
           }
         } else if (event.keyCode === this.$_TTANHEnum.KEY_CODE.ARROW_DOWN) {
           if (this.indexHover < this.computedRowsDataFilter.length - 1) {
-            this.indexHover++;
+            this.indexHover++
           }
         }
 
@@ -442,21 +400,18 @@ export default {
           event.keyCode === this.$_TTANHEnum.KEY_CODE.ARROW_UP ||
           event.keyCode === this.$_TTANHEnum.KEY_CODE.ARROW_DOWN
         ) {
-          this.$refs.comboboxData.scrollTo(0, this.indexHover * 25);
+          this.$refs.comboboxData.scrollTo(0, this.indexHover * 25)
 
-          this.selectedRows = [this.computedRowsDataFilter[this.indexHover].id];
+          this.selectedRows = [this.computedRowsDataFilter[this.indexHover].id]
 
-          this.setValueInput(this.computedRowsDataFilter[this.indexHover].id);
+          this.setValueInput(this.computedRowsDataFilter[this.indexHover].id)
 
           if (!this.isShowComboboxData) {
-            this.showComboboxData();
+            this.showComboboxData()
           }
         }
       } catch (error) {
-        console.log(
-          "🚀 ~ file: TTANHCombobox.vue:389 ~ handleInputKeydown ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: TTANHCombobox.vue:389 ~ handleInputKeydown ~ error:', error)
       }
     },
 
@@ -465,86 +420,89 @@ export default {
      * @author: TTANH (11/07/2024)
      */
     getIdSelectedData() {
-      return this.selectedRows[0];
-    },
+      return this.selectedRows[0]
+    }
   },
   computed: {
     styleContainer() {
       return {
         width: this.widthContainer,
-        height: this.heightContainer,
-      };
+        height: this.heightContainer
+      }
     },
 
     styleInputWrapper() {
       return {
         width: this.widthInput,
         height: this.heightInput,
-        border: `1px solid ${this.borderInputColor}`,
-      };
+        border: this.disableCombobox ? '' : `1px solid ${this.borderInputColor}`,
+        paddingLeft: this.disableCombobox ? '' : '10px',
+        backgroundColor: this.disableCombobox ? '' : 'white',
+        textAlign: this.disableCombobox ? '' : 'left'
+      }
     },
 
     borderInputColor() {
-      if (this.errorText !== "") {
-        return "red";
+      if (this.errorText !== '') {
+        return 'red'
       } else if (this.focusInput) {
-        return "var(--primary-btn--focus-background-color)";
+        return 'var(--primary-btn--focus-background-color)'
       } else if (this.hoverInput) {
-        return "var(--primary-btn--hover-background-color)";
+        return 'var(--primary-btn--hover-background-color)'
       } else {
-        return "var(--border-color-default)";
+        return 'var(--border-color-default)'
       }
     },
 
     styleDropdownIcon() {
       return {
-        rotate: this.isShowComboboxData ? "180deg" : "0deg",
-        backgroundColor: this.hoverDropdownIcon ? "#e0e0e0" : "inherit",
-      };
+        rotate: this.isShowComboboxData ? '180deg' : '0deg',
+        backgroundColor: this.hoverDropdownIcon ? '#e0e0e0' : 'inherit'
+      }
     },
 
     /**
      * thực hiện đưa hàng đã chọn lên đầu
      */
     computedRowsDataFilter() {
-      let rowsDataLength = this.rowsData.length;
-      let indexFinded = -1;
+      let rowsDataLength = this.rowsData.length
+      let indexFinded = -1
 
       for (let i = 0; i < rowsDataLength; i++) {
         if (this.rowsData[i].id === this.modelValue) {
-          indexFinded = i;
-          break;
+          indexFinded = i
+          break
         }
       }
 
       if (indexFinded !== -1) {
         this.rowsDataFilter = [
           ...this.rowsData.slice(0, indexFinded),
-          ...this.rowsData.slice(indexFinded + 1, rowsDataLength),
-        ];
+          ...this.rowsData.slice(indexFinded + 1, rowsDataLength)
+        ]
 
-        this.rowsDataFilter.unshift(this.rowsData[indexFinded]);
+        this.rowsDataFilter.unshift(this.rowsData[indexFinded])
       }
 
-      return this.rowsDataFilter;
-    },
+      return this.rowsDataFilter
+    }
   },
   watch: {
     rowsData() {
-      this.rowsDataFilter = this.rowsData;
+      this.rowsDataFilter = this.rowsData
     },
     rowsDataFilter() {
-      this.setValueInput(this.modelValue);
+      this.setValueInput(this.modelValue)
     },
     modelValue(newValue, oldValue) {
-      this.selectedRows = [this.modelValue];
+      this.selectedRows = [this.modelValue]
 
       if (newValue !== oldValue) {
-        this.$emit("change-data");
+        this.$emit('change-data')
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style scoped>

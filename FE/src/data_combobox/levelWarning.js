@@ -1,11 +1,7 @@
 export var levelWarnings = [
-  { id: 1, name: 'Rủi ro thấp' },
+  { id: 1, name: 'Mức 1' },
 
-  { id: 2, name: 'Rủi ro trung bình' },
+  { id: 2, name: 'Mức 2' },
 
-  { id: 3, name: 'Rủi ro lớn' },
-
-  { id: 4, name: 'Rủi ro rất lớn' },
-
-  { id: 5, name: 'Thảm họa' }
+  { id: 3, name: 'Mức 3' }
 ]
