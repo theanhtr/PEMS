@@ -16,6 +16,13 @@ namespace PEMS.Application
         }
         #endregion
 
+        public async Task<string> CreateNewUser(string username, string hashPassword, string fullname)
+        {
+            var user = await _userRepository.CreateNewUser(username, hashPassword, fullname);
+
+            return user;
+        }
+
         public async Task<UserDto> GetUserInfo(Guid userId)
         {
             var user = _userRepository.GetByUserId(userId);

@@ -52,5 +52,20 @@ namespace PEMS.Application
                 throw new ValidateException(StatusErrorCode.WrongPassword, "Sai mật khẩu", "");
             }
         }
+
+        public async Task<string> Register(string username, string password, string fullname)
+        {
+            var userExists = await _userService.GetByUserName(username);
+
+            if (userExists != null)
+            {
+                throw new ValidateException(StatusErrorCode.CodeDuplicate, "Tài khoản đã tồn tại", "");
+            }
+
+            // Validate user credentials (use your own validation logic)
+            var user = await _userService.CreateNewUser(username, HashPassword(password), fullname);
+
+            return user;
+        }
     }
 }

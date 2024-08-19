@@ -14,6 +14,9 @@ namespace PEMS.Domain
         /// </summary>
         [Required]
         public string Password { get; set; }
+
+        [Required]
+        public string Fullname { get; set; }
         #endregion
     }
 }

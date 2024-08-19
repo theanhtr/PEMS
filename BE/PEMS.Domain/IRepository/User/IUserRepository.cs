@@ -8,5 +8,6 @@
     {
         User GetByUserName(string username);
         User? GetByUserId(Guid userId);
+        Task<string> CreateNewUser(string username, string hashPassword, string fullname);
     }
 }
