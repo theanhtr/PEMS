@@ -1,17 +1,21 @@
 <template>
-  <div class="login-form-container">
+  <div class="register-form-container">
     <h1>iFAWcast</h1>
-    <div class="login-form">
-      <h2>Đăng nhập</h2>
-      <p class="login-form-error-message">{{ errorMessage }}</p>
+    <div class="register-form">
+      <h2>Đăng ký</h2>
+      <p class="register-form-error-message">{{ errorMessage }}</p>
+      <div class="form-group">
+        <label for="fullname">Họ và tên</label>
+        <input class="register-input" type="email" id="fullname" v-model="fullname" required />
+      </div>
       <div class="form-group">
         <label for="userName">Tên đăng nhập</label>
-        <input class="login-input" type="email" id="userName" v-model="userName" required />
+        <input class="register-input" type="email" id="userName" v-model="userName" required />
       </div>
       <div class="form-group">
         <label for="password">Mật khẩu</label>
         <input
-          class="login-input"
+          class="register-input"
           :type="showPassword ? 'text' : 'password'"
           id="password"
           v-model="password"
@@ -22,10 +26,24 @@
           <ttanh-icon v-else icon="eye-slash" />
         </span>
       </div>
-      <button @click="login" class="login-button">Đăng nhập</button>
-      <div class="flex register-line">
-        Nếu chưa có tài khoản vui lòng
-        <router-link to="/register" class="register-link"><div>Đăng ký</div></router-link>
+      <div class="form-group">
+        <label for="repassword">Nhập lại mật khẩu</label>
+        <input
+          class="register-input"
+          :type="showRePassword ? 'text' : 'password'"
+          id="repassword"
+          v-model="repassword"
+          required
+        />
+        <span class="show-password pointer" @click="showRePassword = !showRePassword">
+          <ttanh-icon v-if="!showRePassword" icon="eye" />
+          <ttanh-icon v-else icon="eye-slash" />
+        </span>
+      </div>
+      <button @click="register" class="register-button">Đăng ký</button>
+      <div class="flex login-line">
+        Nếu đã có tài khoản vui lòng
+        <router-link to="/login" class="login-link"><div>Đăng nhập</div></router-link>
       </div>
     </div>
   </div>
@@ -36,7 +54,7 @@
 import AuthService from '@/service/AuthService.js'
 
 export default {
-  name: 'Login',
+  name: 'register',
 
   components: {},
 
@@ -44,47 +62,58 @@ export default {
     return {
       userName: '',
       password: '',
+      repassword: '',
+      fullname: '',
       isLoading: false,
       showPassword: false,
+      showRePassword: false,
       errorMessage: ''
     }
   },
 
   methods: {
     /**
-     * Login
+     * register
      * @author: TTANH (24/07/2024)
      */
-    async login() {
+    async register() {
       try {
-        this.isLoading = true
+        if (this.fullname === '') {
+          this.errorMessage = 'Vui lòng nhập Họ và tên'
+          return
+        }
 
         if (this.userName === '') {
-          this.errorMessage = 'Vui lòng nhập tên người dùng'
-          this.isLoading = false
+          this.errorMessage = 'Vui lòng nhập Tên người dùng'
           return
         }
 
         if (this.password === '') {
-          this.errorMessage = 'Vui lòng nhập mật khẩu'
-          this.isLoading = false
+          this.errorMessage = 'Vui lòng nhập Mật khẩu'
           return
         }
 
-        this.errorMessage = ''
-        let loginParams = {
-          Username: this.userName,
-          Password: this.password
+        if (this.repassword === '' || this.repassword !== this.password) {
+          this.errorMessage = 'Vui lòng nhập Mật khẩu xác nhận trùng khớp Mật khẩu'
+          return
         }
 
-        const res = await AuthService.login(loginParams)
+        this.isLoading = true
+
+        this.errorMessage = ''
+        let registerParams = {
+          Username: this.userName,
+          Password: this.password,
+          Fullname: this.fullname
+        }
+
+        const res = await AuthService.register(registerParams)
 
         if (res.success) {
-          await this.$store.commit('setUserLogin', res.data)
-          this.$router.push('/')
+          this.$router.push('/login')
           this.$store.commit('addToast', {
             type: 'success',
-            text: 'Đăng nhập thành công'
+            text: 'Đăng ký thành công'
           })
         } else {
           this.$store.commit('addToast', {
@@ -97,7 +126,7 @@ export default {
 
         return res
       } catch (error) {
-        console.log('🚀 ~ file: LoginScreen.vue:52 ~ login ~ error:', error)
+        console.log('🚀 ~ file: registerScreen.vue:52 ~ register ~ error:', error)
       }
     }
   }
@@ -105,7 +134,7 @@ export default {
 </script>
 
 <style scoped>
-.login-form-container {
+.register-form-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -114,7 +143,7 @@ export default {
   background-color: #f5f5f5;
 }
 
-.login-form {
+.register-form {
   background-color: #fff;
   padding: 30px;
   border-radius: 5px;
@@ -150,7 +179,7 @@ label {
   font-weight: bold;
 }
 
-.login-input {
+.register-input {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -177,22 +206,22 @@ button {
   width: 100%;
 }
 
-.login-form-error-message {
+.register-form-error-message {
   color: red;
   font-size: 14px;
 }
 
-.login-button {
+.register-button {
   margin-top: 20px;
 }
 
-.register-line {
+.login-line {
   margin-top: 12px;
   column-gap: 8px;
   font-size: 14px;
 }
 
-.register-link {
+.login-link {
   color: var(--primary-color);
   text-decoration: underline;
 }

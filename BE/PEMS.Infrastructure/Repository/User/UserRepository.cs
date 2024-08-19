@@ -30,6 +30,13 @@ namespace PEMS.Infrastructure
             var user = _unitOfWork.Connection.QueryFirstOrDefault<User>(sql, new { userId = userId }, commandType: CommandType.Text);
             return user;
         }
+
+        public async Task<string> CreateNewUser(string username, string hashPassword, string fullname)
+        {
+            var sql = "INSERT INTO user (Username, Password, FullName, RoleID, UserId) VALUES (@Username, @Password, @FullName, 3, @UserId)";
+            var result = await _unitOfWork.Connection.ExecuteAsync(sql, new { Username = username, Password = hashPassword, FullName = fullname, UserId = Guid.NewGuid().ToString() }, commandType: CommandType.Text);
+            return result > 0 ? "Success" : "Failed";
+        }
         #endregion
     }
 }

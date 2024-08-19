@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PEMS.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a70231eec22d542a8084353fa23b2e6b13937000")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+850122d9d0daa2f9b3b7dada4edac46ef51d53aa")]
 [assembly: System.Reflection.AssemblyProductAttribute("PEMS.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PEMS.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

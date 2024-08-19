@@ -9,6 +9,7 @@ namespace PEMS.Application
     /// Created by: TTANH (12/07/2024)
     public interface IUserService
     {
+        Task<string> CreateNewUser(string username, string hashPassword, string fullname);
         Task<UserDto> GetUserInfo(Guid userId);
         Task<User> GetByUserName(string username);
     }

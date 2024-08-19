@@ -30,7 +30,9 @@ namespace PEMS.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] UserRegister userRegisterParams)
         {
-            return StatusCode(StatusCodes.Status200OK, null);
+            var result = await _authService.Register(userRegisterParams.Username, userRegisterParams.Password, userRegisterParams.Fullname);
+
+            return StatusCode(StatusCodes.Status200OK, result);
         }
     }
 }

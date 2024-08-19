@@ -10,6 +10,7 @@ import EmployeeImport from '../views/employee/employee-import/EmployeeImport.vue
 import TTANHPageNotFound from '../components/layout/TTANHPageNotFound.vue'
 
 import LoginScreen from '../views/auth/LoginScreen.vue'
+import RegisterScreen from '../views/auth/RegisterScreen.vue'
 import store from '../store'
 
 const routes = [
@@ -21,6 +22,14 @@ const routes = [
     path: '/login',
     name: 'login-page',
     component: LoginScreen,
+    meta: {
+      noRequiresAuth: true
+    }
+  },
+  {
+    path: '/register',
+    name: 'register-page',
+    component: RegisterScreen,
     meta: {
       noRequiresAuth: true
     }
