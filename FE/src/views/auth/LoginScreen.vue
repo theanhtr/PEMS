@@ -60,7 +60,7 @@ export default {
         this.isLoading = true
 
         if (this.userName === '') {
-          this.errorMessage = 'Vui lòng nhập tên người dùng'
+          this.errorMessage = 'Vui lòng nhập Tên tài khoản'
           this.isLoading = false
           return
         }

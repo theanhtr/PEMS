@@ -84,7 +84,7 @@ export default {
         }
 
         if (this.userName === '') {
-          this.errorMessage = 'Vui lòng nhập Tên người dùng'
+          this.errorMessage = 'Vui lòng nhập Tên tài khoản'
           return
         }
 

@@ -12,6 +12,8 @@ namespace PEMS.Application
         public UserProfile()
         {
             CreateMap<User, UserDto>();
+            CreateMap<UserCreateDto, User>();
+            CreateMap<UserUpdateDto, User>();
         }
     }
 }

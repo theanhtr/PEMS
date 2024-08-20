@@ -163,6 +163,7 @@ builder.Services.AddScoped<IPredictRepository, PredictRepository>();
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserValidate, UserValidate>();
 
 
 builder.Services.AddScoped<IExcelWorker<EmployeeDto, EmployeeExcelDto, EmployeeLayoutDto>, EmployeeExcelWorker>();

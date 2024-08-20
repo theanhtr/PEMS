@@ -3,7 +3,6 @@
     <div class="header">
       <div class="header__left"></div>
       <div class="header__right">
-        
         <div class="header__action-right">
           <ttanh-button
             type="icon"
@@ -18,11 +17,7 @@
             :tooltip="$t('mainContent.headerNotificationTooltip')"
           />
         </div>
-        <div
-          class="header__account-info"
-          :title="$t('mainContent.headerAccountInfo')"
-          @click="showUserInfo"
-        >
+        <div class="header__account-info" :title="$t('mainContent.headerAccountInfo')" @click="showUserInfo">
           <div class="account-avatar"></div>
           <div class="account-name">{{ user.Fullname }}</div>
           <ttanh-icon scale="0.7" icon="dropdown--light-black" />
@@ -32,13 +27,17 @@
     <div v-show="isShowUserInfo" class="user-info-blur">
       <div class="user-info">
         <div class="header">
-        <h1 class="title">Thông tin tài khoản</h1>
-        <span @click="isShowUserInfo = false" class="close-button">X</span>
+          <h1 class="title">Thông tin tài khoản</h1>
+          <span @click="isShowUserInfo = false" class="close-button">X</span>
         </div>
         <div class="content">
           <div class="profile">
             <div class="avatar">
-              <img class="avatar-img" src="https://inkythuatso.com/uploads/images/2022/05/hinh-anh-meo-bua-buon-cuoi-nhat-12-09-56-39.jpg" alt="Avatar" />
+              <img
+                class="avatar-img"
+                src="https://inkythuatso.com/uploads/images/2022/05/hinh-anh-meo-bua-buon-cuoi-nhat-12-09-56-39.jpg"
+                alt="Avatar"
+              />
             </div>
             <div class="info">
               <p>{{ user.Fullname }}</p>
@@ -55,11 +54,11 @@
 </template>
 
 <script>
-import userService from "@/service/UserService";
+import UserService from '@/service/UserService'
 export default {
-  name: "TheMainContent",
+  name: 'TheMainContent',
   async created() {
-    await this.getUserInfo();
+    await this.getUserInfo()
   },
   methods: {
     /**
@@ -68,25 +67,22 @@ export default {
      */
     collapseSidebar() {
       try {
-        this.$store.commit("toggleSidebar");
+        this.$store.commit('toggleSidebar')
       } catch (error) {
-        console.log(
-          "🚀 ~ file: TheMainContent.vue:83 ~ collapseSidebar ~ error:",
-          error
-        );
+        console.log('🚀 ~ file: TheMainContent.vue:83 ~ collapseSidebar ~ error:', error)
       }
     },
     async getUserInfo() {
-      let res = await userService.get();
-      this.user = res.data;
+      let res = await UserService.getMyinfo()
+      this.user = res.data
     },
     showUserInfo() {
-      this.isShowUserInfo = true;
+      this.isShowUserInfo = true
     },
     logout() {
-      this.$store.commit("logout");
-      this.$router.push("/login");
-    },
+      this.$store.commit('logout')
+      this.$router.push('/login')
+    }
   },
   data() {
     return {
@@ -94,14 +90,14 @@ export default {
         header__setting: false,
         header__message: false,
         header__question: false,
-        header__noti: false,
+        header__noti: false
       },
-      searchText: "",
+      searchText: '',
       user: {},
-      isShowUserInfo: false,
-    };
-  },
-};
+      isShowUserInfo: false
+    }
+  }
+}
 </script>
 
 <style scoped>
@@ -196,7 +192,7 @@ export default {
 }
 
 .logout-button {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   padding: 10px 20px;
   border: none;

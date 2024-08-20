@@ -59,14 +59,14 @@ namespace PEMS.Infrastructure
             var procedure = $"Proc_{tableName}_Update";
 
             var param = new DynamicParameters();
-            param.Add("id", id);
+            param.Add("v_id", id);
 
             var type = typeof(TEntity);
             var properties = type.GetProperties();
 
             foreach (var property in properties)
             {
-                var propertyName = "@" + property.Name;
+                var propertyName = "@v_" + property.Name;
                 var propertyValue = property.GetValue(entity);
 
                 param.Add(propertyName, propertyValue);

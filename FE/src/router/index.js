@@ -4,6 +4,7 @@ import MainLayout from '../components/layout/MainLayout.vue'
 import Dashboard from '../views/dashboard/Dashboard.vue'
 import EmployeeList from '../views/employee/employee-list/EmployeeList.vue'
 import PredictList from '../views/predict/PredictList.vue'
+import UserList from '../views/user/UserList.vue'
 
 import ImportLayout from '../components/layout/import-layout/ImportLayout.vue'
 import EmployeeImport from '../views/employee/employee-import/EmployeeImport.vue'
@@ -70,7 +71,7 @@ const routes = [
       {
         path: '/app/user-management',
         name: 'user-management-app',
-        component: EmployeeList
+        component: UserList
       }
     ]
   },

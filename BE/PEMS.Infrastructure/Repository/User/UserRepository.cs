@@ -8,7 +8,7 @@ namespace PEMS.Infrastructure
     /// Triển khai bằng dapper và mysql
     /// </summary>
     /// Created By: TTANH (02/08/2024)
-    public class UserRepository : BaseRepository<User>, IUserRepository
+    public class UserRepository : CodeRepository<User>, IUserRepository
     {
         #region Constructor
         public UserRepository(IUnitOfWork unitOfWork) : base(unitOfWork)

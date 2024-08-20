@@ -80,7 +80,7 @@ namespace PEMS.Application
             var totalRecord = entitiesNotPagging.Count();
             var totalPage = Convert.ToInt32(Math.Ceiling((double)totalRecord / (double)pageSize));
 
-            if (pageNumber > totalPage)
+            if (pageNumber > totalPage && totalPage > 0)
             {
                 pageNumber = totalPage;
             }
