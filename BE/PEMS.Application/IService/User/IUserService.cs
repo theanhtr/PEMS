@@ -7,7 +7,7 @@ namespace PEMS.Application
     /// Interface service cho token để controller gọi đến
     /// </summary>
     /// Created by: TTANH (12/07/2024)
-    public interface IUserService
+    public interface IUserService : IBaseService<User, UserDto, UserCreateDto, UserUpdateDto>
     {
         Task<string> CreateNewUser(string username, string hashPassword, string fullname);
         Task<UserDto> GetUserInfo(Guid userId);

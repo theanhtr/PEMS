@@ -4,12 +4,12 @@ using PEMS.Domain;
 
 namespace PEMS.Application
 {
-    public class UserService : IUserService
+    public class UserService : BaseService<User, UserDto, UserCreateDto, UserUpdateDto>, IUserService
     {
         IMapper _mapper;
         IUserRepository _userRepository;
         #region Constructor
-        public UserService(IUserRepository userRepository, IMapper mapper)
+        public UserService(IUserRepository userRepository, IMapper mapper, IUserValidate userValidate, IHttpContextAccessor httpContextAccessor) : base(userRepository, mapper, userValidate, httpContextAccessor)
         {
             _userRepository = userRepository;
             _mapper = mapper;
@@ -39,6 +39,12 @@ namespace PEMS.Application
         public async Task<User> GetRoleID(Guid userId)
         {
             return _userRepository.GetByUserId(userId);
+        }
+
+        public override Task BaseServiceMoreProcessInsertAsync(UserCreateDto entityCreateDto)
+        {
+            entityCreateDto.Password = BCrypt.Net.BCrypt.HashPassword("12345678@Abc");
+            return base.BaseServiceMoreProcessInsertAsync(entityCreateDto);
         }
     }
 }

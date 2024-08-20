@@ -1,10 +1,14 @@
-import BaseService from "./BaseService.js";
+import BaseService from './BaseService.js'
 
 class UserServiceClass extends BaseService {
   constructor() {
-    super("User");
+    super('User')
+  }
+
+  getMyinfo() {
+    return this.baseAxios.get(this.endpoint('/myinfo'))
   }
 }
 
-const UserService = new UserServiceClass();
-export default UserService;
+const UserService = new UserServiceClass()
+export default UserService

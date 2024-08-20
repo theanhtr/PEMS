@@ -154,9 +154,9 @@ namespace PEMS.Infrastructure
             var procedure = $"Proc_{tableName}_Filter";
 
             var param = new DynamicParameters();
-            param.Add("pageSize", pageSize);
-            param.Add("pageNumber", pageNumber);
-            param.Add("searchText", searchText);
+            param.Add("v_PageSize", pageSize);
+            param.Add("v_PageNumber", pageNumber);
+            param.Add("v_SearchText", searchText ?? "");
 
             var entities = await _unitOfWork.Connection.QueryAsync<TEntity>(procedure, param, commandType: CommandType.StoredProcedure);
 

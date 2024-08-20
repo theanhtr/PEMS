@@ -92,6 +92,7 @@ C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\PEMS.dll
 C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\PEMS.pdb
 C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\AutoMapper.dll
 C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\BCrypt.Net-Next.dll
 C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\ClosedXML.dll
 C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\Dapper.dll
 C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\DocumentFormat.OpenXml.dll
@@ -176,4 +177,3 @@ C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\obj\Debug\net6.0\refint\P
 C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\obj\Debug\net6.0\PEMS.pdb
 C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\obj\Debug\net6.0\PEMS.genruntimeconfig.cache
 C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\obj\Debug\net6.0\ref\PEMS.dll
-C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS\bin\Debug\net6.0\BCrypt.Net-Next.dll

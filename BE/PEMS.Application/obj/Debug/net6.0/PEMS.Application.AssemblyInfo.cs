@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PEMS.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+850122d9d0daa2f9b3b7dada4edac46ef51d53aa")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f1b8db9beaaa82dd78434e8f07d969b1be8e2018")]
 [assembly: System.Reflection.AssemblyProductAttribute("PEMS.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PEMS.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

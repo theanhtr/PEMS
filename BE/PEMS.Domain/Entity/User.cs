@@ -24,8 +24,6 @@ namespace PEMS.Domain
         /// <summary>
         /// Tooltip của cột bằng tiếng việt
         /// </summary>
-        [Required]
-        [StringLength(255)]
         public string Password { get; set; }
 
         /// <summary>
@@ -39,7 +37,6 @@ namespace PEMS.Domain
         /// Tên cột hiển thị trên màn hình mặc định bằng tiếng việt
         /// </summary>
         [Required]
-        [StringLength(255)]
         public int RoleID { get; set; }
         #endregion
 

@@ -12,16 +12,16 @@ namespace PEMS.Controllers
     [Route("api/v1/[controller]")]
     [ApiController]
     [RoleAuthorize(3)]
-    public class UserController : ControllerBase
+    public class UserController : BaseController<User, UserDto, UserCreateDto, UserUpdateDto>
     {
         IUserService _userInfoService;
         
-        public UserController(IUserService userInfoService)
+        public UserController(IUserService userInfoService) : base(userInfoService)
         {
             _userInfoService = userInfoService;
         }
 
-        [HttpGet("")]
+        [HttpGet("myinfo")]
         public async Task<IActionResult> GetUserInfo()
         {
             var userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "UserId")?.Value;

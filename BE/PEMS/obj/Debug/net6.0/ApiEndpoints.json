@@ -740,9 +740,130 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "PEMS.Controllers.BaseController\u00604[[PEMS.Domain.User, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.UserDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.UserCreateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.UserUpdateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "InsertAsync",
+    "RelativePath": "api/v1/User",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "entityCreateDto",
+        "Type": "PEMS.Application.UserCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.BaseController\u00604[[PEMS.Domain.User, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.UserDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.UserCreateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.UserUpdateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "DeleteMultipleAsync",
+    "RelativePath": "api/v1/User",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ids",
+        "Type": "System.Collections.Generic.List\u00601[[System.Guid, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.ReadOnlyController\u00602[[PEMS.Domain.User, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.UserDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetAsync",
+    "RelativePath": "api/v1/User",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.BaseController\u00604[[PEMS.Domain.User, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.UserDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.UserCreateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.UserUpdateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "UpdateAsync",
+    "RelativePath": "api/v1/User/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "entityUpdateDto",
+        "Type": "PEMS.Application.UserUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.BaseController\u00604[[PEMS.Domain.User, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.UserDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.UserCreateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.UserUpdateDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "DeleteAsync",
+    "RelativePath": "api/v1/User/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.ReadOnlyController\u00602[[PEMS.Domain.User, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.UserDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "GetByIdAsync",
+    "RelativePath": "api/v1/User/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PEMS.Controllers.ReadOnlyController\u00602[[PEMS.Domain.User, PEMS.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[PEMS.Application.UserDto, PEMS.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+    "Method": "FiltersAsync",
+    "RelativePath": "api/v1/User/filter",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pageSize",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageNumber",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "searchText",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "PEMS.Controllers.UserController",
     "Method": "GetUserInfo",
-    "RelativePath": "api/v1/User",
+    "RelativePath": "api/v1/User/myinfo",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

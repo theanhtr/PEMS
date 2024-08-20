@@ -32,7 +32,6 @@ namespace PEMS.Application
         /// Tên cột hiển thị trên màn hình mặc định bằng tiếng việt
         /// </summary>
         [Required]
-        [StringLength(255)]
         public int RoleID { get; set; }
         #endregion
     }
