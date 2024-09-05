@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DocumentFormat.OpenXml.InkML;
+using Microsoft.AspNetCore.Mvc;
 using PEMS.Application;
+using PEMS.Domain;
+using StackExchange.Redis;
 
 namespace PEMS.Controllers
 {
@@ -30,6 +33,7 @@ namespace PEMS.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAsync()
         {
+            ValidateBeforeActionBase(BaseAction.Get);
             var entities = await _readOnlyService.GetAsync();
 
             return StatusCode(StatusCodes.Status200OK, entities);
@@ -44,6 +48,7 @@ namespace PEMS.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetByIdAsync(Guid id)
         {
+            ValidateBeforeActionBase(BaseAction.Get);
             var entity = await _readOnlyService.GetByIdAsync(id);
 
             return StatusCode(StatusCodes.Status200OK, entity);
@@ -60,9 +65,36 @@ namespace PEMS.Controllers
         [HttpGet("filter")]
         public async Task<IActionResult> FiltersAsync([FromQuery] int? pageSize, [FromQuery] int? pageNumber, [FromQuery] string? searchText)
         {
+            ValidateBeforeActionBase(BaseAction.Filter);
             var filterData = await _readOnlyService.FilterAsync(pageSize, pageNumber, searchText);
 
             return StatusCode(StatusCodes.Status200OK, filterData);
+        }
+
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public virtual void ValidateBeforeActionBase(BaseAction action) {}
+
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public void BlockAllAction(int role)
+        {
+            // Lấy các claim từ JWT
+            var userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "UserId")?.Value;
+
+            var userRepository = HttpContext.RequestServices.GetService<IUserRepository>();
+            var user = userRepository.GetByUserId(Guid.Parse(userId));
+
+            if (user != null)
+            {
+                var roleId = user.RoleID;
+                if (roleId > role)
+                {
+                    throw new ForbiddenException(StatusErrorCode.Forbidden, "Bạn không có quyền truy cập trang này.", null);
+                }
+            }
+            else
+            {
+                throw new ForbiddenException(StatusErrorCode.Forbidden, "Bạn không có quyền truy cập trang này.", null);
+            }
         }
         #endregion
     }

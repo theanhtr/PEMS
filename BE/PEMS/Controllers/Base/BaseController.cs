@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PEMS.Application;
+using PEMS.Domain;
 
 namespace PEMS.Controllers
 {
@@ -31,6 +32,7 @@ namespace PEMS.Controllers
         [HttpPost]
         public virtual async Task<IActionResult> InsertAsync([FromBody] TEntityCreateDto entityCreateDto)
         {
+            ValidateBeforeActionBase(BaseAction.Create);
             var result = await _baseService.InsertAsync(entityCreateDto);
 
             return StatusCode(StatusCodes.Status201Created, result);
@@ -46,6 +48,7 @@ namespace PEMS.Controllers
         [HttpPut("{id}")]
         public virtual async Task<IActionResult> UpdateAsync(Guid id, [FromBody] TEntityUpdateDto entityUpdateDto)
         {
+            ValidateBeforeActionBase(BaseAction.Update);
             var result = await _baseService.UpdateAsync(id, entityUpdateDto);
 
             return StatusCode(StatusCodes.Status200OK, result);
@@ -60,6 +63,7 @@ namespace PEMS.Controllers
         [HttpDelete("{id}")]
         public virtual async Task<IActionResult> DeleteAsync(Guid id)
         {
+            ValidateBeforeActionBase(BaseAction.Delete);
             var result = await _baseService.DeleteAsync(id);
 
             return StatusCode(StatusCodes.Status200OK, result);
@@ -74,6 +78,7 @@ namespace PEMS.Controllers
         [HttpDelete]
         public virtual async Task<IActionResult> DeleteMultipleAsync([FromBody] List<Guid> ids)
         {
+            ValidateBeforeActionBase(BaseAction.Delete);
             var result = await _baseService.DeleteMultipleAsync(ids);
 
             return StatusCode(StatusCodes.Status200OK, result);

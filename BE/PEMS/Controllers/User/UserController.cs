@@ -29,5 +29,10 @@ namespace PEMS.Controllers
 
             return StatusCode(StatusCodes.Status200OK, result);
         }
+
+        public override void ValidateBeforeActionBase(BaseAction action)
+        {
+            BlockAllAction(1);
+        }
     }
 }

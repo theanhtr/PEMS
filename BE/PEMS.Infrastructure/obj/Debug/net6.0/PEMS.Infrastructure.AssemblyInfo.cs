@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PEMS.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f1b8db9beaaa82dd78434e8f07d969b1be8e2018")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+89819e7c39cc11ef5d453a2bd642f6c08f3c467d")]
 [assembly: System.Reflection.AssemblyProductAttribute("PEMS.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PEMS.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
