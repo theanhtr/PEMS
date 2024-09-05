@@ -68,6 +68,19 @@ namespace PEMS
                     Data = ((ValidateException)exception).Data
                 }.ToString() ?? "");
             }
+            else if (exception is ForbiddenException)
+            {
+                context.Response.StatusCode = StatusCodes.Status403Forbidden;
+                await context.Response.WriteAsync(text: new BaseException()
+                {
+                    ErrorCode = (int)((ForbiddenException)exception).ErrorCode,
+                    DevMessage = ((ForbiddenException)exception).ErrorMessage ?? Resource.Exception_Validate_Default,
+                    UserMessage = ((ForbiddenException)exception).ErrorMessage ?? Resource.Exception_Validate_Default,
+                    TraceId = context.TraceIdentifier,
+                    MoreInfo = exception.HelpLink,
+                    Data = ((ForbiddenException)exception).Data
+                }.ToString() ?? "");
+            }
             else
             {
                 context.Response.StatusCode = StatusCodes.Status500InternalServerError;

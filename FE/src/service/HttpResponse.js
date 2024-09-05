@@ -1,4 +1,5 @@
-import store from "../store";
+import store from '../store'
+import router from '../router'
 
 /**
  * hàm để xử lý khi response là file trả về, và download cho người dùng
@@ -6,38 +7,33 @@ import store from "../store";
  * @param {*} res response
  */
 function downloadFileFromRes(res) {
-  if (res.config.responseType == "blob") {
-    let fileName = "";
+  if (res.config.responseType == 'blob') {
+    let fileName = ''
 
     //lấy ra tên file từ content disposition
-    let headersContentDisposition =
-      res.headers["content-disposition"].split(";");
+    let headersContentDisposition = res.headers['content-disposition'].split(';')
 
     for (let i = 0; i < headersContentDisposition.length; i++) {
-      if (headersContentDisposition[i].includes("filename=")) {
-        let startIndexName = headersContentDisposition[i].indexOf("=") + 1;
+      if (headersContentDisposition[i].includes('filename=')) {
+        let startIndexName = headersContentDisposition[i].indexOf('=') + 1
 
-        for (
-          let j = startIndexName;
-          j < headersContentDisposition[i].length;
-          j++
-        ) {
-          fileName += headersContentDisposition[i][j];
+        for (let j = startIndexName; j < headersContentDisposition[i].length; j++) {
+          fileName += headersContentDisposition[i][j]
         }
 
-        break;
+        break
       }
     }
 
-    let FILE = window.URL.createObjectURL(new Blob([res.data]));
+    let FILE = window.URL.createObjectURL(new Blob([res.data]))
 
-    let docUrl = document.createElement("a");
-    docUrl.href = FILE;
-    docUrl.setAttribute("download", fileName);
-    document.body.appendChild(docUrl);
-    docUrl.click();
+    let docUrl = document.createElement('a')
+    docUrl.href = FILE
+    docUrl.setAttribute('download', fileName)
+    document.body.appendChild(docUrl)
+    docUrl.click()
 
-    document.body.removeChild(docUrl);
+    document.body.removeChild(docUrl)
   }
 }
 
@@ -51,13 +47,13 @@ function downloadFileFromRes(res) {
  * @returns response đã được format
  */
 export function success(res) {
-  downloadFileFromRes(res);
+  downloadFileFromRes(res)
 
   return {
     success: true,
     statusCode: res.status,
-    data: res.data,
-  };
+    data: res.data
+  }
 }
 
 /**
@@ -76,9 +72,11 @@ export function success(res) {
 export function failure(res) {
   if (res.status == 403) {
     store._mutations.addToast[0]({
-      type: "error",
-      text: "Bạn không có quyền truy cập vào chức năng này",
-    });
+      type: 'error',
+      text: 'Bạn không có quyền truy cập vào chức năng này'
+    })
+
+    router.push({ name: 'NotFound' })
   }
 
   return {
@@ -88,6 +86,6 @@ export function failure(res) {
     devMsg: res.data.DevMessage,
     userMsg: res.data.UserMessage,
     moreInfo: res.data.MoreInfo,
-    data: res.data.Data,
-  };
+    data: res.data.Data
+  }
 }
