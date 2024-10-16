@@ -3,24 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7AA20CF2-9801-4998-B72D-4E2CF8B178A9}|PEMS\\PEMS.csproj|c:\\users\\ttanh6\\desktop\\kh\u00F3a lu\u1EADn\\code\\pems\\be\\pems\\middleware\\exceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7AA20CF2-9801-4998-B72D-4E2CF8B178A9}|PEMS\\PEMS.csproj|solutionrelative:pems\\middleware\\exceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7AA20CF2-9801-4998-B72D-4E2CF8B178A9}|PEMS\\PEMS.csproj|c:\\users\\ttanh6\\desktop\\kh\u00F3a lu\u1EADn\\code\\pems\\be\\pems\\controllers\\testcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AA20CF2-9801-4998-B72D-4E2CF8B178A9}|PEMS\\PEMS.csproj|solutionrelative:pems\\controllers\\testcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B259404A-176F-4809-B4E1-85177CA2DFCA}|PEMS.Application\\PEMS.Application.csproj|c:\\users\\ttanh6\\desktop\\kh\u00F3a lu\u1EADn\\code\\pems\\be\\pems.application\\dto\\user\\usercreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B259404A-176F-4809-B4E1-85177CA2DFCA}|PEMS.Application\\PEMS.Application.csproj|solutionrelative:pems.application\\dto\\user\\usercreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7AA20CF2-9801-4998-B72D-4E2CF8B178A9}|PEMS\\PEMS.csproj|c:\\users\\ttanh6\\desktop\\kh\u00F3a lu\u1EADn\\code\\pems\\be\\pems\\middleware\\exceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AA20CF2-9801-4998-B72D-4E2CF8B178A9}|PEMS\\PEMS.csproj|solutionrelative:pems\\middleware\\exceptionmiddleware.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7AA20CF2-9801-4998-B72D-4E2CF8B178A9}|PEMS\\PEMS.csproj|c:\\users\\ttanh6\\desktop\\kh\u00F3a lu\u1EADn\\code\\pems\\be\\pems\\controllers\\user\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7AA20CF2-9801-4998-B72D-4E2CF8B178A9}|PEMS\\PEMS.csproj|solutionrelative:pems\\controllers\\user\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7AA20CF2-9801-4998-B72D-4E2CF8B178A9}|PEMS\\PEMS.csproj|c:\\users\\ttanh6\\desktop\\kh\u00F3a lu\u1EADn\\code\\pems\\be\\pems\\controllers\\base\\readonlycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7AA20CF2-9801-4998-B72D-4E2CF8B178A9}|PEMS\\PEMS.csproj|solutionrelative:pems\\controllers\\base\\readonlycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS.Domain\\MISAException\\ValidateException - Copy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:PEMS.Domain\\MISAException\\ValidateException - Copy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B259404A-176F-4809-B4E1-85177CA2DFCA}|PEMS.Application\\PEMS.Application.csproj|c:\\users\\ttanh6\\desktop\\kh\u00F3a lu\u1EADn\\code\\pems\\be\\pems.application\\dto\\user\\usercreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B259404A-176F-4809-B4E1-85177CA2DFCA}|PEMS.Application\\PEMS.Application.csproj|solutionrelative:pems.application\\dto\\user\\usercreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,44 +26,33 @@
       "DocumentGroups": [
         {
           "DockedWidth": 270,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ValidateException - Copy.cs",
-              "DocumentMoniker": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS.Domain\\MISAException\\ValidateException - Copy.cs",
-              "RelativeDocumentMoniker": "PEMS.Domain\\MISAException\\ValidateException - Copy.cs",
-              "ToolTip": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS.Domain\\MISAException\\ValidateException - Copy.cs",
-              "RelativeToolTip": "PEMS.Domain\\MISAException\\ValidateException - Copy.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAswBoAAAAYAAAA",
+              "DocumentIndex": 0,
+              "Title": "TestController.cs",
+              "DocumentMoniker": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS\\Controllers\\TestController.cs",
+              "RelativeDocumentMoniker": "PEMS\\Controllers\\TestController.cs",
+              "ToolTip": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS\\Controllers\\TestController.cs",
+              "RelativeToolTip": "PEMS\\Controllers\\TestController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T09:01:29.494Z"
+              "WhenOpened": "2024-10-15T14:47:14.927Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "ExceptionMiddleware.cs",
               "DocumentMoniker": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS\\Middleware\\ExceptionMiddleware.cs",
               "RelativeDocumentMoniker": "PEMS\\Middleware\\ExceptionMiddleware.cs",
               "ToolTip": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS\\Middleware\\ExceptionMiddleware.cs",
               "RelativeToolTip": "PEMS\\Middleware\\ExceptionMiddleware.cs",
-              "ViewState": "AQIAAC8AAAAAAAAAAAAnwEkAAABLAAAA",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAgwBoAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-25T08:54:25.751Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ReadOnlyController.cs",
-              "DocumentMoniker": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS\\Controllers\\Base\\ReadOnlyController.cs",
-              "RelativeDocumentMoniker": "PEMS\\Controllers\\Base\\ReadOnlyController.cs",
-              "ToolTip": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS\\Controllers\\Base\\ReadOnlyController.cs",
-              "RelativeToolTip": "PEMS\\Controllers\\Base\\ReadOnlyController.cs",
-              "ViewState": "AQIAAEYAAAAAAAAAAAAiwFoAAAAUAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-25T08:25:35.561Z"
             },
             {
               "$type": "Document",
@@ -77,13 +62,13 @@
               "RelativeDocumentMoniker": "PEMS\\Controllers\\User\\UserController.cs",
               "ToolTip": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS\\Controllers\\User\\UserController.cs",
               "RelativeToolTip": "PEMS\\Controllers\\User\\UserController.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAqwCAAAAAmAAAA",
+              "ViewState": "AQIAABMAAAAAAAAAAAAqwBsAAAA5AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-25T08:10:18.055Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "UserCreateDto.cs",
               "DocumentMoniker": "C:\\Users\\ttanh6\\Desktop\\kh\u00F3a lu\u1EADn\\Code\\PEMS\\BE\\PEMS.Application\\Dto\\User\\UserCreateDto.cs",
               "RelativeDocumentMoniker": "PEMS.Application\\Dto\\User\\UserCreateDto.cs",
