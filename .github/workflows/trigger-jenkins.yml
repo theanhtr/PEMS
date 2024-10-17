@@ -2,51 +2,49 @@ name: Trigger Jenkins Build Test
 
 on:
   push:
-    branches: [ "test", "release" ]
+    branches: ['test', 'release']
 
 jobs:
-
   trigger_jenkins:
-
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Git
-      run: git fetch --prune --unshallow
-      
-    - name: Get the current branch
-      id: get_branch
-      run: |
-        echo "Branch: ${GITHUB_REF#refs/heads/}"
-        echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+      - name: Set up Git
+        run: git fetch --prune --unshallow
 
-    - name: Get changed files
-      id: get_changes
-      run: |
-        git diff --name-only HEAD^ HEAD > changed_files.txt
-        if grep -q '^FE/' changed_files.txt; then
-          echo "FE_CHANGED=true" >> $GITHUB_ENV
-        fi
-        if grep -q '^BE/' changed_files.txt; then
-          echo "BE_CHANGED=true" >> $GITHUB_ENV
-        fi
+      - name: Get the current branch
+        id: get_branch
+        run: |
+          echo "Branch: ${GITHUB_REF#refs/heads/}"
+          echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
 
-    - name: Trigger Jenkins job for FE
-      if: env.FE_CHANGED == 'true'
-      run: |
-        echo $steps.check_change_fe.outputs.stdout
-        curl -X POST "http://68.183.191.110:8080/job/PEMS_FE/buildWithParameters" \
-          -H "Content-Type: application/x-www-form-urlencoded" \
-          -d "ENV_BUILD=$BRANCH_NAME&IMAGE_TAG=r1.0.1" \
-          -u ${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_API_TOKEN }}
+      - name: Get changed files
+        id: get_changes
+        run: |
+          git diff --name-only HEAD^ HEAD > changed_files.txt
+          if grep -q '^FE/' changed_files.txt; then
+            echo "FE_CHANGED=true" >> $GITHUB_ENV
+          fi
+          if grep -q '^BE/' changed_files.txt; then
+            echo "BE_CHANGED=true" >> $GITHUB_ENV
+          fi
 
-    - name: Trigger Jenkins job for BE
-      if: env.BE_CHANGED == 'true'
-      run: |
-        curl -X POST "http://68.183.191.110:8080/job/PEMS_BE/buildWithParameters" \
-          -H "Content-Type: application/x-www-form-urlencoded" \
-          -d "ENV_BUILD=$BRANCH_NAME&IMAGE_TAG=r1.0.1" \
-          -u ${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_API_TOKEN }}
+      - name: Trigger Jenkins job for FE
+        if: env.FE_CHANGED == 'true'
+        run: |
+          echo $steps.check_change_fe.outputs.stdout
+          curl -X POST "http://192.168.126.130:8080/job/PEMS_FE/buildWithParameters" \
+            -H "Content-Type: application/x-www-form-urlencoded" \
+            -d "ENV_BUILD=$BRANCH_NAME&IMAGE_TAG=1.0.1" \
+            -u ${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_API_TOKEN }}
+
+      - name: Trigger Jenkins job for BE
+        if: env.BE_CHANGED == 'true'
+        run: |
+          curl -X POST "http://192.168.126.130:8080/job/PEMS_BE/buildWithParameters" \
+            -H "Content-Type: application/x-www-form-urlencoded" \
+            -d "ENV_BUILD=$BRANCH_NAME&IMAGE_TAG=1.0.1" \
+            -u ${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_API_TOKEN }}

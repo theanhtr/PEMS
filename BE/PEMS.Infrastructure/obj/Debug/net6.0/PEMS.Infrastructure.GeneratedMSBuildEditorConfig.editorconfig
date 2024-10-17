@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = PEMS.Infrastructure
-build_property.ProjectDir = C:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS.Infrastructure\
+build_property.ProjectDir = c:\Users\ttanh6\Desktop\khóa luận\Code\PEMS\BE\PEMS.Infrastructure\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

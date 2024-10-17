@@ -9,7 +9,8 @@ pipeline{
     IMAGE_TAG = "${IMAGE_TAG}"
     ARGO_CREDENTIALS="argocd-credentials"
     ARGO_TOKEN="argocd-token"
-    IP_ARGO="128.199.213.91:30241"
+    IP_ARGO="192.168.126.130:32311"
+    GIT_REPO = "https://github.com/theanhtr/PEMS.git"
     NAME_PROJECT_TEST_ARGO_RESTART="pems-test"
     //JENKINS_API_TOKEN = credentials('JENKINS_API_TOKEN')
   }
@@ -22,7 +23,7 @@ pipeline{
     
     stage('Checkout'){
       steps{
-        git branch: "${ENV_BUILD}", credentialsId: 'github-credentials', url: 'https://github.com/theanhtr/PEMS.git'
+        git branch: "${ENV_BUILD}", credentialsId: 'github-credentials', url: "${GIT_REPO}"
       }
     }
 
