@@ -16,13 +16,6 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddCors(p => p.AddPolicy("MyCors", build =>
-{
-    //nếu mà dùng AllowCredentials thì không thể dùng origin là * do bảo mật
-    build.WithOrigins(builder.Configuration.GetSection("CorsOrigins").Get<string[]>()).AllowCredentials().AllowAnyMethod().AllowAnyHeader().WithExposedHeaders("Content-Disposition");
-}));
-
 builder.Services.AddControllers()
     .ConfigureApiBehaviorOptions(options =>
     {
@@ -182,6 +175,24 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+var configuration = (IConfiguration)(app.Services.GetService(typeof(IConfiguration)));
+app.UseCors(x =>
+{
+    string allowedOrigins = configuration["AppSettings:AllowedOrigins"];
+    if (string.IsNullOrWhiteSpace(allowedOrigins))
+    {
+        x.SetIsOriginAllowed(origin => true);
+    }
+    else
+    {
+        x.SetIsOriginAllowedToAllowWildcardSubdomains();
+        x.WithOrigins(allowedOrigins.Split(new char[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries).ToList().ToArray());
+    }
+    x.AllowCredentials()
+     .AllowAnyMethod()
+     .AllowAnyHeader()
+     .SetPreflightMaxAge(TimeSpan.FromMinutes(60));
+});
 
 app.UseHttpsRedirection();
 
@@ -199,7 +210,6 @@ app.UseSession();
 
 //RecurringJob.AddOrUpdate<IScheduleService>(scheduleService => scheduleService.ClearFiles(clientFolderStore), AppConst.CronJobTime);
 
-app.UseCors("MyCors");
 
 // thêm localization
 app.UseRequestLocalization(localizationOptions);

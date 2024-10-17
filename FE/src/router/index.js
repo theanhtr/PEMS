@@ -47,9 +47,6 @@ const routes = [
     path: '/app',
     name: 'app',
     component: MainLayout,
-    meta: {
-      noRequiresAuth: true
-    },
     children: [
       {
         path: '/app/dashboard',
