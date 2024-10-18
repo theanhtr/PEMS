@@ -4,10 +4,6 @@ using PEMS.Infrastructure;
 using PEMS.Domain;
 using PEMS.Application;
 using PEMS;
-using Hangfire;
-using Hangfire.MySql;
-using System.Reflection;
-using Microsoft.Extensions.Hosting;
 using System.Globalization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -175,24 +171,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-var configuration = (IConfiguration)(app.Services.GetService(typeof(IConfiguration)));
-app.UseCors(x =>
-{
-    string allowedOrigins = configuration["AppSettings:AllowedOrigins"];
-    if (string.IsNullOrWhiteSpace(allowedOrigins))
-    {
-        x.SetIsOriginAllowed(origin => true);
-    }
-    else
-    {
-        x.SetIsOriginAllowedToAllowWildcardSubdomains();
-        x.WithOrigins(allowedOrigins.Split(new char[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries).ToList().ToArray());
-    }
-    x.AllowCredentials()
-     .AllowAnyMethod()
-     .AllowAnyHeader()
-     .SetPreflightMaxAge(TimeSpan.FromMinutes(60));
-});
 
 app.UseHttpsRedirection();
 
@@ -218,5 +196,23 @@ app.UseMiddleware<LocalizationMiddleware>();
 app.MapControllers();
 
 app.UseMiddleware<ExceptionMiddleware>();
+
+var configuration = (IConfiguration)(app.Services.GetService(typeof(IConfiguration)));
+app.UseCors(x =>
+{
+    string allowedOrigins = configuration["AppSettings:AllowedOrigins"];
+    if (string.IsNullOrWhiteSpace(allowedOrigins))
+    {
+        x.SetIsOriginAllowed(origin => true);
+    }
+    else
+    {
+        x.SetIsOriginAllowedToAllowWildcardSubdomains();
+        x.WithOrigins(allowedOrigins.Split(new char[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries).ToList().ToArray());
+    }
+    x.AllowCredentials()
+     .AllowAnyMethod()
+     .AllowAnyHeader();
+});
 
 app.Run();
