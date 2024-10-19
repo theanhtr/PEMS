@@ -9,8 +9,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors();
 
 builder.Services.AddControllers()
     .ConfigureApiBehaviorOptions(options =>
@@ -171,8 +172,27 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 app.UseHttpsRedirection();
+app.UseRouting();
+
+var configuration = (IConfiguration)(app.Services.GetService(typeof(IConfiguration)));
+app.UseCors(x =>
+{
+    string allowedOrigins = configuration["AppSettings:AllowedOrigins"];
+    if (string.IsNullOrWhiteSpace(allowedOrigins))
+    {
+        x.SetIsOriginAllowed(origin => true);
+    }
+    else
+    {
+        x.SetIsOriginAllowedToAllowWildcardSubdomains();
+        x.WithOrigins(allowedOrigins.Split(new char[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries).ToList().ToArray());
+    }
+    x.AllowAnyHeader()
+     .AllowCredentials()
+     .AllowAnyMethod()
+     .SetPreflightMaxAge(TimeSpan.FromMinutes(10));
+});
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -192,27 +212,8 @@ app.UseSession();
 // thêm localization
 app.UseRequestLocalization(localizationOptions);
 app.UseMiddleware<LocalizationMiddleware>();
-
-app.MapControllers();
-
 app.UseMiddleware<ExceptionMiddleware>();
 
-var configuration = (IConfiguration)(app.Services.GetService(typeof(IConfiguration)));
-app.UseCors(x =>
-{
-    string allowedOrigins = configuration["AppSettings:AllowedOrigins"];
-    if (string.IsNullOrWhiteSpace(allowedOrigins))
-    {
-        x.SetIsOriginAllowed(origin => true);
-    }
-    else
-    {
-        x.SetIsOriginAllowedToAllowWildcardSubdomains();
-        x.WithOrigins(allowedOrigins.Split(new char[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries).ToList().ToArray());
-    }
-    x.AllowCredentials()
-     .AllowAnyMethod()
-     .AllowAnyHeader();
-});
-
+app.MapControllers();
+app.UseEndpoints(x => x.MapControllers());
 app.Run();
