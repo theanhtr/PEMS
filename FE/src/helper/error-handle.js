@@ -1,6 +1,3 @@
-import store from '../store'
-import TTANHResource from '../resource/resource'
-
 function CommonErrorHandle() {
   // store.commit("addToast", {
   //   type: "error",

@@ -11,8 +11,6 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddCors();
-
 builder.Services.AddControllers()
     .ConfigureApiBehaviorOptions(options =>
     {
@@ -191,7 +189,8 @@ app.UseCors(x =>
     x.AllowAnyHeader()
      .AllowCredentials()
      .AllowAnyMethod()
-     .SetPreflightMaxAge(TimeSpan.FromMinutes(10));
+     .SetPreflightMaxAge(TimeSpan.FromMinutes(10))
+     .WithExposedHeaders("Content-Disposition");
 });
 
 app.UseAuthentication();
@@ -208,12 +207,10 @@ app.UseSession();
 
 //RecurringJob.AddOrUpdate<IScheduleService>(scheduleService => scheduleService.ClearFiles(clientFolderStore), AppConst.CronJobTime);
 
-
 // thêm localization
 app.UseRequestLocalization(localizationOptions);
 app.UseMiddleware<LocalizationMiddleware>();
 app.UseMiddleware<ExceptionMiddleware>();
 
-app.MapControllers();
 app.UseEndpoints(x => x.MapControllers());
 app.Run();

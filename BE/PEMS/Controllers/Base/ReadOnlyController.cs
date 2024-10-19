@@ -1,8 +1,6 @@
-﻿using DocumentFormat.OpenXml.InkML;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using PEMS.Application;
 using PEMS.Domain;
-using StackExchange.Redis;
 
 namespace PEMS.Controllers
 {
@@ -70,12 +68,10 @@ namespace PEMS.Controllers
 
             return StatusCode(StatusCodes.Status200OK, filterData);
         }
+        
+        protected virtual void ValidateBeforeActionBase(BaseAction action) {}
 
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public virtual void ValidateBeforeActionBase(BaseAction action) {}
-
-        [ApiExplorerSettings(IgnoreApi = true)]
-        public void BlockAllAction(int role)
+        protected virtual void BlockAllAction(int role)
         {
             // Lấy các claim từ JWT
             var userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "UserId")?.Value;
