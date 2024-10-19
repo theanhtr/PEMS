@@ -9,15 +9,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-builder.Services.AddCors(p => p.AddPolicy("MyCors", build =>
-{
-    //nếu mà dùng AllowCredentials thì không thể dùng origin là * do bảo mật
-    build.WithOrigins("http://localhost:5173").AllowCredentials().AllowAnyMethod().AllowAnyHeader().WithExposedHeaders("Content-Disposition");
-}));
 
 builder.Services.AddControllers()
     .ConfigureApiBehaviorOptions(options =>
@@ -178,10 +170,29 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.UseRouting();
 app.UseHttpsRedirection();
-app.UseCors("MyCors");
+app.UseRouting();
+
+var configuration = (IConfiguration)(app.Services.GetService(typeof(IConfiguration)));
+app.UseCors(x =>
+{
+    string allowedOrigins = configuration["AppSettings:AllowedOrigins"];
+    if (string.IsNullOrWhiteSpace(allowedOrigins))
+    {
+        x.SetIsOriginAllowed(origin => true);
+    }
+    else
+    {
+        x.SetIsOriginAllowedToAllowWildcardSubdomains();
+        x.WithOrigins(allowedOrigins.Split(new char[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries).ToList().ToArray());
+    }
+    x.AllowAnyHeader()
+     .AllowCredentials()
+     .AllowAnyMethod()
+     .SetPreflightMaxAge(TimeSpan.FromMinutes(10))
+     .WithExposedHeaders("Content-Disposition");
+});
+
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -201,6 +212,5 @@ app.UseRequestLocalization(localizationOptions);
 app.UseMiddleware<LocalizationMiddleware>();
 app.UseMiddleware<ExceptionMiddleware>();
 
-app.MapControllers();
-
+app.UseEndpoints(x => x.MapControllers());
 app.Run();
