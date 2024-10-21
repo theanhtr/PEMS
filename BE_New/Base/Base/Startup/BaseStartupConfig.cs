@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Net;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Base.DL;
+using Base.BL;
 
 namespace Base
 {
@@ -85,6 +87,11 @@ namespace Base
 
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            var dbConnectionString = builder.Configuration.GetConnectionString("DatabaseConnection");
+            builder.Services.AddScoped<IUnitOfWork>(option => new UnitOfWork(dbConnectionString));
+
+            builder.Services.AddSingleton<ITokenService, TokenService>();
         }
         public static void ConfigureApp(ref WebApplication app)
         {
