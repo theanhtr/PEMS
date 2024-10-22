@@ -33,7 +33,7 @@ namespace Base.Controller
         [HttpPost]
         public virtual async Task<IActionResult> InsertAsync([FromBody] TEntity entityCreateDto)
         {
-            ValidateBeforeActionBase(BaseAction.Create);
+            await ValidateBeforeActionBase(BaseAction.Create);
             var result = await _baseService.InsertAsync(entityCreateDto);
 
             return StatusCode(StatusCodes.Status201Created, result);
@@ -49,7 +49,7 @@ namespace Base.Controller
         [HttpPut("{id}")]
         public virtual async Task<IActionResult> UpdateAsync(Guid id, [FromBody] TEntity entityUpdateDto)
         {
-            ValidateBeforeActionBase(BaseAction.Update);
+            await ValidateBeforeActionBase(BaseAction.Update);
             var result = await _baseService.UpdateAsync(id, entityUpdateDto);
 
             return StatusCode(StatusCodes.Status200OK, result);
@@ -64,7 +64,7 @@ namespace Base.Controller
         [HttpDelete("{id}")]
         public virtual async Task<IActionResult> DeleteAsync(Guid id)
         {
-            ValidateBeforeActionBase(BaseAction.Delete);
+            await ValidateBeforeActionBase(BaseAction.Delete);
             var result = await _baseService.DeleteAsync(id);
 
             return StatusCode(StatusCodes.Status200OK, result);
@@ -79,7 +79,7 @@ namespace Base.Controller
         [HttpDelete]
         public virtual async Task<IActionResult> DeleteMultipleAsync([FromBody] List<Guid> ids)
         {
-            ValidateBeforeActionBase(BaseAction.Delete);
+            await ValidateBeforeActionBase(BaseAction.Delete);
             var result = await _baseService.DeleteMultipleAsync(ids);
 
             return StatusCode(StatusCodes.Status200OK, result);

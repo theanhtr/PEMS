@@ -77,7 +77,7 @@ export default {
           Password: this.password
         }
 
-        const res = await AuthService.login(loginParams)
+        const res = await AuthService.post('Auth/login', loginParams)
 
         if (res.success) {
           await this.$store.commit('setUserLogin', res.data)

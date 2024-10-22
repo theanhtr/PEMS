@@ -4,7 +4,8 @@
  */
 
 const ProjectConfig = {
-  ApiConnection: import.meta.env.VITE_BACKEND_API_URL + "/api/v1/",
+  AuthenApiUrl: import.meta.env.VITE_AUTHEN_API_URL + "/api/v1/",
+  UserApiUrl: import.meta.env.VITE_USER_API_URL + "/api/v1/",
   FormatDate: "dd/MM/yyyy",
 };
 

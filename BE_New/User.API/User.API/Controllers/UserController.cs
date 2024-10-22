@@ -16,25 +16,45 @@ namespace User.API
     [RoleAuthorize(3)]
     public class UserController : BaseController<Model.User>
     {
-        IUserService _userInfoService;
+        IUserService _userService;
         
-        public UserController(IUserService userInfoService) : base(userInfoService)
+        public UserController(IUserService userService) : base(userService)
         {
-            _userInfoService = userInfoService;
+            _userService = userService;
         }
 
-        [HttpGet("myinfo")]
+        [HttpGet("info")]
         public async Task<IActionResult> GetUserInfo()
         {
             var userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "UserId")?.Value;
-            var result = await _userInfoService.GetUserInfo(Guid.Parse(userId));
+            var result = await _userService.GetUserInfo(Guid.Parse(userId));
 
             return StatusCode(StatusCodes.Status200OK, result);
         }
 
-        protected override void ValidateBeforeActionBase(BaseAction action)
+        protected async virtual Task BlockAllAction(int role)
         {
-            BlockAllAction(1);
+            // Lấy các claim từ JWT
+            var userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "UserId")?.Value;
+            var user = await _userService.GetUserInfo(Guid.Parse(userId));
+
+            if (user != null)
+            {
+                var roleId = user.RoleID;
+                if (roleId > role)
+                {
+                    throw new ForbiddenException(StatusErrorCode.Forbidden, "Bạn không có quyền truy cập trang này.", null);
+                }
+            }
+            else
+            {
+                throw new ForbiddenException(StatusErrorCode.Forbidden, "Bạn không có quyền truy cập trang này.", null);
+            }
+        }
+
+        protected override async Task ValidateBeforeActionBase(BaseAction action)
+        {
+            await BlockAllAction(1);
         }
     }
 }

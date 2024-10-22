@@ -263,7 +263,7 @@ export default {
           PageNumber: this.pagingData.pageNumber
         }
 
-        const res = await UserService.filter(dataFilter)
+        const res = await UserService.filter('User', dataFilter)
 
         if (res.success) {
           if (res.data.Data.length != 0) {

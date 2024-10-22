@@ -73,7 +73,7 @@ export default {
       }
     },
     async getUserInfo() {
-      let res = await UserService.getMyinfo()
+      let res = await UserService.get('User/info')
       this.user = res.data
     },
     showUserInfo() {

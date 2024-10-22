@@ -1,8 +1,17 @@
 import TTANHAxios from "@/axios";
+import { ProjectConfig } from '../config/config.js';
+import TTANHEnum from "../enum";
 
 class BaseService {
-  constructor(baseUrl) {
-    this.baseUrl = baseUrl;
+  constructor(apiServerKey) {
+    this.baseUrl = "";
+
+    if (TTANHEnum.API_SERVER_KEY.AUTH === apiServerKey) {
+      this.baseUrl = ProjectConfig.AuthenApiUrl;
+    } else if (TTANHEnum.API_SERVER_KEY.USER === apiServerKey) {
+      this.baseUrl = ProjectConfig.UserApiUrl;
+    }
+    
     this.baseAxios = TTANHAxios;
   }
 
@@ -19,8 +28,8 @@ class BaseService {
    * thực hiện lấy dữ dữ liệu
    * @author: TTANH (01/07/2024)
    */
-  async get() {
-    const res = await this.baseAxios.get(this.baseUrl);
+  async get(url) {
+    const res = await this.baseAxios.get(this.endpoint(url));
     return res;
   }
 
@@ -29,8 +38,8 @@ class BaseService {
    * @author: TTANH (01/07/2024)
    * @param {Object} dataAdd dữ liệu cần thêm
    */
-  async post(dataAdd) {
-    const res = await this.baseAxios.post(this.baseUrl, dataAdd);
+  async post(url, dataAdd) {
+    const res = await this.baseAxios.post(this.endpoint(url), dataAdd);
     return res;
   }
 
@@ -40,8 +49,8 @@ class BaseService {
    * @param {string} id id của bản ghi
    * @param {Object} dataUpdate dữ liệu cần thêm
    */
-  async put(id, dataUpdate) {
-    const res = await this.baseAxios.put(this.baseUrl + `/${id}`, dataUpdate);
+  async put(url, id, dataUpdate) {
+    const res = await this.baseAxios.put(this.endpoint(url) + `/${id}`, dataUpdate);
     return res;
   }
 
@@ -50,8 +59,8 @@ class BaseService {
    * @author: TTANH (02/07/2024)
    * @param {string} id id của bản ghi
    */
-  async delete(id) {
-    const res = await this.baseAxios.delete(this.baseUrl + `/${id}`);
+  async delete(url, id) {
+    const res = await this.baseAxios.delete(this.endpoint(url) + `/${id}`);
     return res;
   }
 
@@ -60,8 +69,8 @@ class BaseService {
    * @author: TTANH (17/07/2024)
    * @param {Array} ids mảng chứa các id của bản ghi
    */
-  async deleteMultiple(ids) {
-    const res = await this.baseAxios.delete(this.baseUrl, { data: ids });
+  async deleteMultiple(url, ids) {
+    const res = await this.baseAxios.delete(this.endpoint(url), { data: ids });
     return res;
   }
 
@@ -69,8 +78,8 @@ class BaseService {
    * lấy dữ liệu bằng phân trang và filter
    * @author: TTANH (03/07/2024)
    */
-  async filter(dataFilter) {
-    const res = await this.baseAxios.get(this.endpoint("/filter"), {
+  async filter(url, dataFilter) {
+    const res = await this.baseAxios.get(this.endpoint(url + "/filter"), {
       params: dataFilter,
     });
 
