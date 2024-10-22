@@ -64,6 +64,12 @@ namespace Base.DL
 
             foreach (var property in properties)
             {
+                // tạm thời ko cập nhật mật khẩu :>>
+                if (property.Name == "Password")
+                {
+                    continue;
+                }
+
                 var propertyName = "@v_" + property.Name;
                 var propertyValue = property.GetValue(entity);
 

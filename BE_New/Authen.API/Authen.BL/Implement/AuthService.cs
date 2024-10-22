@@ -50,6 +50,9 @@ namespace Authen.BL
 
         public bool VerifyPassword(string password, string hashedPassword)
         {
+            if (password == null || hashedPassword == null)
+                throw new ValidateException(StatusErrorCode.WrongPassword, "Sai mật khẩu", "");
+
             return BCrypt.Net.BCrypt.Verify(password, hashedPassword);
         }
 

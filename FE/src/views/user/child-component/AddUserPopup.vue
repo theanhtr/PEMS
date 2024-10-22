@@ -1,6 +1,6 @@
 <template>
   <div class="m-overlay" id="add-user-popup">
-    <ttanh-popup style="overflow: visible" title="Tạo mới người dùng" width="600px">
+    <ttanh-popup style="overflow: visible" :title="titleForm" width="600px">
       <template #header__close>
         <ttanh-icon
           @click="closeAddForm"
@@ -16,7 +16,7 @@
               <ttanh-textfield
                 :errorText="errorTextUserData.username"
                 v-model="addUserData.username"
-                type="text"
+                type="code"
                 idInput="add__username"
                 labelText="Tên tài khoản"
                 :inputRequired="true"
@@ -113,7 +113,7 @@
 <script>
 import UserService from '@/service/UserService.js'
 import { ValidateConfig } from '@/config/config.js'
-import { findIndexByAttribute, isObjectEmpty } from '@/helper/common.js'
+import { generateUuid, isObjectEmpty } from '@/helper/common.js'
 import { lengthValidate, emptyValidate, regexValidate } from '@/helper/validate.js'
 import { CommonErrorHandle } from '@/helper/error-handle'
 import { capitalizeFirstLetter } from '@/helper/format-helper'
@@ -132,6 +132,8 @@ export default {
     await this.addInfoForm()
 
     this.copyAddUserData = JSON.parse(JSON.stringify(this.addUserData))
+    
+    this.titleForm = this.formMode == this.$_TTANHEnum.FORM_MODE.ADD ? 'Tạo mới người dùng' : 'Cập nhật người dùng';
   },
 
   mounted() {
@@ -143,6 +145,7 @@ export default {
 
   data() {
     return {
+      titleForm: '', 
       isShowOutConfirmPopup: false,
       isShowDialogError: false,
       isLoading: false,
@@ -258,7 +261,7 @@ export default {
      */
     async storeBtnClick() {
       try {
-        let isSuccess = await this.createNewUser()
+        let isSuccess = await this.saveUser()
 
         if (isSuccess) {
           this.$emit('clickCancelBtn')
@@ -273,7 +276,7 @@ export default {
      * validate và tạo 1 nhân viên mới hoặc update thông tin nhân viên
      * @author: TTANH (01/07/2024)
      */
-    async createNewUser() {
+    async saveUser() {
       if (this.validateData()) {
         let isSuccess = true
         this.isLoading = true
@@ -295,7 +298,8 @@ export default {
 
         if (this.formMode === this.$_TTANHEnum.FORM_MODE.ADD) {
           dataSendApi['password'] = ''
-          const res = await UserService.post(dataSendApi)
+          dataSendApi['userId'] = generateUuid();  
+          const res = await UserService.post('User', dataSendApi)
 
           if (res.success) {
             this.$store.commit('addToast', {
@@ -307,7 +311,7 @@ export default {
             isSuccess = false
           }
         } else if (this.formMode === this.$_TTANHEnum.FORM_MODE.UPDATE) {
-          const res = await UserService.put(this.addUserData.userId, dataSendApi)
+          const res = await UserService.put('User', this.addUserData.userId, dataSendApi)
 
           if (res.success) {
             this.$store.commit('addToast', {

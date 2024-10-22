@@ -351,7 +351,7 @@ export default {
           return;
         }
 
-        this.inputMiddle = this.$refs.myInput.value.toUpperCase();
+        this.inputMiddle = this.$refs.myInput.value;
 
         this.$nextTick(() => {
           this.$refs.myInput.setSelectionRange(selStart, selStart);
@@ -493,7 +493,7 @@ export default {
       } else if (this.type === "money") {
         return formatNumberToMoney(this.inputMiddle);
       } else if (this.type === "code") {
-        return this.inputMiddle.toUpperCase();
+        return this.inputMiddle;
       } else if (this.type === "text") {
         return this.inputMiddle;
       } else {

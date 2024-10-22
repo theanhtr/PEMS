@@ -1,5 +1,6 @@
 const vi = {
   common: {
+    reloadTooltip: 'Lấy lại dữ liệu',
     search: 'Tìm kiếm',
     helpIconTooltip: 'Giúp (F1)',
     closeIconTooltip: 'Đóng (ESC)',

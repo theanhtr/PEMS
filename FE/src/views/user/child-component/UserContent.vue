@@ -10,7 +10,9 @@
           v-model="dataFilter.userName"
           ref="userNameFilter"
           idInput="userNameFilter"
-          labelText="Tên tài khoản hoặc Họ và tên"
+          labelText="Tìm kiếm tài khoản"
+          placeholder="Nhập tên tài khoản hoặc họ tên"
+          @keyup="(e) => { if (e.keyCode === 13) getUsers() }"
           style="padding-left: 6px"
           class="w1/4"
         />
@@ -41,7 +43,7 @@
       <div class="page__action-right">
         <ttanh-icon
           :icon="'page__reload--' + (pageButtonHover['page__reload'] ? 'black' : 'grey')"
-          :tooltip="$t('UserSubsystem.UserContent.reloadTooltip')"
+          :tooltip="$t('common.reloadTooltip')"
           @mouseenter="pageButtonHover['page__reload'] = true"
           @mouseleave="pageButtonHover['page__reload'] = false"
           @click="reloadDataWithSelectedRows"
@@ -613,7 +615,7 @@ export default {
       try {
         this.isLoading = true
         const UserCode = this.UserCodeDelete
-        const res = await UserService.delete(this.UserIdDelete)
+        const res = await UserService.delete('User', this.UserIdDelete)
 
         if (res.success) {
           this.$store.commit('addToast', {
