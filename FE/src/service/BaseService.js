@@ -4,15 +4,23 @@ import TTANHEnum from "../enum";
 
 class BaseService {
   constructor(apiServerKey) {
-    this.baseUrl = "";
-
-    if (TTANHEnum.API_SERVER_KEY.AUTH === apiServerKey) {
-      this.baseUrl = ProjectConfig.AuthenApiUrl;
-    } else if (TTANHEnum.API_SERVER_KEY.USER === apiServerKey) {
-      this.baseUrl = ProjectConfig.UserApiUrl;
-    }
-    
+    this.baseUrl = this.getUrlApiService(apiServerKey);
     this.baseAxios = TTANHAxios;
+  }
+
+  getUrlApiService(apiServerKey) {
+    switch (apiServerKey) {
+      case TTANHEnum.API_SERVER_KEY.AUTH:
+        return ProjectConfig.AUTH_API;
+      case TTANHEnum.API_SERVER_KEY.USER:
+        return ProjectConfig.USER_API;
+      case TTANHEnum.API_SERVER_KEY.PREDICT:
+        return ProjectConfig.PREDICT_API;
+      case TTANHEnum.API_SERVER_KEY.REPORT:
+        return ProjectConfig.REPORT_API;
+      default:
+        return "";
+    }
   }
 
   /**

@@ -2,6 +2,8 @@ const TTANHEnum = {
   API_SERVER_KEY: {
     AUTH: 'auth',
     USER: 'user',
+    PREDICT: 'predict',
+    REPORT: 'report',
   },
 
   /* các bước khi import excel */

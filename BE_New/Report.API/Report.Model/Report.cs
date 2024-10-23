@@ -1,23 +1,24 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Base.Model;
 
-namespace PEMS.Domain
+namespace Report.Model
 {
     /// <summary>
     /// Đối tượng để lưu trữ thông tin layout của phân hệ nhân viên
     /// </summary>
     /// CreatedBy: TTANH (02/08/2024)
-    public class Predict : BaseAuditEntity, IEntityHasKey
+    public class Report : BaseModel, IEntityHasKey
     {
         #region Properties
         /// <summary>
         /// Khóa chính theo Guid.
         /// </summary>
-        public Guid PredictId { get; set; }
+        public Guid ReportId { get; set; }
 
         /// <summary>
         /// </summary>
         [Required]
-        public int ProvinceId { get; set; }
+        public int? ProvinceId { get; set; }
 
         /// <summary>
         /// </summary>
@@ -25,7 +26,7 @@ namespace PEMS.Domain
 
         /// <summary>
         /// </summary>
-        public int DistrictId { get; set; }
+        public int? DistrictId { get; set; }
 
         /// <summary>
         /// </summary>
@@ -33,7 +34,7 @@ namespace PEMS.Domain
 
         /// <summary>
         /// </summary>
-        public int WardId { get; set; }
+        public int? WardId { get; set; }
 
         /// <summary>
         /// </summary>
@@ -42,26 +43,6 @@ namespace PEMS.Domain
         /// <summary>
         /// </summary>
         public string? Address { get; set; }
-
-        /// <summary>
-        /// </summary>
-        public string? ReportName { get; set; }
-
-        /// <summary>
-        /// </summary>
-        public DateTime? ReportStartDate { get; set; }
-
-        /// <summary>
-        /// </summary>
-        public DateTime? ReportEndDate { get; set; }
-
-        /// <summary>
-        /// </summary>
-        public int? CropStateId { get; set; }
-
-        /// <summary>
-        /// </summary>
-        public int? PestLevelId { get; set; }
         #endregion
 
         #region Methods
@@ -71,7 +52,7 @@ namespace PEMS.Domain
         /// CreatedBy: TTANH (18/07/2024)
         public Guid GetKey()
         {
-            return PredictId;
+            return ReportId;
         }
 
         /// <summary>
@@ -81,7 +62,7 @@ namespace PEMS.Domain
         /// CreatedBy: TTANH (18/07/2024)
         public void SetKey(Guid key)
         {
-            PredictId = key;
+            ReportId = key;
         }
         #endregion
     }
