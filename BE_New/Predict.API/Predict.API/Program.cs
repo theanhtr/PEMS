@@ -1,6 +1,6 @@
 using Base;
-//using Predict.BL;
-//using Predict.DL;
+using Predict.BL;
+using Predict.DL;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,8 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 BaseStartupConfig.ConfigureService(ref builder);
 
 // add injection
-//builder.Services.AddScoped<IAuthService, AuthService>();
-//builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+builder.Services.AddScoped<IPredictService, PredictService>();
+builder.Services.AddScoped<IPredictRepository, PredictRepository>();
 
 var app = builder.Build();
 

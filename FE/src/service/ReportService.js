@@ -3,7 +3,7 @@ import TTANHEnum from '../enum/index.js'
 
 class ReportServiceClass extends BaseService {
   constructor() {
-    super(TTANHEnum.API_SERVER_KEY.USER)
+    super(TTANHEnum.API_SERVER_KEY.REPORT)
   }
 }
 

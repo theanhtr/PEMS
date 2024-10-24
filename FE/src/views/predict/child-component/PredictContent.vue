@@ -121,7 +121,7 @@
       <div class="page__action-right">
         <ttanh-icon
           :icon="'page__reload--' + (pageButtonHover['page__reload'] ? 'black' : 'grey')"
-          :tooltip="$t('PredictSubsystem.PredictContent.reloadTooltip')"
+          :tooltip="$t('common.reloadTooltip')"
           @mouseenter="pageButtonHover['page__reload'] = true"
           @mouseleave="pageButtonHover['page__reload'] = false"
           @click="reloadDataWithSelectedRows"
@@ -468,7 +468,7 @@ export default {
 
       this.isLoading = true
 
-      const res = await PredictService.deleteMultiple(dataSendApi)
+      const res = await PredictService.deleteMultiple('Predict', dataSendApi)
 
       this.isLoading = false
 
@@ -762,7 +762,7 @@ export default {
       try {
         this.isLoading = true
         const PredictCode = this.PredictCodeDelete
-        const res = await PredictService.delete(this.PredictIdDelete)
+        const res = await PredictService.delete('Predict', this.PredictIdDelete)
 
         if (res.success) {
           this.$store.commit('addToast', {

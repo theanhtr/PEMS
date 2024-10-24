@@ -128,12 +128,13 @@ export default {
   },
 
   async created() {
+    this.formMode = this.computedFormMode
+    this.titleForm = this.formMode == this.$_TTANHEnum.FORM_MODE.ADD ? 'Tạo mới người dùng' : 'Cập nhật người dùng';
     //cập nhật thông tin cho form: form_mode, data
     await this.addInfoForm()
 
     this.copyAddUserData = JSON.parse(JSON.stringify(this.addUserData))
     
-    this.titleForm = this.formMode == this.$_TTANHEnum.FORM_MODE.ADD ? 'Tạo mới người dùng' : 'Cập nhật người dùng';
   },
 
   mounted() {
@@ -230,8 +231,6 @@ export default {
      * @author: TTANH (01/07/2024)
      */
     async addInfoForm() {
-      this.formMode = this.computedFormMode
-
       if (this.formMode === this.$_TTANHEnum.FORM_MODE.ADD) {
         this.resetAddUserData()
       } else if (this.formMode === this.$_TTANHEnum.FORM_MODE.UPDATE) {

@@ -46,7 +46,6 @@
           ref="reportNameFilter"
           idInput="reportNameFilter"
           labelText="Người báo cáo"
-          placeholder="Người báo cáo"
           class="w1/4"
         />
         <div class="w1/4">
@@ -224,8 +223,8 @@ export default {
           isPin: false
         },
         {
-          id: 'ModifiedDate',
-          name: 'THỜI ĐIỂM CẬP NHẬT',
+          id: 'ReportDate',
+          name: 'THỜI ĐIỂM BÁO CÁO',
           size: '150px',
           textAlign: 'center',
           format: 'date',
@@ -719,7 +718,7 @@ export default {
       try {
         this.isLoading = true
         const ReportCode = this.ReportCodeDelete
-        const res = await ReportService.delete(this.ReportIdDelete)
+        const res = await ReportService.delete('Report', this.ReportIdDelete)
 
         if (res.success) {
           this.$store.commit('addToast', {

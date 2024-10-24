@@ -11,13 +11,13 @@ class BaseService {
   getUrlApiService(apiServerKey) {
     switch (apiServerKey) {
       case TTANHEnum.API_SERVER_KEY.AUTH:
-        return ProjectConfig.AUTH_API;
+        return ProjectConfig.AuthenApiUrl;
       case TTANHEnum.API_SERVER_KEY.USER:
-        return ProjectConfig.USER_API;
+        return ProjectConfig.UserApiUrl;
       case TTANHEnum.API_SERVER_KEY.PREDICT:
-        return ProjectConfig.PREDICT_API;
+        return ProjectConfig.PredictApiUrl;
       case TTANHEnum.API_SERVER_KEY.REPORT:
-        return ProjectConfig.REPORT_API;
+        return ProjectConfig.ReportApiUrl;
       default:
         return "";
     }

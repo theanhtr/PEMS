@@ -409,6 +409,20 @@ const vi = {
     }
   },
 
+  reportSubsystem: {
+    addreportPopup: {
+      nameField: {
+        provinceId: 'Tỉnh/Thành phố',
+        districtId: 'Quận/Huyện',
+        wardId: 'Phường/Xã',
+        address: 'Địa chỉ',
+        pestLevelId: 'Giai đoạn sâu bệnh',
+        cropStateId: 'Giai đoạn cây trồng',
+        reportName: 'Người báo cáo',
+      }
+    }
+  },
+
   userSubsystem: {
     addUserPopup: {
       nameField: {

@@ -4,6 +4,7 @@ using Report.DL;
 using Report.Model;
 using Base.Model;
 using Microsoft.AspNetCore.Mvc;
+using static Dapper.SqlMapper;
 
 namespace Report.BL
 {
@@ -18,11 +19,15 @@ namespace Report.BL
         #endregion
 
         #region Methods
+        public override async Task BaseServiceMoreProcessInsertAsync(Model.Report report) { 
+            report.ReportDate = DateTime.Now;
+        }
+
         public async Task<BaseFilterResponse<Model.Report>> FiltersReportAsync([FromBody] ReportFilterParam reportFilterParam)
         {
             // xử lý param trước khi gửi xuống repository
             DateTime? reportStartDate = reportFilterParam.ReportStartDate?.Date;
-            DateTime? reportEndDate = reportFilterParam.ReportEndDate?.Date.AddSeconds(-1);
+            DateTime? reportEndDate = reportFilterParam.ReportEndDate?.Date.AddDays(1).AddSeconds(-1);
 
             int? pageSize = reportFilterParam.PageSize;
             int? pageNumber = reportFilterParam.PageNumber;

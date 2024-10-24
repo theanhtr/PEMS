@@ -417,7 +417,7 @@ export default {
         }
 
         if (this.formMode === this.$_TTANHEnum.FORM_MODE.ADD) {
-          const res = await PredictService.post(dataSendApi)
+          const res = await PredictService.post('Predict', dataSendApi)
 
           if (res.success) {
             this.$store.commit('addToast', {
@@ -429,7 +429,7 @@ export default {
             isSuccess = false
           }
         } else if (this.formMode === this.$_TTANHEnum.FORM_MODE.UPDATE) {
-          const res = await PredictService.put(this.addPredictData.PredictId, dataSendApi)
+          const res = await PredictService.put('Predict', this.addPredictData.predictId, dataSendApi)
 
           if (res.success) {
             this.$store.commit('addToast', {

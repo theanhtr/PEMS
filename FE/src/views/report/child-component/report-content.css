@@ -36,10 +36,23 @@
   margin-bottom: 8px;
 }
 
+.page__filter-group-1 {
+  justify-content: start;
+  column-gap: 22px;
+  margin-left: 70px;
+}
+
+.page__filter-group-2 {
+  justify-content: start;
+  column-gap: 22px;
+  margin-top: 5px;
+  margin-left: 70px;
+}
+
 .page__filter-group-3 {
   justify-content: start;
   column-gap: 22px;
-  margin-top: 8px;
+  margin-top: 2px;
   margin-left: 70px;
 }
 

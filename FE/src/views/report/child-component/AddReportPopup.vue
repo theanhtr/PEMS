@@ -1,6 +1,6 @@
 <template>
   <div class="m-overlay" id="add-report-popup">
-    <ttanh-popup style="overflow: visible" title="Tạo mới báo cáo">
+    <ttanh-popup style="overflow: visible" :title="titleForm">
       <template #header__close>
         <ttanh-icon
           @click="closeAddForm"
@@ -72,44 +72,41 @@
             </div>
           </div>
           <div class="w1/2">
-            <div class="flex-row p-b-8 label-add-group">Thông tin vụ trước</div>
-            <div class="flex-row p-b-8">
-              <ttanh-date-picker
-                :errorText="errorTextreportData.previousEndDate"
-                v-model="addreportData.previousEndDate"
-                class="w1"
-                idInput="add__previousEndDate"
-                labelText="Thời điểm kết thúc"
-                tabindex="6"
-                ref="previousEndDate"
-                :maxDate="new Date().setDate(new Date().getDate() - 2)"
-              />
-            </div>
             <div class="flex-row p-b-8">
               <ttanh-combobox
-                :errorText="errorTextreportData.previousLevelWarningId"
-                v-model="addreportData.previousLevelWarningId"
-                ref="previousLevelWarningId"
+                :errorText="errorTextreportData.cropStateId"
+                v-model="addreportData.cropStateId"
+                ref="cropStateId"
                 type="single-row"
-                labelText="Mức độ cảnh báo"
-                :inputRequired="false"
-                :rowsData="previousLevelWarning"
+                labelText="Giai đoạn cây trồng"
+                :inputRequired="true"
+                :rowsData="cropStatesRowData"
                 class="w1"
                 tabindex="3"
               />
             </div>
-            <div class="flex-row p-b-8 label-add-group m-t-26">Thông tin vụ này</div>
             <div class="flex-row p-b-8">
-              <ttanh-date-picker
-                :errorText="errorTextreportData.currentStartDate"
-                v-model="addreportData.currentStartDate"
-                class="w1"
-                idInput="add__currentStartDate"
-                labelText="Thời điểm bắt đầu"
-                tabindex="6"
-                ref="currentStartDate"
+              <ttanh-combobox
+                :errorText="errorTextreportData.pestLevelId"
+                v-model="addreportData.pestLevelId"
+                ref="pestLevelId"
+                type="single-row"
+                labelText="Giai đoạn sâu hại"
                 :inputRequired="true"
-                :maxDate="new Date()"
+                :rowsData="pestLevelsRowData"
+                class="w1"
+                tabindex="3"
+              />
+            </div>
+            <div class="flex-row p-b-8">
+              <ttanh-textfield
+                :errorText="errorTextreportData.reportName"
+                v-model="addreportData.reportName"
+                ref="reportName"
+                labelText="Người báo cáo"
+                :inputRequired="true"
+                class="w1"
+                tabindex="3"
               />
             </div>
           </div>
@@ -179,7 +176,8 @@ import { lengthValidate, emptyValidate, regexValidate } from '@/helper/validate.
 import { CommonErrorHandle } from '@/helper/error-handle'
 import { capitalizeFirstLetter } from '@/helper/format-helper'
 import AddressService from '@/service/AddressService.js'
-import { levelWarnings } from '../../../data_combobox/levelWarning'
+import { cropStates } from '../../../data_combobox/cropState'
+import { pestLevels } from '../../../data_combobox/pestLevel'
 
 export default {
   name: 'AddreportPopup',
@@ -190,10 +188,12 @@ export default {
   },
 
   async created() {
+    this.formMode = this.computedFormMode
+    this.titleForm = this.formMode == this.$_TTANHEnum.FORM_MODE.ADD ? 'Tạo mới báo cáo' : 'Cập nhật báo cáo';
     //cập nhật thông tin cho form: form_mode, data
     await this.addInfoForm()
-
     this.copyAddreportData = JSON.parse(JSON.stringify(this.addreportData))
+
   },
 
   mounted() {
@@ -208,6 +208,7 @@ export default {
 
   data() {
     return {
+      titleForm: '',
       dataAddress: {
         provinces: [],
         districts: [],
@@ -220,7 +221,8 @@ export default {
 
       formMode: this.$_TTANHEnum.FORM_MODE.ADD,
 
-      previousLevelWarning: levelWarnings,
+      pestLevelsRowData: pestLevels,
+      cropStatesRowData: cropStates,
 
       addreportData: {
         provinceId: -1,
@@ -230,9 +232,9 @@ export default {
         wardId: -1,
         wardName: '',
         address: '',
-        previousEndDate: null,
-        previousLevelWarningId: -1,
-        currentStartDate: null
+        pestLevelId: -1,
+        cropStateId: -1,
+        reportName: ''
       },
 
       /**
@@ -257,9 +259,9 @@ export default {
         districtId: 'Empty',
         wardId: 'Empty',
         address: 'MaxLength255',
-        previousEndDate: '',
-        previousLevelWarningId: '',
-        currentStartDate: 'Empty'
+        pestLevelId: 'Empty',
+        cropStateId: 'Empty',
+        reportName: 'Empty'
       },
 
       errorTextreportData: {
@@ -267,9 +269,9 @@ export default {
         districtId: '',
         wardId: '',
         address: '',
-        previousEndDate: '',
-        previousLevelWarningId: '',
-        currentStartDate: ''
+        pestLevelId: '',
+        cropStateId: '',
+        reportName: ''
       }
     }
   },
@@ -342,8 +344,6 @@ export default {
      * @author: TTANH (01/07/2024)
      */
     async addInfoForm() {
-      this.formMode = this.computedFormMode
-
       if (this.formMode === this.$_TTANHEnum.FORM_MODE.ADD) {
         this.resetAddreportData()
       } else if (this.formMode === this.$_TTANHEnum.FORM_MODE.UPDATE) {
@@ -417,7 +417,7 @@ export default {
         }
 
         if (this.formMode === this.$_TTANHEnum.FORM_MODE.ADD) {
-          const res = await reportService.post(dataSendApi)
+          const res = await reportService.post('Report', dataSendApi)
 
           if (res.success) {
             this.$store.commit('addToast', {
@@ -429,7 +429,7 @@ export default {
             isSuccess = false
           }
         } else if (this.formMode === this.$_TTANHEnum.FORM_MODE.UPDATE) {
-          const res = await reportService.put(this.addreportData.reportId, dataSendApi)
+          const res = await reportService.put('Report', this.addreportData.reportId, dataSendApi)
 
           if (res.success) {
             this.$store.commit('addToast', {
