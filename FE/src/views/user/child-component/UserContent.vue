@@ -162,7 +162,6 @@ export default {
       tableSearchFocus: false,
       pageButtonHover: {
         page__setting: false,
-        page__reload: false,
         page__reload: false
       },
 

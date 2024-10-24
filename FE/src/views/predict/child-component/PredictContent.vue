@@ -275,7 +275,6 @@ export default {
       tableSearchFocus: false,
       pageButtonHover: {
         page__setting: false,
-        page__reload: false,
         page__reload: false
       },
 
@@ -413,7 +412,7 @@ export default {
           PageNumber: this.pagingData.pageNumber
         }
 
-        const res = await PredictService.filter(dataFilter)
+        const res = await PredictService.filterAdvanced('Predict', dataFilter)
 
         if (res.success) {
           if (res.data.Data.length != 0) {

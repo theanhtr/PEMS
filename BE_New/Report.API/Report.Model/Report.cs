@@ -43,6 +43,22 @@ namespace Report.Model
         /// <summary>
         /// </summary>
         public string? Address { get; set; }
+
+        /// <summary>
+        /// </summary>
+        public string? ReportName { get; set; }
+
+        /// <summary>
+        /// </summary>
+        public DateTime? ReportDate { get; set; }
+
+        /// <summary>
+        /// </summary>
+        public int? CropStateId { get; set; }
+
+        /// <summary>
+        /// </summary>
+        public int? PestLevelId { get; set; }
         #endregion
 
         #region Methods

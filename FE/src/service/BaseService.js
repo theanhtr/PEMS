@@ -93,6 +93,19 @@ class BaseService {
 
     return res;
   }
+
+  
+
+  /**
+   * lấy dữ liệu bằng phân trang và filter
+   * lọc nâng cao với bộ lọc phức tạp
+   * @author: TTANH (03/07/2024)
+   */
+  async filterAdvanced(url, dataFilter) {
+    const res = await this.baseAxios.post(this.endpoint(url + "/filter"), dataFilter);
+
+    return res;
+  }
 }
 
 export default BaseService;

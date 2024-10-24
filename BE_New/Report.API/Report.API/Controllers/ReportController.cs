@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Report.BL;
+using Report.Model;
 using Base.Model;
 using Base.Controller;
 
@@ -20,5 +21,18 @@ namespace Report.API
         {
             _reportService = reportService;
         }
+
+        #region Methods
+        /// <summary>
+        /// <returns>Các bản ghi lọc theo các tiêu chí trên</returns>
+        /// Created by: TTANH (18/07/2024) 
+        [HttpPost("filter")]
+        public async Task<IActionResult> FiltersReportAsync([FromBody] ReportFilterParam reportFilterParam)
+        {
+            var filterData = await _reportService.FiltersReportAsync(reportFilterParam);
+
+            return StatusCode(StatusCodes.Status200OK, filterData);
+        }
+        #endregion
     }
 }
