@@ -49,3 +49,12 @@
   padding: 0px 10px;
   margin-left: 5px;
 }
+
+.show-password {
+  position: absolute;
+  bottom: 10%;
+  right: 2%;
+  cursor: pointer;
+  width: fit-content;
+  height: fit-content;
+}

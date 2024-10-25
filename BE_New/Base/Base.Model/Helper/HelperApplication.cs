@@ -26,5 +26,18 @@
 
             return strConvert;
         }
+
+        public static string HashPassword(string password)
+        {
+            return BCrypt.Net.BCrypt.HashPassword(password);
+        }
+
+        public static bool VerifyPassword(string password, string hashedPassword)
+        {
+            if (password == null || hashedPassword == null)
+                throw new ValidateException(StatusErrorCode.WrongPassword, "Sai mật khẩu", "");
+
+            return BCrypt.Net.BCrypt.Verify(password, hashedPassword);
+        }
     }
 }

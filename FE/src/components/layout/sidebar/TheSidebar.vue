@@ -13,13 +13,13 @@
 
     <div class="sidebar__nav">
       <div class="sidebar__menu-item-container">
-        <router-link to="/app/predict-management" class="menu-item" exact activeClass="menu-item--selected">
+        <router-link v-if="checkRoleUserAccept([TTANHEnums.ROLE_ID.EXPERT, TTANHEnums.ROLE_ID.FARMER])" to="/app/predict-management" class="menu-item" exact activeClass="menu-item--selected">
           <div class="sidebar__text">Quản lý dự báo</div>
         </router-link>
-        <router-link to="/app/report-management" class="menu-item" exact activeClass="menu-item--selected">
+        <router-link v-if="checkRoleUserAccept([TTANHEnums.ROLE_ID.EXPERT])" to="/app/report-management" class="menu-item" exact activeClass="menu-item--selected">
           <div class="sidebar__text">Quản lý báo cáo</div>
         </router-link>
-        <router-link to="/app/user-management" class="menu-item" exact activeClass="menu-item--selected">
+        <router-link v-if="checkRoleUserAccept([TTANHEnums.ROLE_ID.ADMIN])" to="/app/user-management" class="menu-item" exact activeClass="menu-item--selected">
           <div class="sidebar__text">Quản lý người dùng</div>
         </router-link>
       </div>
@@ -28,9 +28,26 @@
 </template>
 
 <script>
+import TTANHEnum from '../../../enum';
+
 export default {
   name: 'TheSidebar',
-  methods: {}
+  data() {
+    return {
+      TTANHEnums: TTANHEnum
+    }
+  },
+  methods: {
+    checkRoleUserAccept(roles) {
+      let userRole = Number(localStorage.getItem('roleId'))
+
+      if (roles.includes(userRole)) {
+        return true
+      } else {
+        return false
+      }
+    }
+  }
 }
 </script>
 

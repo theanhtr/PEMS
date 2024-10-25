@@ -39,6 +39,36 @@ namespace User.Model
         /// </summary>
         [Required]
         public int RoleID { get; set; }
+
+        /// <summary>
+        /// </summary>
+        public int? ProvinceId { get; set; }
+
+        /// <summary>
+        /// </summary>
+        public string? ProvinceName { get; set; }
+
+        /// <summary>
+        /// </summary>
+        public int? DistrictId { get; set; }
+
+        /// <summary>
+        /// </summary>
+        public string? DistrictName { get; set; }
+
+        /// <summary>
+        /// </summary>
+        public int? WardId { get; set; }
+
+        /// <summary>
+        /// </summary>
+        public string? WardName { get; set; }
+
+        /// <summary>
+        /// </summary>
+        public string? Address { get; set; }
+
+        public string? PhoneNumber { get; set; }
         #endregion
 
         #region Methods

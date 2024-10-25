@@ -43,19 +43,6 @@ namespace Authen.BL
         }
         #endregion
 
-        public string HashPassword(string password)
-        {
-            return BCrypt.Net.BCrypt.HashPassword(password);
-        }
-
-        public bool VerifyPassword(string password, string hashedPassword)
-        {
-            if (password == null || hashedPassword == null)
-                throw new ValidateException(StatusErrorCode.WrongPassword, "Sai mật khẩu", "");
-
-            return BCrypt.Net.BCrypt.Verify(password, hashedPassword);
-        }
-
         public async Task<object> Login(string username, string password)
         {
             // Validate user credentials (use your own validation logic)
@@ -66,10 +53,14 @@ namespace Authen.BL
                 throw new ValidateException(StatusErrorCode.NotFoundData, "Không tìm thấy tài khoản", "");
             }
 
-            if (VerifyPassword(password, user.Password))
+            if (HelperApplication.VerifyPassword(password, user.Password))
             {
                 var token = _tokenService.GenerateToken(user.UserId.ToString(), user.Fullname);
-                return token;
+                return new
+                {
+                    token,
+                    user.RoleID
+                };
             }
             else
             {
@@ -87,7 +78,7 @@ namespace Authen.BL
             }
 
             // Validate user credentials (use your own validation logic)
-            var user = await CreateNewUser(username, HashPassword(password), fullname);
+            var user = await CreateNewUser(username, HelperApplication.HashPassword(password), fullname);
 
             return user;
         }

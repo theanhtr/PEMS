@@ -1,4 +1,5 @@
 ﻿using Base.BL;
+using User.Model;
 
 namespace User.BL
 {
@@ -11,5 +12,6 @@ namespace User.BL
         Task<string> CreateNewUser(string username, string hashPassword, string fullname);
         Task<Model.User> GetUserInfo(Guid userId);
         Task<Model.User> GetByUserName(string username);
+        Task<string> ChangeUserPassWord(ChangePasswordParam changePasswordParam);
     }
 }

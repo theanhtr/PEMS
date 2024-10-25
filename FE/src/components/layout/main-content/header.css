@@ -95,11 +95,17 @@
   cursor: pointer;
 }
 
-.account-avatar {
+.avatar {
   width: 32px;
   height: 32px;
   border-radius: 50%;
   border: 2px solid var(--border-color-default);
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }
 
 .account-name {

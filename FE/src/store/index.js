@@ -40,9 +40,10 @@ export default createStore({
   },
   getters: {},
   mutations: {
-    async setUserLogin(state, { token, expirationTime }) {
-      await localStorage.setItem("userToken", token);
-      await localStorage.setItem("userTokenExpirationTime", expirationTime);
+    async setUserLogin(state, loginRes) {
+      await localStorage.setItem("userToken", loginRes.token.token);
+      await localStorage.setItem("userTokenExpirationTime", loginRes.token.expirationTime);
+      await localStorage.setItem("roleId", loginRes.RoleID);
 
       state.isLoggedIn = true;
       TTANHAxios.defaults.headers.Authorization = `Bearer ${localStorage.getItem("userToken")}`;

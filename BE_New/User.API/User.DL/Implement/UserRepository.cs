@@ -26,9 +26,23 @@ namespace User.DL
 
         public Model.User? GetByUserId(Guid userId)
         {
-            var sql = "SELECT * FROM user WHERE UserId = @userId";
+            var sql = "SELECT *, '' AS Password FROM user u WHERE u.UserId = @userId";
             var user = _unitOfWork.Connection.QueryFirstOrDefault<Model.User>(sql, new { userId = userId }, commandType: CommandType.Text);
             return user;
+        }
+
+        public string GetUserPassword(Guid userId)
+        {
+            var sql = "SELECT Password FROM user u WHERE u.UserId = @userId";
+            var password = _unitOfWork.Connection.QueryFirstOrDefault<string>(sql, new { userId = userId }, commandType: CommandType.Text);
+            return password;
+        }
+
+        public bool ChangeUserPassword(Guid userId, string password)
+        {
+            var sql = "UPDATE user u SET u.Password = @password WHERE u.UserId = @userId";
+            _unitOfWork.Connection.QueryFirstOrDefault<string>(sql, new { userId = userId, password = password }, commandType: CommandType.Text);
+            return true;
         }
 
         public async Task<string> CreateNewUser(string username, string hashPassword, string fullname)

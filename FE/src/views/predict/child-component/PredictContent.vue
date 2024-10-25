@@ -338,6 +338,7 @@ export default {
   methods: {
     selectSeasonType(type) {
       this.seasonType = type
+      this.getPredicts()
     },
 
     clearFilter() {

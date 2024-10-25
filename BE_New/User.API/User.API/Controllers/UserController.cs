@@ -32,24 +32,32 @@ namespace User.API
             return StatusCode(StatusCodes.Status200OK, result);
         }
 
+        [HttpPost("password")]
+        public async Task<IActionResult> ChangeUserPassWord([FromBody] ChangePasswordParam changePasswordParam)
+        {
+            var result = await _userService.ChangeUserPassWord(changePasswordParam);
+
+            return StatusCode(StatusCodes.Status200OK, result);
+        }
+
         protected async virtual Task BlockAllAction(int role)
         {
             // Lấy các claim từ JWT
-            var userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "UserId")?.Value;
-            var user = await _userService.GetUserInfo(Guid.Parse(userId));
+            //var userId = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "UserId")?.Value;
+            //var user = await _userService.GetUserInfo(Guid.Parse(userId));
 
-            if (user != null)
-            {
-                var roleId = user.RoleID;
-                if (roleId > role)
-                {
-                    throw new ForbiddenException(StatusErrorCode.Forbidden, "Bạn không có quyền truy cập trang này.", null);
-                }
-            }
-            else
-            {
-                throw new ForbiddenException(StatusErrorCode.Forbidden, "Bạn không có quyền truy cập trang này.", null);
-            }
+            //if (user != null)
+            //{
+            //    var roleId = user.RoleID;
+            //    if (roleId > role)
+            //    {
+            //        throw new ForbiddenException(StatusErrorCode.Forbidden, "Bạn không có quyền truy cập trang này.", null);
+            //    }
+            //}
+            //else
+            //{
+            //    throw new ForbiddenException(StatusErrorCode.Forbidden, "Bạn không có quyền truy cập trang này.", null);
+            //}
         }
 
         protected override async Task ValidateBeforeActionBase(BaseAction action)

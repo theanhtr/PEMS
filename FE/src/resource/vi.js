@@ -68,6 +68,12 @@ const vi = {
       },
 
       notFoundEmployee: 'Không tìm thấy nhân viên.'
+    },
+
+    ChangePasswordSubsystem: {
+      ChangePasswordPopup: {
+        RepasswordNotMatch: 'Vui lòng nhập Mật khẩu xác nhận trùng khớp Mật khẩu mới',
+      },
     }
   },
 
@@ -419,6 +425,16 @@ const vi = {
         pestLevelId: 'Giai đoạn sâu bệnh',
         cropStateId: 'Giai đoạn cây trồng',
         reportName: 'Người báo cáo',
+      }
+    }
+  },
+
+  passwordSubsystem: {
+    ChangePasswordPopup: {
+      nameField: {
+        password: 'Mật khẩu mới',
+        oldpassword: 'Mật khẩu cũ',
+        repassword: 'Nhập lại mật khẩu mới',
       }
     }
   },

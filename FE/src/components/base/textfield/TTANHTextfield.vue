@@ -32,7 +32,13 @@
         :placeholder="placeholder"
         :tabindex="tabindex"
         v-TTANHBlackenOut
+        :type="!showPassword && isPassword ? 'password' : 'text'"
       />
+
+      <span v-if="isPassword" class="show-password pointer" @click="showPassword = !showPassword">
+        <ttanh-icon v-if="!showPassword" icon="eye" />
+        <ttanh-icon v-else icon="eye-slash" />
+      </span>
 
       <div v-if="haveButtonFunction && !disable" class="input-function">
         <ttanh-icon
@@ -75,12 +81,16 @@ export default {
   name: "TTANHTextfield",
   data() {
     return {
+      showPassword: false,
       focusInput: false,
       hoverInput: false,
       inputMiddle: this.modelValue,
     };
   },
   props: {
+    isPassword: {
+      default: false,
+    },
     type: {
       default: "text",
       validator: function (val) {

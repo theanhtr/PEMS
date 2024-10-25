@@ -10,6 +10,8 @@ namespace User.DL
     {
         Model.User GetByUserName(string username);
         Model.User? GetByUserId(Guid userId);
+        string GetUserPassword(Guid userId);
+        bool ChangeUserPassword(Guid userId, string password);
         Task<string> CreateNewUser(string username, string hashPassword, string fullname);
     }
 }

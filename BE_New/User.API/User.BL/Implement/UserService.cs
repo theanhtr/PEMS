@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Base.BL;
 using User.DL;
+using User.Model;
+using Base.Model;
 
 namespace User.BL
 {
@@ -36,6 +38,27 @@ namespace User.BL
         public async Task<Model.User> GetRoleID(Guid userId)
         {
             return _userRepository.GetByUserId(userId);
+        }
+
+        public async Task<string> GetUserPassword(Guid userId)
+        {
+            return _userRepository.GetUserPassword(userId);
+        }
+
+        public async Task<string> ChangeUserPassWord(ChangePasswordParam changePasswordParam)
+        {
+            var oldPassword = await GetUserPassword(Guid.Parse(changePasswordParam.UserId));
+
+            if (!HelperApplication.VerifyPassword(changePasswordParam.OldPassword, oldPassword))
+            {
+                throw new ValidateException(StatusErrorCode.WrongPassword, "Sai mật khẩu cũ", "");
+            }
+
+            var newPassword = HelperApplication.HashPassword(changePasswordParam.Password);
+
+            _userRepository.ChangeUserPassword(Guid.Parse(changePasswordParam.UserId), newPassword);
+
+            return "success";
         }
 
         public override Task BaseServiceMoreProcessInsertAsync(Model.User entityCreateDto)

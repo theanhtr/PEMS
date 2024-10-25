@@ -1,6 +1,6 @@
 <template>
   <div class="m-overlay" id="add-user-popup">
-    <ttanh-popup style="overflow: visible" :title="titleForm" width="600px">
+    <ttanh-popup style="overflow: visible" :title="titleForm" width="800px">
       <template #header__close>
         <ttanh-icon
           @click="closeAddForm"
@@ -11,7 +11,8 @@
       </template>
       <template #content__input-control>
         <div class="w1 flex-row" style="padding-bottom: 12px">
-          <div class="w1" style="padding-right: 26px">
+          <div class="w1/2" style="padding-right: 26px">
+            <div class="flex-row p-b-8 label-add-group">Thông tin tài khoản</div>
             <div class="flex-row p-b-8">
               <ttanh-textfield
                 :errorText="errorTextUserData.username"
@@ -23,6 +24,7 @@
                 class="w1"
                 ref="username"
                 tabindex="2"
+                :disable="isFromAccountInfo"
               />
             </div>
             <div class="flex-row p-b-8">
@@ -49,6 +51,78 @@
                 :rowsData="rolesComboboxData"
                 class="w1"
                 tabindex="1"
+                :disableInput="isFromAccountInfo"
+                :disableCombobox="isFromAccountInfo"
+              />
+            </div>
+            <div class="flex-row p-b-8">
+              <ttanh-textfield
+                :errorText="errorTextUserData.phoneNumber"
+                v-model="addUserData.phoneNumber"
+                type="text"
+                idInput="add__phoneNumber"
+                labelText="Số điện thoại"
+                :inputRequired="false"
+                class="w1"
+                ref="phoneNumber"
+                tabindex="2"
+              />
+            </div>
+          </div>
+          <div class="w1/2" style="padding-right: 26px">
+            <div class="flex-row p-b-8 label-add-group">Thông tin địa chỉ</div>
+            <div class="flex-row p-b-8">
+              <ttanh-combobox
+                :errorText="errorTextUserData.provinceId"
+                v-model="addUserData.provinceId"
+                ref="province"
+                type="single-row"
+                labelText="Tỉnh/Thành phố"
+                @show-combobox="getProvinces"
+                :rowsData="computedProvinces"
+                class="w1"
+                tabindex="1"
+              />
+            </div>
+            <div class="flex-row p-b-8">
+              <ttanh-combobox
+                :errorText="errorTextUserData.districtId"
+                v-model="addUserData.districtId"
+                ref="district"
+                type="single-row"
+                labelText="Quận/Huyện"
+                @show-combobox="getDistricts"
+                :rowsData="computedDistricts"
+                class="w1"
+                tabindex="2"
+              />
+            </div>
+            <div class="flex-row p-b-8">
+              <ttanh-combobox
+                :errorText="errorTextUserData.wardId"
+                v-model="addUserData.wardId"
+                ref="ward"
+                type="single-row"
+                labelText="Phường/Xã"
+                @show-combobox="getWards"
+                :rowsData="computedWards"
+                class="w1"
+                tabindex="3"
+              />
+            </div>
+            <div class="flex-row p-b-8">
+              <ttanh-textfield
+                :errorText="errorTextUserData.address"
+                v-model="addUserData.address"
+                type="text"
+                idInput="add__address"
+                labelText="
+                  Địa chỉ
+                "
+                :inputRequired="false"
+                class="w1"
+                ref="fullName"
+                tabindex="2"
               />
             </div>
           </div>
@@ -93,7 +167,7 @@
       @cancel-click="
         () => {
           isShowOutConfirmPopup = false
-          $refs.province.focus()
+          $refs.username.focus()
         }
       "
       @no-click="$emit('clickCancelBtn')"
@@ -118,12 +192,17 @@ import { lengthValidate, emptyValidate, regexValidate } from '@/helper/validate.
 import { CommonErrorHandle } from '@/helper/error-handle'
 import { capitalizeFirstLetter } from '@/helper/format-helper'
 import { roles } from '../../../data_combobox/role'
+import AddressService from '@/service/AddressService.js'
 
 export default {
   name: 'AddUserPopup',
   props: {
     dataUpdate: {
       default: null
+    },
+    isFromAccountInfo: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -146,6 +225,12 @@ export default {
 
   data() {
     return {
+      dataAddress: {
+        provinces: [],
+        districts: [],
+        wards: []
+      },
+
       titleForm: '', 
       isShowOutConfirmPopup: false,
       isShowDialogError: false,
@@ -159,7 +244,15 @@ export default {
         userId: '',
         username: '',
         fullname: '',
-        roleID: ''
+        roleID: '',
+        provinceId: -1,
+        provinceName: '',
+        districtId: -1,
+        districtName: '',
+        wardId: -1,
+        wardName: '',
+        address: '',
+        phoneNumber: ''
       },
 
       /**
@@ -182,18 +275,57 @@ export default {
       validateUserData: {
         roleID: 'Empty',
         fullname: 'Empty, MaxLength255',
-        username: 'Empty, MaxLength255'
+        username: 'Empty, MaxLength255',
+        provinceId: '',
+        districtId: '',
+        wardId: '',
+        address: 'MaxLength255',
+        phoneNumber: 'MaxLength255'
       },
 
       errorTextUserData: {
         roleID: '',
         fullname: '',
-        username: ''
+        username: '',
+        provinceId: '',
+        districtId: '',
+        wardId: '',
+        address: '',
+        phoneNumber: ''
       }
     }
   },
 
   methods: {
+    async getProvinces() {
+      let provinces = await AddressService.province()
+
+      if (provinces.status === 200) {
+        this.dataAddress.provinces = provinces.data.results
+      } else {
+        this.dataAddress.provinces = []
+      }
+    },
+
+    async getDistricts() {
+      let districts = await AddressService.district(this.addUserData.provinceId)
+
+      if (districts.status === 200) {
+        this.dataAddress.districts = districts.data.results
+      } else {
+        this.dataAddress.districts = []
+      }
+    },
+
+    async getWards() {
+      let wards = await AddressService.ward(this.addUserData.districtId)
+
+      if (wards.status === 200) {
+        this.dataAddress.wards = wards.data.results
+      } else {
+        this.dataAddress.wards = []
+      }
+    },
     /**
      * thực hiện kiểm tra trước khi đóng form
      * @author: TTANH (07/08/2024)
@@ -240,6 +372,10 @@ export default {
           this.addUserData[formatAttr] = this.dataUpdate[attr] !== null ? this.dataUpdate[attr] : ''
         }
       }
+
+      await this.getProvinces()
+      await this.getDistricts(this.addUserData.provinceId)
+      await this.getWards(this.addUserData.districtId)
     },
 
     /**
@@ -279,6 +415,10 @@ export default {
       if (this.validateData()) {
         let isSuccess = true
         this.isLoading = true
+
+        this.addUserData.provinceName = this.$refs.province.getCurrentInputValue()
+        this.addUserData.districtName = this.$refs.district.getCurrentInputValue()
+        this.addUserData.wardName = this.$refs.ward.getCurrentInputValue()
 
         //lọc loại những trường rỗng
         var dataSendApi = {}
@@ -525,6 +665,72 @@ export default {
   },
 
   computed: {
+    computedProvinces() {
+      try {
+        let provincesFormat = []
+
+        this.dataAddress.provinces.forEach((province) => {
+          let id = province.province_id
+          let name = province.province_name
+          let code = province.province_name
+
+          provincesFormat.push({
+            id,
+            name,
+            code
+          })
+        })
+
+        return provincesFormat
+      } catch (error) {
+        console.log('🚀 ~ file: EmployeeList.vue:457 ~ computedEmployees ~ error:', error)
+      }
+    },
+
+    computedDistricts() {
+      try {
+        let districtsFormat = []
+
+        this.dataAddress.districts.forEach((district) => {
+          let id = district.district_id
+          let name = district.district_name
+          let code = district.district_name
+
+          districtsFormat.push({
+            id,
+            name,
+            code
+          })
+        })
+
+        return districtsFormat
+      } catch (error) {
+        console.log('🚀 ~ file: EmployeeList.vue:457 ~ computedEmployees ~ error:', error)
+      }
+    },
+
+    computedWards() {
+      try {
+        let wardsFormat = []
+
+        this.dataAddress.wards.forEach((ward) => {
+          let id = ward.ward_id
+          let name = ward.ward_name
+          let code = ward.ward_name
+
+          wardsFormat.push({
+            id,
+            name,
+            code
+          })
+        })
+
+        return wardsFormat
+      } catch (error) {
+        console.log('🚀 ~ file: EmployeeList.vue:457 ~ computedEmployees ~ error:', error)
+      }
+    },
+
     computedFormMode() {
       if (!this.dataUpdate) {
         return this.$_TTANHEnum.FORM_MODE.ADD

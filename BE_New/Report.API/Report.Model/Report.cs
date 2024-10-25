@@ -17,7 +17,6 @@ namespace Report.Model
 
         /// <summary>
         /// </summary>
-        [Required]
         public int? ProvinceId { get; set; }
 
         /// <summary>
