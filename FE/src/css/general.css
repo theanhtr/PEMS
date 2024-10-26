@@ -16,6 +16,10 @@ input::placeholder {
   font-size: 14px;
 }
 
+.fw-600 {
+  font-weight: 600;
+}
+
 .m-overlay {
   width: 100vw;
   height: 100vh;

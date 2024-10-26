@@ -279,7 +279,7 @@ export default {
         provinceId: '',
         districtId: '',
         wardId: '',
-        address: 'MaxLength255',
+        address: 'MaxLength50',
         phoneNumber: 'MaxLength255'
       },
 

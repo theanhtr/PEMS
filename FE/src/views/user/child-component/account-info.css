@@ -23,7 +23,7 @@
   position: fixed;
   right: 0;
   top: 0;
-  height: 50%;
+  height: 480px;
   width: 18%;
   z-index: 999999;
   display: flex;
@@ -54,6 +54,11 @@
   row-gap: 8px;
 }
 
+.info-fullname {
+  font-size: 20px;
+  font-weight: 600;
+}
+
 .info {
   text-align: center;
   font-size: 16px;
@@ -69,6 +74,10 @@
   display: flex;
   flex-direction: column;
   row-gap: 8px;
+}
+
+.address-detail {
+  word-wrap: break-word;
 }
 
 .logout-button {

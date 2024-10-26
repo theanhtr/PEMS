@@ -27,6 +27,23 @@
             return strConvert;
         }
 
+        public static object GetPropertyValue(object obj, string propertyName)
+        {
+            // Sử dụng Reflection để lấy PropertyInfo của thuộc tính "a"
+            var propertyInfo = obj.GetType().GetProperty(propertyName);
+
+            // Kiểm tra nếu propertyInfo tồn tại và có thể đọc được
+            if (propertyInfo != null && propertyInfo.CanRead)
+            {
+                // Trả về giá trị của thuộc tính
+                return propertyInfo.GetValue(obj);
+            }
+
+            // Nếu không tìm thấy thuộc tính, trả về null hoặc xử lý ngoại lệ
+            return null;
+        }
+
+        #region Password
         public static string HashPassword(string password)
         {
             return BCrypt.Net.BCrypt.HashPassword(password);
@@ -39,5 +56,6 @@
 
             return BCrypt.Net.BCrypt.Verify(password, hashedPassword);
         }
+        #endregion
     }
 }

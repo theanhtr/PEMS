@@ -10,8 +10,8 @@
           :title="$t('common.closeIconTooltip')"
         />
       </div>
-      <div class="content">
-        <div class="profile">
+      <div class="content w1">
+        <div class="profile w1">
           <div class="avatar">
             <img
               class="avatar-img"
@@ -19,15 +19,15 @@
               alt="Avatar"
             />
           </div>
-          <div class="info">
-            <p><b>{{ user.Fullname }}</b></p>
+          <div class="info w1">
+            <p class="info-fullname">{{ user.Fullname }}</p>
             <p>{{ user.PhoneNumber }}</p>
           </div>
-          <div class="address">
-            <div>Tỉnh/Thành phố: {{ user.ProvinceName && user.ProvinceName != '' ? user.ProvinceName : '<Trống>'   }}</div>
-            <div>Quận/Huyện: {{ user.DistrictName && user.DistrictName != '' ? user.DistrictName : '<Trống>'   }}</div>
-            <div>Phường/Xã: {{ user.WardName && user.WardName != '' ? user.WardName : '<Trống>'   }}</div>
-            <div>Địa chỉ: {{ user.Address && user.Address != '' ? user.Address : '<Trống>'   }}</div>
+          <div class="address w1">
+            <div class="address-detail w1"><div class="fw-600">Tỉnh/Thành phố</div>: {{ user.ProvinceName && user.ProvinceName != '' ? user.ProvinceName : '<Trống>'   }}</div>
+            <div class="address-detail w1"><div class="fw-600">Quận/Huyện</div>: {{ user.DistrictName && user.DistrictName != '' ? user.DistrictName : '<Trống>'   }}</div>
+            <div class="address-detail w1"><div class="fw-600">Phường/Xã</div>: {{ user.WardName && user.WardName != '' ? user.WardName : '<Trống>'   }}</div>
+            <div class="address-detail w1"><div class="fw-600">Địa chỉ</div>: {{ user.Address && user.Address != '' ? user.Address : '<Trống>'   }}</div>
           </div>
           <div class="update-info">
             <div @click="updateInfoPopupShow = true">Cập nhật thông tin</div>
