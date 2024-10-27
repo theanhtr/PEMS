@@ -33,7 +33,7 @@ namespace Weather.BL
         /// </summary>
         /// <param name="address"></param>
         /// <returns></returns>
-        public async Task<GeocodeAddress?> GeocodingAddress(string address)
+        public async Task<GeocodeAddress?> GeocodingAddress(string? address)
         {
             if (string.IsNullOrEmpty(address))
             {
@@ -74,7 +74,7 @@ namespace Weather.BL
         /// <param name="district">Huyện</param>
         /// <param name="province">Tỉnh</param>
         /// <returns></returns>
-        public async Task<GeocodeAddress> GeocodingAddressDetail(string? street, string? ward, string? district, string? province) 
+        public async Task<GeocodeAddress?> GeocodingAddress(string? street, string? ward, string? district, string? province) 
         {
             GeocodeAddress? geocodeAddress = null;
 

@@ -17,7 +17,7 @@ namespace Weather.BL
         /// <param name="district"></param>
         /// <param name="province"></param>
         /// <returns></returns>
-        Task<WeatherResponse?> TemperatureMaxByDay(int day, string? street, string? ward, string? district, string? province);
+        Task<WeatherResponse?> TemperatureMax(int day, string? street, string? ward, string? district, string? province);
 
         /// <summary>
         /// Dự đoán nhiệt độ tối đa của 1 địa chỉ trong số ngày tương lai
@@ -28,6 +28,28 @@ namespace Weather.BL
         /// <param name="district"></param>
         /// <param name="province"></param>
         /// <returns></returns>
-        Task<WeatherResponse?> TemperatureMaxByRange(DateOnly startDate, DateOnly endDate, string? street, string? ward, string? district, string? province);
+        Task<WeatherResponse?> TemperatureMax(DateOnly startDate, DateOnly endDate, string? street, string? ward, string? district, string? province);
+
+        /// <summary>
+        /// Dự đoán nhiệt độ tối đa của 1 địa chỉ trong số ngày tương lai
+        /// </summary>
+        /// <param name="day"></param>
+        /// <param name="street"></param>
+        /// <param name="ward"></param>
+        /// <param name="district"></param>
+        /// <param name="province"></param>
+        /// <returns></returns>
+        Task<WeatherResponse?> TemperatureMax(int day, string? address);
+
+        /// <summary>
+        /// Dự đoán nhiệt độ tối đa của 1 địa chỉ trong số ngày tương lai
+        /// </summary>
+        /// <param name="day"></param>
+        /// <param name="street"></param>
+        /// <param name="ward"></param>
+        /// <param name="district"></param>
+        /// <param name="province"></param>
+        /// <returns></returns>
+        Task<WeatherResponse?> TemperatureMax(DateOnly startDate, DateOnly endDate, string? address);
     }
 }

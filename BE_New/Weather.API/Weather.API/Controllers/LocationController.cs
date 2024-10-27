@@ -27,9 +27,9 @@ namespace Weather.API
         }
 
         [HttpGet("detail")]
-        public async Task<IActionResult> GeocodingAddressDetail([FromQuery] string? street, [FromQuery] string? ward, [FromQuery] string? district, [FromQuery] string? province)
+        public async Task<IActionResult> GeocodingAddress([FromQuery] string? street, [FromQuery] string? ward, [FromQuery] string? district, [FromQuery] string? province)
         {
-            var result = await _locationService.GeocodingAddressDetail(street, ward, district, province);
+            var result = await _locationService.GeocodingAddress(street, ward, district, province);
 
             return StatusCode(StatusCodes.Status200OK, result);
         }

@@ -22,6 +22,6 @@ namespace Weather.BL
         /// <param name="district">Huyện</param>
         /// <param name="province">Tỉnh</param>
         /// <returns></returns>
-        Task<GeocodeAddress> GeocodingAddressDetail(string? street, string? ward, string? district, string? province);
+        Task<GeocodeAddress> GeocodingAddress(string? street, string? ward, string? district, string? province);
     }
 }
