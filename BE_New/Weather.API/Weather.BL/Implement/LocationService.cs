@@ -9,9 +9,9 @@ namespace Weather.BL
 {
     public class LocationService : ILocationService
     {
-        private IConfiguration _config;
-        private string geocodingApi = "";
-        private string geocodingApiKey = "";
+        private IConfiguration? _config;
+        private string? geocodingApi = "";
+        private string? geocodingApiKey = "";
 
         #region Constructor
         public LocationService(IConfiguration config)
@@ -74,13 +74,17 @@ namespace Weather.BL
         /// <param name="district">Huyện</param>
         /// <param name="province">Tỉnh</param>
         /// <returns></returns>
-        public async Task<GeocodeAddress> GeocodingAddressDetail(string street, string ward, string district, string province) 
+        public async Task<GeocodeAddress> GeocodingAddressDetail(string? street, string? ward, string? district, string? province) 
         {
             GeocodeAddress? geocodeAddress = null;
 
             using (var client = new HttpClient())
             {
-                var url = $"{geocodingApi}/search?street={street + "," + ward}&county={district}&city={province}&country=Vietnam&api_key={geocodingApiKey}";
+                // nếu có tên đường thì gọi bằng tên đường, nếu không sẽ lấy tên phường
+                var streetSend = String.IsNullOrEmpty(street) ? ward : street;
+
+                var url = $"{geocodingApi}/search?street={streetSend}&county={district}&city={province}&country=Vietnam&api_key={geocodingApiKey}";
+
                 var response = await client.GetAsync(url);
 
                 if (response.IsSuccessStatusCode)
@@ -89,16 +93,50 @@ namespace Weather.BL
 
                     var data = JsonConvert.DeserializeObject<List<GeocodeAddressResponse>>(result);
 
-                    if (data.Count == 0)
+                    if (data.Count != 0)
                     {
-                        return null;
+                        geocodeAddress = new GeocodeAddress
+                        {
+                            Latitude = data.FirstOrDefault().Lat,
+                            Longitude = data.FirstOrDefault().Lon
+                        };
                     }
+                }
 
-                    return new GeocodeAddress
+                // nếu không tìm thấy bằng tên đường thì sẽ chuyển sử dụng tên phường
+                if (geocodeAddress == null && !String.IsNullOrEmpty(street))
+                {
+                    url = $"{geocodingApi}/search?street={ward}&county={district}&city={province}&country=Vietnam&api_key={geocodingApiKey}";
+
+                    response = await client.GetAsync(url);
+
+                    if (response.IsSuccessStatusCode)
                     {
-                        Latitude = data.FirstOrDefault().Lat,
-                        Longitude = data.FirstOrDefault().Lon
-                    };
+                        var result = await response.Content.ReadAsStringAsync();
+
+                        var data = JsonConvert.DeserializeObject<List<GeocodeAddressResponse>>(result);
+
+                        if (data.Count != 0)
+                        {
+                            geocodeAddress = new GeocodeAddress
+                            {
+                                Latitude = data.FirstOrDefault().Lat,
+                                Longitude = data.FirstOrDefault().Lon
+                            };
+                        }
+                    }
+                }
+
+                // nếu mà không tìm thấy cả bằng tên phường thì sẽ tìm bằng tên quận
+                if (geocodeAddress == null)
+                {
+                    geocodeAddress = await GeocodingAddress(ward + "," + district + "," + province);
+                }
+                
+                // nếu mà không tìm thấy cả bằng tên quận thì sẽ tìm bằng tên quận
+                if (geocodeAddress == null)
+                {
+                    geocodeAddress = await GeocodingAddress(district + "," + province);
                 }
             }
 

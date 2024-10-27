@@ -18,10 +18,37 @@ namespace Weather.API
             _weatherService = weatherService;
         }
 
-        [HttpGet()]
-        public async Task<IActionResult> GetWeatherInfo(string city)
+        /// <summary>
+        /// Dự đoán nhiệt độ tối đa của 1 địa chỉ trong số ngày tương lai
+        /// </summary>
+        /// <param name="day"></param>
+        /// <param name="street"></param>
+        /// <param name="ward"></param>
+        /// <param name="district"></param>
+        /// <param name="province"></param>
+        /// <returns></returns>
+        [HttpGet("temperature")]
+        public async Task<IActionResult> TemperatureMaxByDay([FromQuery] string? street, [FromQuery] string? ward, [FromQuery] string? district, [FromQuery] string? province, [FromQuery] int day = 7)
         {
-            var result = await _weatherService.GetWeatherAsync(city);
+            // số ngày tối đa là 16
+            if (day < 1 && day > 16)
+            {
+                day = 16;
+            }
+
+            var result = await _weatherService.TemperatureMaxByDay(day, street, ward, district, province);
+
+            return StatusCode(StatusCodes.Status200OK, result);
+        }
+
+        /// <summary>
+        /// Lấy nhiệt độ tối đa của 1 địa chỉ trong 1 khoảng thời gian
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("temperature-range")]
+        public async Task<IActionResult> TemperatureMaxByRange([FromQuery] DateOnly startDate, [FromQuery] DateOnly endDate, [FromQuery] string? street, [FromQuery] string? ward, [FromQuery] string? district, [FromQuery] string? province)
+        {
+            var result = await _weatherService.TemperatureMaxByRange(startDate, endDate, street, ward, district, province);
 
             return StatusCode(StatusCodes.Status200OK, result);
         }
