@@ -29,6 +29,22 @@ namespace Predict.API
         /// <summary>
         /// <returns>Các bản ghi lọc theo các tiêu chí trên</returns>
         /// Created by: TTANH (18/07/2024) 
+        [HttpGet("season-end")]
+        public async Task<IActionResult> EndSeasonAsync([FromQuery] Guid? PredictId)
+        {
+            if (PredictId == null)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, "Id không được để trống");
+            }
+
+            var seasonEnd = await _predictService.EndSeasonAsync(PredictId);
+
+            return StatusCode(StatusCodes.Status200OK, seasonEnd);
+        }
+
+        /// <summary>
+        /// <returns>Các bản ghi lọc theo các tiêu chí trên</returns>
+        /// Created by: TTANH (18/07/2024) 
         [HttpPost("filter")]
         public async Task<IActionResult> FiltersPredictAsync([FromBody] PredictFilterParam predictFilterParam)
         {

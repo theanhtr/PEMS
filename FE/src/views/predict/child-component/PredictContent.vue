@@ -101,18 +101,18 @@
     </div>
     <div class="page__action">
       <div class="page__action-left">
-        <div class="season-type-container">
+        <div class="season-end-container">
           <div
-            class="season-type-item"
-            :class="seasonType == 1 ? 'season-type-selected' : ''"
-            @click="selectSeasonType(1)"
+            class="season-end-item"
+            :class="!seasonEnd ? 'season-end-selected' : ''"
+            @click="() => { seasonEnd = false; getPredicts()}"
           >
             Đang trong mùa vụ
           </div>
           <div
-            class="season-type-item"
-            :class="seasonType == 2 ? 'season-type-selected' : ''"
-            @click="selectSeasonType(2)"
+            class="season-end-item"
+            :class="seasonEnd ? 'season-end-selected' : ''"
+            @click="() => { seasonEnd = true; getPredicts()}"
           >
             Mùa vụ đã kết thúc
           </div>
@@ -145,6 +145,7 @@
         :selectedRows="computedSelectedPredicts"
         :noData="computedNoData"
         :oneRowSelect="true"
+        :endOfSeason="!seasonEnd"
         @checked-all="checkedAllRow"
         @unchecked-all="uncheckedAllRow"
         @checked-row="checkedRow"
@@ -153,6 +154,7 @@
         @clickFixBtn="openFormUpdate"
         @clickContextDeleteBtn="openConfirmDeletePopup"
         @resizeColumn="resizePredictColumn"
+        @clickEndOfSeason="openConfirmEndOfSeasonPopup"
       />
     </div>
     <div class="page__footer">
@@ -172,6 +174,16 @@
       v-if="isShowConfirmDeletePopup || isShowConfirmDeleteMultiplePopup"
       @no-click="isShowConfirmDeletePopup ? noDeleteBtnClick() : noDeleteMultiplePredict()"
       @yes-click="isShowConfirmDeletePopup ? yesDeleteBtnClick() : yesDeleteMultiplePredict()"
+    />
+
+    <ttanh-delete-popup
+      titleText="Bạn có chắc chắn muốn kết thúc mùa vụ đã chọn không?"
+      v-if="isShowConfirmEndOfSeasonPopup"
+      @no-click="() => {
+        this.PredictIdEndOfSeason = null
+        this.isShowConfirmEndOfSeasonPopup = false
+      }"
+      @yes-click="confirmEndOfSeason()"
     />
 
     <ttanh-loading-spinner v-if="isLoading" size="large" />
@@ -200,9 +212,11 @@ export default {
   },
   data() {
     return {
+      PredictIdEndOfSeason: null,
+      isShowConfirmEndOfSeasonPopup: false,
       predicts: [],
 
-      seasonType: 1,
+      seasonEnd: false,
 
       cropStates: cropStates,
 
@@ -288,7 +302,6 @@ export default {
 
       /* biến sử dụng cho việc xác nhận xóa */
       isShowConfirmDeletePopup: false,
-      PredictCodeDelete: '',
       PredictIdDelete: '',
 
       isShowConfirmDeleteMultiplePopup: false,
@@ -336,11 +349,6 @@ export default {
   },
 
   methods: {
-    selectSeasonType(type) {
-      this.seasonType = type
-      this.getPredicts()
-    },
-
     clearFilter() {
       this.dataFilter = {
         provinceId: -1,
@@ -408,7 +416,7 @@ export default {
           EndDate: endDate,
           CropStateId: this.dataFilter.cropStateId,
           PestLevelId: this.dataFilter.pestLevelId,
-          SeasonType: this.seasonType,
+          SeasonEnd: this.seasonEnd,
           PageSize: this.pagingData.pageSize,
           PageNumber: this.pagingData.pageNumber
         }
@@ -676,7 +684,6 @@ export default {
         let index = findIndexByAttribute(this.predicts, 'PredictId', id)
 
         if (index !== -1) {
-          this.PredictCodeDelete = this.predicts[index].PredictCode
           this.PredictIdDelete = id
           this.isShowConfirmDeletePopup = true
         } else {
@@ -689,6 +696,31 @@ export default {
         }
       } catch (error) {
         console.log('🚀 ~ file: PredictContent.vue:351 ~ openConfirmDeletePopup ~ error:', error)
+      }
+    },
+
+    /**
+     * mở form xác nhận xóa
+     * @author: TTANH (01/07/2024)
+     * @param {string} id id của bản ghi cần xóa
+     */
+    openConfirmEndOfSeasonPopup(id) {
+      try {
+        let index = findIndexByAttribute(this.predicts, 'PredictId', id)
+
+        if (index !== -1) {
+          this.PredictIdEndOfSeason = id
+          this.isShowConfirmEndOfSeasonPopup = true
+        } else {
+          this.$store.commit('addToast', {
+            type: 'error',
+            text: this.$t('errorHandle.PredictSubsystem.notFoundPredict')
+          })
+
+          this.reloadData()
+        }
+      } catch (error) {
+        console.log('🚀 ~ file: PredictContent.vue:351 ~ openConfirmEndOfSeasonPopup ~ error:', error)
       }
     },
 
@@ -706,9 +738,6 @@ export default {
         this.$nextTick(() => {
           // thay đổi trạng thái form thành thêm mới
           this.$refs.addPredictPopup.changeFormModeToAdd()
-
-          // lấy mã code mới
-          this.$refs.addPredictPopup.getNewPredictCode()
         })
       } catch (error) {
         console.log('🚀 ~ file: PredictContent.vue:529 ~ openFormUpdate ~ error:', error)
@@ -721,7 +750,6 @@ export default {
      */
     closeConfirmDeletePopup() {
       try {
-        this.PredictCodeDelete = ''
         this.PredictIdDelete = ''
         this.isShowConfirmDeletePopup = false
       } catch (error) {
@@ -762,7 +790,6 @@ export default {
     async deleteRecord() {
       try {
         this.isLoading = true
-        const PredictCode = this.PredictCodeDelete
         const res = await PredictService.delete('Predict', this.PredictIdDelete)
 
         if (res.success) {
@@ -786,6 +813,37 @@ export default {
         this.isLoading = false
       } catch (error) {
         console.log('🚀 ~ file: PredictContent.vue:582 ~ deleteRecord ~ error:', error)
+      }
+    },
+    
+    async confirmEndOfSeason() {
+      this.isShowConfirmEndOfSeasonPopup = false
+
+      try {
+        this.isLoading = true
+        const res = await PredictService.get(`Predict/season-end?PredictId=${this.PredictIdEndOfSeason}`)
+
+        if (res.success) {
+          this.$store.commit('addToast', {
+            type: 'success',
+            text: 'Kết thúc mùa vụ thành công'
+          })
+
+          this.reloadData()
+        } else {
+          if (res.errorCode === this.$_TTANHEnum.ERROR_CODE.NOT_FOUND_DATA) {
+            this.$store.commit('addToast', {
+              type: 'error',
+              text: res.userMsg
+            })
+          } else {
+            CommonErrorHandle()
+          }
+        }
+
+        this.isLoading = false
+      } catch (error) {
+        console.log('🚀 ~ file: PredictContent.vue:582 ~ confirmEndOfSeason ~ error:', error)
       }
     },
 

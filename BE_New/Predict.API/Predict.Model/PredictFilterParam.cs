@@ -50,7 +50,7 @@ namespace Predict.Model
         /// Gets or sets the season type.
         /// </summary>
         [Required]
-        public int SeasonType { get; set; }
+        public bool SeasonEnd { get; set; }
         #endregion
     }
 }

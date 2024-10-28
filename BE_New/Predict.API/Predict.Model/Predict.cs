@@ -71,6 +71,10 @@ namespace Predict.Model
         /// <summary>
         /// </summary>
         public int? LevelWarningId { get; set; }
+
+        /// <summary>
+        /// </summary>
+        public bool SeasonEnd { get; set; }
         #endregion
 
         #region Methods

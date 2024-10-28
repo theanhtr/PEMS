@@ -169,6 +169,9 @@
       :style="styleFunctionContext"
       ref="refFunctionContext"
     >
+      <div v-if="endOfSeason" @click="() => { $emit('clickEndOfSeason', this.idFunctionContextFocus) }" class="function__item">
+        Kết thúc mùa vụ
+      </div>
       <div @click="clickDeleteBtn" class="function__item">
         {{ $t('component.table.editData.delete') }}
       </div>
@@ -200,6 +203,9 @@ export default {
     }
   },
   props: {
+    endOfSeason: {
+      default: false
+    },
     /**
      * thông tin cột phải theo định dạn
         {

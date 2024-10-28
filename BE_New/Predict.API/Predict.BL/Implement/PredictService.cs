@@ -23,6 +23,29 @@ namespace Predict.BL
         #endregion
 
         #region Methods
+        public async Task<int?> EndSeasonAsync(Guid? PredictId)
+        {
+            if (PredictId == null)
+            {
+                throw new ValidateException();
+            }
+
+            var predict = await _predictRepository.GetByIdAsync(PredictId.Value);
+
+            if (predict == null)
+            {
+                throw new NotFoundException();
+            }
+
+            return await _predictRepository.EndSeasonAsync(PredictId.Value);
+        }
+
+        public override Task BaseServiceMoreProcessInsertAsync(Model.Predict entityCreateDto)
+        {
+            entityCreateDto.SeasonEnd = false;
+            return base.BaseServiceMoreProcessInsertAsync(entityCreateDto);
+        }
+
         public async Task<BaseFilterResponse<Model.Predict>> FiltersPredictAsync([FromBody] PredictFilterParam predictFilterParam)
         {
             // xử lý param trước khi gửi xuống repository
@@ -39,7 +62,7 @@ namespace Predict.BL
 
             var predictFilterResult = await _predictRepository.FiltersPredictAsync(predictFilterParam.ProvinceId, predictFilterParam.DistrictId, predictFilterParam.WardId,
                                                                         startDate, endDate, predictFilterParam.CropStateId, predictFilterParam.PestLevelId,
-                                                                        predictFilterParam.SeasonType, pageSize, pageNumber);
+                                                                        predictFilterParam.SeasonEnd, pageSize, pageNumber);
 
             var totalRecord = predictFilterResult.Total;
             var totalPage = Convert.ToInt32(Math.Ceiling((double)totalRecord / (double)pageSize));

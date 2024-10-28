@@ -24,10 +24,10 @@
             <p>{{ user.PhoneNumber }}</p>
           </div>
           <div class="address w1">
-            <div class="address-detail w1"><div class="fw-600">Tỉnh/Thành phố</div>: {{ user.ProvinceName && user.ProvinceName != '' ? user.ProvinceName : '<Trống>'   }}</div>
-            <div class="address-detail w1"><div class="fw-600">Quận/Huyện</div>: {{ user.DistrictName && user.DistrictName != '' ? user.DistrictName : '<Trống>'   }}</div>
-            <div class="address-detail w1"><div class="fw-600">Phường/Xã</div>: {{ user.WardName && user.WardName != '' ? user.WardName : '<Trống>'   }}</div>
-            <div class="address-detail w1"><div class="fw-600">Địa chỉ</div>: {{ user.Address && user.Address != '' ? user.Address : '<Trống>'   }}</div>
+            <div class="address-detail w1">Tỉnh/Thành phố: {{ user.ProvinceName && user.ProvinceName != '' ? user.ProvinceName : '<Trống>'   }}</div>
+            <div class="address-detail w1">Quận/Huyện: {{ user.DistrictName && user.DistrictName != '' ? user.DistrictName : '<Trống>'   }}</div>
+            <div class="address-detail w1">Phường/Xã: {{ user.WardName && user.WardName != '' ? user.WardName : '<Trống>'   }}</div>
+            <div class="address-detail w1">Địa chỉ: {{ user.Address && user.Address != '' ? user.Address : '<Trống>'   }}</div>
           </div>
           <div class="update-info">
             <div @click="updateInfoPopupShow = true">Cập nhật thông tin</div>

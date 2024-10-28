@@ -19,7 +19,14 @@ namespace Predict.DL
         #endregion
 
         #region Methods
-        public async Task<PredictFilterResult> FiltersPredictAsync(int ProvinceId, int DistrictId, int WardId, DateTime? StartDate, DateTime? EndDate, int CropStateId, int PestLevelId, int SeasonType, int? PageSize, int? PageNumber)
+        public async Task<int?> EndSeasonAsync(Guid? PredictId)
+        {
+            var sql = "UPDATE predict SET SeasonEnd = true WHERE PredictId = @PredictId";
+            var predict = _unitOfWork.Connection.QueryFirstOrDefault(sql, new { PredictId = PredictId }, commandType: CommandType.Text);
+            return predict;
+        }
+
+        public async Task<PredictFilterResult> FiltersPredictAsync(int ProvinceId, int DistrictId, int WardId, DateTime? StartDate, DateTime? EndDate, int CropStateId, int PestLevelId, bool SeasonEnd, int? PageSize, int? PageNumber)
         {
             var procedure = $"Proc_Predict_Filter";
 
@@ -31,7 +38,7 @@ namespace Predict.DL
             parameters.Add("@v_EndDate", EndDate);
             parameters.Add("@v_CropStateId", CropStateId);
             parameters.Add("@v_PestLevelId", PestLevelId);
-            parameters.Add("@v_SeasonType", SeasonType);
+            parameters.Add("@v_SeasonEnd", SeasonEnd);
             parameters.Add("@v_PageSize", PageSize);
             parameters.Add("@v_PageNumber", PageNumber);
 
