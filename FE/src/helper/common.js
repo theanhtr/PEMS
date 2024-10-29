@@ -1,3 +1,28 @@
+import TTANHEnum from "../enum";
+
+/**
+ * lấy ra title của form theo formMode
+ */
+export function calTitleForm(formMode) {
+  try {
+    switch (formMode) {
+      case TTANHEnum.FORM_MODE.ADD:
+        return 'Thêm mới ';
+      case TTANHEnum.FORM_MODE.UPDATE:
+        return 'Cập nhật ';
+      case TTANHEnum.FORM_MODE.VIEW:
+        return 'Thông tin ';
+      default:
+        return '';
+    }
+  } catch (error) {
+    console.log(
+      "🚀 ~ file: helper.js:10 ~ titleForm ~ error:",
+      error
+    );
+  }
+}
+
 /**
  * tìm kiếm vị trí của 1 giá trị
  * @param {Array} arrayFind mảng cần tìm kiếm

@@ -42,7 +42,7 @@ namespace User.Model
 
         /// <summary>
         /// </summary>
-        public int? ProvinceId { get; set; }
+        public string? ProvinceId { get; set; }
 
         /// <summary>
         /// </summary>
@@ -50,7 +50,7 @@ namespace User.Model
 
         /// <summary>
         /// </summary>
-        public int? DistrictId { get; set; }
+        public string? DistrictId { get; set; }
 
         /// <summary>
         /// </summary>
@@ -58,7 +58,7 @@ namespace User.Model
 
         /// <summary>
         /// </summary>
-        public int? WardId { get; set; }
+        public string? WardId { get; set; }
 
         /// <summary>
         /// </summary>

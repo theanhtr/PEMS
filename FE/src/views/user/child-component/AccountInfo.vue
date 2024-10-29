@@ -21,7 +21,7 @@
           </div>
           <div class="info w1">
             <p class="info-fullname">{{ user.Fullname }}</p>
-            <p>{{ user.PhoneNumber }}</p>
+            <p>{{ user.PhoneNumber }} - {{ user.Username }}</p>
           </div>
           <div class="address w1">
             <div class="address-detail w1">Tỉnh/Thành phố: {{ user.ProvinceName && user.ProvinceName != '' ? user.ProvinceName : '<Trống>'   }}</div>

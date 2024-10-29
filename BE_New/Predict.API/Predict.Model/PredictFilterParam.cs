@@ -9,20 +9,17 @@ namespace Predict.Model
         /// <summary>
         /// Gets or sets the province ID.
         /// </summary>
-        [Required]
-        public int ProvinceId { get; set; }
+        public string? ProvinceId { get; set; }
 
         /// <summary>
         /// Gets or sets the district ID.
         /// </summary>
-        [Required]
-        public int DistrictId { get; set; }
+        public string? DistrictId { get; set; }
 
         /// <summary>
         /// Gets or sets the ward ID.
         /// </summary>
-        [Required]
-        public int WardId { get; set; }
+        public string? WardId { get; set; }
 
         /// <summary>
         /// Gets or sets the start date.

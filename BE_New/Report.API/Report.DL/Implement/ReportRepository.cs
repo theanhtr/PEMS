@@ -19,7 +19,7 @@ namespace Report.DL
         #endregion
 
         #region Methods
-        public async Task<ReportFilterResult> FiltersReportAsync(int? ProvinceId, int? DistrictId, int? WardId, DateTime? ReportStartDate, DateTime? ReportEndDate, string ReportName, int? PageSize, int? PageNumber)
+        public async Task<ReportFilterResult> FiltersReportAsync(string? ProvinceId, string? DistrictId, string? WardId, DateTime? ReportStartDate, DateTime? ReportEndDate, string ReportName, int? PageSize, int? PageNumber)
         {
             var procedure = $"Proc_Report_Filter";
 

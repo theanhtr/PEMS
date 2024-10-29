@@ -25,6 +25,7 @@
                 :rowsData="computedProvinces"
                 class="w1"
                 tabindex="1"
+                :disableCombobox="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
             <div class="flex-row p-b-8">
@@ -39,6 +40,7 @@
                 :rowsData="computedDistricts"
                 class="w1"
                 tabindex="2"
+                :disableCombobox="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
             <div class="flex-row p-b-8">
@@ -53,6 +55,7 @@
                 :rowsData="computedWards"
                 class="w1"
                 tabindex="3"
+                :disableCombobox="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
             <div class="flex-row p-b-8">
@@ -68,6 +71,7 @@
                 class="w1"
                 ref="fullName"
                 tabindex="2"
+                :disable="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
           </div>
@@ -83,6 +87,7 @@
                 :rowsData="cropStatesRowData"
                 class="w1"
                 tabindex="3"
+                :disableCombobox="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
             <div class="flex-row p-b-8">
@@ -96,6 +101,7 @@
                 :rowsData="pestLevelsRowData"
                 class="w1"
                 tabindex="3"
+                :disableCombobox="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
             <div class="flex-row p-b-8">
@@ -107,12 +113,13 @@
                 :inputRequired="true"
                 class="w1"
                 tabindex="3"
+                :disable="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
           </div>
         </div>
       </template>
-      <template #footer>
+      <template #footer v-if="formMode != $_TTANHEnum.FORM_MODE.VIEW">
         <ttanh-separation-line style="border-color: var(--border-color-default); margin: 16px 0px" />
         <div class="flex-row" style="justify-content: space-between; padding-bottom: 16px">
           <div>
@@ -171,7 +178,7 @@
 <script>
 import reportService from '@/service/reportService.js'
 import { ValidateConfig } from '@/config/config.js'
-import { findIndexByAttribute, isObjectEmpty } from '@/helper/common.js'
+import { calTitleForm, isObjectEmpty } from '@/helper/common.js'
 import { lengthValidate, emptyValidate, regexValidate } from '@/helper/validate.js'
 import { CommonErrorHandle } from '@/helper/error-handle'
 import { capitalizeFirstLetter } from '@/helper/format-helper'
@@ -182,6 +189,9 @@ import { pestLevels } from '../../../data_combobox/pestLevel'
 export default {
   name: 'AddreportPopup',
   props: {
+    isViewOnly: {
+      default: false
+    },
     dataUpdate: {
       default: null
     }
@@ -189,7 +199,7 @@ export default {
 
   async created() {
     this.formMode = this.computedFormMode
-    this.titleForm = this.formMode == this.$_TTANHEnum.FORM_MODE.ADD ? 'Tạo mới báo cáo' : 'Cập nhật báo cáo';
+    this.titleForm = calTitleForm(this.formMode) + 'báo cáo';
     //cập nhật thông tin cho form: form_mode, data
     await this.addInfoForm()
     this.copyAddreportData = JSON.parse(JSON.stringify(this.addreportData))
@@ -225,11 +235,11 @@ export default {
       cropStatesRowData: cropStates,
 
       addreportData: {
-        provinceId: -1,
+        provinceId: '',
         provinceName: '',
-        districtId: -1,
+        districtId: '',
         districtName: '',
-        wardId: -1,
+        wardId: '',
         wardName: '',
         address: '',
         pestLevelId: -1,
@@ -314,7 +324,7 @@ export default {
     closeAddForm() {
       if (this.formMode == this.$_TTANHEnum.FORM_MODE.ADD) {
         this.isShowOutConfirmPopup = true
-      } else {
+      } else if (this.formMode == this.$_TTANHEnum.FORM_MODE.UPDATE) {
         let difference = false
 
         for (let attr in this.addreportData) {
@@ -336,6 +346,8 @@ export default {
         } else {
           this.$emit('clickCancelBtn')
         }
+      } else {
+        this.$emit('clickCancelBtn')
       }
     },
 
@@ -346,7 +358,7 @@ export default {
     async addInfoForm() {
       if (this.formMode === this.$_TTANHEnum.FORM_MODE.ADD) {
         this.resetAddreportData()
-      } else if (this.formMode === this.$_TTANHEnum.FORM_MODE.UPDATE) {
+      } else if (this.formMode === this.$_TTANHEnum.FORM_MODE.UPDATE || this.formMode === this.$_TTANHEnum.FORM_MODE.VIEW) {
         for (let attr in this.dataUpdate) {
           let formatAttr = attr[0].toLowerCase() + attr.slice(1, attr.length)
 
@@ -711,7 +723,10 @@ export default {
     },
 
     computedFormMode() {
-      if (!this.dataUpdate) {
+      if (this.isViewOnly) {
+        return this.$_TTANHEnum.FORM_MODE.VIEW
+      }
+      else if (!this.dataUpdate) {
         return this.$_TTANHEnum.FORM_MODE.ADD
       } else {
         return this.$_TTANHEnum.FORM_MODE.UPDATE

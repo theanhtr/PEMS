@@ -1,6 +1,6 @@
 <template>
   <div class="m-overlay" id="add-predict-popup">
-    <ttanh-popup style="overflow: visible" title="Tạo mới dự báo">
+    <ttanh-popup style="overflow: visible" :title="titleForm">
       <template #header__close>
         <ttanh-icon
           @click="closeAddForm"
@@ -25,6 +25,7 @@
                 :rowsData="computedProvinces"
                 class="w1"
                 tabindex="1"
+                :disableCombobox="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
             <div class="flex-row p-b-8">
@@ -39,6 +40,7 @@
                 :rowsData="computedDistricts"
                 class="w1"
                 tabindex="2"
+                :disableCombobox="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
             <div class="flex-row p-b-8">
@@ -53,6 +55,7 @@
                 :rowsData="computedWards"
                 class="w1"
                 tabindex="3"
+                :disableCombobox="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
             <div class="flex-row p-b-8">
@@ -68,6 +71,7 @@
                 class="w1"
                 ref="fullName"
                 tabindex="2"
+                :disable="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
           </div>
@@ -83,6 +87,7 @@
                 tabindex="6"
                 ref="previousEndDate"
                 :maxDate="new Date().setDate(new Date().getDate() - 2)"
+                :disable="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
             <div class="flex-row p-b-8">
@@ -96,6 +101,7 @@
                 :rowsData="previousLevelWarning"
                 class="w1"
                 tabindex="3"
+                :disableCombobox="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
             <div class="flex-row p-b-8 label-add-group m-t-26">Thông tin vụ này</div>
@@ -110,12 +116,13 @@
                 ref="currentStartDate"
                 :inputRequired="true"
                 :maxDate="new Date()"
+                :disable="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
           </div>
         </div>
       </template>
-      <template #footer>
+      <template #footer v-if="formMode != $_TTANHEnum.FORM_MODE.VIEW">
         <ttanh-separation-line style="border-color: var(--border-color-default); margin: 16px 0px" />
         <div class="flex-row" style="justify-content: space-between; padding-bottom: 16px">
           <div>
@@ -174,7 +181,7 @@
 <script>
 import PredictService from '@/service/PredictService.js'
 import { ValidateConfig } from '@/config/config.js'
-import { findIndexByAttribute, isObjectEmpty } from '@/helper/common.js'
+import { calTitleForm, isObjectEmpty } from '@/helper/common.js'
 import { lengthValidate, emptyValidate, regexValidate } from '@/helper/validate.js'
 import { CommonErrorHandle } from '@/helper/error-handle'
 import { capitalizeFirstLetter } from '@/helper/format-helper'
@@ -184,12 +191,17 @@ import { levelWarnings } from '../../../data_combobox/levelWarning'
 export default {
   name: 'AddPredictPopup',
   props: {
+    isViewOnly: {
+      default: false
+    },
     dataUpdate: {
       default: null
     }
   },
 
   async created() {
+    this.formMode = this.computedFormMode
+    this.titleForm = calTitleForm(this.formMode) + 'dự báo';
     //cập nhật thông tin cho form: form_mode, data
     await this.addInfoForm()
 
@@ -208,6 +220,8 @@ export default {
 
   data() {
     return {
+      titleForm: '',
+      
       dataAddress: {
         provinces: [],
         districts: [],
@@ -223,11 +237,11 @@ export default {
       previousLevelWarning: levelWarnings,
 
       addPredictData: {
-        provinceId: -1,
+        provinceId: '',
         provinceName: '',
-        districtId: -1,
+        districtId: '',
         districtName: '',
-        wardId: -1,
+        wardId: '',
         wardName: '',
         address: '',
         previousEndDate: null,
@@ -312,7 +326,7 @@ export default {
     closeAddForm() {
       if (this.formMode == this.$_TTANHEnum.FORM_MODE.ADD) {
         this.isShowOutConfirmPopup = true
-      } else {
+      } else if (this.formMode == this.$_TTANHEnum.FORM_MODE.UPDATE) {
         let difference = false
 
         for (let attr in this.addPredictData) {
@@ -334,6 +348,8 @@ export default {
         } else {
           this.$emit('clickCancelBtn')
         }
+      } else {
+        this.$emit('clickCancelBtn')
       }
     },
 
@@ -342,11 +358,9 @@ export default {
      * @author: TTANH (01/07/2024)
      */
     async addInfoForm() {
-      this.formMode = this.computedFormMode
-
       if (this.formMode === this.$_TTANHEnum.FORM_MODE.ADD) {
         this.resetAddPredictData()
-      } else if (this.formMode === this.$_TTANHEnum.FORM_MODE.UPDATE) {
+      } else if (this.formMode === this.$_TTANHEnum.FORM_MODE.UPDATE || this.formMode === this.$_TTANHEnum.FORM_MODE.VIEW) {
         for (let attr in this.dataUpdate) {
           let formatAttr = attr[0].toLowerCase() + attr.slice(1, attr.length)
 
@@ -711,7 +725,10 @@ export default {
     },
 
     computedFormMode() {
-      if (!this.dataUpdate) {
+      if (this.isViewOnly) {
+        return this.$_TTANHEnum.FORM_MODE.VIEW
+      }
+      else if (!this.dataUpdate) {
         return this.$_TTANHEnum.FORM_MODE.ADD
       } else {
         return this.$_TTANHEnum.FORM_MODE.UPDATE

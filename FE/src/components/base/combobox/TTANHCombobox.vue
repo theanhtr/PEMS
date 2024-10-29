@@ -1,6 +1,6 @@
 <template>
   <div :style="styleContainer" class="combobox" ref="combobox">
-    <label v-if="labelText !== ''" @click="showComboboxData" class="label-input">
+    <label v-if="labelText !== ''" @click="disableCombobox ? '' : showComboboxData" class="label-input">
       {{ labelText }}
       <div v-if="inputRequired" style="color: red; padding-left: 3px">*</div>
     </label>

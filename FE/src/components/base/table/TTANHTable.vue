@@ -169,8 +169,11 @@
       :style="styleFunctionContext"
       ref="refFunctionContext"
     >
-      <div v-if="endOfSeason" @click="() => { $emit('clickEndOfSeason', this.idFunctionContextFocus) }" class="function__item">
+      <div v-if="endOfSeason" @click="() => { $emit('clickEndOfSeason', this.idFunctionContextFocus); this.closeFunctionContext() }" class="function__item">
         Kết thúc mùa vụ
+      </div>
+      <div @click="() => { $emit('clickContextViewBtn', this.idFunctionContextFocus); this.closeFunctionContext() }" class="function__item">
+        Xem
       </div>
       <div @click="clickDeleteBtn" class="function__item">
         {{ $t('component.table.editData.delete') }}

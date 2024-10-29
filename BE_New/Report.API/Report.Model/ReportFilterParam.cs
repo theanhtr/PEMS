@@ -9,17 +9,17 @@ namespace Report.Model
         /// <summary>
         /// Gets or sets the province ID.
         /// </summary>
-        public int? ProvinceId { get; set; }
+        public string? ProvinceId { get; set; }
 
         /// <summary>
         /// Gets or sets the district ID.
         /// </summary>
-        public int? DistrictId { get; set; }
+        public string? DistrictId { get; set; }
 
         /// <summary>
         /// Gets or sets the ward ID.
         /// </summary>
-        public int? WardId { get; set; }
+        public string? WardId { get; set; }
 
         /// <summary>
         /// Gets or sets the start date.

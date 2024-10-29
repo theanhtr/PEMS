@@ -150,11 +150,12 @@
         @unchecked-all="uncheckedAllRow"
         @checked-row="checkedRow"
         @unchecked-row="uncheckedRow"
-        @doubleClickRow="openFormUpdate"
+        @doubleClickRow="openFormView"
         @clickFixBtn="openFormUpdate"
         @clickContextDeleteBtn="openConfirmDeletePopup"
         @resizeColumn="resizePredictColumn"
         @clickEndOfSeason="openConfirmEndOfSeasonPopup"
+        @clickContextViewBtn="openFormView"
       />
     </div>
     <div class="page__footer">
@@ -164,7 +165,8 @@
     <AddPredictPopup
       v-if="isShowAddPredictPopup"
       :dataUpdate="dataUpdate"
-      @clickCancelBtn="isShowAddPredictPopup = false"
+      :isViewOnly="isViewOnly"
+      @clickCancelBtn="isShowAddPredictPopup = false; isViewOnly = false"
       @reloadData="reloadData"
       ref="addPredictPopup"
     />
@@ -212,6 +214,7 @@ export default {
   },
   data() {
     return {
+      isViewOnly: false,
       PredictIdEndOfSeason: null,
       isShowConfirmEndOfSeasonPopup: false,
       predicts: [],
@@ -329,9 +332,9 @@ export default {
       isShowLayoutSetting: false,
 
       dataFilter: {
-        provinceId: -1,
-        districtId: -1,
-        wardId: -1,
+        provinceId: '',
+        districtId: '',
+        wardId: '',
         dateRange: null,
         cropStateId: -1,
         pestLevelId: -1
@@ -351,9 +354,9 @@ export default {
   methods: {
     clearFilter() {
       this.dataFilter = {
-        provinceId: -1,
-        districtId: -1,
-        wardId: -1,
+        provinceId: '',
+        districtId: '',
+        wardId: '',
         dateRange: null,
         cropStateId: -1,
         pestLevelId: -1
@@ -669,6 +672,18 @@ export default {
 
         this.isShowAddPredictPopup = true
         this.dataUpdate = this.predicts[indexRow]
+      } catch (error) {
+        console.log('🚀 ~ file: PredictContent.vue:529 ~ openFormUpdate ~ error:', error)
+      }
+    },
+
+    openFormView(rowId) {
+      try {
+        let indexRow = findIndexByAttribute(this.predicts, 'PredictId', rowId)
+
+        this.isShowAddPredictPopup = true
+        this.dataUpdate = this.predicts[indexRow]
+        this.isViewOnly = true
       } catch (error) {
         console.log('🚀 ~ file: PredictContent.vue:529 ~ openFormUpdate ~ error:', error)
       }

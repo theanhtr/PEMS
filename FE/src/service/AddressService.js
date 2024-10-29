@@ -25,7 +25,7 @@ class AuthServiceClass {
 
   async district(provinceId) {
     const res = await addressAxios.get(
-      "/province/district/" + (provinceId < 10 && provinceId[0] != '0' ? "0" + provinceId : provinceId)
+      "/province/district/" + provinceId
     );
 
     return res;
@@ -33,7 +33,7 @@ class AuthServiceClass {
   
   async ward(districtId) {
     const res = await addressAxios.get(
-      "/province/ward/" + (districtId < 10 && districtId[0] != '0' ? "0" + districtId : districtId)
+      "/province/ward/" + districtId
     );
 
     return res;

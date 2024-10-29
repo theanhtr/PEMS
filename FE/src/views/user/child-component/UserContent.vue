@@ -71,10 +71,11 @@
         @unchecked-all="uncheckedAllRow"
         @checked-row="checkedRow"
         @unchecked-row="uncheckedRow"
-        @doubleClickRow="openFormUpdate"
+        @doubleClickRow="openFormView"
         @clickFixBtn="openFormUpdate"
         @clickContextDeleteBtn="openConfirmDeletePopup"
         @resizeColumn="resizeUserColumn"
+        @clickContextViewBtn="openFormView"
       />
     </div>
     <div class="page__footer">
@@ -84,7 +85,8 @@
     <AddUserPopup
       v-if="isShowAddUserPopup"
       :dataUpdate="dataUpdate"
-      @clickCancelBtn="isShowAddUserPopup = false"
+      :isViewOnly="isViewOnly"
+      @clickCancelBtn="isShowAddUserPopup = false; isViewOnly = false"
       @reloadData="reloadData"
       ref="addUserPopup"
     />
@@ -117,6 +119,7 @@ export default {
   },
   data() {
     return {
+      isViewOnly: false,
       users: [],
 
       /* lưu dữ id các người dùng đã được chọn */
@@ -514,6 +517,18 @@ export default {
         this.dataUpdate = this.users[indexRow]
       } catch (error) {
         console.log('🚀 ~ file: UserContent.vue:529 ~ openFormUpdate ~ error:', error)
+      }
+    },
+
+    openFormView(rowId) {
+      try {
+        let indexRow = findIndexByAttribute(this.users, 'UserId', rowId)
+
+        this.isShowAddUserPopup = true
+        this.dataUpdate = this.users[indexRow]
+        this.isViewOnly = true
+      } catch (error) {
+        console.log('🚀 ~ file: PredictContent.vue:529 ~ openFormUpdate ~ error:', error)
       }
     },
 

@@ -120,10 +120,11 @@
         @unchecked-all="uncheckedAllRow"
         @checked-row="checkedRow"
         @unchecked-row="uncheckedRow"
-        @doubleClickRow="openFormUpdate"
+        @doubleClickRow="openFormView"
         @clickFixBtn="openFormUpdate"
         @clickContextDeleteBtn="openConfirmDeletePopup"
         @resizeColumn="resizeReportColumn"
+        @clickContextViewBtn="openFormView"
       />
     </div>
     <div class="page__footer">
@@ -133,7 +134,8 @@
     <AddReportPopup
       v-if="isShowAddReportPopup"
       :dataUpdate="dataUpdate"
-      @clickCancelBtn="isShowAddReportPopup = false"
+      :isViewOnly="isViewOnly"
+      @clickCancelBtn="isShowAddReportPopup = false; isViewOnly = false"
       @reloadData="reloadData"
       ref="addReportPopup"
     />
@@ -170,6 +172,8 @@ export default {
   },
   data() {
     return {
+      isViewOnly: false,
+
       reports: [],
 
       cropStates: cropStates,
@@ -282,9 +286,9 @@ export default {
       isShowLayoutSetting: false,
 
       dataFilter: {
-        provinceId: -1,
-        districtId: -1,
-        wardId: -1,
+        provinceId: '',
+        districtId: '',
+        wardId: '',
         dateRange: null,
         reportName: '',
       }
@@ -303,9 +307,9 @@ export default {
   methods: {
     clearFilter() {
       this.dataFilter = {
-        provinceId: -1,
-        districtId: -1,
-        wardId: -1,
+        provinceId: '',
+        districtId: '',
+        wardId: '',
         dateRange: null,
         reportName: '',
       }
@@ -618,6 +622,18 @@ export default {
         this.dataUpdate = this.reports[indexRow]
       } catch (error) {
         console.log('🚀 ~ file: ReportContent.vue:529 ~ openFormUpdate ~ error:', error)
+      }
+    },
+
+    openFormView(rowId) {
+      try {
+        let indexRow = findIndexByAttribute(this.reports, 'ReportId', rowId)
+
+        this.isShowAddReportPopup = true
+        this.dataUpdate = this.reports[indexRow]
+        this.isViewOnly = true
+      } catch (error) {
+        console.log('🚀  ~ openFormUpdate ~ error:', error)
       }
     },
 

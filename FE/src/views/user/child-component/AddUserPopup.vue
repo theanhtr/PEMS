@@ -24,7 +24,7 @@
                 class="w1"
                 ref="username"
                 tabindex="2"
-                :disable="isFromAccountInfo"
+                :disable="isFromAccountInfo || formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
             <div class="flex-row p-b-8">
@@ -38,6 +38,7 @@
                 class="w1"
                 ref="fullName"
                 tabindex="2"
+                :disable="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
             <div class="flex-row p-b-8">
@@ -52,7 +53,7 @@
                 class="w1"
                 tabindex="1"
                 :disableInput="isFromAccountInfo"
-                :disableCombobox="isFromAccountInfo"
+                :disableCombobox="isFromAccountInfo || formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
             <div class="flex-row p-b-8">
@@ -66,6 +67,7 @@
                 class="w1"
                 ref="phoneNumber"
                 tabindex="2"
+                :disable="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
           </div>
@@ -82,6 +84,7 @@
                 :rowsData="computedProvinces"
                 class="w1"
                 tabindex="1"
+                :disableCombobox="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
             <div class="flex-row p-b-8">
@@ -95,6 +98,7 @@
                 :rowsData="computedDistricts"
                 class="w1"
                 tabindex="2"
+                :disableCombobox="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
             <div class="flex-row p-b-8">
@@ -108,6 +112,7 @@
                 :rowsData="computedWards"
                 class="w1"
                 tabindex="3"
+                :disableCombobox="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
             <div class="flex-row p-b-8">
@@ -123,12 +128,13 @@
                 class="w1"
                 ref="fullName"
                 tabindex="2"
+                :disable="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
           </div>
         </div>
       </template>
-      <template #footer>
+      <template #footer v-if="formMode != $_TTANHEnum.FORM_MODE.VIEW">
         <ttanh-separation-line style="border-color: var(--border-color-default); margin: 16px 0px" />
         <div class="flex-row" style="justify-content: space-between; padding-bottom: 16px">
           <div>
@@ -187,7 +193,7 @@
 <script>
 import UserService from '@/service/UserService.js'
 import { ValidateConfig } from '@/config/config.js'
-import { generateUuid, isObjectEmpty } from '@/helper/common.js'
+import { generateUuid, isObjectEmpty, calTitleForm } from '@/helper/common.js'
 import { lengthValidate, emptyValidate, regexValidate } from '@/helper/validate.js'
 import { CommonErrorHandle } from '@/helper/error-handle'
 import { capitalizeFirstLetter } from '@/helper/format-helper'
@@ -197,6 +203,9 @@ import AddressService from '@/service/AddressService.js'
 export default {
   name: 'AddUserPopup',
   props: {
+    isViewOnly: {
+      default: false
+    },
     dataUpdate: {
       default: null
     },
@@ -208,7 +217,7 @@ export default {
 
   async created() {
     this.formMode = this.computedFormMode
-    this.titleForm = this.formMode == this.$_TTANHEnum.FORM_MODE.ADD ? 'Tạo mới người dùng' : 'Cập nhật người dùng';
+    this.titleForm = calTitleForm(this.formMode) + 'người dùng';
     //cập nhật thông tin cho form: form_mode, data
     await this.addInfoForm()
 
@@ -245,11 +254,11 @@ export default {
         username: '',
         fullname: '',
         roleID: '',
-        provinceId: -1,
+        provinceId: '',
         provinceName: '',
-        districtId: -1,
+        districtId: '',
         districtName: '',
-        wardId: -1,
+        wardId: '',
         wardName: '',
         address: '',
         phoneNumber: ''
@@ -333,7 +342,7 @@ export default {
     closeAddForm() {
       if (this.formMode == this.$_TTANHEnum.FORM_MODE.ADD) {
         this.isShowOutConfirmPopup = true
-      } else {
+      } else if (this.formMode == this.$_TTANHEnum.FORM_MODE.UPDATE) {
         let difference = false
 
         for (let attr in this.addUserData) {
@@ -355,6 +364,8 @@ export default {
         } else {
           this.$emit('clickCancelBtn')
         }
+      } else {
+        this.$emit('clickCancelBtn')
       }
     },
 
@@ -365,7 +376,7 @@ export default {
     async addInfoForm() {
       if (this.formMode === this.$_TTANHEnum.FORM_MODE.ADD) {
         this.resetAddUserData()
-      } else if (this.formMode === this.$_TTANHEnum.FORM_MODE.UPDATE) {
+      } else if (this.formMode === this.$_TTANHEnum.FORM_MODE.UPDATE || this.formMode === this.$_TTANHEnum.FORM_MODE.VIEW) {
         for (let attr in this.dataUpdate) {
           let formatAttr = attr[0].toLowerCase() + attr.slice(1, attr.length)
 
@@ -732,7 +743,10 @@ export default {
     },
 
     computedFormMode() {
-      if (!this.dataUpdate) {
+      if (this.isViewOnly) {
+        return this.$_TTANHEnum.FORM_MODE.VIEW
+      }
+      else if (!this.dataUpdate) {
         return this.$_TTANHEnum.FORM_MODE.ADD
       } else {
         return this.$_TTANHEnum.FORM_MODE.UPDATE
