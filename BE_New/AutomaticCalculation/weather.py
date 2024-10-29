@@ -1,3 +1,4 @@
+# Service lấy thông tin dự báo thời tiết
 import requests
 from helper import get_api_url
 
