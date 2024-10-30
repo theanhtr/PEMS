@@ -13,7 +13,7 @@ namespace Predict.API
     /// CreatedBy: TTANH (02/08/2024)
     [Route("api/v1/[controller]")]
     [ApiController]
-    [RoleAuthorize(3)]
+    //[RoleAuthorize(3)]
     public class PredictController : BaseController<Model.Predict>
     {
         IPredictService _predictService;

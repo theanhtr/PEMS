@@ -44,35 +44,62 @@ namespace Predict.Model
         public string? Address { get; set; }
 
         /// <summary>
+        /// Thời gian vụ này bắt đầu
         /// </summary>
         public DateTime? CurrentStartDate { get; set; }
 
         /// <summary>
+        /// Thời gian vụ này kết thúc
         /// </summary>
         public DateTime? CurrentEndDate { get; set; }
 
         /// <summary>
+        /// Thời gian vụ trước kết thúc
         /// </summary>
         public DateTime? PreviousEndDate { get; set; }
 
-
         /// <summary>
+        /// Mức độ cảnh báo của vụ trước
         /// </summary>
-        public int? PreviousLevelWarningId { get; set; }
+        public Guid? PreviousLevelWarningId { get; set; }
 
         /// <summary>
+        /// Tên mức độ cảnh báo của vụ trước
         /// </summary>
-        public int? CropStateId { get; set; }
+        public string? PreviousLevelWarningName { get; set; }
 
         /// <summary>
+        /// Trạng thái của cây trồng vụ này
         /// </summary>
-        public int? PestLevelId { get; set; }
+        public Guid? CropStateId { get; set; }
 
         /// <summary>
+        /// Tên trạng thái của cây trồng vụ này
         /// </summary>
-        public int? LevelWarningId { get; set; }
+        public string? CropStateName { get; set; }
 
         /// <summary>
+        /// Trạng thái của sâu bệnh vụ này
+        /// </summary>
+        public Guid? PestStageId { get; set; }
+
+        /// <summary>
+        /// Tên trạng thái của sâu bệnh vụ này
+        /// </summary>
+        public string? PestStageName { get; set; }
+
+        /// <summary>
+        /// Trạng thái của cảnh báo vụ này
+        /// </summary>
+        public Guid? LevelWarningId { get; set; }
+
+        /// <summary>
+        /// Tên trạng thái của cảnh báo vụ này
+        /// </summary>
+        public string? LevelWarningName { get; set; }
+
+        /// <summary>
+        /// Vụ này đã kết thúc hay chưa
         /// </summary>
         public bool SeasonEnd { get; set; }
         #endregion

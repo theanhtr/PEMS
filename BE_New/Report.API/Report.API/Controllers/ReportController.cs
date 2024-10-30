@@ -12,7 +12,7 @@ namespace Report.API
     /// CreatedBy: TTANH (12/07/2024)
     [Route("api/v1/[controller]")]
     [ApiController]
-    [RoleAuthorize(3)]
+    //[RoleAuthorize(3)]
     public class ReportController : BaseController<Model.Report>
     {
         IReportService _reportService;

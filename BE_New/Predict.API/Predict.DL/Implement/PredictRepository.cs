@@ -21,8 +21,8 @@ namespace Predict.DL
         #region Methods
         public async Task<int?> EndSeasonAsync(Guid? PredictId)
         {
-            var sql = "UPDATE predict SET SeasonEnd = true WHERE PredictId = @PredictId";
-            var predict = _unitOfWork.Connection.QueryFirstOrDefault(sql, new { PredictId = PredictId }, commandType: CommandType.Text);
+            var sql = "UPDATE predict SET SeasonEnd = true, CurrentEndDate = @CurrentEndDate WHERE PredictId = @PredictId";
+            var predict = _unitOfWork.Connection.QueryFirstOrDefault(sql, new { CurrentEndDate = DateTime.Now, PredictId = PredictId }, commandType: CommandType.Text);
             return predict;
         }
 
