@@ -26,7 +26,7 @@ namespace Predict.DL
             return predict;
         }
 
-        public async Task<PredictFilterResult> FiltersPredictAsync(string? ProvinceId, string? DistrictId, string? WardId, DateTime? StartDate, DateTime? EndDate, int CropStateId, int PestLevelId, bool SeasonEnd, int? PageSize, int? PageNumber)
+        public async Task<PredictFilterResult> FiltersPredictAsync(string? ProvinceId, string? DistrictId, string? WardId, DateTime? StartDate, DateTime? EndDate, int CropStageId, int PestStageId, bool SeasonEnd, int? PageSize, int? PageNumber)
         {
             var procedure = $"Proc_Predict_Filter";
 
@@ -36,8 +36,8 @@ namespace Predict.DL
             parameters.Add("@v_WardId", WardId);
             parameters.Add("@v_StartDate", StartDate);
             parameters.Add("@v_EndDate", EndDate);
-            parameters.Add("@v_CropStateId", CropStateId);
-            parameters.Add("@v_PestLevelId", PestLevelId);
+            parameters.Add("@v_CropStageId", CropStageId);
+            parameters.Add("@v_PestStageId", PestStageId);
             parameters.Add("@v_SeasonEnd", SeasonEnd);
             parameters.Add("@v_PageSize", PageSize);
             parameters.Add("@v_PageNumber", PageNumber);
@@ -58,6 +58,40 @@ namespace Predict.DL
             };
 
            return predictFilterResult;
+        }
+        #endregion
+
+        #region Enum
+        public async Task<IEnumerable<Crop>> CropAsync()
+        {
+            var sql = "SELECT * FROM crop";
+            
+            return await _unitOfWork.Connection.QueryAsync<Crop>(sql);
+        }
+
+        public async Task<IEnumerable<Pest>> PestAsync()
+        {
+            var sql = "SELECT * FROM pest";
+            return await _unitOfWork.Connection.QueryAsync<Pest>(sql);
+        }
+
+
+        public async Task<IEnumerable<CropStage>> CropStageAsync(Guid cropId)
+        {
+            var sql = "SELECT * FROM crop_stage WHERE CropId = @CropId ORDER BY CropStageName";
+            return await _unitOfWork.Connection.QueryAsync<CropStage>(sql, new { CropId = cropId });
+        }
+
+        public async Task<IEnumerable<PestStage>> PestStageAsync(Guid pestId)
+        {
+            var sql = "SELECT * FROM pest_stage WHERE PestId = @PestId ORDER BY PestStageName";
+            return await _unitOfWork.Connection.QueryAsync<PestStage>(sql, new { PestId = pestId });
+        }
+
+        public async Task<IEnumerable<LevelWarning>> LevelWarningAsync(Guid pestId, Guid cropId)
+        {
+            var sql = "SELECT * FROM level_warning WHERE PestId = @PestId AND CropId = @CropId";
+            return await _unitOfWork.Connection.QueryAsync<LevelWarning>(sql, new { PestId = pestId, CropId = cropId });
         }
         #endregion
     }

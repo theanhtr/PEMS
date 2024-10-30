@@ -53,5 +53,52 @@ namespace Predict.API
             return StatusCode(StatusCodes.Status200OK, filterData);
         }
         #endregion
+
+        #region Enum
+        /// lấy danh sách các cây trồng
+        [HttpGet("crop")]
+        public async Task<IActionResult> CropAsync()
+        {
+            var data = await _predictService.CropAsync();
+
+            return StatusCode(StatusCodes.Status200OK, data);
+        }
+
+        /// lấy danh sách các sâu bệnh
+        [HttpGet("pest")]
+        public async Task<IActionResult> PestAsync()
+        {
+            var data = await _predictService.PestAsync();
+
+            return StatusCode(StatusCodes.Status200OK, data);
+        }
+
+        /// lấy danh sách các trạng thái cây trồng
+        [HttpGet("crop-stage")]
+        public async Task<IActionResult> CropStageAsync([FromQuery] Guid cropId)
+        {
+            var data = await _predictService.CropStageAsync(cropId);
+
+            return StatusCode(StatusCodes.Status200OK, data);
+        }
+
+        /// lấy danh sách các trạng thái sâu bệnh
+        [HttpGet("pest-stage")]
+        public async Task<IActionResult> PestStageAsync([FromQuery] Guid pestId)
+        {
+            var data = await _predictService.PestStageAsync(pestId);
+
+            return StatusCode(StatusCodes.Status200OK, data);
+        }
+
+        /// lấy danh sách các mức độ cảnh báo
+        [HttpGet("level-warning")]
+        public async Task<IActionResult> LevelWarningAsync([FromQuery] Guid pestId, [FromQuery] Guid cropId)
+        {
+            var data = await _predictService.LevelWarningAsync(pestId, cropId);
+
+            return StatusCode(StatusCodes.Status200OK, data);
+        }
+        #endregion
     }
 }

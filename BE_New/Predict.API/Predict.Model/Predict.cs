@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Base.Model;
+﻿using Base.Model;
 
 namespace Predict.Model
 {
@@ -71,12 +70,32 @@ namespace Predict.Model
         /// <summary>
         /// Trạng thái của cây trồng vụ này
         /// </summary>
-        public Guid? CropStateId { get; set; }
+        public Guid? CropId { get; set; }
+
+        /// <summary>
+        /// Trạng thái của cây trồng vụ này
+        /// </summary>
+        public string? CropName { get; set; }
+
+        /// <summary>
+        /// Trạng thái của cây trồng vụ này
+        /// </summary>
+        public Guid? PestId { get; set; }
+
+        /// <summary>
+        /// Trạng thái của cây trồng vụ này
+        /// </summary>
+        public string? PestName { get; set; }
+
+        /// <summary>
+        /// Trạng thái của cây trồng vụ này
+        /// </summary>
+        public Guid? CropStageId { get; set; }
 
         /// <summary>
         /// Tên trạng thái của cây trồng vụ này
         /// </summary>
-        public string? CropStateName { get; set; }
+        public string? CropStageName { get; set; }
 
         /// <summary>
         /// Trạng thái của sâu bệnh vụ này

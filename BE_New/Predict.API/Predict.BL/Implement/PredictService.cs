@@ -61,7 +61,7 @@ namespace Predict.BL
 
 
             var predictFilterResult = await _predictRepository.FiltersPredictAsync(predictFilterParam.ProvinceId, predictFilterParam.DistrictId, predictFilterParam.WardId,
-                                                                        startDate, endDate, predictFilterParam.CropStateId, predictFilterParam.PestLevelId,
+                                                                        startDate, endDate, predictFilterParam.CropStageId, predictFilterParam.PestStageId,
                                                                         predictFilterParam.SeasonEnd, pageSize, pageNumber);
 
             var totalRecord = predictFilterResult.Total;
@@ -84,6 +84,34 @@ namespace Predict.BL
             var filterData = new BaseFilterResponse<Model.Predict>(totalPage, totalRecord, currentPage, currentPageRecords, predictFilterResult.Predicts.ToList());
 
             return filterData;
+        }
+        #endregion
+
+        #region Enum
+        public async Task<IEnumerable<Crop>> CropAsync()
+        {
+            return await _predictRepository.CropAsync();
+        }
+
+        public async Task<IEnumerable<Pest>> PestAsync()
+        {
+            return await _predictRepository.PestAsync();
+        }
+
+
+        public async Task<IEnumerable<CropStage>> CropStageAsync(Guid cropId)
+        {
+            return await _predictRepository.CropStageAsync(cropId);
+        }
+
+        public async Task<IEnumerable<PestStage>> PestStageAsync(Guid pestId)
+        {
+            return await _predictRepository.PestStageAsync(pestId);
+        }
+
+        public async Task<IEnumerable<LevelWarning>> LevelWarningAsync(Guid pestId, Guid cropId)
+        {
+            return await _predictRepository.LevelWarningAsync(pestId, cropId);
         }
         #endregion
     }
