@@ -422,8 +422,8 @@ const vi = {
         districtId: 'Quận/Huyện',
         wardId: 'Phường/Xã',
         address: 'Địa chỉ',
-        pestLevelId: 'Giai đoạn sâu bệnh',
-        cropStateId: 'Giai đoạn cây trồng',
+        pestStageId: 'Giai đoạn sâu bệnh',
+        cropStageId: 'Giai đoạn cây trồng',
         reportName: 'Người báo cáo',
       }
     }

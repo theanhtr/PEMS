@@ -1,4 +1,4 @@
-export var pestLevels = [
+export var pestStages = [
   { id: 1, name: 'Trứng' },
 
   { id: 2, name: 'Sâu non 1' },

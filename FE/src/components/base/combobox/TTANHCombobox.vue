@@ -50,13 +50,13 @@
       <div v-else-if="type === 'single-row'" class="combobox__data-single-row">
         <div
           v-for="row in computedRowsDataFilter"
-          :key="row.id"
+          :key="row[this.idField]"
           class="combobox__value"
-          :class="selectedRows.includes(row.id) ? 'combobox__value--selected' : ''"
-          @click="selectValue(row.id)"
+          :class="selectedRows.includes(row[this.idField]) ? 'combobox__value--selected' : ''"
+          @click="selectValue(row[this.idField])"
           :style="{ textAlign: 'left' }"
         >
-          {{ row.name }}
+          {{ row[this.nameField] }}
         </div>
       </div>
     </div>
@@ -86,6 +86,21 @@ export default {
     columnsInfo: {
       default: [],
       type: Array
+    },
+
+    idField: {
+      default: 'id',
+      type: String
+    },
+
+    nameField: {
+      default: 'name',
+      type: String
+    },
+
+    codeField: {
+      default: 'code',
+      type: String
     },
 
     /**
@@ -144,6 +159,9 @@ export default {
     },
     disableCombobox: {
       default: false
+    },
+    textInputCreated: {
+      default: ''
     }
   },
   data() {
@@ -170,6 +188,10 @@ export default {
 
   mounted() {
     this.rowsDataFilter = this.rowsData
+
+    if (this.textInputCreated !== '') {
+      this.$refs.inputSearch.value = this.textInputCreated
+    }
   },
 
   methods: {
@@ -240,9 +262,9 @@ export default {
         }
 
         for (let i = 0; i < this.rowsData.length; i++) {
-          if (this.rowsData[i].id == id) {
+          if (this.rowsData[i][this.idField] == id) {
             if (this.$refs.inputSearch) {
-              this.$refs.inputSearch.value = this.rowsData[i].name
+              this.$refs.inputSearch.value = this.rowsData[i][this.nameField]
             }
             break
           }
@@ -291,8 +313,7 @@ export default {
         // so sánh input value với code và name của từng row data
         for (let i = 0; i < rowsDataLength; i++) {
           if (
-            (this.rowsData[i].code.toLowerCase().includes(valueInputSearch.toLowerCase()) ||
-              this.rowsData[i].name.toLowerCase().includes(valueInputSearch.toLowerCase())) &&
+            (this.rowsData[i][this.nameField].toLowerCase().includes(valueInputSearch.toLowerCase())) &&
             valueInputSearch !== ''
           ) {
             indexFinded = i
@@ -314,7 +335,7 @@ export default {
 
           this.rowsDataFilter.unshift(this.rowsData[indexFinded])
 
-          this.selectedRows.unshift(this.rowsData[indexFinded].id)
+          this.selectedRows.unshift(this.rowsData[indexFinded][this.idField])
         }
       } catch (error) {
         console.log('🚀 ~ file: TTANHCombobox.vue:266 ~ changeInput ~ error:', error)
@@ -402,9 +423,9 @@ export default {
         ) {
           this.$refs.comboboxData.scrollTo(0, this.indexHover * 25)
 
-          this.selectedRows = [this.computedRowsDataFilter[this.indexHover].id]
+          this.selectedRows = [this.computedRowsDataFilter[this.indexHover][this.idField]]
 
-          this.setValueInput(this.computedRowsDataFilter[this.indexHover].id)
+          this.setValueInput(this.computedRowsDataFilter[this.indexHover][this.idField])
 
           if (!this.isShowComboboxData) {
             this.showComboboxData()
@@ -469,7 +490,7 @@ export default {
       let indexFinded = -1
 
       for (let i = 0; i < rowsDataLength; i++) {
-        if (this.rowsData[i].id === this.modelValue) {
+        if (this.rowsData[i][this.idField] === this.modelValue) {
           indexFinded = i
           break
         }

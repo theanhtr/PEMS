@@ -13,7 +13,9 @@
           labelText="Tỉnh/Thành phố"
           :inputRequired="false"
           @show-combobox="getProvinces"
-          :rowsData="computedProvinces"
+          idField="province_id"
+          nameField="province_name"
+          :rowsData="dataAddress.provinces"
           class="w1/4"
           tabindex="1"
         />
@@ -24,7 +26,9 @@
           labelText="Quận/Huyện"
           :inputRequired="false"
           @show-combobox="getDistricts"
-          :rowsData="computedDistricts"
+          idField="district_id"
+          nameField="district_name"
+          :rowsData="dataAddress.districts"
           class="w1/4"
           tabindex="2"
         />
@@ -35,7 +39,9 @@
           labelText="Phường/Xã"
           :inputRequired="false"
           @show-combobox="getWards"
-          :rowsData="computedWards"
+          idField="ward_id"
+          nameField="ward_name"
+          :rowsData="dataAddress.wards"
           class="w1/4"
           tabindex="3"
         />
@@ -58,22 +64,22 @@
           ></VueDatePicker>
         </div>
         <ttanh-combobox
-          v-model="dataFilter.cropStateId"
-          ref="cropStateId"
+          v-model="dataFilter.cropStageId"
+          ref="cropStageId"
           type="single-row"
           labelText="Giai đoạn cây trồng"
           :inputRequired="false"
-          :rowsData="cropStates"
+          :rowsData="cropStages"
           class="w1/4"
           tabindex="2"
         />
         <ttanh-combobox
-          v-model="dataFilter.pestLevelId"
-          ref="pestLevelId"
+          v-model="dataFilter.pestStageId"
+          ref="pestStageId"
           type="single-row"
           labelText="Mức độ sâu bệnh"
           :inputRequired="false"
-          :rowsData="pestLevels"
+          :rowsData="pestStages"
           class="w1/4"
           tabindex="3"
         />
@@ -202,9 +208,9 @@ import { findIndexByAttribute, sortArrayByAttribute } from '@/helper/common.js'
 import { formatToNumber } from '@/helper/textfield-format-helper.js'
 import { debounce } from '@/helper/debounce.js'
 import { isProxy, toRaw } from 'vue'
-import { pestLevels } from '../../../data_combobox/pestLevel'
+import { pestStages } from '../../../data_combobox/pestStage'
 import { levelWarnings } from '../../../data_combobox/levelWarning'
-import { cropStates } from '../../../data_combobox/cropState'
+import { cropStages } from '../../../data_combobox/cropStage'
 
 export default {
   name: 'PredictContent',
@@ -221,9 +227,9 @@ export default {
 
       seasonEnd: false,
 
-      cropStates: cropStates,
+      cropStages: cropStages,
 
-      pestLevels: pestLevels,
+      pestStages: pestStages,
 
       dataAddress: {
         provinces: [],
@@ -336,8 +342,8 @@ export default {
         districtId: '',
         wardId: '',
         dateRange: null,
-        cropStateId: -1,
-        pestLevelId: -1
+        cropStageId: -1,
+        pestStageId: -1
       }
     }
   },
@@ -358,15 +364,15 @@ export default {
         districtId: '',
         wardId: '',
         dateRange: null,
-        cropStateId: -1,
-        pestLevelId: -1
+        cropStageId: -1,
+        pestStageId: -1
       }
 
       this.$refs.provinceId.$refs.inputSearch.value = ''
       this.$refs.districtId.$refs.inputSearch.value = ''
       this.$refs.wardId.$refs.inputSearch.value = ''
-      this.$refs.cropStateId.$refs.inputSearch.value = ''
-      this.$refs.pestLevelId.$refs.inputSearch.value = ''
+      this.$refs.cropStageId.$refs.inputSearch.value = ''
+      this.$refs.pestStageId.$refs.inputSearch.value = ''
 
       this.getPredicts()
     },
@@ -417,8 +423,8 @@ export default {
           WardId: this.dataFilter.wardId,
           StartDate: startDate,
           EndDate: endDate,
-          CropStateId: this.dataFilter.cropStateId,
-          PestLevelId: this.dataFilter.pestLevelId,
+          CropStageId: this.dataFilter.cropStageId,
+          PestStageId: this.dataFilter.pestStageId,
           SeasonEnd: this.seasonEnd,
           PageSize: this.pagingData.pageSize,
           PageNumber: this.pagingData.pageNumber
@@ -1038,72 +1044,6 @@ export default {
         return haveIdPredicts
       } catch (error) {
         console.log('🚀 ~ file: PredictList.vue:457 ~ computedPredicts ~ error:', error)
-      }
-    },
-
-    computedProvinces() {
-      try {
-        let provincesFormat = []
-
-        this.dataAddress.provinces.forEach((province) => {
-          let id = province.province_id
-          let name = province.province_name
-          let code = province.province_name
-
-          provincesFormat.push({
-            id,
-            name,
-            code
-          })
-        })
-
-        return provincesFormat
-      } catch (error) {
-        console.log('🚀 ~ file: EmployeeList.vue:457 ~ computedEmployees ~ error:', error)
-      }
-    },
-
-    computedDistricts() {
-      try {
-        let districtsFormat = []
-
-        this.dataAddress.districts.forEach((district) => {
-          let id = district.district_id
-          let name = district.district_name
-          let code = district.district_name
-
-          districtsFormat.push({
-            id,
-            name,
-            code
-          })
-        })
-
-        return districtsFormat
-      } catch (error) {
-        console.log('🚀 ~ file: EmployeeList.vue:457 ~ computedEmployees ~ error:', error)
-      }
-    },
-
-    computedWards() {
-      try {
-        let wardsFormat = []
-
-        this.dataAddress.wards.forEach((ward) => {
-          let id = ward.ward_id
-          let name = ward.ward_name
-          let code = ward.ward_name
-
-          wardsFormat.push({
-            id,
-            name,
-            code
-          })
-        })
-
-        return wardsFormat
-      } catch (error) {
-        console.log('🚀 ~ file: EmployeeList.vue:457 ~ computedEmployees ~ error:', error)
       }
     },
 

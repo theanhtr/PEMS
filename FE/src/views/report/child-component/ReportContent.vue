@@ -13,7 +13,9 @@
           labelText="Tỉnh/Thành phố"
           :inputRequired="false"
           @show-combobox="getProvinces"
-          :rowsData="computedProvinces"
+          idField="province_id"
+          nameField="province_name"
+          :rowsData="dataAddress.provinces"
           class="w1/4"
           tabindex="1"
         />
@@ -24,7 +26,9 @@
           labelText="Quận/Huyện"
           :inputRequired="false"
           @show-combobox="getDistricts"
-          :rowsData="computedDistricts"
+          idField="district_id"
+          nameField="district_name"
+          :rowsData="dataAddress.districts"
           class="w1/4"
           tabindex="2"
         />
@@ -35,7 +39,9 @@
           labelText="Phường/Xã"
           :inputRequired="false"
           @show-combobox="getWards"
-          :rowsData="computedWards"
+          idField="ward_id"
+          nameField="ward_name"
+          :rowsData="dataAddress.wards"
           class="w1/4"
           tabindex="3"
         />
@@ -161,8 +167,8 @@ import { findIndexByAttribute, sortArrayByAttribute } from '@/helper/common.js'
 import { formatToNumber } from '@/helper/textfield-format-helper.js'
 import { debounce } from '@/helper/debounce.js'
 import { isProxy, toRaw } from 'vue'
-import { pestLevels } from '../../../data_combobox/pestLevel'
-import { cropStates } from '../../../data_combobox/cropState'
+import { pestStages } from '../../../data_combobox/pestStage'
+import { cropStages } from '../../../data_combobox/cropStage'
 
 export default {
   name: 'ReportContent',
@@ -176,9 +182,9 @@ export default {
 
       reports: [],
 
-      cropStates: cropStates,
+      cropStages: cropStages,
 
-      pestLevels: pestLevels,
+      pestStages: pestStages,
 
       dataAddress: {
         provinces: [],
@@ -218,6 +224,42 @@ export default {
           isPin: false
         },
         {
+          id: 'CropName',
+          name: 'TÊN CÂY TRỒNG',
+          size: '150px',
+          textAlign: 'center',
+          format: 'text',
+          isShow: true,
+          isPin: false
+        },
+        {
+          id: 'CropStageName',
+          name: 'GIAI ĐOẠN CÂY TRỒNG',
+          size: '150px',
+          textAlign: 'center',
+          format: 'text',
+          isShow: true,
+          isPin: false
+        },
+        {
+          id: 'PestName',
+          name: 'TÊN SÂU HẠI',
+          size: '150px',
+          textAlign: 'center',
+          format: 'text',
+          isShow: true,
+          isPin: false
+        },
+        {
+          id: 'PestStageName',
+          name: 'GIAI ĐOẠN SÂU HẠI',
+          size: '150px',
+          textAlign: 'center',
+          format: 'text',
+          isShow: true,
+          isPin: false
+        },
+        {
           id: 'ReportName',
           name: 'NGƯỜI BÁO CÁO',
           size: '150px',
@@ -234,7 +276,7 @@ export default {
           format: 'date',
           isShow: true,
           isPin: false
-        }
+        },
       ],
 
       /* thông tin cột thuần được gửi từ api đã sắp xếp */
@@ -936,72 +978,6 @@ export default {
         return haveIdReports
       } catch (error) {
         console.log('🚀 ~ file: ReportList.vue:457 ~ computedReports ~ error:', error)
-      }
-    },
-
-    computedProvinces() {
-      try {
-        let provincesFormat = []
-
-        this.dataAddress.provinces.forEach((province) => {
-          let id = province.province_id
-          let name = province.province_name
-          let code = province.province_name
-
-          provincesFormat.push({
-            id,
-            name,
-            code
-          })
-        })
-
-        return provincesFormat
-      } catch (error) {
-        console.log('🚀 ~ file: EmployeeList.vue:457 ~ computedEmployees ~ error:', error)
-      }
-    },
-
-    computedDistricts() {
-      try {
-        let districtsFormat = []
-
-        this.dataAddress.districts.forEach((district) => {
-          let id = district.district_id
-          let name = district.district_name
-          let code = district.district_name
-
-          districtsFormat.push({
-            id,
-            name,
-            code
-          })
-        })
-
-        return districtsFormat
-      } catch (error) {
-        console.log('🚀 ~ file: EmployeeList.vue:457 ~ computedEmployees ~ error:', error)
-      }
-    },
-
-    computedWards() {
-      try {
-        let wardsFormat = []
-
-        this.dataAddress.wards.forEach((ward) => {
-          let id = ward.ward_id
-          let name = ward.ward_name
-          let code = ward.ward_name
-
-          wardsFormat.push({
-            id,
-            name,
-            code
-          })
-        })
-
-        return wardsFormat
-      } catch (error) {
-        console.log('🚀 ~ file: EmployeeList.vue:457 ~ computedEmployees ~ error:', error)
       }
     },
 
