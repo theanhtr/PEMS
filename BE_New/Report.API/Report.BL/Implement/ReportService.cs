@@ -37,8 +37,7 @@ namespace Report.BL
 
 
 
-            var reportFilterResult = await _reportRepository.FiltersReportAsync(reportFilterParam.ProvinceId, reportFilterParam.DistrictId, reportFilterParam.WardId,
-                                                                        reportStartDate, reportEndDate, reportFilterParam.ReportName, pageSize, pageNumber);
+            var reportFilterResult = await _reportRepository.FiltersReportAsync(reportFilterParam, reportStartDate, reportEndDate, pageSize, pageNumber);
 
             var totalRecord = reportFilterResult.Total;
             var totalPage = Convert.ToInt32(Math.Ceiling((double)totalRecord / (double)pageSize));

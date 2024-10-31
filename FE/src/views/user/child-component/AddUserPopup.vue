@@ -81,7 +81,10 @@
                 type="single-row"
                 labelText="Tỉnh/Thành phố"
                 @show-combobox="getProvinces"
-                :rowsData="computedProvinces"
+                idField="province_id"
+                nameField="province_name"
+                :textInputCreated="addUserData.provinceName"
+                :rowsData="dataAddress.provinces"
                 class="w1"
                 tabindex="1"
                 :disableCombobox="formMode === $_TTANHEnum.FORM_MODE.VIEW"
@@ -95,7 +98,10 @@
                 type="single-row"
                 labelText="Quận/Huyện"
                 @show-combobox="getDistricts"
-                :rowsData="computedDistricts"
+                idField="district_id"
+                nameField="district_name"
+                :textInputCreated="addUserData.districtName"
+                :rowsData="dataAddress.districts"
                 class="w1"
                 tabindex="2"
                 :disableCombobox="formMode === $_TTANHEnum.FORM_MODE.VIEW"
@@ -109,7 +115,10 @@
                 type="single-row"
                 labelText="Phường/Xã"
                 @show-combobox="getWards"
-                :rowsData="computedWards"
+                idField="ward_id"
+                nameField="ward_name"
+                :textInputCreated="addUserData.wardName"
+                :rowsData="dataAddress.wards"
                 class="w1"
                 tabindex="3"
                 :disableCombobox="formMode === $_TTANHEnum.FORM_MODE.VIEW"
@@ -380,10 +389,6 @@ export default {
           this.addUserData[formatAttr] = this.dataUpdate[attr] !== null ? this.dataUpdate[attr] : ''
         }
       }
-
-      await this.getProvinces()
-      await this.getDistricts(this.addUserData.provinceId)
-      await this.getWards(this.addUserData.districtId)
     },
 
     /**
@@ -673,72 +678,6 @@ export default {
   },
 
   computed: {
-    computedProvinces() {
-      try {
-        let provincesFormat = []
-
-        this.dataAddress.provinces.forEach((province) => {
-          let id = province.province_id
-          let name = province.province_name
-          let code = province.province_name
-
-          provincesFormat.push({
-            id,
-            name,
-            code
-          })
-        })
-
-        return provincesFormat
-      } catch (error) {
-        console.log('🚀 ~ file: EmployeeList.vue:457 ~ computedEmployees ~ error:', error)
-      }
-    },
-
-    computedDistricts() {
-      try {
-        let districtsFormat = []
-
-        this.dataAddress.districts.forEach((district) => {
-          let id = district.district_id
-          let name = district.district_name
-          let code = district.district_name
-
-          districtsFormat.push({
-            id,
-            name,
-            code
-          })
-        })
-
-        return districtsFormat
-      } catch (error) {
-        console.log('🚀 ~ file: EmployeeList.vue:457 ~ computedEmployees ~ error:', error)
-      }
-    },
-
-    computedWards() {
-      try {
-        let wardsFormat = []
-
-        this.dataAddress.wards.forEach((ward) => {
-          let id = ward.ward_id
-          let name = ward.ward_name
-          let code = ward.ward_name
-
-          wardsFormat.push({
-            id,
-            name,
-            code
-          })
-        })
-
-        return wardsFormat
-      } catch (error) {
-        console.log('🚀 ~ file: EmployeeList.vue:457 ~ computedEmployees ~ error:', error)
-      }
-    },
-
     computedFormMode() {
       if (this.isViewOnly) {
         return this.$_TTANHEnum.FORM_MODE.VIEW

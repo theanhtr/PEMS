@@ -139,7 +139,7 @@
                 ref="pestId"
                 type="single-row"
                 labelText="Tên sâu bệnh"
-                :inputRequired="true"
+                :inputRequired="false"
                 :rowsData="pestsRowData"
                 @show-combobox="getPests"
                 idField="PestId"
@@ -157,7 +157,7 @@
                 ref="pestStageId"
                 type="single-row"
                 labelText="Giai đoạn sâu bệnh"
-                :inputRequired="true"
+                :inputRequired="false"
                 :rowsData="pestStagesRowData"
                 @show-combobox="getPestStages"
                 idField="PestStageId"
@@ -327,10 +327,8 @@ export default {
         districtId: 'Empty',
         wardId: 'Empty',
         address: 'MaxLength255',
-        pestStageId: 'Empty',
         cropStageId: 'Empty',
         cropId: 'Empty',
-        pestId: 'Empty',
         reportName: 'Empty'
       },
 

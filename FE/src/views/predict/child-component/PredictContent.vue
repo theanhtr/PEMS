@@ -472,9 +472,9 @@ export default {
         pestId: null
       }
 
-      this.$refs.provinceIdId.$refs.inputSearch.value = ''
-      this.$refs.districtIdId.$refs.inputSearch.value = ''
-      this.$refs.wardIdId.$refs.inputSearch.value = ''
+      this.$refs.provinceId.$refs.inputSearch.value = ''
+      this.$refs.districtId.$refs.inputSearch.value = ''
+      this.$refs.wardId.$refs.inputSearch.value = ''
       this.$refs.cropStageId.$refs.inputSearch.value = ''
       this.$refs.pestStageId.$refs.inputSearch.value = ''
       this.$refs.cropId.$refs.inputSearch.value = ''

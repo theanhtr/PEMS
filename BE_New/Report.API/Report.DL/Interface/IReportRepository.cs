@@ -9,6 +9,6 @@ namespace Report.DL
     /// Created by: TTANH (12/07/2024)
     public interface IReportRepository : IBaseRepository<Model.Report>
     {
-        Task<ReportFilterResult> FiltersReportAsync(string? ProvinceId, string? DistrictId, string? WardId, DateTime? ReportStartDate, DateTime? ReportEndDate, string ReportName, int? PageSize, int? PageNumber);
+        Task<ReportFilterResult> FiltersReportAsync(ReportFilterParam reportFilterParam, DateTime? ReportStartDate, DateTime? ReportEndDate, int? PageSize, int? PageNumber);
     }
 }
