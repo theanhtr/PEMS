@@ -17,7 +17,7 @@
               <ttanh-combobox
                 :errorText="errorTextPredictData.provinceId"
                 v-model="addPredictData.provinceId"
-                ref="province"
+                ref="provinceId"
                 type="single-row"
                 labelText="Tỉnh/Thành phố"
                 :inputRequired="true"
@@ -35,7 +35,7 @@
               <ttanh-combobox
                 :errorText="errorTextPredictData.districtId"
                 v-model="addPredictData.districtId"
-                ref="district"
+                ref="districtId"
                 type="single-row"
                 labelText="Quận/Huyện"
                 :inputRequired="true"
@@ -53,7 +53,7 @@
               <ttanh-combobox
                 :errorText="errorTextPredictData.wardId"
                 v-model="addPredictData.wardId"
-                ref="ward"
+                ref="wardId"
                 type="single-row"
                 labelText="Phường/Xã"
                 :inputRequired="true"
@@ -209,7 +209,7 @@
       @cancel-click="
         () => {
           isShowOutConfirmPopup = false
-          $refs.province.focus()
+          $refs.provinceId.focus()
         }
       "
       @no-click="$emit('clickCancelBtn')"
@@ -258,10 +258,10 @@ export default {
 
   mounted() {
     //foucs vào Predict code lần đầu mở form
-    this.$refs.province.focus()
-    this.$refs.province.setValueInput(this.addPredictData.provinceId)
-    this.$refs.district.setValueInput(this.addPredictData.districtId)
-    this.$refs.ward.setValueInput(this.addPredictData.wardId)
+    this.$refs.provinceId.focus()
+    this.$refs.provinceId.setValueInput(this.addPredictData.provinceId)
+    this.$refs.districtId.setValueInput(this.addPredictData.districtId)
+    this.$refs.wardId.setValueInput(this.addPredictData.wardId)
   },
 
   unmounted() {},
@@ -495,9 +495,9 @@ export default {
         let isSuccess = true
         this.isLoading = true
 
-        this.addPredictData.provinceName = this.$refs.province.getCurrentInputValue()
-        this.addPredictData.districtName = this.$refs.district.getCurrentInputValue()
-        this.addPredictData.wardName = this.$refs.ward.getCurrentInputValue()
+        this.addPredictData.provinceName = this.$refs.provinceId.getCurrentInputValue()
+        this.addPredictData.districtName = this.$refs.districtId.getCurrentInputValue()
+        this.addPredictData.wardName = this.$refs.wardId.getCurrentInputValue()
 
         this.addPredictData.cropName = this.$refs.cropId.getCurrentInputValue()
         this.addPredictData.pestName = this.$refs.pestId.getCurrentInputValue()
@@ -740,7 +740,7 @@ export default {
     onStoreAndAddBtnKeyDown(event) {
       if (event.keyCode === this.$_TTANHEnum.KEY_CODE.TAB && !event.shiftKey) {
         event.preventDefault()
-        this.$refs.province.focus()
+        this.$refs.provinceId.focus()
       }
     }
   },

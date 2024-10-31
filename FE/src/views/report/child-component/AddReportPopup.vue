@@ -16,7 +16,7 @@
               <ttanh-combobox
                 :errorText="errorTextreportData.provinceId"
                 v-model="addreportData.provinceId"
-                ref="province"
+                ref="provinceId"
                 type="single-row"
                 labelText="Tỉnh/Thành phố"
                 :inputRequired="true"
@@ -34,7 +34,7 @@
               <ttanh-combobox
                 :errorText="errorTextreportData.districtId"
                 v-model="addreportData.districtId"
-                ref="district"
+                ref="districtId"
                 type="single-row"
                 labelText="Quận/Huyện"
                 :inputRequired="true"
@@ -52,7 +52,7 @@
               <ttanh-combobox
                 :errorText="errorTextreportData.wardId"
                 v-model="addreportData.wardId"
-                ref="ward"
+                ref="wardId"
                 type="single-row"
                 labelText="Phường/Xã"
                 :inputRequired="true"
@@ -210,7 +210,7 @@
       @cancel-click="
         () => {
           isShowOutConfirmPopup = false
-          $refs.province.focus()
+          $refs.provinceId.focus()
         }
       "
       @no-click="$emit('clickCancelBtn')"
@@ -258,10 +258,10 @@ export default {
 
   mounted() {
     //foucs vào report code lần đầu mở form
-    this.$refs.province.focus()
-    this.$refs.province.setValueInput(this.addreportData.provinceId)
-    this.$refs.district.setValueInput(this.addreportData.districtId)
-    this.$refs.ward.setValueInput(this.addreportData.wardId)
+    this.$refs.provinceId.focus()
+    this.$refs.provinceId.setValueInput(this.addreportData.provinceId)
+    this.$refs.districtId.setValueInput(this.addreportData.districtId)
+    this.$refs.wardId.setValueInput(this.addreportData.wardId)
   },
 
   unmounted() {},
@@ -508,9 +508,9 @@ export default {
         let isSuccess = true
         this.isLoading = true
 
-        this.addreportData.provinceName = this.$refs.province.getCurrentInputValue()
-        this.addreportData.districtName = this.$refs.district.getCurrentInputValue()
-        this.addreportData.wardName = this.$refs.ward.getCurrentInputValue()
+        this.addreportData.provinceName = this.$refs.provinceId.getCurrentInputValue()
+        this.addreportData.districtName = this.$refs.districtId.getCurrentInputValue()
+        this.addreportData.wardName = this.$refs.wardId.getCurrentInputValue()
 
         this.addreportData.pestStageName = this.$refs.pestStageId.getCurrentInputValue()
         this.addreportData.cropStageName = this.$refs.cropStageId.getCurrentInputValue()
@@ -754,7 +754,7 @@ export default {
     onStoreAndAddBtnKeyDown(event) {
       if (event.keyCode === this.$_TTANHEnum.KEY_CODE.TAB && !event.shiftKey) {
         event.preventDefault()
-        this.$refs.province.focus()
+        this.$refs.provinceId.focus()
       }
     }
   },

@@ -77,7 +77,7 @@
               <ttanh-combobox
                 :errorText="errorTextUserData.provinceId"
                 v-model="addUserData.provinceId"
-                ref="province"
+                ref="provinceId"
                 type="single-row"
                 labelText="Tỉnh/Thành phố"
                 @show-combobox="getProvinces"
@@ -91,7 +91,7 @@
               <ttanh-combobox
                 :errorText="errorTextUserData.districtId"
                 v-model="addUserData.districtId"
-                ref="district"
+                ref="districtId"
                 type="single-row"
                 labelText="Quận/Huyện"
                 @show-combobox="getDistricts"
@@ -105,7 +105,7 @@
               <ttanh-combobox
                 :errorText="errorTextUserData.wardId"
                 v-model="addUserData.wardId"
-                ref="ward"
+                ref="wardId"
                 type="single-row"
                 labelText="Phường/Xã"
                 @show-combobox="getWards"
@@ -424,9 +424,9 @@ export default {
         let isSuccess = true
         this.isLoading = true
 
-        this.addUserData.provinceName = this.$refs.province.getCurrentInputValue()
-        this.addUserData.districtName = this.$refs.district.getCurrentInputValue()
-        this.addUserData.wardName = this.$refs.ward.getCurrentInputValue()
+        this.addUserData.provinceName = this.$refs.provinceId.getCurrentInputValue()
+        this.addUserData.districtName = this.$refs.districtId.getCurrentInputValue()
+        this.addUserData.wardName = this.$refs.wardId.getCurrentInputValue()
 
         //lọc loại những trường rỗng
         var dataSendApi = {}
@@ -667,7 +667,7 @@ export default {
     onStoreAndAddBtnKeyDown(event) {
       if (event.keyCode === this.$_TTANHEnum.KEY_CODE.TAB && !event.shiftKey) {
         event.preventDefault()
-        this.$refs.province.focus()
+        this.$refs.provinceId.focus()
       }
     }
   },

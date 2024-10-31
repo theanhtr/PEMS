@@ -457,7 +457,7 @@ export default {
     onStoreAndAddBtnKeyDown(event) {
       if (event.keyCode === this.$_TTANHEnum.KEY_CODE.TAB && !event.shiftKey) {
         event.preventDefault()
-        this.$refs.province.focus()
+        this.$refs.provinceId.focus()
       }
     }
   },
