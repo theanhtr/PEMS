@@ -107,7 +107,7 @@
                 v-model="addPredictData.pestId"
                 ref="pestId"
                 type="single-row"
-                labelText="Tên sâu hại"
+                labelText="Tên sâu bệnh"
                 :inputRequired="true"
                 :rowsData="pestsRowData"
                 @show-combobox="getPests"
@@ -285,20 +285,20 @@ export default {
       previousLevelWarning: levelWarnings,
 
       addPredictData: {
-        provinceId: '',
+        provinceId: null,
         provinceName: '',
-        districtId: '',
+        districtId: null,
         districtName: '',
-        wardId: '',
+        wardId: null,
         wardName: '',
         address: '',
         previousEndDate: null,
-        previousLevelWarningId: '',
+        previousLevelWarningId: null,
         previousLevelWarningName: '',
         currentStartDate: null,
         cropName: '',
-        cropId: '',
-        pestId: '',
+        cropId: null,
+        pestId: null,
         pestName: ''
       },
 
@@ -324,8 +324,6 @@ export default {
         districtId: 'Empty',
         wardId: 'Empty',
         address: 'MaxLength255',
-        previousEndDate: '',
-        previousLevelWarningId: '',
         currentStartDate: 'Empty',
         cropId: 'Empty',
         pestId: 'Empty',
@@ -456,10 +454,6 @@ export default {
 
           this.addPredictData[formatAttr] = this.dataUpdate[attr] !== null ? this.dataUpdate[attr] : ''
         }
-
-        await this.getProvinces()
-        await this.getDistricts(this.addPredictData.provinceId)
-        await this.getWards(this.addPredictData.districtId)
       }
     },
 
@@ -517,7 +511,7 @@ export default {
             if (this.addPredictData[key] !== '') {
               dataSendApi[key] = this.addPredictData[key]
             }
-          } else if (this.addPredictData[key]) {
+          } else if (this.addPredictData[key] !== null && this.addPredictData[key] !== '') {
             dataSendApi[key] = this.addPredictData[key]
           } else {
             dataSendApi[key] = null

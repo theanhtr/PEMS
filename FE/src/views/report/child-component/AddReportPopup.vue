@@ -138,7 +138,7 @@
                 v-model="addreportData.pestId"
                 ref="pestId"
                 type="single-row"
-                labelText="Tên sâu hại"
+                labelText="Tên sâu bệnh"
                 :inputRequired="true"
                 :rowsData="pestsRowData"
                 @show-combobox="getPests"
@@ -156,7 +156,7 @@
                 v-model="addreportData.pestStageId"
                 ref="pestStageId"
                 type="single-row"
-                labelText="Giai đoạn sâu hại"
+                labelText="Giai đoạn sâu bệnh"
                 :inputRequired="true"
                 :rowsData="pestStagesRowData"
                 @show-combobox="getPestStages"
@@ -287,20 +287,20 @@ export default {
       pestStagesRowData: [],
 
       addreportData: {
-        provinceId: '',
+        provinceId: null,
         provinceName: '',
-        districtId: '',
+        districtId: null,
         districtName: '',
-        wardId: '',
+        wardId: null,
         wardName: '',
         address: '',
-        pestStageId: '',
-        cropStageId: '',
+        pestStageId: null,
+        cropStageId: null,
         pestStageName: '',
         cropStageName: '',
         cropName: '',
-        cropId: '',
-        pestId: '',
+        cropId: null,
+        pestId: null,
         pestName: '',
         reportName: ''
       },
@@ -329,12 +329,8 @@ export default {
         address: 'MaxLength255',
         pestStageId: 'Empty',
         cropStageId: 'Empty',
-        pestStageName: '',
-        cropStageName: '',
-        cropName: '',
         cropId: 'Empty',
         pestId: 'Empty',
-        pestName: '',
         reportName: 'Empty'
       },
 

@@ -35,7 +35,7 @@
         v-if="!disableCombobox"
       />
 
-      <ttanh-tooltip v-if="errorText !== '' && hoverInput">{{ errorText }}</ttanh-tooltip>
+      <ttanh-tooltip v-if="errorText !== null && errorText !== '' && hoverInput">{{ errorText }}</ttanh-tooltip>
     </div>
     <div v-show="isShowComboboxData" class="combobox__data" ref="comboboxData">
       <div v-if="rowsData.length === 0" class="item--no-data">Không có dữ liệu để hiển thị.</div>
@@ -115,7 +115,7 @@ export default {
 
     /* model value là giá trị id của đối tượng mình chọn */
     modelValue: {
-      default: '',
+      default: null,
       required: true,
       type: String
     },
@@ -296,7 +296,7 @@ export default {
      */
     changeInput() {
       try {
-        this.$emit('update:modelValue', '')
+        this.$emit('update:modelValue', null)
         this.$refs.comboboxData.scrollTo(0, 0)
 
         // xử lý cho việc được focus input bằng tab
@@ -464,7 +464,7 @@ export default {
     },
 
     borderInputColor() {
-      if (this.errorText !== '') {
+      if (this.errorText !== null && this.errorText !== '') {
         return 'red'
       } else if (this.focusInput) {
         return 'var(--primary-btn--focus-background-color)'

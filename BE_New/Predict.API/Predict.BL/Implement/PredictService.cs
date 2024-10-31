@@ -60,9 +60,7 @@ namespace Predict.BL
 
 
 
-            var predictFilterResult = await _predictRepository.FiltersPredictAsync(predictFilterParam.ProvinceId, predictFilterParam.DistrictId, predictFilterParam.WardId,
-                                                                        startDate, endDate, predictFilterParam.CropStageId, predictFilterParam.PestStageId,
-                                                                        predictFilterParam.SeasonEnd, pageSize, pageNumber);
+            var predictFilterResult = await _predictRepository.FiltersPredictAsync(predictFilterParam, startDate, endDate, pageSize, pageNumber);
 
             var totalRecord = predictFilterResult.Total;
             var totalPage = Convert.ToInt32(Math.Ceiling((double)totalRecord / (double)pageSize));

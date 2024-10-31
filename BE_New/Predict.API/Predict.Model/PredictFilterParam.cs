@@ -34,14 +34,22 @@ namespace Predict.Model
         /// <summary>
         /// Gets or sets the crop state ID.
         /// </summary>
-        [Required]
-        public int CropStageId { get; set; }
+        public Guid? CropStageId { get; set; }
 
         /// <summary>
         /// Gets or sets the pest level ID.
         /// </summary>
-        [Required]
-        public int PestStageId { get; set; }
+        public Guid? PestStageId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the crop state ID.
+        /// </summary>
+        public Guid? CropId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the pest level ID.
+        /// </summary>
+        public Guid? PestId { get; set; }
 
         /// <summary>
         /// Gets or sets the season type.

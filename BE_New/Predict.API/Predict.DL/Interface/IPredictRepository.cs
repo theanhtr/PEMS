@@ -9,7 +9,7 @@ namespace Predict.DL
     /// Created by: TTANH (02/08/2024)
     public interface IPredictRepository : IBaseRepository<Model.Predict>
     {
-        Task<PredictFilterResult> FiltersPredictAsync(string? ProvinceId, string? DistrictId, string? WardId, DateTime? StartDate, DateTime? EndDate, int CropStageId, int PestStageId, bool SeasonEnd, int? PageSize, int? PageNumber);
+        Task<PredictFilterResult> FiltersPredictAsync(PredictFilterParam predictFilterParam, DateTime? StartDate, DateTime? EndDate, int? PageSize, int? PageNumber);
         Task<int?> EndSeasonAsync(Guid? PredictId);
 
         Task<IEnumerable<Crop>> CropAsync();

@@ -167,8 +167,6 @@ import { findIndexByAttribute, sortArrayByAttribute } from '@/helper/common.js'
 import { formatToNumber } from '@/helper/textfield-format-helper.js'
 import { debounce } from '@/helper/debounce.js'
 import { isProxy, toRaw } from 'vue'
-import { pestStages } from '../../../data_combobox/pestStage'
-import { cropStages } from '../../../data_combobox/cropStage'
 
 export default {
   name: 'ReportContent',
@@ -243,7 +241,7 @@ export default {
         },
         {
           id: 'PestName',
-          name: 'TÊN SÂU HẠI',
+          name: 'TÊN SÂU BỆNH',
           size: '150px',
           textAlign: 'center',
           format: 'text',
@@ -252,7 +250,7 @@ export default {
         },
         {
           id: 'PestStageName',
-          name: 'GIAI ĐOẠN SÂU HẠI',
+          name: 'GIAI ĐOẠN SÂU BỆNH',
           size: '150px',
           textAlign: 'center',
           format: 'text',
@@ -328,9 +326,9 @@ export default {
       isShowLayoutSetting: false,
 
       dataFilter: {
-        provinceId: '',
-        districtId: '',
-        wardId: '',
+        provinceId: null,
+        districtId: null,
+        wardId: null,
         dateRange: null,
         reportName: '',
       }
@@ -349,9 +347,9 @@ export default {
   methods: {
     clearFilter() {
       this.dataFilter = {
-        provinceId: '',
-        districtId: '',
-        wardId: '',
+        provinceId: null,
+        districtId: null,
+        wardId: null,
         dateRange: null,
         reportName: '',
       }

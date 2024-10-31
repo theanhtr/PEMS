@@ -250,15 +250,15 @@ export default {
       rolesComboboxData: roles,
 
       addUserData: {
-        userId: '',
+        userId: null,
         username: '',
         fullname: '',
-        roleID: '',
-        provinceId: '',
+        roleID: null,
+        provinceId: null,
         provinceName: '',
-        districtId: '',
+        districtId: null,
         districtName: '',
-        wardId: '',
+        wardId: null,
         wardName: '',
         address: '',
         phoneNumber: ''
@@ -285,9 +285,6 @@ export default {
         roleID: 'Empty',
         fullname: 'Empty, MaxLength255',
         username: 'Empty, MaxLength255',
-        provinceId: '',
-        districtId: '',
-        wardId: '',
         address: 'MaxLength50',
         phoneNumber: 'MaxLength255'
       },

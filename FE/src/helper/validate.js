@@ -49,9 +49,9 @@ function emptyValidate(
   valueCheck,
   nameField = TTANHResource[store.state.langCode].validate.nameFieldDefault
 ) {
-  let valueLength = valueCheck.length;
+  let valueLength = valueCheck?.length;
 
-  if (valueLength === 0) {
+  if (valueLength === 0 || valueLength === undefined || valueLength === null) {
     return sprintf.sprintf(
       TTANHResource[store.state.langCode].validate.emptyError,
       nameField

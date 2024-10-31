@@ -16,21 +16,8 @@
           idField="province_id"
           nameField="province_name"
           :rowsData="dataAddress.provinces"
-          class="w1/4"
+          class="w1/5"
           tabindex="1"
-        />
-        <ttanh-combobox
-          v-model="dataFilter.districtId"
-          ref="districtId"
-          type="single-row"
-          labelText="Quận/Huyện"
-          :inputRequired="false"
-          @show-combobox="getDistricts"
-          idField="district_id"
-          nameField="district_name"
-          :rowsData="dataAddress.districts"
-          class="w1/4"
-          tabindex="2"
         />
         <ttanh-combobox
           v-model="dataFilter.wardId"
@@ -42,12 +29,49 @@
           idField="ward_id"
           nameField="ward_name"
           :rowsData="dataAddress.wards"
-          class="w1/4"
+          class="w1/5"
           tabindex="3"
+        />
+        <ttanh-combobox
+          v-model="dataFilter.cropId"
+          ref="cropId"
+          type="single-row"
+          labelText="Tên cây trồng"
+          :rowsData="cropsRowData"
+          @show-combobox="getCrops"
+          idField="CropId"
+          nameField="CropName"
+          class="w1/5"
+          tabindex="5"
+        />
+        <ttanh-combobox
+          v-model="dataFilter.pestId"
+          ref="pestId"
+          type="single-row"
+          labelText="Tên sâu bệnh"
+          :rowsData="pestsRowData"
+          @show-combobox="getPests"
+          idField="PestId"
+          nameField="PestName"
+          class="w1/5"
+          tabindex="7"
         />
       </div>
       <div class="page__filter-group page__filter-group-2">
-        <div class="w1/4">
+        <ttanh-combobox
+          v-model="dataFilter.districtId"
+          ref="districtId"
+          type="single-row"
+          labelText="Quận/Huyện"
+          :inputRequired="false"
+          @show-combobox="getDistricts"
+          idField="district_id"
+          nameField="district_name"
+          :rowsData="dataAddress.districts"
+          class="w1/5"
+          tabindex="2"
+        />
+        <div class="w1/5" >
           <label class="label-input"> Khoảng thời gian cảnh báo </label>
           <VueDatePicker
             v-model="dataFilter.dateRange"
@@ -68,20 +92,26 @@
           ref="cropStageId"
           type="single-row"
           labelText="Giai đoạn cây trồng"
+          idField="CropStageId"
+          nameField="CropStageName"
           :inputRequired="false"
-          :rowsData="cropStages"
-          class="w1/4"
-          tabindex="2"
+          :rowsData="cropStagesRowData"
+          @show-combobox="getCropStages"
+          class="w1/5"
+          tabindex="6"
         />
         <ttanh-combobox
           v-model="dataFilter.pestStageId"
           ref="pestStageId"
           type="single-row"
-          labelText="Mức độ sâu bệnh"
+          labelText="Giai đoạn sâu bệnh"
+          idField="PestStageId"
+          nameField="PestStageName"
           :inputRequired="false"
-          :rowsData="pestStages"
-          class="w1/4"
-          tabindex="3"
+          :rowsData="pestStagesRowData"
+          @show-combobox="getPestStages"
+          class="w1/5"
+          tabindex="8"
         />
       </div>
       <div class="page__filter-group page__filter-group-3">
@@ -208,9 +238,6 @@ import { findIndexByAttribute, sortArrayByAttribute } from '@/helper/common.js'
 import { formatToNumber } from '@/helper/textfield-format-helper.js'
 import { debounce } from '@/helper/debounce.js'
 import { isProxy, toRaw } from 'vue'
-import { pestStages } from '../../../data_combobox/pestStage'
-import { levelWarnings } from '../../../data_combobox/levelWarning'
-import { cropStages } from '../../../data_combobox/cropStage'
 
 export default {
   name: 'PredictContent',
@@ -227,9 +254,10 @@ export default {
 
       seasonEnd: false,
 
-      cropStages: cropStages,
-
-      pestStages: pestStages,
+      cropsRowData: [],
+      cropStagesRowData: [],
+      pestsRowData: [],
+      pestStagesRowData: [],
 
       dataAddress: {
         provinces: [],
@@ -278,14 +306,49 @@ export default {
           isPin: false
         },
         {
-          id: 'LevelWarningId',
-          name: 'MỨC ĐỘ CẢNH BÁO',
+          id: 'CropName',
+          name: 'TÊN CÂY TRỒNG',
           size: '150px',
           textAlign: 'center',
-          format: 'input-combobox',
+          format: 'text',
+          isShow: true,
+          isPin: false
+        },
+        {
+          id: 'CropStageName',
+          name: 'GIAI ĐOẠN CÂY TRỒNG',
+          size: '150px',
+          textAlign: 'center',
+          format: 'text',
+          isShow: true,
+          isPin: false
+        },
+        {
+          id: 'PestName',
+          name: 'TÊN SÂU BỆNH',
+          size: '150px',
+          textAlign: 'center',
+          format: 'text',
+          isShow: true,
+          isPin: false
+        },
+        {
+          id: 'PestStageName',
+          name: 'GIAI ĐOẠN SÂU BỆNH',
+          size: '150px',
+          textAlign: 'center',
+          format: 'text',
+          isShow: true,
+          isPin: false
+        },
+        {
+          id: 'LevelWarningName',
+          name: 'MỨC ĐỘ CẢNH BÁO',
+          size: '150px',
+          textAlign: 'left',
+          format: 'text',
           isShow: true,
           isPin: false,
-          comboboxRowData: levelWarnings,
           disableCombobox: true
         }
       ],
@@ -338,12 +401,14 @@ export default {
       isShowLayoutSetting: false,
 
       dataFilter: {
-        provinceId: '',
-        districtId: '',
-        wardId: '',
+        provinceId: null,
+        districtId: null,
+        wardId: null,
         dateRange: null,
-        cropStageId: -1,
-        pestStageId: -1
+        cropStageId: null,
+        pestStageId: null,
+        cropId: null,
+        pestId: null
       }
     }
   },
@@ -358,14 +423,53 @@ export default {
   },
 
   methods: {
+    async getCrops() {
+      let res = await PredictService.get('Predict/crop')
+
+      if (res.statusCode === 200) {
+        this.cropsRowData = res.data
+      } else {
+        this.cropsRowData = []
+      }
+    },
+    async getCropStages() {
+      let res = await PredictService.get('Predict/crop-stage?cropId=' + this.dataFilter.cropId)
+
+      if (res.statusCode === 200) {
+        this.cropStagesRowData = res.data
+      } else {
+        this.cropStagesRowData = []
+      }
+    },
+    async getPests() {
+      let res = await PredictService.get('Predict/pest')
+
+      if (res.statusCode === 200) {
+        this.pestsRowData = res.data
+      } else {
+        this.pestsRowData = []
+      }
+    },
+    async getPestStages() {
+      let res = await PredictService.get('Predict/pest-stage?pestId=' + this.dataFilter.pestId)
+
+      if (res.statusCode === 200) {
+        this.pestStagesRowData = res.data
+      } else {
+        this.pestStagesRowData = []
+      }
+    },
+
     clearFilter() {
       this.dataFilter = {
-        provinceId: '',
-        districtId: '',
-        wardId: '',
+        provinceId: null,
+        districtId: null,
+        wardId: null,
         dateRange: null,
-        cropStageId: -1,
-        pestStageId: -1
+        cropStageId: null,
+        pestStageId: null,
+        cropId: null,
+        pestId: null
       }
 
       this.$refs.provinceId.$refs.inputSearch.value = ''
@@ -373,6 +477,8 @@ export default {
       this.$refs.wardId.$refs.inputSearch.value = ''
       this.$refs.cropStageId.$refs.inputSearch.value = ''
       this.$refs.pestStageId.$refs.inputSearch.value = ''
+      this.$refs.cropId.$refs.inputSearch.value = ''
+      this.$refs.pestId.$refs.inputSearch.value = ''
 
       this.getPredicts()
     },
@@ -425,6 +531,8 @@ export default {
           EndDate: endDate,
           CropStageId: this.dataFilter.cropStageId,
           PestStageId: this.dataFilter.pestStageId,
+          PestId: this.dataFilter.pestId,
+          CropId: this.dataFilter.cropId,
           SeasonEnd: this.seasonEnd,
           PageSize: this.pagingData.pageSize,
           PageNumber: this.pagingData.pageNumber

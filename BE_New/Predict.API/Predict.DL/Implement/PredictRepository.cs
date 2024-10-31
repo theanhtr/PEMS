@@ -26,26 +26,28 @@ namespace Predict.DL
             return predict;
         }
 
-        public async Task<PredictFilterResult> FiltersPredictAsync(string? ProvinceId, string? DistrictId, string? WardId, DateTime? StartDate, DateTime? EndDate, int CropStageId, int PestStageId, bool SeasonEnd, int? PageSize, int? PageNumber)
+        public async Task<PredictFilterResult> FiltersPredictAsync(PredictFilterParam predictFilterParam, DateTime? StartDate, DateTime? EndDate, int? PageSize, int? PageNumber)
         {
             var procedure = $"Proc_Predict_Filter";
 
             var parameters = new DynamicParameters();
-            parameters.Add("@v_ProvinceId", ProvinceId);
-            parameters.Add("@v_DistrictId", DistrictId);
-            parameters.Add("@v_WardId", WardId);
+            parameters.Add("@v_ProvinceId", predictFilterParam.ProvinceId);
+            parameters.Add("@v_DistrictId", predictFilterParam.DistrictId);
+            parameters.Add("@v_WardId", predictFilterParam.WardId);
             parameters.Add("@v_StartDate", StartDate);
             parameters.Add("@v_EndDate", EndDate);
-            parameters.Add("@v_CropStageId", CropStageId);
-            parameters.Add("@v_PestStageId", PestStageId);
-            parameters.Add("@v_SeasonEnd", SeasonEnd);
+            parameters.Add("@v_CropStageId", predictFilterParam.CropStageId);
+            parameters.Add("@v_PestStageId", predictFilterParam.PestStageId);
+            parameters.Add("@v_SeasonEnd", predictFilterParam.SeasonEnd);
+            parameters.Add("@v_CropId", predictFilterParam.CropId);
+            parameters.Add("@v_PestId", predictFilterParam.PestId);
             parameters.Add("@v_PageSize", PageSize);
             parameters.Add("@v_PageNumber", PageNumber);
 
             IEnumerable<Model.Predict> predicts = null;
             TotalResult total = null;
 
-            using (var results = await _unitOfWork.Connection.QueryMultipleAsync("Proc_Predict_Filter", parameters, commandType: CommandType.StoredProcedure))
+            using (var results = await _unitOfWork.Connection.QueryMultipleAsync(procedure, parameters, commandType: CommandType.StoredProcedure))
             {
                 predicts = await results.ReadAsync<Model.Predict>();
                 total = await results.ReadSingleAsync<TotalResult>();
