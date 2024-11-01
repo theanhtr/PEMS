@@ -112,7 +112,16 @@ namespace Weather.BL
                 throw new NotFoundException(StatusErrorCode.NotFoundData, "Không tìm thấy địa chỉ");
             }
 
-            var urlWeather = $"{weatherApi}/forecast?latitude={geocodeAddress.Latitude}&longitude={geocodeAddress.Longitude}&daily=temperature_2m_max&timezone={timezone}&start_date={startDate.ToString(formatDateWeatherApi)}&end_date={endDate.ToString(formatDateWeatherApi)}";
+            var urlWeather = "";
+
+            if (startDate < DateOnly.FromDateTime(DateTime.Now.AddMonths(-3)))
+            {
+                urlWeather = $"https://archive-{weatherApi}/archive?latitude={geocodeAddress.Latitude}&longitude={geocodeAddress.Longitude}&daily=temperature_2m_max&timezone={timezone}&start_date={startDate.ToString(formatDateWeatherApi)}&end_date={endDate.ToString(formatDateWeatherApi)}";
+            }
+            else
+            {
+                urlWeather = $"https://{weatherApi}/forecast?latitude={geocodeAddress.Latitude}&longitude={geocodeAddress.Longitude}&daily=temperature_2m_max&timezone={timezone}&start_date={startDate.ToString(formatDateWeatherApi)}&end_date={endDate.ToString(formatDateWeatherApi)}";
+            }
 
             using (var client = new HttpClient())
             {
@@ -182,7 +191,17 @@ namespace Weather.BL
                 throw new NotFoundException(StatusErrorCode.NotFoundData, "Không tìm thấy địa chỉ");
             }
 
-            var urlWeather = $"{weatherApi}/forecast?latitude={geocodeAddress.Latitude}&longitude={geocodeAddress.Longitude}&daily=temperature_2m_max&timezone={timezone}&start_date={startDate.ToString(formatDateWeatherApi)}&end_date={endDate.ToString(formatDateWeatherApi)}";
+            var urlWeather = "";
+
+            if (startDate < DateOnly.FromDateTime(DateTime.Now.AddMonths(-3)))
+            {
+                urlWeather = $"archive-{weatherApi}/archive?latitude={geocodeAddress.Latitude}&longitude={geocodeAddress.Longitude}&daily=temperature_2m_max&timezone={timezone}&start_date={startDate.ToString(formatDateWeatherApi)}&end_date={endDate.ToString(formatDateWeatherApi)}";
+            } 
+            else
+            {
+                urlWeather = $"{weatherApi}/forecast?latitude={geocodeAddress.Latitude}&longitude={geocodeAddress.Longitude}&daily=temperature_2m_max&timezone={timezone}&start_date={startDate.ToString(formatDateWeatherApi)}&end_date={endDate.ToString(formatDateWeatherApi)}";
+            }
+
 
             using (var client = new HttpClient())
             {

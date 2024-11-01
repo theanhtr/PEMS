@@ -14,23 +14,42 @@ class PredictService:
         url = f"{self.__api_url}/Predict/filter"
         
         data = {
-            'CropStageId': '',
-            'DistrictId': '',
+            'ProvinceId': None,
+            'DistrictId': None,
+            'WardId': None,
+            'StartDate': None,
             'EndDate': None,
+            'CropStageId': None,
+            'PestStageId': None,
+            'CropId': None,
+            'PestId': None,
+            'SeasonEnd': False,
             'PageNumber': 1,
             'PageSize': 10000,
-            'PestStageId': '',
-            'ProvinceId': '',
-            'SeasonEnd': False,
-            'StartDate': None,
-            'WardId': '',
-            'PestId': '',
-            'CropId': ''
         }
 
         try:
             async with aiohttp.ClientSession() as session:
                 async with session.post(url, json=data, ssl=False) as response:
+                    response.raise_for_status()
+                    return await response.json()
+        except aiohttp.ClientError as e:
+            print(f"Error fetching Predict data: {e}")
+            return None
+        
+    
+
+    # lấy những dự báo đang trong mùa vụ để dự đoán
+    async def fetch_crop_stage(self, pest_id):
+        url = f"{self.__api_url}/Predict/pest-stage"
+        
+        params = {
+            'PestId': pest_id
+        }
+
+        try:
+            async with aiohttp.ClientSession() as session:
+                async with session.get(url, params=params, ssl=False) as response:
                     response.raise_for_status()
                     return await response.json()
         except aiohttp.ClientError as e:
