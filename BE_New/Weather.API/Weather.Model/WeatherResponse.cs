@@ -9,6 +9,9 @@ namespace Weather.Model
 
         [JsonProperty("temperature_2m_max")]
         public List<double>? Temperature2mMax { get; set; }
+
+        [JsonProperty("temperature_2m_mean")]
+        public List<double>? Temperature2mMean { get; set; }
     }
 
     public class DailyUnits
@@ -18,6 +21,9 @@ namespace Weather.Model
 
         [JsonProperty("temperature_2m_max")]
         public string? Temperature2mMax { get; set; }
+
+        [JsonProperty("temperature_2m_mean")]
+        public string? Temperature2mMean { get; set; }
     }
 
     public class WeatherResponse

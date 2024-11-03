@@ -30,6 +30,10 @@ async def predict_auto_calculate():
         # lấy thông tin thời tiết của địa điểm dự báo
         weather = await weather_service.fetch_weather_temperature_range(predict.get('ProvinceName'), predict.get('DistrictName'), predict.get('WardName'), predict.get('Address'), predict_start_date.strftime('%Y-%m-%d'), end_date)
 
+        print ('weather mean: ')
+        print(weather.get('Daily', {}).get('Temperature2mMean'))
+        print ('weather max: ')
+        print(weather.get('Daily', {}).get('Temperature2mMax'))
         # tính toán trạng thái của sâu bệnh
         stages_by_day = await gdd(predict, pest_stages, weather.get('Daily', {}).get('Temperature2mMax'))
 
@@ -95,7 +99,7 @@ async def gdd(predict, pest_stages, weather):
 
         # Ghi lại ngày, giai đoạn và GDD tích lũy
         date = start_date + datetime.timedelta(days=i)
-        stages_by_day.append({"date": date.strftime('%Y-%m-%d'), "stage": pest_stage_names[current_stage_index]})
+        stages_by_day.append({"date": date.strftime('%Y-%m-%d'), "stage": pest_stage_names[current_stage_index], "temp": temp, "gdd": cumulative_gdd})
     
     return stages_by_day
 
