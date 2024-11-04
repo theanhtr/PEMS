@@ -4,10 +4,10 @@
     {
         public Guid PestStageId { get; set; }
         public Guid? PestId { get; set; } // Foreign key to Pest
-        public string PestStageName { get; set; }
-        public int? T0 { get; set; } // Nhiệt độ phát dục (t0)
-        public int? K1 { get; set; } // K từng giai đoạn (K1)
-        public int? K { get; set; } // Tổng tích ôn hữu hiệu (K)
+        public string? PestStageName { get; set; }
+        public double? T0 { get; set; } // Nhiệt độ phát dục (t0)
+        public double? K1 { get; set; } // K từng giai đoạn (K1)
+        public double? K { get; set; } // Tổng tích ôn hữu hiệu (K)
     }
 
     public class Pest

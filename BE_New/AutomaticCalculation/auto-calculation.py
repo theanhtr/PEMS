@@ -22,7 +22,7 @@ async def predict_auto_calculate():
     for predict in predict_data.get('Data', []):
         # Lấy giá trị currentStartDate từ predict
         predict_start_date = datetime.datetime.strptime(predict.get('CurrentStartDate'), '%Y-%m-%dT%H:%M:%S%z').date()
-        end_date = (predict_start_date + datetime.timedelta(days=30)).strftime('%Y-%m-%d')
+        end_date = (predict_start_date + datetime.timedelta(days=60)).strftime('%Y-%m-%d')
 
         # Lấy ra các trạng thái của sâu bệnh
         pest_stages = await predict_service.fetch_crop_stage(predict.get('PestId'))
@@ -30,12 +30,8 @@ async def predict_auto_calculate():
         # lấy thông tin thời tiết của địa điểm dự báo
         weather = await weather_service.fetch_weather_temperature_range(predict.get('ProvinceName'), predict.get('DistrictName'), predict.get('WardName'), predict.get('Address'), predict_start_date.strftime('%Y-%m-%d'), end_date)
 
-        print ('weather mean: ')
-        print(weather.get('Daily', {}).get('Temperature2mMean'))
-        print ('weather max: ')
-        print(weather.get('Daily', {}).get('Temperature2mMax'))
         # tính toán trạng thái của sâu bệnh
-        stages_by_day = await gdd(predict, pest_stages, weather.get('Daily', {}).get('Temperature2mMax'))
+        stages_by_day = await gdd(predict, pest_stages, weather.get('Daily', {}).get('Temperature2mMean'))
 
         print (stages_by_day)
         
@@ -91,15 +87,21 @@ async def gdd(predict, pest_stages, weather):
         daily_gdd = max(temp - base_temps[current_stage_index], 0)
         cumulative_gdd += daily_gdd
         
+        # Lấy ngày hiện tại
+        date = start_date + datetime.timedelta(days=i)
+        
+        # Ghi lại giai đoạn hiện tại trước khi kiểm tra điều kiện đổi giai đoạn
+        stages_by_day.append({"stage": pest_stage_names[current_stage_index], "temp": temp, "gdd": float(daily_gdd), "cumulative_gdd": float(cumulative_gdd), "degree_days_required": float(degree_days_required[current_stage_index]), "date": date.strftime('%Y-%m-%d')})
+        
         # Kiểm tra nếu GDD tích lũy đã đạt ngưỡng của giai đoạn hiện tại
         if cumulative_gdd >= degree_days_required[current_stage_index]:
-            # Chuyển sang giai đoạn tiếp theo nếu chưa phải giai đoạn cuối
-            if current_stage_index < len(pest_stages_sorted) - 1:
-                current_stage_index += 1
-
-        # Ghi lại ngày, giai đoạn và GDD tích lũy
-        date = start_date + datetime.timedelta(days=i)
-        stages_by_day.append({"date": date.strftime('%Y-%m-%d'), "stage": pest_stage_names[current_stage_index], "temp": temp, "gdd": cumulative_gdd})
+            # Chuyển sang giai đoạn tiếp theo vào ngày tiếp theo
+            current_stage_index += 1
+            
+            # Nếu đã vượt qua giai đoạn cuối thì reset về giai đoạn đầu tiên và GDD tích lũy về 0
+            if current_stage_index >= len(pest_stages_sorted):
+                current_stage_index = 0
+                cumulative_gdd = 0
     
     return stages_by_day
 
