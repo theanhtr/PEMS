@@ -52,6 +52,18 @@ namespace Predict.API
 
             return StatusCode(StatusCodes.Status200OK, filterData);
         }
+
+
+        /// <summary>
+        /// <returns>Các bản ghi lọc theo các tiêu chí trên</returns>
+        /// Created by: TTANH (18/07/2024) 
+        [HttpPost("daily-forecast")]
+        public async Task<IActionResult> DailyForecastAsync([FromBody] DailyForecastParam dailyForecastParam)
+        {
+            var filterData = await _predictService.DailyForecastAsync(dailyForecastParam);
+
+            return StatusCode(StatusCodes.Status200OK, filterData);
+        }
         #endregion
 
         #region Enum

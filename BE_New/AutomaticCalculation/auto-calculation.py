@@ -25,7 +25,7 @@ async def predict_auto_calculate():
         end_date = (predict_start_date + datetime.timedelta(days=60)).strftime('%Y-%m-%d')
 
         # Lấy ra các trạng thái của sâu bệnh
-        pest_stages = await predict_service.fetch_crop_stage(predict.get('PestId'))
+        pest_stages = await predict_service.fetch_pest_stage(predict.get('PestId'))
 
         # lấy thông tin thời tiết của địa điểm dự báo
         weather = await weather_service.fetch_weather_temperature_range(predict.get('ProvinceName'), predict.get('DistrictName'), predict.get('WardName'), predict.get('Address'), predict_start_date.strftime('%Y-%m-%d'), end_date)
@@ -49,10 +49,12 @@ async def predict_auto_calculate():
         crop_stages = await predict_service.fetch_crop_stage(predict.get('CropId'))
         
         # Lấy ra các trạng thái cảnh báo
-        level_warnings = await predict_service.fetch_crop_stage(predict.get('CropId'))
-        
-        # # lấy report để biết trạng thái cây trồng để đưa ra cảnh báo phù hợp
-        # report = report_service.fetch_report(predict['ProvinceId'], predict['DistrictId'], Predict['WardId'], predict['StreetId'], predict['currentStartDate'], predict['currentEndDate'], predict['CropId'])
+        level_warnings = await predict_service.fetch_level_warning(predict.get('CropId'), predict.get('PestId'))
+
+        # lấy report để biết trạng thái cây trồng để đưa ra cảnh báo phù hợp
+        reports = report_service.fetch_report(predict['ProvinceId'], predict['DistrictId'], predict['WardId'], predict_start_date.strftime('%Y-%m-%d'), end_date, predict['CropId'])
+
+        stages_by_day = update_daily_forecast_predict(stages_by_day, pest_stages, crop_stages, level_warnings, reports, predict)
 
 async def gdd(predict, pest_stages, weather):
     # Tính toán GDD
@@ -73,6 +75,7 @@ async def gdd(predict, pest_stages, weather):
     
     # Lấy các tên giai đoạn, nhiệt độ phát dục (T0), và tổng tích ôn yêu cầu (K) cho từng giai đoạn
     pest_stage_names = [stage['PestStageName'] for stage in pest_stages_sorted]
+    pest_stage_ids = [stage['PestStageId'] for stage in pest_stages_sorted]
     base_temps = numpy.array([stage['T0'] for stage in pest_stages_sorted])
     degree_days_required = numpy.array([stage['K'] for stage in pest_stages_sorted])
 
@@ -91,7 +94,7 @@ async def gdd(predict, pest_stages, weather):
         date = start_date + datetime.timedelta(days=i)
         
         # Ghi lại giai đoạn hiện tại trước khi kiểm tra điều kiện đổi giai đoạn
-        stages_by_day.append({"stage": pest_stage_names[current_stage_index], "temp": temp, "gdd": float(daily_gdd), "cumulative_gdd": float(cumulative_gdd), "degree_days_required": float(degree_days_required[current_stage_index]), "date": date.strftime('%Y-%m-%d')})
+        stages_by_day.append({"stage": pest_stage_names[current_stage_index], "stage_id": pest_stage_ids[current_stage_index], "temp": temp, "date": date.strftime('%Y-%m-%d')})
         
         # Kiểm tra nếu GDD tích lũy đã đạt ngưỡng của giai đoạn hiện tại
         if cumulative_gdd >= degree_days_required[current_stage_index]:
@@ -104,6 +107,11 @@ async def gdd(predict, pest_stages, weather):
                 cumulative_gdd = 0
     
     return stages_by_day
+
+def update_daily_forecast_predict(stages_by_day, pest_stages, crop_stages, level_warnings, reports, predict):
+    
+
+    return
 
 # Lập lịch chạy hàm `predict_auto_calculate` mỗi 1 phút
 async def schedule_job():

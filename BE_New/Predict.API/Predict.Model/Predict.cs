@@ -121,6 +121,11 @@ namespace Predict.Model
         /// Vụ này đã kết thúc hay chưa
         /// </summary>
         public bool SeasonEnd { get; set; }
+
+        /// <summary>
+        /// Vụ này đã kết thúc hay chưa
+        /// </summary>
+        public string? DailyForecast { get; set; }
         #endregion
 
         #region Methods

@@ -11,6 +11,7 @@ namespace Predict.BL
     public interface IPredictService : IBaseService<Model.Predict>
     {
         Task<BaseFilterResponse<Model.Predict>> FiltersPredictAsync(PredictFilterParam predictFilterParam);
+        Task<int?> DailyForecastAsync(DailyForecastParam dailyForecastParam);
         Task<int?> EndSeasonAsync(Guid? PredictId);
 
         Task<IEnumerable<Crop>> CropAsync();

@@ -84,7 +84,7 @@ class WeatherService:
         params = {key: (value if value is not None else '') for key, value in params.items()}
 
         try:
-            async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=60)) as session:
+            async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=300)) as session:
                 async with session.get(url, params=params, ssl=False) as response:
                     response.raise_for_status()  # Kiểm tra trạng thái HTTP
                     return await response.json()  # Trả về JSON bất đồng bộ

@@ -10,6 +10,7 @@ namespace Predict.DL
     public interface IPredictRepository : IBaseRepository<Model.Predict>
     {
         Task<PredictFilterResult> FiltersPredictAsync(PredictFilterParam predictFilterParam, DateTime? StartDate, DateTime? EndDate, int? PageSize, int? PageNumber);
+        Task<int?> DailyForecastAsync(DailyForecastParam dailyForecastParam);
         Task<int?> EndSeasonAsync(Guid? PredictId);
 
         Task<IEnumerable<Crop>> CropAsync();

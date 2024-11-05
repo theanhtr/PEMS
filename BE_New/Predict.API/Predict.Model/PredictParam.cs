@@ -58,4 +58,11 @@ namespace Predict.Model
         public bool SeasonEnd { get; set; }
         #endregion
     }
+
+    public class DailyForecastParam
+    {
+        public Guid? PredictId { get; set; }
+
+        public string? DailyForecast { get; set; }
+    }
 }

@@ -83,6 +83,13 @@ namespace Predict.BL
 
             return filterData;
         }
+
+        public async Task<int?> DailyForecastAsync(DailyForecastParam dailyForecastParam)
+        {
+            var result = await _predictRepository.DailyForecastAsync(dailyForecastParam);
+
+            return 0;
+        }
         #endregion
 
         #region Enum
