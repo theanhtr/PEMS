@@ -1,0 +1,31 @@
+#view-predict-popup {
+  max-width: none !important;
+  width: 85% !important;
+  height: 90% !important;
+}
+
+.label-add-group {
+  text-transform: uppercase;
+  color: var(--primary-color);
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.view-predict__title-action {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.title-action__info {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  padding: 0px 20px;
+  cursor: pointer;
+}
+
+.title-action__title {
+  padding-left: 8px;
+}

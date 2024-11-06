@@ -201,10 +201,16 @@
     <AddPredictPopup
       v-if="isShowAddPredictPopup"
       :dataUpdate="dataUpdate"
-      :isViewOnly="isViewOnly"
-      @clickCancelBtn="isShowAddPredictPopup = false; isViewOnly = false"
+      @clickCancelBtn="isShowAddPredictPopup = false"
       @reloadData="reloadData"
       ref="addPredictPopup"
+    />
+
+    <ViewPredictPopup
+      v-if="isShowViewPredictPopup"
+      :predictId="dataUpdate.PredictId"
+      @clickCancelBtn="isShowViewPredictPopup = false"
+      ref="viewPredictPopup"
     />
 
     <ttanh-delete-popup
@@ -233,6 +239,7 @@ import VueDatePicker from '@vuepic/vue-datepicker'
 import PredictService from '@/service/PredictService.js'
 import AddressService from '@/service/AddressService.js'
 import AddPredictPopup from './AddPredictPopup.vue'
+import ViewPredictPopup from './ViewPredictPopup.vue'
 import { CommonErrorHandle } from '@/helper/error-handle'
 import { findIndexByAttribute, sortArrayByAttribute } from '@/helper/common.js'
 import { formatToNumber } from '@/helper/textfield-format-helper.js'
@@ -243,11 +250,12 @@ export default {
   name: 'PredictContent',
   components: {
     AddPredictPopup,
-    VueDatePicker
+    VueDatePicker,
+    ViewPredictPopup
   },
   data() {
     return {
-      isViewOnly: false,
+      isShowViewPredictPopup: false,
       PredictIdEndOfSeason: null,
       isShowConfirmEndOfSeasonPopup: false,
       predicts: [],
@@ -795,9 +803,8 @@ export default {
       try {
         let indexRow = findIndexByAttribute(this.predicts, 'PredictId', rowId)
 
-        this.isShowAddPredictPopup = true
+        this.isShowViewPredictPopup = true
         this.dataUpdate = this.predicts[indexRow]
-        this.isViewOnly = true
       } catch (error) {
         console.log('🚀 ~ file: PredictContent.vue:529 ~ openFormUpdate ~ error:', error)
       }

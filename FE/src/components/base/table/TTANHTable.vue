@@ -28,7 +28,7 @@
             <div class="th__resize" @mousedown="mouseDownResizeColumn($event, index)"></div>
           </th>
         </div>
-        <th style="text-align: end" class="m-table__row-function">
+        <th style="text-align: end" class="m-table__row-function" v-if="!noAction">
           <span style="padding-right: 6px">Hành động</span>
         </th>
       </tr>
@@ -126,6 +126,7 @@
               event.stopPropagation()
             }
           "
+          v-if="!noAction"
         >
           <template v-if="rowsData.length === 0">
             <ttanh-loading-skeleton />
@@ -206,6 +207,9 @@ export default {
     }
   },
   props: {
+    noAction: {
+      default: false
+    },
     endOfSeason: {
       default: false
     },
@@ -516,7 +520,10 @@ export default {
      */
     clickRow(rowId) {
       this.$emit('clickRow', rowId)
-      this.rowIsFocus = rowId
+
+      if (!this.noAction) {
+        this.rowIsFocus = rowId
+      }
     },
 
     /**

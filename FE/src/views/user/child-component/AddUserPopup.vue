@@ -135,7 +135,7 @@
                 "
                 :inputRequired="false"
                 class="w1"
-                ref="fullName"
+                ref="address"
                 tabindex="2"
                 :disable="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />

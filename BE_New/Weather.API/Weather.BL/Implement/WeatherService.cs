@@ -122,6 +122,12 @@ namespace Weather.BL
             }
             else
             {
+                // ngày kết thúc dự đoán trong tương lai thì không được quá 14 ngày từ hôm nay
+                if (endDate > DateOnly.FromDateTime(DateTime.Now.AddDays(14)))
+                {
+                    endDate = DateOnly.FromDateTime(DateTime.Now.AddDays(14));
+                }
+
                 urlWeather = $"{weatherApi}/forecast?latitude={geocodeAddress.Latitude}&longitude={geocodeAddress.Longitude}&daily=temperature_2m_max,temperature_2m_mean&timezone={timezone}&start_date={startDate.ToString(formatDateWeatherApi)}&end_date={endDate.ToString(formatDateWeatherApi)}";
             }
 
@@ -201,6 +207,12 @@ namespace Weather.BL
             } 
             else
             {
+                // ngày kết thúc dự đoán trong tương lai thì không được quá 14 ngày từ hôm nay
+                if (endDate > DateOnly.FromDateTime(DateTime.Now.AddDays(14)))
+                {
+                    endDate = DateOnly.FromDateTime(DateTime.Now.AddDays(14));
+                }
+
                 urlWeather = $"{weatherApi}/forecast?latitude={geocodeAddress.Latitude}&longitude={geocodeAddress.Longitude}&daily=temperature_2m_max,temperature_2m_mean&timezone={timezone}&start_date={startDate.ToString(formatDateWeatherApi)}&end_date={endDate.ToString(formatDateWeatherApi)}";
             }
 

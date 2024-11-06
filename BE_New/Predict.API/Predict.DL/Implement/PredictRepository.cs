@@ -64,8 +64,8 @@ namespace Predict.DL
 
         public async Task<int?> DailyForecastAsync(DailyForecastParam dailyForecastParam)
         {
-            var sql = "UPDATE predict SET DailyForcast = @DailyForcast WHERE PredictId = @PredictId";
-            var predict = _unitOfWork.Connection.QueryFirstOrDefault(sql, new { DailyForcast = dailyForecastParam.DailyForecast, PredictId = dailyForecastParam.PredictId }, commandType: CommandType.Text);
+            var sql = "UPDATE predict SET DailyForecast = @DailyForecast WHERE PredictId = @PredictId";
+            var predict = _unitOfWork.Connection.QueryFirstOrDefault(sql, new { DailyForecast = dailyForecastParam.DailyForecast, PredictId = dailyForecastParam.PredictId }, commandType: CommandType.Text);
             return predict;
         }
         #endregion
