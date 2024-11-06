@@ -1,6 +1,7 @@
 # Service tương tác dữ liệu dự báo
 import aiohttp
 from helper import get_api_url
+import json
 
 class PredictService:
     __api_url_key = 'PREDICT_API_KEY'
@@ -87,4 +88,21 @@ class PredictService:
                     return await response.json()
         except aiohttp.ClientError as e:
             print(f"Error fetching level warning stage data: {e}")
+            return None
+        
+    # lấy danh sách cảnh báo
+    async def update_daily_forecast(self, predict_id, stages_by_day):
+        url = f"{self.__api_url}/Predict/daily-forecast"
+        datas = {
+            'PredictId': predict_id,
+            'DailyForecast': json.dumps(stages_by_day)
+        }
+
+        try:
+            async with aiohttp.ClientSession() as session:
+                async with session.post(url, json=datas, ssl=False) as response:
+                    response.raise_for_status()
+                    return await response.json()
+        except aiohttp.ClientError as e:
+            print(f"Error update_daily_forecast: {e}")
             return None

@@ -29,21 +29,19 @@ async def predict_auto_calculate():
 
         # lấy thông tin thời tiết của địa điểm dự báo
         weather = await weather_service.fetch_weather_temperature_range(predict.get('ProvinceName'), predict.get('DistrictName'), predict.get('WardName'), predict.get('Address'), predict_start_date.strftime('%Y-%m-%d'), end_date)
+        
+        if not weather:
+            print ("Không có thông tin thời tiết: ",
+                   predict.get('ProvinceName')," " +
+                   predict.get('DistrictName')," ",
+                   predict.get('WardName')," ",
+                   predict.get('Address')," ",
+                   predict_start_date.strftime('%Y-%m-%d')," ",
+                   end_date)
+            return
 
         # tính toán trạng thái của sâu bệnh
         stages_by_day = await gdd(predict, pest_stages, weather.get('Daily', {}).get('Temperature2mMean'))
-
-        print (stages_by_day)
-        
-        if not weather:
-            print ("Không có thông tin thời tiết: " + 
-                   predict.get('ProvinceName') + " " +
-                   predict.get('DistrictName') + " " + 
-                   predict.get('WardName') + " " + 
-                   predict.get('Address') + " " + 
-                   predict_start_date.strftime('%Y-%m-%d') + " " + 
-                   end_date)
-            return
         
         # Lấy ra các trạng thái của cây trồng
         crop_stages = await predict_service.fetch_crop_stage(predict.get('CropId'))
@@ -52,9 +50,11 @@ async def predict_auto_calculate():
         level_warnings = await predict_service.fetch_level_warning(predict.get('CropId'), predict.get('PestId'))
 
         # lấy report để biết trạng thái cây trồng để đưa ra cảnh báo phù hợp
-        reports = report_service.fetch_report(predict['ProvinceId'], predict['DistrictId'], predict['WardId'], predict_start_date.strftime('%Y-%m-%d'), end_date, predict['CropId'])
+        reports = await report_service.fetch_report(predict['ProvinceId'], predict['DistrictId'], predict['WardId'], predict_start_date.strftime('%Y-%m-%d'), end_date, predict['CropId'])
 
-        stages_by_day = update_daily_forecast_predict(stages_by_day, pest_stages, crop_stages, level_warnings, reports, predict)
+        stages_by_day = update_daily_forecast_predict(stages_by_day, level_warnings, reports.get('Data', []), predict)
+
+        await predict_service.update_daily_forecast(predict.get('PredictId'), stages_by_day)
 
 async def gdd(predict, pest_stages, weather):
     # Tính toán GDD
@@ -108,10 +108,32 @@ async def gdd(predict, pest_stages, weather):
     
     return stages_by_day
 
-def update_daily_forecast_predict(stages_by_day, pest_stages, crop_stages, level_warnings, reports, predict):
-    
+def update_daily_forecast_predict(stages_by_day, level_warnings, reports, predict):
+    # nếu không có report thì không thể cập nhật mức độ cảnh báo
+    if not reports:
+        print ("Không có cảnh báo của chuyên gia: ",
+                    predict.get('ProvinceName')," " +
+                    predict.get('DistrictName')," ",
+                    predict.get('WardName')," ",
+                    predict.get('Address')," ",
+                    predict.get('CurrentStartDate'))
+        return stages_by_day
 
-    return
+    # chạy qua từng ngày để cập nhật mức độ cảnh báo:
+    # + xem hôm đó có báo cáo nào không (bằng cách so sánh date trong stage và reportDate ),
+    #  nếu có thì lấy id sâu hôm đó + id của trạng thái cây trong cảnh báo để tìm mức độ cảnh báo trong level_warnings
+    # + nếu không có thì bỏ qua
+    for stage in stages_by_day:
+        stage_date = datetime.datetime.strptime(stage.get('date'), '%Y-%m-%d').date()
+        for report in reports:
+            report_date = datetime.datetime.strptime(report.get('ReportDate'), '%Y-%m-%dT%H:%M:%S%z').date()
+            if stage_date == report_date:
+                for level in level_warnings:
+                    if level.get('PestStageId') == stage.get('stage_id') and level.get('CropStageId') == report.get('CropStageId'):
+                        stage['level_warning'] = level.get('LevelWarningName')
+                        break
+
+    return stages_by_day
 
 # Lập lịch chạy hàm `predict_auto_calculate` mỗi 1 phút
 async def schedule_job():

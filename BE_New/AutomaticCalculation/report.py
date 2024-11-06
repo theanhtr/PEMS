@@ -1,5 +1,5 @@
 # Service tương tác dữ liệu báo cáo
-import requests
+import aiohttp
 from helper import get_api_url
 
 class ReportService:
@@ -10,10 +10,10 @@ class ReportService:
         self.__api_url = get_api_url(self.__api_url_key)
 
     # Trả về dữ liệu báo cáo của 1 dự báo
-    def fetch_report(self, provinceId, districtId, wardId, startDate, endDate, cropId):
+    async def fetch_report(self, provinceId, districtId, wardId, startDate, endDate, cropId):
         url = f"{self.__api_url}/Report/filter"
         
-        params = {
+        datas = {
             'ProvinceId': provinceId,
             'DistrictId': districtId,
             'WardId': wardId,
@@ -25,9 +25,10 @@ class ReportService:
         }
 
         try:
-            response = requests.post(url, params=params, verify=False)
-            response.raise_for_status()
-            return response.json()
-        except requests.RequestException as e:
-            print(f"Error fetching Report data: {e}")
+            async with aiohttp.ClientSession() as session:
+                async with session.post(url, json=datas, ssl=False) as response:
+                    response.raise_for_status()
+                    return await response.json()
+        except aiohttp.ClientError as e:
+            print(f"Error fetching Predict data: {e}")
             return None
