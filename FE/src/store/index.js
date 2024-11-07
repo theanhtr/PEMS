@@ -52,6 +52,13 @@ export default createStore({
     logout(state) {
       localStorage.removeItem("userToken");
       localStorage.removeItem("userTokenExpirationTime");
+      localStorage.removeItem("roleId");
+      localStorage.removeItem("provinceId");
+      localStorage.removeItem("districtId");
+      localStorage.removeItem("wardId");
+      localStorage.removeItem("provinceName");
+      localStorage.removeItem("districtName");
+      localStorage.removeItem("wardName");
 
       state.isLoggedIn = false;
     },

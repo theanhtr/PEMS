@@ -53,6 +53,13 @@ export default {
     async getUserInfo() {
       let res = await UserService.get('User/info')
       this.user = res.data
+
+      await localStorage.setItem("provinceId", this.user.ProvinceId);
+      await localStorage.setItem("districtId", this.user.DistrictId);
+      await localStorage.setItem("wardId", this.user.WardId);
+      await localStorage.setItem("provinceName", this.user.ProvinceName);
+      await localStorage.setItem("districtName", this.user.DistrictName);
+      await localStorage.setItem("wardName", this.user.WardName);
     },
     /**
      * bắt sự kiện thu gọn sidebar
