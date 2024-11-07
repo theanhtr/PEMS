@@ -35,3 +35,7 @@
   width: 100%;
   overflow: scroll;
 }
+
+.daily-forecast-table-group .m-table__body--no-data {
+  margin-top: 100px !important;
+}

@@ -125,6 +125,7 @@
                 :rowsData="dailyForecast"
                 :oneRowSelect="true"
                 :noAction="true"
+                :noData="dailyForecast.length === 0"
               />
             </div>
           </div>
@@ -161,6 +162,8 @@ export default {
 
     if (this.viewPredictData.DailyForecast) {
       this.dailyForecast = sortArrayByAttribute(JSON.parse(this.viewPredictData.DailyForecast), 'date');
+    } else {
+      this.dailyForecast = []
     }
     
     this.isLoading = false
@@ -242,6 +245,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 @import url(./view-predict-popup.css);
 </style>

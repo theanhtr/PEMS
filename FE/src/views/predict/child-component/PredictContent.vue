@@ -247,6 +247,7 @@ import { findIndexByAttribute, sortArrayByAttribute } from '@/helper/common.js'
 import { formatToNumber } from '@/helper/textfield-format-helper.js'
 import { debounce } from '@/helper/debounce.js'
 import { isProxy, toRaw } from 'vue'
+import UserService from '@/service/UserService'
 
 export default {
   name: 'PredictContent',
@@ -425,38 +426,38 @@ export default {
   },
 
   created() {
-    this.farmerLimit = Number(localStorage.getItem('roleId')) === this.$_TTANHEnum.ROLE_ID.FARMER
+    // lấy dữ liệu phân trang được lưu trong local storage
+    this.pagingData.pageNumber = formatToNumber(localStorage.getItem('pageNumber')) ?? 1
+    this.pagingData.pageSize = formatToNumber(localStorage.getItem('pageSize')) ?? 10
+  },
+
+  async mounted() {
+    if (!localStorage.getItem('provinceId')) {
+      let res = await UserService.get('User/info');
+      let user = res.data;
+      localStorage.setItem("provinceId", user.ProvinceId);
+      localStorage.setItem("districtId", user.DistrictId);
+      localStorage.setItem("wardId", user.WardId);
+      localStorage.setItem("provinceName", user.ProvinceName);
+      localStorage.setItem("districtName", user.DistrictName);
+      localStorage.setItem("wardName", user.WardName);
+      localStorage.setItem("roleId", user.RoleID);
+    }
+
+    this.farmerLimit = Number(localStorage.getItem('roleId')) == this.$_TTANHEnum.ROLE_ID.FARMER
 
     // nếu là nông dân thì lọc trước dự báo theo tỉnh
     if (this.farmerLimit) {
       this.dataFilter.provinceId = localStorage.getItem('provinceId')
       this.dataFilter.districtId = localStorage.getItem('districtId')
       this.dataFilter.wardId = localStorage.getItem('wardId')
-    }
-    
-    console.log(localStorage.getItem('provinceId'),
-localStorage.getItem('districtId'),
-localStorage.getItem('wardId'))
-
-    // lấy dữ liệu phân trang được lưu trong local storage
-    this.pagingData.pageNumber = formatToNumber(localStorage.getItem('pageNumber')) ?? 1
-    this.pagingData.pageSize = formatToNumber(localStorage.getItem('pageSize')) ?? 10
-
-    //lấy dữ liệu dự báo
-    this.getPredicts()
-  },
-
-  mounted() {
-    // nếu là nông dân thì lọc trước dự báo theo tỉnh
-    if (this.farmerLimit) {
       this.$refs.provinceId.$refs.inputSearch.value = localStorage.getItem('provinceName')
       this.$refs.districtId.$refs.inputSearch.value = localStorage.getItem('districtName')
       this.$refs.wardId.$refs.inputSearch.value = localStorage.getItem('wardName')
     }
 
-    console.log(localStorage.getItem('provinceName'),
-localStorage.getItem('districtName'),
-localStorage.getItem('wardName'))
+    //lấy dữ liệu dự báo
+    this.getPredicts()
   },
 
   methods: {
