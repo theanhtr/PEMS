@@ -11,6 +11,7 @@ const vi = {
     },
     button: {
       edit: 'Sửa',
+      view: 'Xem',
       no: 'Không',
       yes: 'Có',
       add: 'Thêm',

@@ -1,7 +1,7 @@
 #view-predict-popup {
   max-width: none !important;
   width: 85% !important;
-  height: 90% !important;
+  height: 660px !important;
 }
 
 .label-add-group {
@@ -28,4 +28,10 @@
 
 .title-action__title {
   padding-left: 8px;
+}
+
+.daily-forecast-table-group {
+  height: 290px;
+  width: 100%;
+  overflow: scroll;
 }

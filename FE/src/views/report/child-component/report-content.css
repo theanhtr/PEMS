@@ -76,7 +76,7 @@
 
 .page__table {
   width: 100%;
-  height: calc(100% - var(--footer-height) - 44px);
+  height: calc(100% - var(--footer-height) - 200px);
   background-color: white;
   overflow: scroll;
 }

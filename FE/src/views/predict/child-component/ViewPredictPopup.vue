@@ -117,14 +117,16 @@
           "
         />
         <div class="w1 flex-row align-item--start" style="padding-top: 4px">
-          <div class="w1" style="height: 100px;">
+          <div class="w1">
             <div class="flex-row p-b-8 label-add-group">Thông tin dự báo</div>
-            <ttanh-table
-              :columnsInfo="dailyForecastColumnsInfo"
-              :rowsData="dailyForecast"
-              :oneRowSelect="true"
-              :noAction="true"
-            />
+            <div class="daily-forecast-table-group">
+              <ttanh-table
+                :columnsInfo="dailyForecastColumnsInfo"
+                :rowsData="dailyForecast"
+                :oneRowSelect="true"
+                :noAction="true"
+              />
+            </div>
           </div>
         </div>
       </template>
@@ -137,6 +139,7 @@
 <script>
 import PredictService from '@/service/PredictService.js'
 import { formatToDate } from '@/helper/format-helper.js'
+import { sortArrayByAttribute } from '@/helper/common.js'
 
 export default {
   name: 'ViewPredictPopup',
@@ -157,7 +160,7 @@ export default {
     this.viewPredictData.CurrentStartDate = formatToDate(this.viewPredictData.CurrentStartDate, this.$store.state.formatDate)
 
     if (this.viewPredictData.DailyForecast) {
-      this.dailyForecast = JSON.parse(this.viewPredictData.DailyForecast);
+      this.dailyForecast = sortArrayByAttribute(JSON.parse(this.viewPredictData.DailyForecast), 'date');
     }
     
     this.isLoading = false
@@ -199,6 +202,24 @@ export default {
         {
           id: 'temp',
           name: 'Nhiệt độ',
+          size: '150px',
+          textAlign: 'left',
+          format: 'text',
+          isShow: true,
+          isPin: false
+        },
+        {
+          id: 'rain',
+          name: 'Lượng mưa',
+          size: '150px',
+          textAlign: 'left',
+          format: 'text',
+          isShow: true,
+          isPin: false
+        },
+        {
+          id: 'humidity',
+          name: 'Độ ẩm',
           size: '150px',
           textAlign: 'left',
           format: 'text',

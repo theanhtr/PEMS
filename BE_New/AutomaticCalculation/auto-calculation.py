@@ -41,7 +41,7 @@ async def predict_auto_calculate():
             return
 
         # tính toán trạng thái của sâu bệnh
-        stages_by_day = await gdd(predict, pest_stages, weather.get('Daily', {}).get('Temperature2mMean'))
+        stages_by_day = await gdd(predict, pest_stages, weather)
         
         # Lấy ra các trạng thái của cây trồng
         crop_stages = await predict_service.fetch_crop_stage(predict.get('CropId'))
@@ -67,6 +67,11 @@ async def gdd(predict, pest_stages, weather):
     print ("thông tin thời tiết: ")
     print (weather)
 
+    #trích xuất các thông tin thời tiết từ weather
+    temps = weather.get('Daily', {}).get('Temperature2mMean') #nhiệt độ trung bình trong ngày
+    rains = weather.get('Daily', {}).get('RainSum') #lượng mưa trong ngày
+    humidities = weather.get('Daily', {}).get('RelativeHumidity2mMean') #độ ẩm trung bình trong ngày
+
     # Parse ngày bắt đầu từ `predict`
     start_date = datetime.datetime.strptime(predict.get('CurrentStartDate'), '%Y-%m-%dT%H:%M:%S%z').date()
     
@@ -85,7 +90,7 @@ async def gdd(predict, pest_stages, weather):
     current_stage_index = 0
     
     # Duyệt qua từng ngày với dữ liệu nhiệt độ
-    for i, temp in enumerate(weather):
+    for i, temp in enumerate(temps):
         # Tính GDD cho ngày hiện tại dựa trên nhiệt độ ngày và nhiệt độ phát dục của giai đoạn hiện tại
         daily_gdd = max(temp - base_temps[current_stage_index], 0)
         cumulative_gdd += daily_gdd
@@ -94,7 +99,7 @@ async def gdd(predict, pest_stages, weather):
         date = start_date + datetime.timedelta(days=i)
         
         # Ghi lại giai đoạn hiện tại trước khi kiểm tra điều kiện đổi giai đoạn
-        stages_by_day.append({"stage": pest_stage_names[current_stage_index], "stage_id": pest_stage_ids[current_stage_index], "temp": temp, "date": date.strftime('%Y-%m-%d')})
+        stages_by_day.append({"stage": pest_stage_names[current_stage_index], "stage_id": pest_stage_ids[current_stage_index], "temp": temp, "rain": rains[i], "humidity": humidities[i], "date": date.strftime('%Y-%m-%d')})
         
         # Kiểm tra nếu GDD tích lũy đã đạt ngưỡng của giai đoạn hiện tại
         if cumulative_gdd >= degree_days_required[current_stage_index]:

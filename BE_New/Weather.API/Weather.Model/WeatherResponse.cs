@@ -12,6 +12,12 @@ namespace Weather.Model
 
         [JsonProperty("temperature_2m_mean")]
         public List<double>? Temperature2mMean { get; set; }
+
+        [JsonProperty("rain_sum")]
+        public List<double>? RainSum { get; set; }
+
+        [JsonProperty("relative_humidity_2m_mean")]
+        public List<double>? RelativeHumidity2mMean { get; set; }
     }
 
     public class DailyUnits
@@ -24,6 +30,12 @@ namespace Weather.Model
 
         [JsonProperty("temperature_2m_mean")]
         public string? Temperature2mMean { get; set; }
+
+        [JsonProperty("rain_sum")]
+        public string? RainSum { get; set; }
+
+        [JsonProperty("relative_humidity_2m_mean")]
+        public string? RelativeHumidity2mMean { get; set; }
     }
 
     public class WeatherResponse

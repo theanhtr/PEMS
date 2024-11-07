@@ -1,5 +1,5 @@
 <template>
-  <div class="Report-content">
+  <div class="report-content">
     <div class="page__filter">
       <h1 class="page__filter-title">Bộ lọc</h1>
       <ttanh-separation-line

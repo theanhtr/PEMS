@@ -1,5 +1,5 @@
 <template>
-  <div class="Predict-content">
+  <div class="predict-content">
     <div class="page__filter">
       <h1 class="page__filter-title">Bộ lọc</h1>
       <ttanh-separation-line
@@ -169,6 +169,7 @@
           :border="batchExecutionDisable ? '' : '2px solid black'"
           :tabindex="-1"
           @clickButton="showAddPredictPopup"
+          v-if="!farmerLimit"
           >Tạo mới</ttanh-button
         >
       </div>
@@ -182,6 +183,7 @@
         :noData="computedNoData"
         :oneRowSelect="true"
         :endOfSeason="!seasonEnd"
+        :farmerLimit="farmerLimit"
         @checked-all="checkedAllRow"
         @unchecked-all="uncheckedAllRow"
         @checked-row="checkedRow"
@@ -255,6 +257,7 @@ export default {
   },
   data() {
     return {
+      farmerLimit: false,
       isShowViewPredictPopup: false,
       PredictIdEndOfSeason: null,
       isShowConfirmEndOfSeasonPopup: false,
@@ -422,6 +425,8 @@ export default {
   },
 
   created() {
+    this.farmerLimit = Number(localStorage.getItem('roleId')) === this.$_TTANHEnum.ROLE_ID.FARMER
+
     // lấy dữ liệu phân trang được lưu trong local storage
     this.pagingData.pageNumber = formatToNumber(localStorage.getItem('pageNumber')) ?? 1
     this.pagingData.pageSize = formatToNumber(localStorage.getItem('pageSize')) ?? 10
