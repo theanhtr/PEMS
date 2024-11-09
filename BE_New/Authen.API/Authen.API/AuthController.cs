@@ -2,7 +2,7 @@
 using Authen.BL;
 using Authen.Model;
 
-namespace Authen.Controllers
+namespace Authen.API
 {
     /// <summary>
     /// Controller của phòng ban
