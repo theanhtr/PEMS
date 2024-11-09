@@ -1,5 +1,5 @@
 # Sử dụng image .NET SDK để build ứng dụng
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /source
 
 # Copy file cần thiết từ Base vào thư mục tạm trong image
