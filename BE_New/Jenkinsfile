@@ -44,10 +44,22 @@ pipeline{
           }
         }
 
-        dir("BE_New/${PROJECT_DIR}") {
+        // copy base
+        dir("BE_New") {
+          script {
+            sh "mkdir -p ./BuildFolder"
+            sh "mkdir -p ./BuildFolder/Base"
+            sh "mkdir -p ./BuildFolder/${PROJECT_DIR}"
+            
+            sh "cp -r ./Base/* ./BuildFolder/Base"
+            sh "cp -r ./${PROJECT_DIR}/* ./BuildFolder/${PROJECT_DIR}"
+          }
+        }
+
+        dir("BE_New/BuildFolder") {
           script {
             docker.withRegistry('', DOCKER_PASS) {
-              docker_image = docker.build("${IMAGE_NAME}")
+              docker_image = docker.build("${IMAGE_NAME}", , "./${PROJECT_DIR}")
             }
 
             docker.withRegistry('', DOCKER_PASS) {
