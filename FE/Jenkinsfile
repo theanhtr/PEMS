@@ -4,7 +4,7 @@ pipeline{
     nodejs 'Node20'
   }
   environment {
-    APP_NAME = "pems_fe"
+    APP_NAME = "pems-fe"
     DEPLOYMENT_NAME = "pems-fe"
     DOCKER_USER = "theanh0906"
     DOCKER_PASS = "dockerhub-credentials"
