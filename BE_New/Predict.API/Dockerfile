@@ -2,16 +2,12 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /source
 
-# Copy toàn bộ BuildFolder để đảm bảo Docker có quyền truy cập vào cả Predict.API và Base
-COPY . .
-
 # Copy file cần thiết từ Base vào thư mục tạm trong image
-COPY ./Base /source/Base
+COPY ./Base ./Base
+COPY ./Predict.API ./Predict.API
 
-# Restore và publish dự án từ thư mục Predict.API
-WORKDIR /source/Predict.API
-RUN dotnet restore "./Predict.API.csproj" --disable-parallel
-RUN dotnet publish "./Predict.API.csproj" -c Release -o /app --no-restore
+RUN dotnet restore "./Predict.API/Predict.API/Predict.API.csproj" --disable-parallel
+RUN dotnet publish "./Predict.API/Predict.API/Predict.API.csproj" -c Release -o /app --no-restore
 
 # Sử dụng image runtime để chạy ứng dụng
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
