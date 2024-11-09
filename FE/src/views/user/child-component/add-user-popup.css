@@ -1,3 +1,7 @@
+#add-user-popup {
+  z-index: 102;
+}
+
 .label-add-group {
   text-transform: uppercase;
   color: var(--primary-color);

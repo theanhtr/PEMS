@@ -10,7 +10,9 @@
           v-model="dataFilter.userName"
           ref="userNameFilter"
           idInput="userNameFilter"
-          labelText="Tên tài khoản hoặc Họ và tên"
+          labelText="Tìm kiếm tài khoản"
+          placeholder="Nhập tên tài khoản hoặc họ tên"
+          @keyup="(e) => { if (e.keyCode === 13) getUsers() }"
           style="padding-left: 6px"
           class="w1/4"
         />
@@ -41,7 +43,7 @@
       <div class="page__action-right">
         <ttanh-icon
           :icon="'page__reload--' + (pageButtonHover['page__reload'] ? 'black' : 'grey')"
-          :tooltip="$t('UserSubsystem.UserContent.reloadTooltip')"
+          :tooltip="$t('common.reloadTooltip')"
           @mouseenter="pageButtonHover['page__reload'] = true"
           @mouseleave="pageButtonHover['page__reload'] = false"
           @click="reloadDataWithSelectedRows"
@@ -69,10 +71,11 @@
         @unchecked-all="uncheckedAllRow"
         @checked-row="checkedRow"
         @unchecked-row="uncheckedRow"
-        @doubleClickRow="openFormUpdate"
+        @doubleClickRow="openFormView"
         @clickFixBtn="openFormUpdate"
         @clickContextDeleteBtn="openConfirmDeletePopup"
         @resizeColumn="resizeUserColumn"
+        @clickContextViewBtn="openFormView"
       />
     </div>
     <div class="page__footer">
@@ -82,7 +85,8 @@
     <AddUserPopup
       v-if="isShowAddUserPopup"
       :dataUpdate="dataUpdate"
-      @clickCancelBtn="isShowAddUserPopup = false"
+      :isViewOnly="isViewOnly"
+      @clickCancelBtn="isShowAddUserPopup = false; isViewOnly = false"
       @reloadData="reloadData"
       ref="addUserPopup"
     />
@@ -115,6 +119,7 @@ export default {
   },
   data() {
     return {
+      isViewOnly: false,
       users: [],
 
       /* lưu dữ id các người dùng đã được chọn */
@@ -160,7 +165,6 @@ export default {
       tableSearchFocus: false,
       pageButtonHover: {
         page__setting: false,
-        page__reload: false,
         page__reload: false
       },
 
@@ -263,7 +267,7 @@ export default {
           PageNumber: this.pagingData.pageNumber
         }
 
-        const res = await UserService.filter(dataFilter)
+        const res = await UserService.filter('User', dataFilter)
 
         if (res.success) {
           if (res.data.Data.length != 0) {
@@ -516,6 +520,18 @@ export default {
       }
     },
 
+    openFormView(rowId) {
+      try {
+        let indexRow = findIndexByAttribute(this.users, 'UserId', rowId)
+
+        this.isShowAddUserPopup = true
+        this.dataUpdate = this.users[indexRow]
+        this.isViewOnly = true
+      } catch (error) {
+        console.log('🚀 ~ file: PredictContent.vue:529 ~ openFormUpdate ~ error:', error)
+      }
+    },
+
     /**
      * mở form xác nhận xóa
      * @author: TTANH (01/07/2024)
@@ -613,7 +629,7 @@ export default {
       try {
         this.isLoading = true
         const UserCode = this.UserCodeDelete
-        const res = await UserService.delete(this.UserIdDelete)
+        const res = await UserService.delete('User', this.UserIdDelete)
 
         if (res.success) {
           this.$store.commit('addToast', {

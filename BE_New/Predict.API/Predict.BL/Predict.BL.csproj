@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Base\Base.BL\Base.BL.csproj" />
+    <ProjectReference Include="..\Predict.DL\Predict.DL.csproj" />
+    <ProjectReference Include="..\Predict.Model\Predict.Model.csproj" />
+  </ItemGroup>
+
+</Project>

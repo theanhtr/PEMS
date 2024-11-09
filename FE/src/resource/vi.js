@@ -1,5 +1,6 @@
 const vi = {
   common: {
+    reloadTooltip: 'Lấy lại dữ liệu',
     search: 'Tìm kiếm',
     helpIconTooltip: 'Giúp (F1)',
     closeIconTooltip: 'Đóng (ESC)',
@@ -10,6 +11,7 @@ const vi = {
     },
     button: {
       edit: 'Sửa',
+      view: 'Xem',
       no: 'Không',
       yes: 'Có',
       add: 'Thêm',
@@ -67,6 +69,12 @@ const vi = {
       },
 
       notFoundEmployee: 'Không tìm thấy nhân viên.'
+    },
+
+    ChangePasswordSubsystem: {
+      ChangePasswordPopup: {
+        RepasswordNotMatch: 'Vui lòng nhập Mật khẩu xác nhận trùng khớp Mật khẩu mới',
+      },
     }
   },
 
@@ -404,6 +412,30 @@ const vi = {
         previousEndDate: 'Ngày kết thúc kỳ trước',
         previousLevelWarning: 'Cảnh báo cấp độ kỳ trước',
         currentStartDate: 'Ngày bắt đầu kỳ hiện tại'
+      }
+    }
+  },
+
+  reportSubsystem: {
+    addreportPopup: {
+      nameField: {
+        provinceId: 'Tỉnh/Thành phố',
+        districtId: 'Quận/Huyện',
+        wardId: 'Phường/Xã',
+        address: 'Địa chỉ',
+        pestStageId: 'Giai đoạn sâu bệnh',
+        cropStageId: 'Giai đoạn cây trồng',
+        reportName: 'Người báo cáo',
+      }
+    }
+  },
+
+  passwordSubsystem: {
+    ChangePasswordPopup: {
+      nameField: {
+        password: 'Mật khẩu mới',
+        oldpassword: 'Mật khẩu cũ',
+        repassword: 'Nhập lại mật khẩu mới',
       }
     }
   },

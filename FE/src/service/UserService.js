@@ -1,12 +1,9 @@
 import BaseService from './BaseService.js'
+import TTANHEnum from '../enum/index.js'
 
 class UserServiceClass extends BaseService {
   constructor() {
-    super('User')
-  }
-
-  getMyinfo() {
-    return this.baseAxios.get(this.endpoint('/myinfo'))
+    super(TTANHEnum.API_SERVER_KEY.USER)
   }
 }
 

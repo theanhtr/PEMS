@@ -168,8 +168,7 @@ export default {
       tableSearchFocus: false,
       pageButtonHover: {
         page__setting: false,
-        page__reload: false,
-        page__reload: false,
+        page__reload: false
       },
 
       /* biến xác định nút "Thực hiện hàng loạt" có disable hay không */

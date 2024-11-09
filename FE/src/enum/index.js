@@ -1,4 +1,17 @@
 const TTANHEnum = {
+  API_SERVER_KEY: {
+    AUTH: 'auth',
+    USER: 'user',
+    PREDICT: 'predict',
+    REPORT: 'report',
+  },
+
+  ROLE_ID: {
+    ADMIN: 1,
+    EXPERT: 2,
+    FARMER: 3,
+  },
+
   /* các bước khi import excel */
   IMPORT_STEP: {
     SELECT_SOURCE_FILE: 0,

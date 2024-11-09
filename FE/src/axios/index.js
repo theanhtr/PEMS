@@ -1,10 +1,8 @@
 import axios from 'axios'
-import { ProjectConfig } from '../config/config.js'
 import { success, failure } from '../service/HttpResponse.js'
 import store from '../store/index.js'
 
 const TTANHAxios = axios.create({
-  baseURL: ProjectConfig.ApiConnection,
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',

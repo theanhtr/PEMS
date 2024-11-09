@@ -28,7 +28,7 @@
             <div class="th__resize" @mousedown="mouseDownResizeColumn($event, index)"></div>
           </th>
         </div>
-        <th style="text-align: end" class="m-table__row-function">
+        <th style="text-align: end" class="m-table__row-function" v-if="!noAction">
           <span style="padding-right: 6px">Hành động</span>
         </th>
       </tr>
@@ -126,6 +126,7 @@
               event.stopPropagation()
             }
           "
+          v-if="!noAction && !farmerLimit"
         >
           <template v-if="rowsData.length === 0">
             <ttanh-loading-skeleton />
@@ -155,6 +156,36 @@
             </div>
           </template>
         </td>
+
+        <td
+          class="m-table__row-function"
+          :style="{
+            backgroundColor:
+              this.rowIsFocus == row.id ? 'var(--grid-body__line-focus-background-color) !important' : '',
+            overflow: 'visible'
+          }"
+          @dblclick="
+            (event) => {
+              event.stopPropagation()
+            }
+          "
+          v-else-if="farmerLimit"
+        >
+          <template v-if="rowsData.length === 0">
+            <ttanh-loading-skeleton />
+          </template>
+          <template v-else>
+            <div class="tbody__row-function">
+              <ttanh-button
+                type="link"
+                colorText="#0075c0"
+                style="font-weight: 600; height: 100%; padding: 6px 1px 6px 16px; margin-right: 6px;"
+                @clickBtnContainer="$emit('clickContextViewBtn', row.id)"
+                >{{ $t('common.button.view') }}</ttanh-button
+              >
+            </div>
+          </template>
+        </td>
       </tr>
     </tbody>
 
@@ -169,6 +200,12 @@
       :style="styleFunctionContext"
       ref="refFunctionContext"
     >
+      <div v-if="endOfSeason" @click="() => { $emit('clickEndOfSeason', this.idFunctionContextFocus); this.closeFunctionContext() }" class="function__item">
+        Kết thúc mùa vụ
+      </div>
+      <div @click="() => { $emit('clickContextViewBtn', this.idFunctionContextFocus); this.closeFunctionContext() }" class="function__item">
+        {{ $t('common.button.view') }}
+      </div>
       <div @click="clickDeleteBtn" class="function__item">
         {{ $t('component.table.editData.delete') }}
       </div>
@@ -200,6 +237,15 @@ export default {
     }
   },
   props: {
+    farmerLimit: {
+      default: false
+    },
+    noAction: {
+      default: false
+    },
+    endOfSeason: {
+      default: false
+    },
     /**
      * thông tin cột phải theo định dạn
         {
@@ -507,7 +553,10 @@ export default {
      */
     clickRow(rowId) {
       this.$emit('clickRow', rowId)
-      this.rowIsFocus = rowId
+
+      if (!this.noAction && !this.farmerLimit) {
+        this.rowIsFocus = rowId
+      }
     },
 
     /**

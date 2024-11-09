@@ -26,7 +26,7 @@ namespace PEMS.Application
         {
             // xử lý param trước khi gửi xuống repository
             DateTime? startDate = predictFilterParam.StartDate?.Date;
-            DateTime? endDate = predictFilterParam.EndDate?.Date.AddSeconds(-1);
+            DateTime? endDate = predictFilterParam.EndDate?.Date.AddDays(1).AddSeconds(-1);
 
             int? pageSize = predictFilterParam.PageSize;
             int? pageNumber = predictFilterParam.PageNumber;

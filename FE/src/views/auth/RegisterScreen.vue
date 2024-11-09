@@ -107,7 +107,7 @@ export default {
           Fullname: this.fullname
         }
 
-        const res = await AuthService.register(registerParams)
+        const res = await AuthService.post('Auth/register', registerParams)
 
         if (res.success) {
           this.$router.push('/login')

@@ -1,6 +1,6 @@
 <template>
   <div class="m-overlay" id="add-predict-popup">
-    <ttanh-popup style="overflow: visible" title="Tạo mới dự báo">
+    <ttanh-popup style="overflow: visible" :title="titleForm">
       <template #header__close>
         <ttanh-icon
           @click="closeAddForm"
@@ -10,49 +10,61 @@
         />
       </template>
       <template #content__input-control>
-        <div class="w1 flex-row" style="padding-bottom: 12px">
-          <div class="w1/2" style="padding-right: 26px">
+        <div class="w1 flex-row align-item--start" style="padding-bottom: 12px">
+          <div class="w1/3" style="padding-right: 26px">
             <div class="flex-row p-b-8 label-add-group">Thông tin khu vực</div>
             <div class="flex-row p-b-8">
               <ttanh-combobox
                 :errorText="errorTextPredictData.provinceId"
                 v-model="addPredictData.provinceId"
-                ref="province"
+                ref="provinceId"
                 type="single-row"
                 labelText="Tỉnh/Thành phố"
                 :inputRequired="true"
                 @show-combobox="getProvinces"
-                :rowsData="computedProvinces"
+                idField="province_id"
+                nameField="province_name"
+                :rowsData="dataAddress.provinces"
+                :textInputCreated="addPredictData.provinceName"
                 class="w1"
                 tabindex="1"
+                :disableCombobox="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
             <div class="flex-row p-b-8">
               <ttanh-combobox
                 :errorText="errorTextPredictData.districtId"
                 v-model="addPredictData.districtId"
-                ref="district"
+                ref="districtId"
                 type="single-row"
                 labelText="Quận/Huyện"
                 :inputRequired="true"
                 @show-combobox="getDistricts"
-                :rowsData="computedDistricts"
+                idField="district_id"
+                nameField="district_name"
+                :rowsData="dataAddress.districts"
+                :textInputCreated="addPredictData.districtName"
                 class="w1"
                 tabindex="2"
+                :disableCombobox="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
             <div class="flex-row p-b-8">
               <ttanh-combobox
                 :errorText="errorTextPredictData.wardId"
                 v-model="addPredictData.wardId"
-                ref="ward"
+                ref="wardId"
                 type="single-row"
                 labelText="Phường/Xã"
                 :inputRequired="true"
                 @show-combobox="getWards"
-                :rowsData="computedWards"
+                idField="ward_id"
+                nameField="ward_name"
+                :rowsData="dataAddress.wards"
+                :textInputCreated="addPredictData.wardName"
                 class="w1"
                 tabindex="3"
+                :disableCombobox="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
             <div class="flex-row p-b-8">
@@ -66,12 +78,48 @@
                 "
                 :inputRequired="false"
                 class="w1"
-                ref="fullName"
+                ref="adress"
                 tabindex="2"
+                :disable="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
           </div>
-          <div class="w1/2">
+          <div class="w1/3 flex-column" style="padding-right: 26px">
+            <div class="flex-row p-b-8 label-add-group">Thông tin phòng tránh</div>
+            <ttanh-combobox
+              :errorText="errorTextPredictData.cropId"
+              v-model="addPredictData.cropId"
+              ref="cropId"
+              type="single-row"
+              labelText="Tên cây trồng"
+              :inputRequired="true"
+              :rowsData="cropsRowData"
+              @show-combobox="getCrops"
+              idField="CropId"
+              nameField="CropName"
+              :textInputCreated="addPredictData.cropName"
+              class="w1"
+              tabindex="3"
+              :disableCombobox="formMode === $_TTANHEnum.FORM_MODE.VIEW"
+            />
+              <ttanh-combobox
+                :errorText="errorTextPredictData.pestId"
+                v-model="addPredictData.pestId"
+                ref="pestId"
+                type="single-row"
+                labelText="Tên sâu bệnh"
+                :inputRequired="true"
+                :rowsData="pestsRowData"
+                @show-combobox="getPests"
+                idField="PestId"
+                nameField="PestName"
+                :textInputCreated="addPredictData.pestName"
+                class="w1"
+                tabindex="3"
+                :disableCombobox="formMode === $_TTANHEnum.FORM_MODE.VIEW"
+              />
+          </div>
+          <div class="w1/3">
             <div class="flex-row p-b-8 label-add-group">Thông tin vụ trước</div>
             <div class="flex-row p-b-8">
               <ttanh-date-picker
@@ -82,7 +130,8 @@
                 labelText="Thời điểm kết thúc"
                 tabindex="6"
                 ref="previousEndDate"
-                :maxDate="new Date().setDate(new Date().getDate() - 2)"
+                :maxDate="new Date().setDate(new Date().getDate() - 1)"
+                :disable="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
             <div class="flex-row p-b-8">
@@ -93,9 +142,14 @@
                 type="single-row"
                 labelText="Mức độ cảnh báo"
                 :inputRequired="false"
-                :rowsData="previousLevelWarning"
+                :rowsData="levelWarningsRowData"
+                idField="LevelWarningId"
+                nameField="LevelWarningName"
+                :textInputCreated="addPredictData.previousLevelWarningName"
+                @show-combobox="getLevelWarnings"
                 class="w1"
                 tabindex="3"
+                :disableCombobox="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
             <div class="flex-row p-b-8 label-add-group m-t-26">Thông tin vụ này</div>
@@ -110,12 +164,13 @@
                 ref="currentStartDate"
                 :inputRequired="true"
                 :maxDate="new Date()"
+                :disable="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
           </div>
         </div>
       </template>
-      <template #footer>
+      <template #footer v-if="formMode != $_TTANHEnum.FORM_MODE.VIEW">
         <ttanh-separation-line style="border-color: var(--border-color-default); margin: 16px 0px" />
         <div class="flex-row" style="justify-content: space-between; padding-bottom: 16px">
           <div>
@@ -154,7 +209,7 @@
       @cancel-click="
         () => {
           isShowOutConfirmPopup = false
-          $refs.province.focus()
+          $refs.provinceId.focus()
         }
       "
       @no-click="$emit('clickCancelBtn')"
@@ -174,7 +229,7 @@
 <script>
 import PredictService from '@/service/PredictService.js'
 import { ValidateConfig } from '@/config/config.js'
-import { findIndexByAttribute, isObjectEmpty } from '@/helper/common.js'
+import { calTitleForm, isObjectEmpty } from '@/helper/common.js'
 import { lengthValidate, emptyValidate, regexValidate } from '@/helper/validate.js'
 import { CommonErrorHandle } from '@/helper/error-handle'
 import { capitalizeFirstLetter } from '@/helper/format-helper'
@@ -184,12 +239,17 @@ import { levelWarnings } from '../../../data_combobox/levelWarning'
 export default {
   name: 'AddPredictPopup',
   props: {
+    isViewOnly: {
+      default: false
+    },
     dataUpdate: {
       default: null
     }
   },
 
   async created() {
+    this.formMode = this.computedFormMode
+    this.titleForm = calTitleForm(this.formMode) + 'dự báo';
     //cập nhật thông tin cho form: form_mode, data
     await this.addInfoForm()
 
@@ -198,16 +258,18 @@ export default {
 
   mounted() {
     //foucs vào Predict code lần đầu mở form
-    this.$refs.province.focus()
-    this.$refs.province.setValueInput(this.addPredictData.provinceId)
-    this.$refs.district.setValueInput(this.addPredictData.districtId)
-    this.$refs.ward.setValueInput(this.addPredictData.wardId)
+    this.$refs.provinceId.focus()
+    this.$refs.provinceId.setValueInput(this.addPredictData.provinceId)
+    this.$refs.districtId.setValueInput(this.addPredictData.districtId)
+    this.$refs.wardId.setValueInput(this.addPredictData.wardId)
   },
 
   unmounted() {},
 
   data() {
     return {
+      titleForm: '',
+      
       dataAddress: {
         provinces: [],
         districts: [],
@@ -223,16 +285,21 @@ export default {
       previousLevelWarning: levelWarnings,
 
       addPredictData: {
-        provinceId: -1,
+        provinceId: null,
         provinceName: '',
-        districtId: -1,
+        districtId: null,
         districtName: '',
-        wardId: -1,
+        wardId: null,
         wardName: '',
         address: '',
         previousEndDate: null,
-        previousLevelWarningId: -1,
-        currentStartDate: null
+        previousLevelWarningId: null,
+        previousLevelWarningName: '',
+        currentStartDate: null,
+        cropName: '',
+        cropId: null,
+        pestId: null,
+        pestName: ''
       },
 
       /**
@@ -257,9 +324,9 @@ export default {
         districtId: 'Empty',
         wardId: 'Empty',
         address: 'MaxLength255',
-        previousEndDate: '',
-        previousLevelWarningId: '',
-        currentStartDate: 'Empty'
+        currentStartDate: 'Empty',
+        cropId: 'Empty',
+        pestId: 'Empty',
       },
 
       errorTextPredictData: {
@@ -269,12 +336,47 @@ export default {
         address: '',
         previousEndDate: '',
         previousLevelWarningId: '',
-        currentStartDate: ''
-      }
+        currentStartDate: '',
+        cropId: '',
+        pestId: '',
+      },
+      pestsRowData: [],
+      cropsRowData: [],
+      levelWarningsRowData: []
     }
   },
 
   methods: {
+    async getCrops() {
+      let res = await PredictService.get('Predict/crop')
+
+      if (res.statusCode === 200) {
+        this.cropsRowData = res.data
+      } else {
+        this.cropsRowData = []
+      }
+    },
+
+    async getPests() {
+      let res = await PredictService.get('Predict/pest')
+
+      if (res.statusCode === 200) {
+        this.pestsRowData = res.data
+      } else {
+        this.pestsRowData = []
+      }
+    },
+    
+    async getLevelWarnings() {
+      let res = await PredictService.get('Predict/level-warning?cropId=' + this.addPredictData.cropId + '&pestId=' + this.addPredictData.pestId)
+
+      if (res.statusCode === 200) {
+        this.levelWarningsRowData = res.data
+      } else {
+        this.levelWarningsRowData = []
+      }
+    },
+
     async getProvinces() {
       let provinces = await AddressService.province()
 
@@ -312,7 +414,7 @@ export default {
     closeAddForm() {
       if (this.formMode == this.$_TTANHEnum.FORM_MODE.ADD) {
         this.isShowOutConfirmPopup = true
-      } else {
+      } else if (this.formMode == this.$_TTANHEnum.FORM_MODE.UPDATE) {
         let difference = false
 
         for (let attr in this.addPredictData) {
@@ -334,6 +436,8 @@ export default {
         } else {
           this.$emit('clickCancelBtn')
         }
+      } else {
+        this.$emit('clickCancelBtn')
       }
     },
 
@@ -342,20 +446,14 @@ export default {
      * @author: TTANH (01/07/2024)
      */
     async addInfoForm() {
-      this.formMode = this.computedFormMode
-
       if (this.formMode === this.$_TTANHEnum.FORM_MODE.ADD) {
         this.resetAddPredictData()
-      } else if (this.formMode === this.$_TTANHEnum.FORM_MODE.UPDATE) {
+      } else if (this.formMode === this.$_TTANHEnum.FORM_MODE.UPDATE || this.formMode === this.$_TTANHEnum.FORM_MODE.VIEW) {
         for (let attr in this.dataUpdate) {
           let formatAttr = attr[0].toLowerCase() + attr.slice(1, attr.length)
 
           this.addPredictData[formatAttr] = this.dataUpdate[attr] !== null ? this.dataUpdate[attr] : ''
         }
-
-        await this.getProvinces()
-        await this.getDistricts(this.addPredictData.provinceId)
-        await this.getWards(this.addPredictData.districtId)
       }
     },
 
@@ -397,9 +495,13 @@ export default {
         let isSuccess = true
         this.isLoading = true
 
-        this.addPredictData.provinceName = this.$refs.province.getCurrentInputValue()
-        this.addPredictData.districtName = this.$refs.district.getCurrentInputValue()
-        this.addPredictData.wardName = this.$refs.ward.getCurrentInputValue()
+        this.addPredictData.provinceName = this.$refs.provinceId.getCurrentInputValue()
+        this.addPredictData.districtName = this.$refs.districtId.getCurrentInputValue()
+        this.addPredictData.wardName = this.$refs.wardId.getCurrentInputValue()
+
+        this.addPredictData.cropName = this.$refs.cropId.getCurrentInputValue()
+        this.addPredictData.pestName = this.$refs.pestId.getCurrentInputValue()
+        this.addPredictData.previousLevelWarningName = this.$refs.previousLevelWarningId.getCurrentInputValue()
 
         //lọc loại những trường rỗng
         var dataSendApi = {}
@@ -409,7 +511,7 @@ export default {
             if (this.addPredictData[key] !== '') {
               dataSendApi[key] = this.addPredictData[key]
             }
-          } else if (this.addPredictData[key]) {
+          } else if (this.addPredictData[key] !== null && this.addPredictData[key] !== '') {
             dataSendApi[key] = this.addPredictData[key]
           } else {
             dataSendApi[key] = null
@@ -417,7 +519,7 @@ export default {
         }
 
         if (this.formMode === this.$_TTANHEnum.FORM_MODE.ADD) {
-          const res = await PredictService.post(dataSendApi)
+          const res = await PredictService.post('Predict', dataSendApi)
 
           if (res.success) {
             this.$store.commit('addToast', {
@@ -429,7 +531,7 @@ export default {
             isSuccess = false
           }
         } else if (this.formMode === this.$_TTANHEnum.FORM_MODE.UPDATE) {
-          const res = await PredictService.put(this.addPredictData.PredictId, dataSendApi)
+          const res = await PredictService.put('Predict', this.addPredictData.predictId, dataSendApi)
 
           if (res.success) {
             this.$store.commit('addToast', {
@@ -638,80 +740,17 @@ export default {
     onStoreAndAddBtnKeyDown(event) {
       if (event.keyCode === this.$_TTANHEnum.KEY_CODE.TAB && !event.shiftKey) {
         event.preventDefault()
-        this.$refs.province.focus()
+        this.$refs.provinceId.focus()
       }
     }
   },
 
   computed: {
-    computedProvinces() {
-      try {
-        let provincesFormat = []
-
-        this.dataAddress.provinces.forEach((province) => {
-          let id = province.province_id
-          let name = province.province_name
-          let code = province.province_name
-
-          provincesFormat.push({
-            id,
-            name,
-            code
-          })
-        })
-
-        return provincesFormat
-      } catch (error) {
-        console.log('🚀 ~ file: EmployeeList.vue:457 ~ computedEmployees ~ error:', error)
-      }
-    },
-
-    computedDistricts() {
-      try {
-        let districtsFormat = []
-
-        this.dataAddress.districts.forEach((district) => {
-          let id = district.district_id
-          let name = district.district_name
-          let code = district.district_name
-
-          districtsFormat.push({
-            id,
-            name,
-            code
-          })
-        })
-
-        return districtsFormat
-      } catch (error) {
-        console.log('🚀 ~ file: EmployeeList.vue:457 ~ computedEmployees ~ error:', error)
-      }
-    },
-
-    computedWards() {
-      try {
-        let wardsFormat = []
-
-        this.dataAddress.wards.forEach((ward) => {
-          let id = ward.ward_id
-          let name = ward.ward_name
-          let code = ward.ward_name
-
-          wardsFormat.push({
-            id,
-            name,
-            code
-          })
-        })
-
-        return wardsFormat
-      } catch (error) {
-        console.log('🚀 ~ file: EmployeeList.vue:457 ~ computedEmployees ~ error:', error)
-      }
-    },
-
     computedFormMode() {
-      if (!this.dataUpdate) {
+      if (this.isViewOnly) {
+        return this.$_TTANHEnum.FORM_MODE.VIEW
+      }
+      else if (!this.dataUpdate) {
         return this.$_TTANHEnum.FORM_MODE.ADD
       } else {
         return this.$_TTANHEnum.FORM_MODE.UPDATE

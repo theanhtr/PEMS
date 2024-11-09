@@ -30,6 +30,7 @@
       :format="$store.state.formatDate"
       :day-names="dayNames"
       :max-date="maxDate"
+      :disabled="disable"
       text-input
       auto-apply
       timezone="Asia/Novosibirsk"

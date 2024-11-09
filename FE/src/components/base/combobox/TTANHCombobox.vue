@@ -1,6 +1,6 @@
 <template>
   <div :style="styleContainer" class="combobox" ref="combobox">
-    <label v-if="labelText !== ''" @click="showComboboxData" class="label-input">
+    <label v-if="labelText !== ''" @click="disableCombobox ? '' : showComboboxData" class="label-input">
       {{ labelText }}
       <div v-if="inputRequired" style="color: red; padding-left: 3px">*</div>
     </label>
@@ -35,7 +35,7 @@
         v-if="!disableCombobox"
       />
 
-      <ttanh-tooltip v-if="errorText !== '' && hoverInput">{{ errorText }}</ttanh-tooltip>
+      <ttanh-tooltip v-if="errorText !== null && errorText !== '' && hoverInput">{{ errorText }}</ttanh-tooltip>
     </div>
     <div v-show="isShowComboboxData" class="combobox__data" ref="comboboxData">
       <div v-if="rowsData.length === 0" class="item--no-data">Không có dữ liệu để hiển thị.</div>
@@ -50,13 +50,13 @@
       <div v-else-if="type === 'single-row'" class="combobox__data-single-row">
         <div
           v-for="row in computedRowsDataFilter"
-          :key="row.id"
+          :key="row[this.idField]"
           class="combobox__value"
-          :class="selectedRows.includes(row.id) ? 'combobox__value--selected' : ''"
-          @click="selectValue(row.id)"
+          :class="selectedRows.includes(row[this.idField]) ? 'combobox__value--selected' : ''"
+          @click="selectValue(row[this.idField])"
           :style="{ textAlign: 'left' }"
         >
-          {{ row.name }}
+          {{ row[this.nameField] }}
         </div>
       </div>
     </div>
@@ -88,6 +88,21 @@ export default {
       type: Array
     },
 
+    idField: {
+      default: 'id',
+      type: String
+    },
+
+    nameField: {
+      default: 'name',
+      type: String
+    },
+
+    codeField: {
+      default: 'code',
+      type: String
+    },
+
     /**
      * tất cả các record trong rowsData đều phải có id, name
      * và code, nếu không có code thì gán code bằng name
@@ -100,7 +115,7 @@ export default {
 
     /* model value là giá trị id của đối tượng mình chọn */
     modelValue: {
-      default: '',
+      default: null,
       required: true,
       type: String
     },
@@ -144,6 +159,9 @@ export default {
     },
     disableCombobox: {
       default: false
+    },
+    textInputCreated: {
+      default: ''
     }
   },
   data() {
@@ -170,6 +188,10 @@ export default {
 
   mounted() {
     this.rowsDataFilter = this.rowsData
+
+    if (this.textInputCreated !== '') {
+      this.$refs.inputSearch.value = this.textInputCreated
+    }
   },
 
   methods: {
@@ -240,9 +262,9 @@ export default {
         }
 
         for (let i = 0; i < this.rowsData.length; i++) {
-          if (this.rowsData[i].id == id) {
+          if (this.rowsData[i][this.idField] == id) {
             if (this.$refs.inputSearch) {
-              this.$refs.inputSearch.value = this.rowsData[i].name
+              this.$refs.inputSearch.value = this.rowsData[i][this.nameField]
             }
             break
           }
@@ -274,7 +296,7 @@ export default {
      */
     changeInput() {
       try {
-        this.$emit('update:modelValue', '')
+        this.$emit('update:modelValue', null)
         this.$refs.comboboxData.scrollTo(0, 0)
 
         // xử lý cho việc được focus input bằng tab
@@ -291,8 +313,7 @@ export default {
         // so sánh input value với code và name của từng row data
         for (let i = 0; i < rowsDataLength; i++) {
           if (
-            (this.rowsData[i].code.toLowerCase().includes(valueInputSearch.toLowerCase()) ||
-              this.rowsData[i].name.toLowerCase().includes(valueInputSearch.toLowerCase())) &&
+            (this.rowsData[i][this.nameField].toLowerCase().includes(valueInputSearch.toLowerCase())) &&
             valueInputSearch !== ''
           ) {
             indexFinded = i
@@ -314,7 +335,7 @@ export default {
 
           this.rowsDataFilter.unshift(this.rowsData[indexFinded])
 
-          this.selectedRows.unshift(this.rowsData[indexFinded].id)
+          this.selectedRows.unshift(this.rowsData[indexFinded][this.idField])
         }
       } catch (error) {
         console.log('🚀 ~ file: TTANHCombobox.vue:266 ~ changeInput ~ error:', error)
@@ -402,9 +423,9 @@ export default {
         ) {
           this.$refs.comboboxData.scrollTo(0, this.indexHover * 25)
 
-          this.selectedRows = [this.computedRowsDataFilter[this.indexHover].id]
+          this.selectedRows = [this.computedRowsDataFilter[this.indexHover][this.idField]]
 
-          this.setValueInput(this.computedRowsDataFilter[this.indexHover].id)
+          this.setValueInput(this.computedRowsDataFilter[this.indexHover][this.idField])
 
           if (!this.isShowComboboxData) {
             this.showComboboxData()
@@ -443,7 +464,7 @@ export default {
     },
 
     borderInputColor() {
-      if (this.errorText !== '') {
+      if (this.errorText !== null && this.errorText !== '') {
         return 'red'
       } else if (this.focusInput) {
         return 'var(--primary-btn--focus-background-color)'
@@ -469,7 +490,7 @@ export default {
       let indexFinded = -1
 
       for (let i = 0; i < rowsDataLength; i++) {
-        if (this.rowsData[i].id === this.modelValue) {
+        if (this.rowsData[i][this.idField] === this.modelValue) {
           indexFinded = i
           break
         }

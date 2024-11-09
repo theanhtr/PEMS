@@ -1,6 +1,6 @@
 <template>
   <div class="m-overlay" id="add-user-popup">
-    <ttanh-popup style="overflow: visible" title="Tạo mới người dùng" width="600px">
+    <ttanh-popup style="overflow: visible" :title="titleForm" width="800px">
       <template #header__close>
         <ttanh-icon
           @click="closeAddForm"
@@ -11,18 +11,20 @@
       </template>
       <template #content__input-control>
         <div class="w1 flex-row" style="padding-bottom: 12px">
-          <div class="w1" style="padding-right: 26px">
+          <div class="w1/2" style="padding-right: 26px">
+            <div class="flex-row p-b-8 label-add-group">Thông tin tài khoản</div>
             <div class="flex-row p-b-8">
               <ttanh-textfield
                 :errorText="errorTextUserData.username"
                 v-model="addUserData.username"
-                type="text"
+                type="code"
                 idInput="add__username"
                 labelText="Tên tài khoản"
                 :inputRequired="true"
                 class="w1"
                 ref="username"
                 tabindex="2"
+                :disable="isFromAccountInfo || formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
             <div class="flex-row p-b-8">
@@ -36,6 +38,7 @@
                 class="w1"
                 ref="fullName"
                 tabindex="2"
+                :disable="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
             <div class="flex-row p-b-8">
@@ -49,12 +52,98 @@
                 :rowsData="rolesComboboxData"
                 class="w1"
                 tabindex="1"
+                :disableInput="isFromAccountInfo"
+                :disableCombobox="isFromAccountInfo || formMode === $_TTANHEnum.FORM_MODE.VIEW"
+              />
+            </div>
+            <div class="flex-row p-b-8">
+              <ttanh-textfield
+                :errorText="errorTextUserData.phoneNumber"
+                v-model="addUserData.phoneNumber"
+                type="text"
+                idInput="add__phoneNumber"
+                labelText="Số điện thoại"
+                :inputRequired="false"
+                class="w1"
+                ref="phoneNumber"
+                tabindex="2"
+                :disable="formMode === $_TTANHEnum.FORM_MODE.VIEW"
+              />
+            </div>
+          </div>
+          <div class="w1/2" style="padding-right: 26px">
+            <div class="flex-row p-b-8 label-add-group">Thông tin địa chỉ</div>
+            <div class="flex-row p-b-8">
+              <ttanh-combobox
+                :errorText="errorTextUserData.provinceId"
+                v-model="addUserData.provinceId"
+                ref="provinceId"
+                type="single-row"
+                labelText="Tỉnh/Thành phố"
+                @show-combobox="getProvinces"
+                idField="province_id"
+                nameField="province_name"
+                :textInputCreated="addUserData.provinceName"
+                :rowsData="dataAddress.provinces"
+                class="w1"
+                tabindex="1"
+                :disableCombobox="formMode === $_TTANHEnum.FORM_MODE.VIEW"
+              />
+            </div>
+            <div class="flex-row p-b-8">
+              <ttanh-combobox
+                :errorText="errorTextUserData.districtId"
+                v-model="addUserData.districtId"
+                ref="districtId"
+                type="single-row"
+                labelText="Quận/Huyện"
+                @show-combobox="getDistricts"
+                idField="district_id"
+                nameField="district_name"
+                :textInputCreated="addUserData.districtName"
+                :rowsData="dataAddress.districts"
+                class="w1"
+                tabindex="2"
+                :disableCombobox="formMode === $_TTANHEnum.FORM_MODE.VIEW"
+              />
+            </div>
+            <div class="flex-row p-b-8">
+              <ttanh-combobox
+                :errorText="errorTextUserData.wardId"
+                v-model="addUserData.wardId"
+                ref="wardId"
+                type="single-row"
+                labelText="Phường/Xã"
+                @show-combobox="getWards"
+                idField="ward_id"
+                nameField="ward_name"
+                :textInputCreated="addUserData.wardName"
+                :rowsData="dataAddress.wards"
+                class="w1"
+                tabindex="3"
+                :disableCombobox="formMode === $_TTANHEnum.FORM_MODE.VIEW"
+              />
+            </div>
+            <div class="flex-row p-b-8">
+              <ttanh-textfield
+                :errorText="errorTextUserData.address"
+                v-model="addUserData.address"
+                type="text"
+                idInput="add__address"
+                labelText="
+                  Địa chỉ
+                "
+                :inputRequired="false"
+                class="w1"
+                ref="address"
+                tabindex="2"
+                :disable="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
           </div>
         </div>
       </template>
-      <template #footer>
+      <template #footer v-if="formMode != $_TTANHEnum.FORM_MODE.VIEW">
         <ttanh-separation-line style="border-color: var(--border-color-default); margin: 16px 0px" />
         <div class="flex-row" style="justify-content: space-between; padding-bottom: 16px">
           <div>
@@ -93,7 +182,7 @@
       @cancel-click="
         () => {
           isShowOutConfirmPopup = false
-          $refs.province.focus()
+          $refs.username.focus()
         }
       "
       @no-click="$emit('clickCancelBtn')"
@@ -113,25 +202,36 @@
 <script>
 import UserService from '@/service/UserService.js'
 import { ValidateConfig } from '@/config/config.js'
-import { findIndexByAttribute, isObjectEmpty } from '@/helper/common.js'
+import { generateUuid, isObjectEmpty, calTitleForm } from '@/helper/common.js'
 import { lengthValidate, emptyValidate, regexValidate } from '@/helper/validate.js'
 import { CommonErrorHandle } from '@/helper/error-handle'
 import { capitalizeFirstLetter } from '@/helper/format-helper'
 import { roles } from '../../../data_combobox/role'
+import AddressService from '@/service/AddressService.js'
 
 export default {
   name: 'AddUserPopup',
   props: {
+    isViewOnly: {
+      default: false
+    },
     dataUpdate: {
       default: null
+    },
+    isFromAccountInfo: {
+      type: Boolean,
+      default: false
     }
   },
 
   async created() {
+    this.formMode = this.computedFormMode
+    this.titleForm = calTitleForm(this.formMode) + 'người dùng';
     //cập nhật thông tin cho form: form_mode, data
     await this.addInfoForm()
 
     this.copyAddUserData = JSON.parse(JSON.stringify(this.addUserData))
+    
   },
 
   mounted() {
@@ -143,6 +243,13 @@ export default {
 
   data() {
     return {
+      dataAddress: {
+        provinces: [],
+        districts: [],
+        wards: []
+      },
+
+      titleForm: '', 
       isShowOutConfirmPopup: false,
       isShowDialogError: false,
       isLoading: false,
@@ -152,10 +259,18 @@ export default {
       rolesComboboxData: roles,
 
       addUserData: {
-        userId: '',
+        userId: null,
         username: '',
         fullname: '',
-        roleID: ''
+        roleID: null,
+        provinceId: null,
+        provinceName: '',
+        districtId: null,
+        districtName: '',
+        wardId: null,
+        wardName: '',
+        address: '',
+        phoneNumber: ''
       },
 
       /**
@@ -178,18 +293,54 @@ export default {
       validateUserData: {
         roleID: 'Empty',
         fullname: 'Empty, MaxLength255',
-        username: 'Empty, MaxLength255'
+        username: 'Empty, MaxLength255',
+        address: 'MaxLength50',
+        phoneNumber: 'MaxLength255'
       },
 
       errorTextUserData: {
         roleID: '',
         fullname: '',
-        username: ''
+        username: '',
+        provinceId: '',
+        districtId: '',
+        wardId: '',
+        address: '',
+        phoneNumber: ''
       }
     }
   },
 
   methods: {
+    async getProvinces() {
+      let provinces = await AddressService.province()
+
+      if (provinces.status === 200) {
+        this.dataAddress.provinces = provinces.data.results
+      } else {
+        this.dataAddress.provinces = []
+      }
+    },
+
+    async getDistricts() {
+      let districts = await AddressService.district(this.addUserData.provinceId)
+
+      if (districts.status === 200) {
+        this.dataAddress.districts = districts.data.results
+      } else {
+        this.dataAddress.districts = []
+      }
+    },
+
+    async getWards() {
+      let wards = await AddressService.ward(this.addUserData.districtId)
+
+      if (wards.status === 200) {
+        this.dataAddress.wards = wards.data.results
+      } else {
+        this.dataAddress.wards = []
+      }
+    },
     /**
      * thực hiện kiểm tra trước khi đóng form
      * @author: TTANH (07/08/2024)
@@ -197,7 +348,7 @@ export default {
     closeAddForm() {
       if (this.formMode == this.$_TTANHEnum.FORM_MODE.ADD) {
         this.isShowOutConfirmPopup = true
-      } else {
+      } else if (this.formMode == this.$_TTANHEnum.FORM_MODE.UPDATE) {
         let difference = false
 
         for (let attr in this.addUserData) {
@@ -219,6 +370,8 @@ export default {
         } else {
           this.$emit('clickCancelBtn')
         }
+      } else {
+        this.$emit('clickCancelBtn')
       }
     },
 
@@ -227,11 +380,9 @@ export default {
      * @author: TTANH (01/07/2024)
      */
     async addInfoForm() {
-      this.formMode = this.computedFormMode
-
       if (this.formMode === this.$_TTANHEnum.FORM_MODE.ADD) {
         this.resetAddUserData()
-      } else if (this.formMode === this.$_TTANHEnum.FORM_MODE.UPDATE) {
+      } else if (this.formMode === this.$_TTANHEnum.FORM_MODE.UPDATE || this.formMode === this.$_TTANHEnum.FORM_MODE.VIEW) {
         for (let attr in this.dataUpdate) {
           let formatAttr = attr[0].toLowerCase() + attr.slice(1, attr.length)
 
@@ -258,7 +409,7 @@ export default {
      */
     async storeBtnClick() {
       try {
-        let isSuccess = await this.createNewUser()
+        let isSuccess = await this.saveUser()
 
         if (isSuccess) {
           this.$emit('clickCancelBtn')
@@ -273,10 +424,14 @@ export default {
      * validate và tạo 1 nhân viên mới hoặc update thông tin nhân viên
      * @author: TTANH (01/07/2024)
      */
-    async createNewUser() {
+    async saveUser() {
       if (this.validateData()) {
         let isSuccess = true
         this.isLoading = true
+
+        this.addUserData.provinceName = this.$refs.provinceId.getCurrentInputValue()
+        this.addUserData.districtName = this.$refs.districtId.getCurrentInputValue()
+        this.addUserData.wardName = this.$refs.wardId.getCurrentInputValue()
 
         //lọc loại những trường rỗng
         var dataSendApi = {}
@@ -295,7 +450,8 @@ export default {
 
         if (this.formMode === this.$_TTANHEnum.FORM_MODE.ADD) {
           dataSendApi['password'] = ''
-          const res = await UserService.post(dataSendApi)
+          dataSendApi['userId'] = generateUuid();  
+          const res = await UserService.post('User', dataSendApi)
 
           if (res.success) {
             this.$store.commit('addToast', {
@@ -307,7 +463,7 @@ export default {
             isSuccess = false
           }
         } else if (this.formMode === this.$_TTANHEnum.FORM_MODE.UPDATE) {
-          const res = await UserService.put(this.addUserData.userId, dataSendApi)
+          const res = await UserService.put('User', this.addUserData.userId, dataSendApi)
 
           if (res.success) {
             this.$store.commit('addToast', {
@@ -516,14 +672,17 @@ export default {
     onStoreAndAddBtnKeyDown(event) {
       if (event.keyCode === this.$_TTANHEnum.KEY_CODE.TAB && !event.shiftKey) {
         event.preventDefault()
-        this.$refs.province.focus()
+        this.$refs.provinceId.focus()
       }
     }
   },
 
   computed: {
     computedFormMode() {
-      if (!this.dataUpdate) {
+      if (this.isViewOnly) {
+        return this.$_TTANHEnum.FORM_MODE.VIEW
+      }
+      else if (!this.dataUpdate) {
         return this.$_TTANHEnum.FORM_MODE.ADD
       } else {
         return this.$_TTANHEnum.FORM_MODE.UPDATE

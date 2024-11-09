@@ -9,6 +9,6 @@ namespace PEMS.Application
     /// Created by: TTANH (02/08/2024)
     public interface IPredictService : IBaseService<Predict, PredictDto, PredictCreateDto, PredictUpdateDto>
     {
-        Task<BaseFilterResponse<PredictDto>> FiltersPredictAsync([FromBody] PredictFilterParam predictFilterParam);
+        Task<BaseFilterResponse<PredictDto>> FiltersPredictAsync(PredictFilterParam predictFilterParam);
     }
 }

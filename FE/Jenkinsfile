@@ -12,10 +12,9 @@ pipeline{
     IMAGE_TAG = "${IMAGE_TAG}"
     ARGO_CREDENTIALS="argocd-credentials"
     ARGO_TOKEN="argocd-token"
-    IP_ARGO="192.168.126.130:32311"
+    IP_ARGO="192.168.126.130:31896"
     GIT_REPO = "https://github.com/theanhtr/PEMS.git"
     NAME_PROJECT_TEST_ARGO_RESTART="pems-test"
-    //JENKINS_API_TOKEN = credentials('JENKINS_API_TOKEN')
   }
   stages{
     stage('Cleanup workspace'){
@@ -47,15 +46,6 @@ pipeline{
         }
       }
     }
-
-
-    // stage("Trigger CD pipeline"){
-    //   steps{
-    //     script{
-    //       sh "curl -v -k --user admin:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'http://172.28.73.189:8080/job/discord_update_image_tag/buildWithParameters?token=discord-token'"
-    //     }
-    //   }
-    // }
 
     stage("Restart Deployment"){
       steps{

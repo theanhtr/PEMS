@@ -1,4 +1,4 @@
-export var cropStates = [
+export var cropStages = [
   { id: 1, name: 'Cây non' },
 
   { id: 2, name: 'Cây con' },

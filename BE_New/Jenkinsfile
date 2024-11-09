@@ -1,0 +1,79 @@
+pipeline{
+  agent any
+  environment {
+    DOCKER_USER = "theanh0906"
+    DOCKER_PASS = "dockerhub-credentials"
+    IMAGE_NAME = "${DOCKER_USER}/${SERVICE_NAME}"
+    IMAGE_TAG = "${IMAGE_TAG}"
+    ARGO_CREDENTIALS="argocd-credentials"
+    ARGO_TOKEN="argocd-token"
+    IP_ARGO="192.168.126.130:31896"
+    GIT_REPO = "https://github.com/theanhtr/PEMS.git"
+    NAME_PROJECT_TEST_ARGO_RESTART="pems-test"
+  }
+  stages{
+    stage('Cleanup workspace'){
+      steps{
+        cleanWs()
+      }
+    }
+    
+    stage('Checkout'){
+      steps{
+        git branch: "${ENV_BUILD}", credentialsId: 'github-credentials', url: "${GIT_REPO}"
+      }
+    }
+
+    stage("Build and push docker image"){
+      steps{
+        script {
+          PROJECT_DIR = ""
+
+          if (SERVICE_NAME == "user-api") {
+            PROJECT_DIR = "User.API"
+          } else if (SERVICE_NAME == "predict-api") {
+            PROJECT_DIR = "Predict.API"
+          } else if (SERVICE_NAME == "weather-api") {
+            PROJECT_DIR = "Weather.API"
+          } else if (SERVICE_NAME == "report-api") {
+            PROJECT_DIR = "Report.API"
+          } else if (SERVICE_NAME == "authen-api") {
+            PROJECT_DIR = "Authen.API"
+          } else if (SERVICE_NAME == "auto-calculation-worker") {
+            PROJECT_DIR = "AutomaticCalculation"
+          }
+        }
+
+        dir("BE_New/${PROJECT_DIR}") {
+          script {
+            docker.withRegistry('', DOCKER_PASS) {
+              docker_image = docker.build("${IMAGE_NAME}")
+            }
+
+            docker.withRegistry('', DOCKER_PASS) {
+              docker_image.push("${IMAGE_TAG}")
+            }
+
+            sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
+          }
+        }
+      }
+    }
+
+    stage("Restart Deployment"){
+      steps{
+        script{
+          withCredentials([
+            usernamePassword(credentialsId: "${ARGO_CREDENTIALS}", usernameVariable: 'USER', passwordVariable: 'PASSWORD'),
+            string(credentialsId: "${ARGO_TOKEN}", variable: 'TOKEN'),
+          ]) {
+              sh """
+                  argocd login ${IP_ARGO} --username ${USER} --password ${PASSWORD} --insecure --auth-token ${TOKEN}
+                  argocd app actions run ${NAME_PROJECT_TEST_ARGO_RESTART} restart --kind Deployment --resource-name ${SERVICE_NAME} --auth-token ${TOKEN}
+              """
+          }
+        }
+      }
+    }
+  }
+}

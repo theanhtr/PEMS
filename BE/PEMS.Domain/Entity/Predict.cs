@@ -45,32 +45,23 @@ namespace PEMS.Domain
 
         /// <summary>
         /// </summary>
-        public DateTime? CurrentStartDate { get; set; }
+        public string? ReportName { get; set; }
 
         /// <summary>
         /// </summary>
-        public DateTime? CurrentEndDate { get; set; }
+        public DateTime? ReportStartDate { get; set; }
 
         /// <summary>
         /// </summary>
-        public DateTime? PreviousEndDate { get; set; }
-
-
-        /// <summary>
-        /// </summary>
-        public int PreviousLevelWarningId { get; set; }
+        public DateTime? ReportEndDate { get; set; }
 
         /// <summary>
         /// </summary>
-        public int CropStateId { get; set; }
+        public int? CropStateId { get; set; }
 
         /// <summary>
         /// </summary>
-        public int PestLevelId { get; set; }
-
-        /// <summary>
-        /// </summary>
-        public int LevelWarningId { get; set; }
+        public int? PestLevelId { get; set; }
         #endregion
 
         #region Methods

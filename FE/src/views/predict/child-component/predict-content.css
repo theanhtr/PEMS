@@ -34,6 +34,7 @@
   justify-content: space-around;
   width: 100%;
   margin-bottom: 8px;
+  column-gap: 20px;
 }
 
 .page__filter-group-3 {
@@ -63,7 +64,7 @@
 
 .page__table {
   width: 100%;
-  height: calc(100% - var(--footer-height) - 44px);
+  height: calc(100% - var(--footer-height) - 200px);
   background-color: white;
   overflow: scroll;
 }
@@ -74,7 +75,7 @@
   background-color: #fff;
 }
 
-.season-type-container {
+.season-end-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -83,13 +84,13 @@
   column-gap: 12px;
 }
 
-.season-type-item {
+.season-end-item {
   color: var(--primary-color);
   font-size: 14px;
   cursor: pointer;
 }
 
-.season-type-selected {
+.season-end-selected {
   font-weight: 600;
   border-bottom: 2px solid var(--primary-color);
 }

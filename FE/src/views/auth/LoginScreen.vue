@@ -2,7 +2,7 @@
   <div class="login-form-container">
     <h1>iFAWcast</h1>
     <div class="login-form">
-      <h2>Đăng nhập 1</h2>
+      <h2>Đăng nhập</h2>
       <p class="login-form-error-message">{{ errorMessage }}</p>
       <div class="form-group">
         <label for="userName">Tên đăng nhập</label>
@@ -34,6 +34,7 @@
 
 <script>
 import AuthService from '@/service/AuthService.js'
+import TTANHEnum from '../../enum';
 
 export default {
   name: 'Login',
@@ -77,11 +78,20 @@ export default {
           Password: this.password
         }
 
-        const res = await AuthService.login(loginParams)
+        const res = await AuthService.post('Auth/login', loginParams)
 
         if (res.success) {
           await this.$store.commit('setUserLogin', res.data)
-          this.$router.push('/')
+          let userRole = res.data.RoleID;
+          
+          if (userRole === TTANHEnum.ROLE_ID.ADMIN) {
+            this.$router.push('/app/user-management')
+          } else if (userRole === TTANHEnum.ROLE_ID.FARMER) {
+            this.$router.push('/app/predict-management')
+          } else if (userRole === TTANHEnum.ROLE_ID.EXPERT) {
+            this.$router.push('/app/report-management')
+          }
+
           this.$store.commit('addToast', {
             type: 'success',
             text: 'Đăng nhập thành công'

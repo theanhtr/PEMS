@@ -18,35 +18,19 @@
           />
         </div>
         <div class="header__account-info" :title="$t('mainContent.headerAccountInfo')" @click="showUserInfo">
-          <div class="account-avatar"></div>
+          <div class="avatar">
+            <img
+              class="avatar-img"
+              src="https://inkythuatso.com/uploads/images/2022/05/hinh-anh-meo-bua-buon-cuoi-nhat-12-09-56-39.jpg"
+              alt="Avatar"
+            />
+          </div>
           <div class="account-name">{{ user.Fullname }}</div>
           <ttanh-icon scale="0.7" icon="dropdown--light-black" />
         </div>
       </div>
     </div>
-    <div v-show="isShowUserInfo" class="user-info-blur">
-      <div class="user-info">
-        <div class="header">
-          <h1 class="title">Thông tin tài khoản</h1>
-          <span @click="isShowUserInfo = false" class="close-button">X</span>
-        </div>
-        <div class="content">
-          <div class="profile">
-            <div class="avatar">
-              <img
-                class="avatar-img"
-                src="https://inkythuatso.com/uploads/images/2022/05/hinh-anh-meo-bua-buon-cuoi-nhat-12-09-56-39.jpg"
-                alt="Avatar"
-              />
-            </div>
-            <div class="info">
-              <p>{{ user.Fullname }}</p>
-            </div>
-          </div>
-          <button @click="logout" class="logout-button">Đăng xuất</button>
-        </div>
-      </div>
-    </div>
+    <AccountInfo :isShowUserInfo="isShowUserInfo" @close="isShowUserInfo = false" @reloadData="getUserInfo" :user="user"/>
     <div class="page-content">
       <slot></slot>
     </div>
@@ -54,13 +38,29 @@
 </template>
 
 <script>
+import AccountInfo from '../../../views/user/child-component/AccountInfo.vue';
 import UserService from '@/service/UserService'
+
 export default {
   name: 'TheMainContent',
   async created() {
     await this.getUserInfo()
   },
+  components: {
+    AccountInfo
+  },
   methods: {
+    async getUserInfo() {
+      let res = await UserService.get('User/info')
+      this.user = res.data
+
+      localStorage.setItem("provinceId", this.user.ProvinceId);
+      localStorage.setItem("districtId", this.user.DistrictId);
+      localStorage.setItem("wardId", this.user.WardId);
+      localStorage.setItem("provinceName", this.user.ProvinceName);
+      localStorage.setItem("districtName", this.user.DistrictName);
+      localStorage.setItem("wardName", this.user.WardName);
+    },
     /**
      * bắt sự kiện thu gọn sidebar
      * @author: TTANH (25/06/2024)
@@ -72,17 +72,9 @@ export default {
         console.log('🚀 ~ file: TheMainContent.vue:83 ~ collapseSidebar ~ error:', error)
       }
     },
-    async getUserInfo() {
-      let res = await UserService.getMyinfo()
-      this.user = res.data
-    },
     showUserInfo() {
       this.isShowUserInfo = true
     },
-    logout() {
-      this.$store.commit('logout')
-      this.$router.push('/login')
-    }
   },
   data() {
     return {
@@ -93,8 +85,8 @@ export default {
         header__noti: false
       },
       searchText: '',
+      isShowUserInfo: false,
       user: {},
-      isShowUserInfo: false
     }
   }
 }
@@ -111,92 +103,13 @@ export default {
   flex-direction: column;
 }
 
-.user-info-blur {
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.4);
-  position: fixed;
-  z-index: 999998;
-  top: 0;
-  left: 0;
-}
-
-.user-info {
-  width: 300px;
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  position: fixed;
-  right: 0;
-  top: 0;
-  height: 100%;
-  width: 20%;
-  z-index: 999999;
-  display: flex;
-  flex-direction: column;
-}
-
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.title {
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-.close-button {
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-.content {
-  text-align: center;
-}
-
-.profile {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.avatar {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  margin-right: 12px;
-}
-
-.avatar-img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-}
-
-.info {
-  text-align: left;
-  font-weight: bold;
-  font-size: 16px;
-}
-
-.info p {
-  margin-bottom: 5px;
-}
-
 .icon {
   margin-right: 5px;
-}
-
-.logout-button {
-  background-color: #4caf50;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
 }
 </style>

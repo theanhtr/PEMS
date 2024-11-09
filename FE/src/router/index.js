@@ -5,6 +5,7 @@ import Dashboard from '../views/dashboard/Dashboard.vue'
 import EmployeeList from '../views/employee/employee-list/EmployeeList.vue'
 import PredictList from '../views/predict/PredictList.vue'
 import UserList from '../views/user/UserList.vue'
+import ReportList from '../views/report/ReportList.vue'
 
 import ImportLayout from '../components/layout/import-layout/ImportLayout.vue'
 import EmployeeImport from '../views/employee/employee-import/EmployeeImport.vue'
@@ -66,7 +67,7 @@ const routes = [
       {
         path: '/app/report-management',
         name: 'report-management-app',
-        component: EmployeeList
+        component: ReportList
       },
       {
         path: '/app/user-management',
