@@ -228,7 +228,7 @@
 </template>
 
 <script>
-import reportService from '@/service/reportService.js'
+import reportService from '@/service/ReportService.js'
 import { ValidateConfig } from '@/config/config.js'
 import { calTitleForm, isObjectEmpty } from '@/helper/common.js'
 import { lengthValidate, emptyValidate, regexValidate } from '@/helper/validate.js'

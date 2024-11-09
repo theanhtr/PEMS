@@ -2,7 +2,8 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 WORKDIR /source
 COPY . .
-COPY ../Base/* ./Base/
+RUN mkdir -p ./Base
+COPY ../Base/* ./Base
 
 RUN dotnet restore "./Weather.API/Weather.API.csproj" --disable-parallel
 RUN dotnet publish "./Weather.API/Weather.API.csproj" -c Release -o /app --no-restore
