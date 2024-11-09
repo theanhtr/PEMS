@@ -6,7 +6,7 @@ namespace Report.API
     /// Controller của phòng ban
     /// </summary>
     /// CreatedBy: TTANH (12/07/2024)
-    [Route("api/v1/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class TestController : ControllerBase
     {
