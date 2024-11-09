@@ -1,14 +1,9 @@
 pipeline{
   agent any
-  tools{
-    nodejs 'Node20'
-  }
   environment {
-    APP_NAME = "pems_fe"
-    DEPLOYMENT_NAME = "pems-fe"
     DOCKER_USER = "theanh0906"
     DOCKER_PASS = "dockerhub-credentials"
-    IMAGE_NAME = "${DOCKER_USER}/${APP_NAME}"
+    IMAGE_NAME = "${DOCKER_USER}/${SERVICE_NAME}"
     IMAGE_TAG = "${IMAGE_TAG}"
     ARGO_CREDENTIALS="argocd-credentials"
     ARGO_TOKEN="argocd-token"
@@ -31,10 +26,28 @@ pipeline{
 
     stage("Build and push docker image"){
       steps{
-        dir('FE') {
-          script{
+        script {
+          PROJECT_DIR = ""
+
+          if (SERVICE_NAME == "user-api") {
+            PROJECT_DIR = "User.API"
+          } else if (SERVICE_NAME == "predict-api") {
+            PROJECT_DIR = "Predict.API"
+          } else if (SERVICE_NAME == "weather-api") {
+            PROJECT_DIR = "Weather.API"
+          } else if (SERVICE_NAME == "report-api") {
+            PROJECT_DIR = "Report.API"
+          } else if (SERVICE_NAME == "authen-api") {
+            PROJECT_DIR = "Authen.API"
+          } else if (SERVICE_NAME == "auto-calculation-worker") {
+            PROJECT_DIR = "AutomaticCalculation"
+          }
+        }
+
+        dir("BE_New/${PROJECT_DIR}") {
+          script {
             docker.withRegistry('', DOCKER_PASS) {
-              docker_image = docker.build("${IMAGE_NAME}", "--build-arg BUILD_ENV_ARG=${ENV_BUILD} .")
+              docker_image = docker.build("${IMAGE_NAME}")
             }
 
             docker.withRegistry('', DOCKER_PASS) {
@@ -56,7 +69,7 @@ pipeline{
           ]) {
               sh """
                   argocd login ${IP_ARGO} --username ${USER} --password ${PASSWORD} --insecure --auth-token ${TOKEN}
-                  argocd app actions run ${NAME_PROJECT_TEST_ARGO_RESTART} restart --kind Deployment --resource-name ${DEPLOYMENT_NAME} --auth-token ${TOKEN}
+                  argocd app actions run ${NAME_PROJECT_TEST_ARGO_RESTART} restart --kind Deployment --resource-name ${SERVICE_NAME} --auth-token ${TOKEN}
               """
           }
         }

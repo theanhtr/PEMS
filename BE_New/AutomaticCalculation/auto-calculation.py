@@ -22,7 +22,7 @@ async def predict_auto_calculate():
     for predict in predict_data.get('Data', []):
         # Lấy giá trị currentStartDate từ predict
         predict_start_date = datetime.datetime.strptime(predict.get('CurrentStartDate'), '%Y-%m-%dT%H:%M:%S%z').date()
-        end_date = (predict_start_date + datetime.timedelta(days=60)).strftime('%Y-%m-%d')
+        end_date = (predict_start_date + datetime.timedelta(days=58)).strftime('%Y-%m-%d')
 
         # Lấy ra các trạng thái của sâu bệnh
         pest_stages = await predict_service.fetch_pest_stage(predict.get('PestId'))
