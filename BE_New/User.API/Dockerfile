@@ -3,6 +3,8 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 WORKDIR /source
 COPY . .
 RUN mkdir -p ./Base
+RUN ls -lha .
+RUN ls -lha ..
 COPY ../Base/* ./Base
 
 RUN dotnet restore "./User.API/User.API.csproj" --disable-parallel
