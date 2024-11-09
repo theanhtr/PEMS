@@ -1,14 +1,23 @@
 # Sử dụng image .NET SDK để build ứng dụng
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /source
+
+# Copy toàn bộ BuildFolder để đảm bảo Docker có quyền truy cập vào cả Weather.API và Base
 COPY . .
 
-RUN dotnet restore "./Weather.API/Weather.API.csproj" --disable-parallel
-RUN dotnet publish "./Weather.API/Weather.API.csproj" -c Release -o /app --no-restore
+# Copy file cần thiết từ Base vào thư mục tạm trong image
+COPY ./Base /source/Base
+
+# Restore và publish dự án từ thư mục Weather.API
+WORKDIR /source/Weather.API
+RUN dotnet restore "./Weather.API.csproj" --disable-parallel
+RUN dotnet publish "./Weather.API.csproj" -c Release -o /app --no-restore
 
 # Sử dụng image runtime để chạy ứng dụng
-FROM mcr.microsoft.com/dotnet/aspnet:6.0
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
+
+# Copy ứng dụng đã được publish từ giai đoạn build
 COPY --from=build-env /app ./
 
 EXPOSE 80
