@@ -8,10 +8,14 @@ COPY . .
 # Copy file cần thiết từ Base vào thư mục tạm trong image
 COPY ./Base /source/Base
 
+RUN pwd
+RUN ls -lha .
+RUN ls -lha /source
+
 # Restore và publish dự án từ thư mục User.API
 WORKDIR /source/User.API
-RUN dotnet restore "./User.API.csproj" --disable-parallel
-RUN dotnet publish "./User.API.csproj" -c Release -o /app --no-restore
+RUN dotnet restore "./User.API/User.API.csproj" --disable-parallel
+RUN dotnet publish "./User.API/User.API.csproj" -c Release -o /app --no-restore
 
 # Sử dụng image runtime để chạy ứng dụng
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
