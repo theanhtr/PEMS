@@ -2,6 +2,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 WORKDIR /source
 COPY . .
+COPY ../Base/* ./Base/
 
 RUN dotnet restore "./Authen.API/Authen.API.csproj" --disable-parallel
 RUN dotnet publish "./Authen.API/Authen.API.csproj" -c Release -o /app --no-restore

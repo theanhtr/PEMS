@@ -2,6 +2,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 WORKDIR /source
 COPY . .
+COPY ../Base/* ./Base/
 
 RUN dotnet restore "./Report.API/Report.API.csproj" --disable-parallel
 RUN dotnet publish "./Report.API/Report.API.csproj" -c Release -o /app --no-restore
