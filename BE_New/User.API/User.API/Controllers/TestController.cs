@@ -28,7 +28,6 @@ namespace User.API
             }
             catch
             {
-                //Do nothing
             }
             return result;
         }

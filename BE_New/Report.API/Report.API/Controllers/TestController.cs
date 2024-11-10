@@ -28,7 +28,6 @@ namespace Report.API
             }
             catch
             {
-                //Do nothing
             }
             return result;
         }

@@ -28,7 +28,6 @@ namespace Authen.API
             }
             catch
             {
-                //Do nothing
             }
             return result;
         }

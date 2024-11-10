@@ -28,7 +28,6 @@ namespace Weather.API
             }
             catch
             {
-                //Do nothing
             }
             return result;
         }
