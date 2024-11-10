@@ -6,6 +6,9 @@ WORKDIR /source
 COPY ./Base ./Base
 COPY ./Report.API ./Report.API
 
+ENV ASPNETCORE_URLS=http://+:8080
+RUN ln -f -s /usr/share/zoneinfo/Etc/GMT-7 /etc/localtime
+
 RUN dotnet restore "./Report.API/Report.API/Report.API.csproj" --disable-parallel
 RUN dotnet publish "./Report.API/Report.API/Report.API.csproj" -c Release -o /app --no-restore
 
@@ -17,6 +20,7 @@ WORKDIR /app
 COPY --from=build-env /app ./
 
 EXPOSE 80
+EXPOSE 8080
 EXPOSE 443
 
 ENTRYPOINT ["dotnet", "Report.API.dll"]

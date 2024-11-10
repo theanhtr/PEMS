@@ -6,6 +6,9 @@ WORKDIR /source
 COPY ./Base ./Base
 COPY ./Predict.API ./Predict.API
 
+ENV ASPNETCORE_URLS=http://+:8080
+RUN ln -f -s /usr/share/zoneinfo/Etc/GMT-7 /etc/localtime
+
 RUN dotnet restore "./Predict.API/Predict.API/Predict.API.csproj" --disable-parallel
 RUN dotnet publish "./Predict.API/Predict.API/Predict.API.csproj" -c Release -o /app --no-restore
 
@@ -17,6 +20,7 @@ WORKDIR /app
 COPY --from=build-env /app ./
 
 EXPOSE 80
+EXPOSE 8080
 EXPOSE 443
 
 ENTRYPOINT ["dotnet", "Predict.API.dll"]

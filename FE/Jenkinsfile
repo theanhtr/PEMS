@@ -12,7 +12,7 @@ pipeline{
     IMAGE_TAG = "${IMAGE_TAG}"
     ARGO_CREDENTIALS="argocd-credentials"
     ARGO_TOKEN="argocd-token"
-    IP_ARGO="192.168.126.131:31896"
+    IP_ARGO="172.28.73.189:32295"
     GIT_REPO = "https://github.com/theanhtr/PEMS.git"
     NAME_PROJECT_TEST_ARGO_RESTART="pems-test"
   }
