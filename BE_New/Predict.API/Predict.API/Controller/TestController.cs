@@ -28,7 +28,6 @@ namespace Predict.API
             }
             catch
             {
-                //Do nothing
             }
             return result;
         }
