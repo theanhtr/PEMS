@@ -95,6 +95,8 @@ namespace Base
         }
         public static void ConfigureApp(ref WebApplication app)
         {
+            var configuration = (IConfiguration)(app.Services.GetService(typeof(IConfiguration)));
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -102,9 +104,15 @@ namespace Base
                 app.UseSwaggerUI();
             }
             app.UseHttpsRedirection();
+
+            // add basePath
+            if (configuration?.GetValue<string>("APPLICATION_BASE_PATH") != null)
+            {
+                app.UsePathBase(configuration?.GetValue<string>("APPLICATION_BASE_PATH"));
+            }
+
             app.UseRouting();
 
-            var configuration = (IConfiguration)(app.Services.GetService(typeof(IConfiguration)));
             app.UseCors(x =>
             {
                 string allowedOrigins = configuration["AppSettings:AllowedOrigins"];
