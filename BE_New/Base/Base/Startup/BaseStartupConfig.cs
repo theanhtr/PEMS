@@ -103,7 +103,7 @@ namespace Base
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             // add basePath
             Console.WriteLine("Start application with base path: " + configuration?.GetValue<string>("APPLICATION_BASE_PATH"));
