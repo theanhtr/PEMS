@@ -106,6 +106,7 @@ namespace Base
             app.UseHttpsRedirection();
 
             // add basePath
+            Console.WriteLine("Start application with base path: " + configuration?.GetValue<string>("APPLICATION_BASE_PATH"));
             if (configuration?.GetValue<string>("APPLICATION_BASE_PATH") != null)
             {
                 app.UsePathBase(configuration?.GetValue<string>("APPLICATION_BASE_PATH"));
@@ -116,6 +117,7 @@ namespace Base
             app.UseCors(x =>
             {
                 string allowedOrigins = configuration["AppSettings:AllowedOrigins"];
+                Console.WriteLine("Start application with allowedOrigins: " + allowedOrigins);
                 if (string.IsNullOrWhiteSpace(allowedOrigins))
                 {
                     x.SetIsOriginAllowed(origin => true);

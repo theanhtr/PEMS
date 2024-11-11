@@ -6,7 +6,7 @@ WORKDIR /source
 COPY ./Base ./Base
 COPY ./User.API ./User.API
 
-ENV ASPNETCORE_URLS=http://+:8080
+RUN apt -y update && apt -y upgrade && apt install -y curl && apt install -y nano
 RUN ln -f -s /usr/share/zoneinfo/Etc/GMT-7 /etc/localtime
 
 RUN dotnet restore "./User.API/User.API/User.API.csproj" --disable-parallel

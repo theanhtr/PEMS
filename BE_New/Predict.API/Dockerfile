@@ -6,7 +6,7 @@ WORKDIR /source
 COPY ./Base ./Base
 COPY ./Predict.API ./Predict.API
 
-ENV ASPNETCORE_URLS=http://+:8080
+RUN apt -y update && apt -y upgrade && apt install -y curl && apt install -y nano
 RUN ln -f -s /usr/share/zoneinfo/Etc/GMT-7 /etc/localtime
 
 RUN dotnet restore "./Predict.API/Predict.API/Predict.API.csproj" --disable-parallel
