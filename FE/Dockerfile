@@ -23,7 +23,8 @@ RUN npm run build${BUILD_ENV_ARG}
 FROM nginx:latest
 
 # Copy the build output to replace the default nginx contents.
-COPY --from=build /app/dist /usr/share/nginx/html
+COPY --from=build /app/dist /usr/share/nginx/html/test/ui
+COPY --from=build /app/dist /usr/share/nginx/html/release/ui
 
 # Copy NGINX configuration file
 COPY default.conf /etc/nginx/conf.d/default.conf
