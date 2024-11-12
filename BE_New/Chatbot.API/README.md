@@ -27,3 +27,6 @@ An online store chatbot uses Facebook Messenger Platform, building from scratch 
 - Forgetting to update the environment variables on Heroku : go to "Settings option", then "Reveal Congfig Var"
 - The bot only works with the admin account, doesn't reply the others Facebook accounts: need to be approved the "pages_messaging" permission. 
 For detail, watch this video: https://youtu.be/0VRQRHnrGxg
+
+### env varialbe config in machine
+- /pems_env/.env

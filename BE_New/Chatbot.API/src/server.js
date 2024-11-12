@@ -17,6 +17,9 @@ configViewEngine(app);
 //init web routes
 initWebRoutes(app);
 
+console.log('env port: ' + process.env.PORT)
+console.log('user api url: ' + process.env.USER_API_URL)
+
 let port = process.env.PORT || 8080;
 
 app.listen(port, () => {

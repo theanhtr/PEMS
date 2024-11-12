@@ -181,6 +181,7 @@ let handlePostback = async (sender_psid, received_postback) => {
 
 let handleSetupProfile = async (req, res) => {
     try {
+        console.log(req.body)
         await homepageService.handleSetupProfileAPI();
         return res.redirect("/");
     } catch (e) {
