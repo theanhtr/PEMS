@@ -190,7 +190,20 @@ let handleSetupProfile = async (req, res) => {
 };
 
 let getSetupProfilePage = (req, res) => {
-    return res.render("profile.ejs");
+    // URL API
+    let urlLocation = "https://vapi.vnappmob.com/api";
+    let provinces = [];
+
+    // Lấy dữ liệu tỉnh / thành phố khi mở form
+    fetch(urlLocation + "/province/")
+    .then(response => response.json())
+    .then(data => {
+        provinces = data.results;
+        return res.render("profile.ejs", { provinces });
+    })
+    .catch(error => {
+        console.error("Unable to fetch provinces:", error);
+    });
 };
 
 let getInfoOrderPage = (req, res) => {

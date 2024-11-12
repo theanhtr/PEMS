@@ -24,19 +24,25 @@
                 </div>
                 <div class="title-group">Thông tin địa chỉ</div>
                 <div class="group">
-                    <input class="control-custom" name="province" type="text" required="required" oninvalid="this.setCustomValidity('Vui lòng điền thông tin dòng này!')" oninput="setCustomValidity('')" />
-                    <span class="bar"></span>
-                    <label>Tỉnh/Thành Phố <a class="required">*</a></label>
+                    <label>Tỉnh / Thành phố<a class="required">*</a></label>
+                    <select class="control-custom" name="province" required="required" oninvalid="this.setCustomValidity('Vui lòng điền thông tin dòng này!')" oninput="setCustomValidity('')">
+                        <option value="">Chọn Tỉnh / Thành phố</option>
+                        <% provinces.forEach(function(province) { %>
+                            <option value="<%= province.province_id %>"><%= province.province_name %></option>
+                        <% }); %>
+                    </select>
                 </div>
                 <div class="group">
-                    <input class="control-custom" name="district" type="text" required="required" oninvalid="this.setCustomValidity('Vui lòng điền thông tin dòng này!')" oninput="setCustomValidity('')" />
-                    <span class="bar"></span>
-                    <label>Quận/Huyện <a class="required">*</a></label>
+                    <label>Quận / Huyện<a class="required">*</a></label>
+                    <select class="control-custom" name="district" required="required" oninvalid="this.setCustomValidity('Vui lòng điền thông tin dòng này!')" oninput="setCustomValidity('')">
+                        <option value="">Chọn Quận / Huyện</option>
+                    </select>
                 </div>
                 <div class="group">
-                    <input class="control-custom" name="ward" type="text" required="required" oninvalid="this.setCustomValidity('Vui lòng điền thông tin dòng này!')" oninput="setCustomValidity('')" />
-                    <span class="bar"></span>
-                    <label>Phường/Xã <a class="required">*</a></label>
+                    <label>Phường / Xã<a class="required">*</a></label>
+                    <select class="control-custom" name="ward" required="required" oninvalid="this.setCustomValidity('Vui lòng điền thông tin dòng này!')" oninput="setCustomValidity('')">
+                        <option value="">Chọn Phường / Xã</option>
+                    </select>
                 </div>
                 <div class="group">
                     <input class="control-custom" name="address" type="text" />
@@ -46,10 +52,59 @@
             </div>
         </div>
         <div class="form-button text-center">
-            <button class="btn btn-info" type="submit">Submit</button>
+            <button class="btn btn-info" type="submit">Đăng ký</button>
         </div>
     </form>
 
+    <script>
+    let urlLocation = "https://vapi.vnappmob.com/api/province";
+
+    // lấy dữ liệu quận / huyện
+    document.querySelector('select[name="province"]').addEventListener('change', function() {
+        var provinceId = this.value;
+
+        if (provinceId == '') {
+            return;
+        }
+
+        fetch(`${urlLocation}/district/` + provinceId)
+            .then(response => response.json())
+            .then(data => {
+                var districtSelect = document.querySelector('select[name="district"]');
+                districtSelect.innerHTML = '<option value="">Chọn Quận / Huyện</option>';
+                data.results.forEach(function(district) {
+                    var option = document.createElement('option');
+                    option.value = district.district_id;
+                    option.textContent = district.district_name;
+                    districtSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    });
+
+    // lấy dữ liệu phường / xã
+    document.querySelector('select[name="district"]').addEventListener('change', function() {
+        var districtId = this.value;
+
+        if (districtId == '') {
+            return;
+        }
+
+        fetch(`${urlLocation}/ward/` + districtId)
+            .then(response => response.json())
+            .then(data => {
+                var wardSelect = document.querySelector('select[name="ward"]');
+                wardSelect.innerHTML = '<option value="">Chọn Phường / Xã</option>';
+                data.results.forEach(function(ward) {
+                    var option = document.createElement('option');
+                    option.value = ward.ward_id;
+                    option.textContent = ward.ward_name;
+                    wardSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    });
+    </script>
 </body>
 
 <style>
@@ -87,12 +142,13 @@
         position: relative;
     }
 
-    .form-detail input {
+    .form-detail input,
+    .form-detail select {
         display: block;
-        padding: 14px 0;
+        padding: 4px 0;
         border: none;
         border-bottom: 1px solid #d8d8d8;
-        margin-top: 26px;
+        margin-top: 36px;
     }
 
     .form-detail textarea {
@@ -148,22 +204,9 @@
     .form-detail textarea:focus~.bar::after {
         width: 50%;
     }
+
+    .form-button {
+        margin-top: 20px;
+    }
 </style>
-
-<script>
-// URL API
-let urlLocation = "https://vapi.vnappmob.com/api";
-console.log(urlLocation)
-// Lấy dữ liệu địa điểm bằng fetch API
-fetch(urlLocation + "/province/")
-    .then(response => response.json())
-    .then(data => {
-        console.log("Provinces:", data);
-        // Bạn có thể lưu dữ liệu vào một biến hoặc thao tác khác ở đây
-    })
-    .catch(error => {
-        console.error("Unable to fetch provinces:", error);
-    });
-</script>
-
 </html>
