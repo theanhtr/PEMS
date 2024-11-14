@@ -1,7 +1,7 @@
-import asyncio
 from weather import WeatherService
 from predict import PredictService
 from report import ReportService
+import asyncio
 import datetime
 import numpy
 
