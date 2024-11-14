@@ -144,7 +144,7 @@ def update_daily_forecast_predict(stages_by_day, level_warnings, reports, predic
 # Lập lịch chạy hàm `predict_auto_calculate` mỗi 1 phút
 async def schedule_job():
     time_worker = get_time_worker()
-    print ("Chạy tự động tính toán sau mỗi: " + str(time_worker) + " phút. " + time_worker * 60),
+    print ("Chạy tự động tính toán sau mỗi: " + str(time_worker) + " phút. " + str(time_worker * 60)),
            
     while True:
         await predict_auto_calculate()
