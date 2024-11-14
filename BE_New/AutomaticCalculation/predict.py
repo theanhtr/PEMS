@@ -1,7 +1,7 @@
 # Service tương tác dữ liệu dự báo
 import aiohttp
-from helper import get_api_url
 import json
+from helper import get_api_url
 
 class PredictService:
     __api_url_key = 'PREDICT_API_KEY'

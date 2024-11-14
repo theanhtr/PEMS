@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Điền thông tin cá nhân</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+</head>
+
+<body>
+    <form method="POST" action="/set-up-profile">
+        <div class="form-detail">
+            <div class="form-info col-md-12 col-xs-12">
+                <div class="title-group">Thông tin cá nhân</div>
+                <div class="group">
+                    <input class="control-custom" name="fullname" type="text" required="required" oninvalid="this.setCustomValidity('Vui lòng điền thông tin dòng này!')" oninput="setCustomValidity('')" />
+                    <span class="bar"></span>
+                    <label>Họ và tên <a class="required">*</a></label>
+                </div>
+                <div class="group">
+                    <input class="control-custom" name="phonenumber" type="text" required="required" oninvalid="this.setCustomValidity('Vui lòng điền thông tin dòng này!')" oninput="setCustomValidity('')" />
+                    <span class="bar"></span>
+                    <label>Số điện thoại <a class="required">*</a></label>
+                </div>
+                <div class="title-group">Thông tin địa chỉ</div>
+                <div class="group">
+                    <label>Tỉnh / Thành phố<a class="required">*</a></label>
+                    <select class="control-custom" name="province" required="required" oninvalid="this.setCustomValidity('Vui lòng điền thông tin dòng này!')" oninput="setCustomValidity('')">
+                        <option value="">Chọn Tỉnh / Thành phố</option>
+                        <% provinces.forEach(function(province) { %>
+                            <option value="<%= province.province_id %>"><%= province.province_name %></option>
+                        <% }); %>
+                    </select>
+                </div>
+                <div class="group">
+                    <label>Quận / Huyện<a class="required">*</a></label>
+                    <select class="control-custom" name="district" required="required" oninvalid="this.setCustomValidity('Vui lòng điền thông tin dòng này!')" oninput="setCustomValidity('')">
+                        <option value="">Chọn Quận / Huyện</option>
+                    </select>
+                </div>
+                <div class="group">
+                    <label>Phường / Xã<a class="required">*</a></label>
+                    <select class="control-custom" name="ward" required="required" oninvalid="this.setCustomValidity('Vui lòng điền thông tin dòng này!')" oninput="setCustomValidity('')">
+                        <option value="">Chọn Phường / Xã</option>
+                    </select>
+                </div>
+                <div class="group">
+                    <input class="control-custom" name="address" type="text" />
+                    <span class="bar"></span>
+                    <label>Đường</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-button text-center">
+            <button class="btn btn-info" type="submit">Đăng ký</button>
+        </div>
+    </form>
+
+    <script>
+    let urlLocation = "https://vapi.vnappmob.com/api/province";
+
+    // lấy dữ liệu quận / huyện
+    document.querySelector('select[name="province"]').addEventListener('change', function() {
+        var provinceId = this.value;
+
+        if (provinceId == '') {
+            return;
+        }
+
+        fetch(`${urlLocation}/district/` + provinceId)
+            .then(response => response.json())
+            .then(data => {
+                var districtSelect = document.querySelector('select[name="district"]');
+                districtSelect.innerHTML = '<option value="">Chọn Quận / Huyện</option>';
+                data.results.forEach(function(district) {
+                    var option = document.createElement('option');
+                    option.value = district.district_id;
+                    option.textContent = district.district_name;
+                    districtSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    });
+
+    // lấy dữ liệu phường / xã
+    document.querySelector('select[name="district"]').addEventListener('change', function() {
+        var districtId = this.value;
+
+        if (districtId == '') {
+            return;
+        }
+
+        fetch(`${urlLocation}/ward/` + districtId)
+            .then(response => response.json())
+            .then(data => {
+                var wardSelect = document.querySelector('select[name="ward"]');
+                wardSelect.innerHTML = '<option value="">Chọn Phường / Xã</option>';
+                data.results.forEach(function(ward) {
+                    var option = document.createElement('option');
+                    option.value = ward.ward_id;
+                    option.textContent = ward.ward_name;
+                    wardSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    });
+    </script>
+</body>
+
+<style>
+    .required {
+        color: red;
+        font-size: 16px;
+        cursor: default;
+    }
+
+    .title-group {
+        color: #2cb680;
+        font-weight: bold;
+        font-size: 21px;
+    }
+
+    .form-info {
+        display: flex;
+        flex-direction: column;
+        row-gap: 8px;
+    }
+
+    .form-detail {
+        padding-top: 50px;
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .form-detail .control-custom {
+        font-size: 16px;
+        color: black;
+        width: 97%;
+    }
+
+    .form-detail .group {
+        position: relative;
+    }
+
+    .form-detail input,
+    .form-detail select {
+        display: block;
+        padding: 4px 0;
+        border: none;
+        border-bottom: 1px solid #d8d8d8;
+        margin-top: 36px;
+    }
+
+    .form-detail textarea {
+        display: block;
+        border: none;
+        border-bottom: 1px solid #d8d8d8;
+    }
+
+    .form-detail label {
+        font-size: 14px;
+        color: black;
+        position: absolute;
+        pointer-events: none;
+        left: 0;
+        top: 16px;
+    }
+
+    input:focus,
+    textarea:focus {
+        outline: none;
+    }
+
+    .form-detail .bar {
+        position: relative;
+        display: block;
+        width: 97%;
+    }
+
+    .bar::before,
+    .bar::after {
+        content: '';
+        height: 2px;
+        width: 0;
+        bottom: 1px;
+        position: absolute;
+        background: #2cb680;
+        transition: 0.2s ease all;
+        -moz-transition: 0.2s ease all;
+        -webkit-transition: 0.2s ease all;
+    }
+
+    .bar::before {
+        left: 50%;
+    }
+
+    .bar::after {
+        right: 50%;
+    }
+
+    .form-detail input:focus~.bar::before,
+    .form-detail input:focus~.bar::after,
+    .form-detail textarea:focus~.bar::before,
+    .form-detail textarea:focus~.bar::after {
+        width: 50%;
+    }
+
+    .form-button {
+        margin-top: 20px;
+    }
+</style>
+</html>

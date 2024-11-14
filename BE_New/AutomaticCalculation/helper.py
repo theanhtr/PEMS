@@ -1,4 +1,4 @@
-# Code lấy dữ liệu thời tiết
+# lấy config theo môi trường
 import os
 from dotenv import load_dotenv
 

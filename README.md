@@ -10,28 +10,11 @@ Mục tiêu của khóa luận này là xây dựng một quy trình CI/CD (Cont
 
 ## Cấu trúc thư mục
 
-- `docs`: Chứa tài liệu liên quan đến khóa luận.
-- `src`: Chứa mã nguồn của các dịch vụ trong hệ thống Ifawcast.
-- `scripts`: Chứa các script hỗ trợ trong quy trình CI/CD.
+- `BE`: Thư mục Backend cũ không sử dụng.
+- `BE_New`: Thư mục backend hiện tại đang phát triển
+- `DB`: Chứa các script backup kiến trúc database ứng dụng.
+- `FE`: Thư mục frontend của ứng dụng.
 
 ## Cách sử dụng
-
 1. Clone repository này về máy của bạn:
-
-  ```bash
-  git clone https://github.com/your-username/your-repo.git
-  ```
-
 2. Tiến hành cài đặt và cấu hình môi trường phát triển:
-
-  ```bash
-  cd your-repo
-  # Thực hiện các bước cài đặt và cấu hình môi trường phát triển
-  ```
-
-3. Triển khai hệ thống trên Kubernetes:
-
-  ```bash
-  cd your-repo
-  # Thực hiện các bước triển khai hệ thống trên Kubernetes
-  ```

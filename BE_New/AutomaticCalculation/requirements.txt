@@ -1,0 +1,6 @@
+aiohttp
+json
+os
+asyncio
+datetime
+numpy
