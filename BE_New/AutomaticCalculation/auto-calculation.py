@@ -4,6 +4,7 @@ from report import ReportService
 import asyncio
 import datetime
 import numpy
+from helper import get_time_worker
 
 # Hàm chạy tự động tính toán dự đoán
 async def predict_auto_calculate():
@@ -142,9 +143,12 @@ def update_daily_forecast_predict(stages_by_day, level_warnings, reports, predic
 
 # Lập lịch chạy hàm `predict_auto_calculate` mỗi 1 phút
 async def schedule_job():
+    time_worker = get_time_worker()
+    print ("Chạy tự động tính toán sau mỗi: " + str(time_worker) + " phút"),
+           
     while True:
         await predict_auto_calculate()
-        await asyncio.sleep(1 * 60)  # Đợi 1 phút trước khi chạy lại
+        await asyncio.sleep(time_worker * 60)  # Đợi 1 phút trước khi chạy lại
 
 # Chạy chương trình async
 if __name__ == "__main__":
