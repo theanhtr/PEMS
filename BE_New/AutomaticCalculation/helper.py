@@ -15,4 +15,5 @@ def get_api_url(key):
 # lấy thời gian lặp lại của worker
 def get_time_worker():
   # Xác định môi trường
-  return os.getenv('TIME_WORKER', 1) # mặc định 1 phút
+  time_worker = os.getenv('TIME_WORKER', 1) # mặc định 1 phút
+  return int(time_worker)
