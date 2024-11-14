@@ -46,7 +46,7 @@ pipeline{
 
         dir("BE_New") {
           script {
-            sh "cp /pems_env/.env.${ENV_BUILD} ./.env"
+            // sh "cp /pems_env/.env.${ENV_BUILD} ./.env"
 
             docker.withRegistry('', DOCKER_PASS) {
               docker_image = docker.build("${IMAGE_NAME}", , "-f ./${PROJECT_DIR}/Dockerfile ./")
