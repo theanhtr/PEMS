@@ -60,6 +60,7 @@ export default {
       localStorage.setItem("provinceName", this.user.ProvinceName);
       localStorage.setItem("districtName", this.user.DistrictName);
       localStorage.setItem("wardName", this.user.WardName);
+      localStorage.setItem("fullName", this.user.Fullname);
     },
     /**
      * bắt sự kiện thu gọn sidebar

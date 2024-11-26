@@ -221,7 +221,7 @@ export default {
       const index = findIndexByAttribute(
         this.pagingDataDropdown,
         "value",
-        this.modelValue.pageSize
+        this.modelValue.pageSize === 0 ? 10 : this.modelValue.pageSize
       );
 
       if (index !== -1) {

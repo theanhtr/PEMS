@@ -10,8 +10,9 @@
         />
       </template>
       <template #content__input-control>
-        <div class="w1 flex-row" style="padding-bottom: 12px">
+        <div class="w1 flex-row" style="padding-bottom: 12px;align-items: start;">
           <div class="w1/2" style="padding-right: 26px">
+            <div class="flex-row p-b-8 label-add-group">Thông tin khu vực</div>
             <div class="flex-row p-b-8">
               <ttanh-combobox
                 :errorText="errorTextreportData.provinceId"
@@ -82,56 +83,9 @@
                 :disable="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
-            <div class="flex-row p-b-8">
-              <ttanh-textfield
-                :errorText="errorTextreportData.reportName"
-                v-model="addreportData.reportName"
-                ref="reportName"
-                labelText="Người báo cáo"
-                :inputRequired="true"
-                class="w1"
-                tabindex="3"
-                :disable="formMode === $_TTANHEnum.FORM_MODE.VIEW"
-              />
-            </div>
           </div>
           <div class="w1/2">
-            <div class="flex-row p-b-8">
-              <ttanh-combobox
-                :errorText="errorTextreportData.cropId"
-                v-model="addreportData.cropId"
-                ref="cropId"
-                type="single-row"
-                labelText="Tên cây trồng"
-                :inputRequired="true"
-                :rowsData="cropsRowData"
-                @show-combobox="getCrops"
-                idField="CropId"
-                nameField="CropName"
-                :textInputCreated="addreportData.cropName"
-                class="w1"
-                tabindex="3"
-                :disableCombobox="formMode === $_TTANHEnum.FORM_MODE.VIEW"
-              />
-            </div>
-            <div class="flex-row p-b-8">
-              <ttanh-combobox
-                :errorText="errorTextreportData.cropStageId"
-                v-model="addreportData.cropStageId"
-                ref="cropStageId"
-                type="single-row"
-                labelText="Giai đoạn cây trồng"
-                :inputRequired="true"
-                :rowsData="cropStagesRowData"
-                @show-combobox="getCropStages"
-                idField="CropStageId"
-                nameField="CropStageName"
-                :textInputCreated="addreportData.cropStageName"
-                class="w1"
-                tabindex="3"
-                :disableCombobox="formMode === $_TTANHEnum.FORM_MODE.VIEW"
-              />
-            </div>
+            <div class="flex-row p-b-8 label-add-group">Thông tin báo cáo</div>
             <div class="flex-row p-b-8">
               <ttanh-combobox
                 :errorText="errorTextreportData.pestId"
@@ -139,7 +93,7 @@
                 ref="pestId"
                 type="single-row"
                 labelText="Tên sâu bệnh"
-                :inputRequired="false"
+                :inputRequired="true"
                 :rowsData="pestsRowData"
                 @show-combobox="getPests"
                 idField="PestId"
@@ -157,7 +111,7 @@
                 ref="pestStageId"
                 type="single-row"
                 labelText="Giai đoạn sâu bệnh"
-                :inputRequired="false"
+                :inputRequired="true"
                 :rowsData="pestStagesRowData"
                 @show-combobox="getPestStages"
                 idField="PestStageId"
@@ -166,6 +120,18 @@
                 class="w1"
                 tabindex="3"
                 :disableCombobox="formMode === $_TTANHEnum.FORM_MODE.VIEW"
+              />
+            </div>
+            <div class="flex-row p-b-8">
+              <ttanh-textfield
+                :errorText="errorTextreportData.reportName"
+                v-model="addreportData.reportName"
+                ref="reportName"
+                labelText="Người báo cáo"
+                :inputRequired="true"
+                class="w1"
+                tabindex="3"
+                :disable="formMode === $_TTANHEnum.FORM_MODE.VIEW"
               />
             </div>
           </div>
@@ -281,8 +247,6 @@ export default {
 
       formMode: this.$_TTANHEnum.FORM_MODE.ADD,
 
-      cropsRowData: [],
-      cropStagesRowData: [],
       pestsRowData: [],
       pestStagesRowData: [],
 
@@ -295,11 +259,7 @@ export default {
         wardName: '',
         address: '',
         pestStageId: null,
-        cropStageId: null,
         pestStageName: '',
-        cropStageName: '',
-        cropName: '',
-        cropId: null,
         pestId: null,
         pestName: '',
         reportName: ''
@@ -327,9 +287,9 @@ export default {
         districtId: 'Empty',
         wardId: 'Empty',
         address: 'MaxLength255',
-        cropStageId: 'Empty',
-        cropId: 'Empty',
-        reportName: 'Empty'
+        reportName: 'Empty',
+        pestId: 'Empty',
+        pestStageId: 'Empty'
       },
 
       errorTextreportData: {
@@ -337,38 +297,16 @@ export default {
         districtId: '',
         wardId: '',
         address: '',
-        pestStageId: '',
-        cropStageId: '',
-        pestStageName: '',
-        cropStageName: '',
-        cropName: '',
-        cropId: '',
         pestId: '',
         pestName: '',
+        pestStageId: '',
+        pestStageName: '',
         reportName: ''
       }
     }
   },
 
   methods: {
-    async getCrops() {
-      let res = await PredictService.get('Predict/crop')
-
-      if (res.statusCode === 200) {
-        this.cropsRowData = res.data
-      } else {
-        this.cropsRowData = []
-      }
-    },
-    async getCropStages() {
-      let res = await PredictService.get('Predict/crop-stage?cropId=' + this.addreportData.cropId)
-
-      if (res.statusCode === 200) {
-        this.cropStagesRowData = res.data
-      } else {
-        this.cropStagesRowData = []
-      }
-    },
     async getPests() {
       let res = await PredictService.get('Predict/pest')
 
@@ -459,6 +397,8 @@ export default {
     async addInfoForm() {
       if (this.formMode === this.$_TTANHEnum.FORM_MODE.ADD) {
         this.resetAddreportData()
+
+        this.addreportData.reportName = localStorage.getItem("fullName");
       } else if (this.formMode === this.$_TTANHEnum.FORM_MODE.UPDATE || this.formMode === this.$_TTANHEnum.FORM_MODE.VIEW) {
         for (let attr in this.dataUpdate) {
           let formatAttr = attr[0].toLowerCase() + attr.slice(1, attr.length)
@@ -511,8 +451,6 @@ export default {
         this.addreportData.wardName = this.$refs.wardId.getCurrentInputValue()
 
         this.addreportData.pestStageName = this.$refs.pestStageId.getCurrentInputValue()
-        this.addreportData.cropStageName = this.$refs.cropStageId.getCurrentInputValue()
-        this.addreportData.cropName = this.$refs.cropId.getCurrentInputValue()
         this.addreportData.pestName = this.$refs.pestId.getCurrentInputValue()
 
         //lọc loại những trường rỗng

@@ -70,18 +70,6 @@
             class="w1"
           ></VueDatePicker>
         </div>
-        <ttanh-combobox
-          v-model="dataFilter.cropId"
-          ref="cropId"
-          type="single-row"
-          labelText="Tên cây trồng"
-          :rowsData="cropsRowData"
-          @show-combobox="getCrops"
-          idField="CropId"
-          nameField="CropName"
-          class="w1/4"
-          tabindex="5"
-        />
       </div>
       <div class="page__filter-group page__filter-group-3">
         <ttanh-button
@@ -189,7 +177,6 @@ export default {
   },
   data() {
     return {
-      cropsRowData: [],
       isViewOnly: false,
 
       reports: [],
@@ -227,24 +214,6 @@ export default {
           name: 'PHƯỜNG/XÃ',
           size: '150px',
           textAlign: 'left',
-          format: 'text',
-          isShow: true,
-          isPin: false
-        },
-        {
-          id: 'CropName',
-          name: 'TÊN CÂY TRỒNG',
-          size: '150px',
-          textAlign: 'center',
-          format: 'text',
-          isShow: true,
-          isPin: false
-        },
-        {
-          id: 'CropStageName',
-          name: 'GIAI ĐOẠN CÂY TRỒNG',
-          size: '150px',
-          textAlign: 'center',
           format: 'text',
           isShow: true,
           isPin: false
@@ -340,8 +309,7 @@ export default {
         districtId: null,
         wardId: null,
         dateRange: null,
-        reportName: '',
-        cropId: null
+        reportName: ''
       }
     }
   },
@@ -356,30 +324,18 @@ export default {
   },
 
   methods: {
-    async getCrops() {
-      let res = await PredictService.get('Predict/crop')
-
-      if (res.statusCode === 200) {
-        this.cropsRowData = res.data
-      } else {
-        this.cropsRowData = []
-      }
-    },
-
     clearFilter() {
       this.dataFilter = {
         provinceId: null,
         districtId: null,
         wardId: null,
         dateRange: null,
-        reportName: '',
-        cropId: null
+        reportName: ''
       }
 
       this.$refs.provinceId.$refs.inputSearch.value = ''
       this.$refs.districtId.$refs.inputSearch.value = ''
       this.$refs.wardId.$refs.inputSearch.value = ''
-      this.$refs.cropId.$refs.inputSearch.value = ''
 
       this.getReports()
     },
@@ -432,8 +388,7 @@ export default {
           ReportEndDate: endDate,
           ReportName: this.dataFilter.reportName,
           PageSize: this.pagingData.pageSize,
-          PageNumber: this.pagingData.pageNumber,
-          CropId: this.dataFilter.cropId
+          PageNumber: this.pagingData.pageNumber
         }
 
         const res = await ReportService.filterAdvanced('Report', dataFilter)

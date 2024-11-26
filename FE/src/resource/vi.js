@@ -423,6 +423,7 @@ const vi = {
         districtId: 'Quận/Huyện',
         wardId: 'Phường/Xã',
         address: 'Địa chỉ',
+        pestId: 'Tên sâu bệnh',
         pestStageId: 'Giai đoạn sâu bệnh',
         cropStageId: 'Giai đoạn cây trồng',
         reportName: 'Người báo cáo',

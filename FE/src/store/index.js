@@ -59,6 +59,7 @@ export default createStore({
       localStorage.removeItem("provinceName");
       localStorage.removeItem("districtName");
       localStorage.removeItem("wardName");
+      localStorage.removeItem("fullName");
 
       state.isLoggedIn = false;
     },

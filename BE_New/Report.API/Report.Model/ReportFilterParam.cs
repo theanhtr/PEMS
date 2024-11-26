@@ -22,11 +22,6 @@ namespace Report.Model
         public string? WardId { get; set; }
 
         /// <summary>
-        /// Gets or sets the ward ID.
-        /// </summary>
-        public Guid? CropId { get; set; }
-
-        /// <summary>
         /// Gets or sets the start date.
         /// </summary>
         public DateTime? ReportStartDate { get; set; }

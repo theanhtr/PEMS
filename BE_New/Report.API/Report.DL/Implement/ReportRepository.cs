@@ -30,7 +30,6 @@ namespace Report.DL
             parameters.Add("@v_ReportStartDate", ReportStartDate);
             parameters.Add("@v_ReportEndDate", ReportEndDate);
             parameters.Add("@v_ReportName", reportFilterParam.ReportName);
-            parameters.Add("@v_CropId", reportFilterParam.CropId);
             parameters.Add("@v_PageSize", PageSize);
             parameters.Add("@v_PageNumber", PageNumber);
 

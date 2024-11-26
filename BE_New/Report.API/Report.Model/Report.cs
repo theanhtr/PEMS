@@ -53,27 +53,11 @@ namespace Report.Model
 
         /// <summary>
         /// </summary>
-        public Guid? CropStageId { get; set; }
-
-        /// <summary>
-        /// </summary>
-        public string? CropStageName { get; set; }
-
-        /// <summary>
-        /// </summary>
         public Guid? PestStageId { get; set; }
 
         /// <summary>
         /// </summary>
         public string? PestStageName { get; set; }
-
-        /// <summary>
-        /// </summary>
-        public Guid? CropId { get; set; }
-
-        /// <summary>
-        /// </summary>
-        public string? CropName { get; set; }
 
         /// <summary>
         /// </summary>
