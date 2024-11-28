@@ -10,5 +10,6 @@ namespace Report.DL
     public interface IReportRepository : IBaseRepository<Model.Report>
     {
         Task<ReportFilterResult> FiltersReportAsync(ReportFilterParam reportFilterParam, DateTime? ReportStartDate, DateTime? ReportEndDate, int? PageSize, int? PageNumber);
+        Task<Model.Report> LatestReport(ReportLatestParam reportLatestParam);
     }
 }

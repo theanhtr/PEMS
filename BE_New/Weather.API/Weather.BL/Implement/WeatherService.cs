@@ -115,21 +115,14 @@ namespace Weather.BL
             }
 
             var urlWeather = "";
-
-            if (startDate < DateOnly.FromDateTime(DateTime.Now.AddMonths(-3)))
+            
+            // ngày kết thúc dự đoán trong tương lai thì không được quá 14 ngày từ hôm nay
+            if (endDate > DateOnly.FromDateTime(DateTime.Now.AddDays(14)))
             {
-                urlWeather = $"{weatherHistoryApi}/archive?latitude={geocodeAddress.Latitude}&longitude={geocodeAddress.Longitude}&daily=temperature_2m_max,temperature_2m_mean,rain_sum,relative_humidity_2m_mean&timezone={timezone}&start_date={startDate.ToString(formatDateWeatherApi)}&end_date={endDate.ToString(formatDateWeatherApi)}";
+                endDate = DateOnly.FromDateTime(DateTime.Now.AddDays(14));
             }
-            else
-            {
-                // ngày kết thúc dự đoán trong tương lai thì không được quá 14 ngày từ hôm nay
-                if (endDate > DateOnly.FromDateTime(DateTime.Now.AddDays(14)))
-                {
-                    endDate = DateOnly.FromDateTime(DateTime.Now.AddDays(14));
-                }
 
-                urlWeather = $"{weatherApi}/forecast?latitude={geocodeAddress.Latitude}&longitude={geocodeAddress.Longitude}&daily=temperature_2m_max,temperature_2m_mean,rain_sum,relative_humidity_2m_mean&timezone={timezone}&start_date={startDate.ToString(formatDateWeatherApi)}&end_date={endDate.ToString(formatDateWeatherApi)}";
-            }
+            urlWeather = $"{weatherApi}/forecast?latitude={geocodeAddress.Latitude}&longitude={geocodeAddress.Longitude}&daily=temperature_2m_max,temperature_2m_mean,rain_sum,relative_humidity_2m_mean&timezone={timezone}&start_date={startDate.ToString(formatDateWeatherApi)}&end_date={endDate.ToString(formatDateWeatherApi)}";
 
             using (var client = new HttpClient())
             {
@@ -201,20 +194,13 @@ namespace Weather.BL
 
             var urlWeather = "";
 
-            if (startDate < DateOnly.FromDateTime(DateTime.Now.AddMonths(-3)))
+            // ngày kết thúc dự đoán trong tương lai thì không được quá 14 ngày từ hôm nay
+            if (endDate > DateOnly.FromDateTime(DateTime.Now.AddDays(14)))
             {
-                urlWeather = $"{weatherHistoryApi}/archive?latitude={geocodeAddress.Latitude}&longitude={geocodeAddress.Longitude}&daily=temperature_2m_max,temperature_2m_mean,rain_sum,relative_humidity_2m_mean&timezone={timezone}&start_date={startDate.ToString(formatDateWeatherApi)}&end_date={endDate.ToString(formatDateWeatherApi)}";
-            } 
-            else
-            {
-                // ngày kết thúc dự đoán trong tương lai thì không được quá 14 ngày từ hôm nay
-                if (endDate > DateOnly.FromDateTime(DateTime.Now.AddDays(14)))
-                {
-                    endDate = DateOnly.FromDateTime(DateTime.Now.AddDays(14));
-                }
-
-                urlWeather = $"{weatherApi}/forecast?latitude={geocodeAddress.Latitude}&longitude={geocodeAddress.Longitude}&daily=temperature_2m_max,temperature_2m_mean,rain_sum,relative_humidity_2m_mean&timezone={timezone}&start_date={startDate.ToString(formatDateWeatherApi)}&end_date={endDate.ToString(formatDateWeatherApi)}";
+                endDate = DateOnly.FromDateTime(DateTime.Now.AddDays(14));
             }
+
+            urlWeather = $"{weatherApi}/forecast?latitude={geocodeAddress.Latitude}&longitude={geocodeAddress.Longitude}&daily=temperature_2m_max,temperature_2m_mean,rain_sum,relative_humidity_2m_mean&timezone={timezone}&start_date={startDate.ToString(formatDateWeatherApi)}&end_date={endDate.ToString(formatDateWeatherApi)}";
 
             using (var client = new HttpClient())
             {

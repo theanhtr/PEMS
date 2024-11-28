@@ -246,7 +246,7 @@ export default {
           isPin: false
         },
         {
-          id: 'ReportDate',
+          id: 'ModifiedDate',
           name: 'THỜI ĐIỂM BÁO CÁO',
           size: '150px',
           textAlign: 'center',

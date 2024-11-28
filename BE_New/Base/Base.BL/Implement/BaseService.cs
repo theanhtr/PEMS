@@ -22,7 +22,8 @@ namespace Base.BL
         /// Thêm xử lý khi thêm bản ghi
         /// </summary>
         /// CreatedBy: TTANH (21/07/2024)
-        public virtual async Task BaseServiceMoreProcessInsertAsync(TEntity entity) { }
+        public virtual async Task BeforeInsertAsync(TEntity entity) { }
+        public virtual async Task AfterInsertAsync(TEntity entity) { }
 
         /// <summary>
         /// Hàm thêm bản ghi
@@ -32,7 +33,7 @@ namespace Base.BL
         /// Created by: TTANH (18/07/2024)
         public virtual async Task<int> InsertAsync(TEntity entity)
         {
-            await BaseServiceMoreProcessInsertAsync(entity);
+            await BeforeInsertAsync(entity);
 
             entity.SetKey(Guid.NewGuid());
 
@@ -44,6 +45,8 @@ namespace Base.BL
 
             var result = await _baseRepository.InsertAsync(entity);
 
+            await AfterInsertAsync(entity);
+
             return result;
         }
 
@@ -51,7 +54,8 @@ namespace Base.BL
         /// Thêm xử lý khi cập nhật bản ghi
         /// </summary>
         /// CreatedBy: TTANH (21/07/2024)
-        public virtual async Task BaseServiceMoreProcessUpdateAsync(Guid id, TEntity entity) { }
+        public virtual async Task BeforeUpdateAsync(Guid id, TEntity entity) { }
+        public virtual async Task AfterUpdateAsync(Guid id, TEntity entity) { }
 
         /// <summary>
         /// Hàm cập nhật thông tin bản ghi
@@ -62,7 +66,7 @@ namespace Base.BL
         /// Created by: TTANH (18/07/2024)
         public virtual async Task<int> UpdateAsync(Guid id, TEntity entity)
         {
-            await BaseServiceMoreProcessUpdateAsync(id, entity);
+            await BeforeUpdateAsync(id, entity);
 
             foreach (var property in entity.GetType().GetProperties())
             {
@@ -87,6 +91,8 @@ namespace Base.BL
             }
 
             var result = await _baseRepository.UpdateAsync(id, entity);
+            
+            await AfterUpdateAsync(id, entity);
 
             return result;
         }

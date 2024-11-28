@@ -33,6 +33,17 @@ namespace Report.API
 
             return StatusCode(StatusCodes.Status200OK, filterData);
         }
+
+        /// <summary>
+        /// <returns>Các bản ghi lọc theo các tiêu chí trên</returns>
+        /// Created by: TTANH (18/07/2024) 
+        [HttpPost("latest")]
+        public async Task<IActionResult> LatestReport([FromBody] ReportLatestParam reportLatestParam)
+        {
+            var latestReport = await _reportService.LatestReport(reportLatestParam);
+
+            return StatusCode(StatusCodes.Status200OK, latestReport);
+        }
         #endregion
     }
 }

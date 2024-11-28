@@ -3,6 +3,7 @@ using Base.DL;
 using Base.Model;
 using Predict.Model;
 using System.Data;
+using System.Web.WebPages;
 
 namespace Predict.DL
 {
@@ -25,6 +26,22 @@ namespace Predict.DL
             var predict = _unitOfWork.Connection.QueryFirstOrDefault(sql, new { CurrentEndDate = DateTime.Now, PredictId = PredictId }, commandType: CommandType.Text);
             return predict;
         }
+
+        public async Task<Model.Predict> GetPredictByLocation(PredictByLocationParam predictByLocationParam)
+        {
+            var procedure = $"Proc_Predict_GetPredictByLocation";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@v_ProvinceId", predictByLocationParam.ProvinceId);
+            parameters.Add("@v_DistrictId", predictByLocationParam.DistrictId);
+            parameters.Add("@v_WardId", predictByLocationParam.WardId);
+            parameters.Add("@v_SeasonEnd", predictByLocationParam.SeasonEnd);
+            parameters.Add("@v_CropId", predictByLocationParam.CropId);
+            parameters.Add("@v_PestId", predictByLocationParam.PestId);
+
+            return await _unitOfWork.Connection.QueryFirstOrDefaultAsync<Model.Predict>(procedure, parameters, commandType: CommandType.StoredProcedure);
+        }
+
 
         public async Task<PredictFilterResult> FiltersPredictAsync(PredictFilterParam predictFilterParam, DateTime? StartDate, DateTime? EndDate, int? PageSize, int? PageNumber)
         {
@@ -64,8 +81,19 @@ namespace Predict.DL
 
         public async Task<int?> DailyForecastAsync(DailyForecastParam dailyForecastParam)
         {
-            var sql = "UPDATE predict SET DailyForecast = @DailyForecast WHERE PredictId = @PredictId";
-            var predict = _unitOfWork.Connection.QueryFirstOrDefault(sql, new { DailyForecast = dailyForecastParam.DailyForecast, PredictId = dailyForecastParam.PredictId }, commandType: CommandType.Text);
+            var sql = "UPDATE predict SET DailyForecast = @DailyForecast," +
+                "CropStageName = @CropStageName," +
+                "PestStageName = @PestStageName," +
+                "LevelWarningName = @LevelWarningName " +
+                "WHERE PredictId = @PredictId";
+            var predict = _unitOfWork.Connection.QueryFirstOrDefault(sql, 
+                new { 
+                    dailyForecastParam.DailyForecast, 
+                    dailyForecastParam.PredictId, 
+                    dailyForecastParam.CropStageName, 
+                    dailyForecastParam.LevelWarningName, 
+                    dailyForecastParam.PestStageName }, 
+                commandType: CommandType.Text);
             return predict;
         }
         #endregion
@@ -87,13 +115,13 @@ namespace Predict.DL
 
         public async Task<IEnumerable<CropStage>> CropStageAsync(Guid cropId)
         {
-            var sql = "SELECT * FROM crop_stage WHERE CropId = @CropId ORDER BY CropStageName";
+            var sql = "SELECT * FROM crop_stage WHERE CropId = @CropId ORDER BY StageOrder";
             return await _unitOfWork.Connection.QueryAsync<CropStage>(sql, new { CropId = cropId });
         }
 
         public async Task<IEnumerable<PestStage>> PestStageAsync(Guid pestId)
         {
-            var sql = "SELECT * FROM pest_stage WHERE PestId = @PestId ORDER BY PestStageName";
+            var sql = "SELECT * FROM pest_stage WHERE PestId = @PestId ORDER BY StageOrder";
             return await _unitOfWork.Connection.QueryAsync<PestStage>(sql, new { PestId = pestId });
         }
 

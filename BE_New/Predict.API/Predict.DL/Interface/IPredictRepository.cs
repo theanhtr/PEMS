@@ -18,5 +18,6 @@ namespace Predict.DL
         Task<IEnumerable<CropStage>> CropStageAsync(Guid cropId);
         Task<IEnumerable<PestStage>> PestStageAsync(Guid pestId);
         Task<IEnumerable<LevelWarning>> LevelWarningAsync(Guid pestId, Guid cropId);
+        Task<Model.Predict> GetPredictByLocation(PredictByLocationParam predictByLocationParam);
     }
 }

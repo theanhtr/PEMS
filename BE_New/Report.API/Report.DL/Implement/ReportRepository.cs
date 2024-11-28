@@ -50,6 +50,23 @@ namespace Report.DL
 
             return reportFilterResult;
         }
+
+        public async Task<Model.Report> LatestReport(ReportLatestParam reportLatestParam)
+        {
+            var procedure = $"Proc_Report_LatestReport";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@v_ProvinceId", reportLatestParam.ProvinceId);
+            parameters.Add("@v_DistrictId", reportLatestParam.DistrictId);
+            parameters.Add("@v_WardId", reportLatestParam.WardId);
+            parameters.Add("@v_PestId", reportLatestParam.PestId);
+
+            Model.Report report = null;
+
+            report = await _unitOfWork.Connection.QueryFirstOrDefaultAsync<Model.Report>(procedure, parameters, commandType: CommandType.StoredProcedure);
+
+            return report;
+        }
         #endregion
     }
 }

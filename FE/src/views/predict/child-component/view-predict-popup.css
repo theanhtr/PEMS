@@ -1,7 +1,7 @@
 #view-predict-popup {
   max-width: none !important;
-  width: 85% !important;
-  height: 660px !important;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .label-add-group {
@@ -33,9 +33,17 @@
 .daily-forecast-table-group {
   height: 290px;
   width: 100%;
-  overflow: scroll;
+  margin: 0px 40px;
+  column-gap: 50px;
+  display: flex;
 }
 
 .daily-forecast-table-group .m-table__body--no-data {
   margin-top: 100px !important;
+}
+
+.details-container {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 20px;
 }

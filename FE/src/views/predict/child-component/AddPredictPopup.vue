@@ -142,11 +142,11 @@
                 type="single-row"
                 labelText="Mức độ cảnh báo"
                 :inputRequired="false"
-                :rowsData="levelWarningsRowData"
-                idField="LevelWarningId"
-                nameField="LevelWarningName"
+                :rowsData="pestStagesRowData"
+                idField="PestStageId"
+                nameField="PestStageName"
                 :textInputCreated="addPredictData.previousLevelWarningName"
-                @show-combobox="getLevelWarnings"
+                @show-combobox="getPestStages"
                 class="w1"
                 tabindex="3"
                 :disableCombobox="formMode === $_TTANHEnum.FORM_MODE.VIEW"
@@ -342,7 +342,7 @@ export default {
       },
       pestsRowData: [],
       cropsRowData: [],
-      levelWarningsRowData: []
+      pestStagesRowData: []
     }
   },
 
@@ -367,13 +367,13 @@ export default {
       }
     },
     
-    async getLevelWarnings() {
-      let res = await PredictService.get('Predict/level-warning?cropId=' + this.addPredictData.cropId + '&pestId=' + this.addPredictData.pestId)
+    async getPestStages() {
+      let res = await PredictService.get('Predict/pest-stage?pestId=' + this.addPredictData.pestId)
 
       if (res.statusCode === 200) {
-        this.levelWarningsRowData = res.data
+        this.pestStagesRowData = res.data
       } else {
-        this.levelWarningsRowData = []
+        this.pestStagesRowData = []
       }
     },
 
@@ -527,7 +527,14 @@ export default {
               text: 'Thêm dự báo thành công'
             })
           } else {
-            CommonErrorHandle()
+            if (res.errorCode == this.$_TTANHEnum.ERROR_CODE.DATA_WRONG) {
+              this.$store.commit('addToast', {
+                type: 'error',
+                text: res.userMsg
+              })
+            } else {
+              CommonErrorHandle()
+            }
             isSuccess = false
           }
         } else if (this.formMode === this.$_TTANHEnum.FORM_MODE.UPDATE) {
@@ -539,7 +546,14 @@ export default {
               text: 'Cập nhật dự báo thành công'
             })
           } else {
-            CommonErrorHandle()
+            if (res.errorCode == this.$_TTANHEnum.ERROR_CODE.DATA_WRONG) {
+              this.$store.commit('addToast', {
+                type: 'error',
+                text: res.userMsg
+              })
+            } else {
+              CommonErrorHandle()
+            }
             isSuccess = false
           }
         }

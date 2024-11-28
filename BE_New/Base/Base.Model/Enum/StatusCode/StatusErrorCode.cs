@@ -67,6 +67,7 @@
         ExcelHeaderRequiredNotMap = 1430,
 
         WrongPassword = 1431,
+        DataWrong = 1432,
         Forbidden = 403,
     }
 }

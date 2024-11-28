@@ -1,6 +1,6 @@
 ﻿using Base.Model;
 
-namespace Report.Model
+namespace Predict.Model
 {
     /// <summary>
     /// Đối tượng để lưu trữ thông tin layout của phân hệ nhân viên

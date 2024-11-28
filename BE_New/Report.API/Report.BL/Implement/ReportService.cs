@@ -19,10 +19,6 @@ namespace Report.BL
         #endregion
 
         #region Methods
-        public override async Task BaseServiceMoreProcessInsertAsync(Model.Report report) { 
-            report.ReportDate = DateTime.Now;
-        }
-
         public async Task<BaseFilterResponse<Model.Report>> FiltersReportAsync([FromBody] ReportFilterParam reportFilterParam)
         {
             // xử lý param trước khi gửi xuống repository
@@ -59,6 +55,11 @@ namespace Report.BL
             var filterData = new BaseFilterResponse<Model.Report>(totalPage, totalRecord, currentPage, currentPageRecords, reportFilterResult.Reports.ToList());
 
             return filterData;
+        }
+
+        public async Task<Model.Report> LatestReport(ReportLatestParam reportLatestParam)
+        {
+            return await _reportRepository.LatestReport(reportLatestParam);
         }
         #endregion
     }

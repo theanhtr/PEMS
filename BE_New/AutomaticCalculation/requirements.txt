@@ -3,3 +3,4 @@ asyncio
 datetime
 numpy
 python-dotenv
+flask

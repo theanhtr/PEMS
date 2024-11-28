@@ -2,6 +2,7 @@
 import aiohttp
 import json
 from helper import get_api_url
+from datetime import datetime, date
 
 class PredictService:
     __api_url_key = 'PREDICT_API_KEY'
@@ -93,9 +94,19 @@ class PredictService:
     # lấy danh sách cảnh báo
     async def update_daily_forecast(self, predict_id, stages_by_day):
         url = f"{self.__api_url}/Predict/daily-forecast"
+
+        today_stage = None
+        for stage in stages_by_day:
+            if datetime.strptime(stage['date'], "%Y-%m-%d").date() == date.today():
+                today_stage = stage
+                break
+
         datas = {
             'PredictId': predict_id,
-            'DailyForecast': json.dumps(stages_by_day)
+            'DailyForecast': json.dumps(stages_by_day),
+            'CropStageName': today_stage['crop_stage_name'] if today_stage is not None else "",
+            'PestStageName': today_stage['stage'] if today_stage is not None else "",
+            'LevelWarningName': today_stage['level_warning']  if today_stage is not None else ""
         }
 
         try:

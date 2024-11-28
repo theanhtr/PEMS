@@ -61,10 +61,10 @@ namespace User.BL
             return "success";
         }
 
-        public override Task BaseServiceMoreProcessInsertAsync(Model.User entityCreateDto)
+        public override Task BeforeInsertAsync(Model.User entityCreateDto)
         {
             entityCreateDto.Password = BCrypt.Net.BCrypt.HashPassword("12345678@Abc");
-            return base.BaseServiceMoreProcessInsertAsync(entityCreateDto);
+            return base.BeforeInsertAsync(entityCreateDto);
         }
     }
 }

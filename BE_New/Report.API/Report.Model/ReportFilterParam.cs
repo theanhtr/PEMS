@@ -37,4 +37,30 @@ namespace Report.Model
         public string? ReportName { get; set; }
         #endregion
     }
+
+
+    public class ReportLatestParam
+    {
+        #region Fields
+        /// <summary>
+        /// Gets or sets the province ID.
+        /// </summary>
+        public string? ProvinceId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the district ID.
+        /// </summary>
+        public string? DistrictId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ward ID.
+        /// </summary>
+        public string? WardId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ward ID.
+        /// </summary>
+        public string? PestId { get; set; }
+        #endregion
+    }
 }

@@ -5,6 +5,9 @@ import store from "./store";
 import sprintf from "sprintf-js"; // sử dụng để dùng biến trong string
 import i18n from "./resource/i18n.js";
 
+import VCalendar from 'v-calendar';
+import 'v-calendar/style.css';
+
 import TTANHButton from "./components/base/button/TTANHButton.vue";
 import TTANHIcon from "./components/base/icon/TTANHIcon.vue";
 import TTANHSeparationLine from "./components/base/separation-line/TTANHSeparationLine.vue";
@@ -74,6 +77,8 @@ app.config.globalProperties.$_TTANHEnum = TTANHEnum;
 app.config.globalProperties.$sprintf = sprintf.sprintf;
 
 app.use(i18n);
+
+app.use(VCalendar, {})
 
 app.mount("#app");
 

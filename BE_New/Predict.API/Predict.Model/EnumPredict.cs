@@ -34,6 +34,7 @@
         public Guid CropStageId { get; set; }
         public Guid? CropId { get; set; } // Foreign key to Crop
         public string CropStageName { get; set; } // Giai đoạn cây trồng
+        public int DevelopmentTime { get; set; } // Thời gian phát triển của giai đoạn
     }
 
     public class Crop

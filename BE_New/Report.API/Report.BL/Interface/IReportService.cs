@@ -12,5 +12,6 @@ namespace Report.BL
     public interface IReportService : IBaseService<Model.Report>
     {
         Task<BaseFilterResponse<Model.Report>> FiltersReportAsync(ReportFilterParam reportFilterParam);
+        Task<Model.Report> LatestReport(ReportLatestParam reportLatestParam);
     }
 }
